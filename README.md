@@ -13,4 +13,4 @@ Features
 - Save formulas which persist even when the page is reloaded
 - Rename formulas which also print in roll history
 - Full screen mode
-- Responsive layout which supports from mobile up
+- Responsive layout from mobile up
