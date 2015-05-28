@@ -209,7 +209,10 @@ function diceRollerama() {
   // remove saved formula
   function clearSavedFormula(elem) {
     var toRemove = getClosest(elem, ".savedFormula");
-    toRemove.parentNode.removeChild(toRemove);
+    var confirm = window.confirm("Delete this formula?");
+    if (confirm) {
+      toRemove.parentNode.removeChild(toRemove);
+    };
     checkListActiveState();
   };
 
@@ -458,6 +461,7 @@ function diceRollerama() {
     };
   };
 
+  // local storage add
   function localStoreAdd() {
     if (localStorage.getItem) {
       localStorage.setItem("savedRolls", savedRollsList.innerHTML);
@@ -465,6 +469,7 @@ function diceRollerama() {
     };
   };
 
+  // local storage read
   function localStoreRead() {
     if (localStorage.getItem("savedRolls") == "") {
       localStorage.clear("savedRolls");
