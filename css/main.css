@@ -239,13 +239,13 @@ body.fixed #diceRollClicker #goRoll:before {
   height: 70px;
 }
 
-#diceRollClicker #rollResult {
+#diceRollClicker #currentResult {
   position: absolute;
   width: 100%;
   text-align: center;
 }
 
-#diceRollClicker #rollResult p {
+#diceRollClicker #currentResult p {
   margin: 0;
   font-size: 5em;
   line-height: 150px;
@@ -256,25 +256,25 @@ body.fixed #diceRollClicker #goRoll:before {
   text-shadow: none;
 }
 
-body.fixed #diceRollClicker #rollResult p {
+body.fixed #diceRollClicker #currentResult p {
   font-size: 2em;
   line-height: 70px;
 }
 
 @media (min-width: 750px) {
-  body.fixed #diceRollClicker #rollResult p {
+  body.fixed #diceRollClicker #currentResult p {
     font-size: 4em;
     line-height: 150px;
   }
 }
 
-#diceRollClicker:focus #rollResult p,
-#diceRollClicker:active #rollResult p {
+#diceRollClicker:focus #currentResult p,
+#diceRollClicker:active #currentResult p {
   text-shadow: 0 0 50px rgba(0, 198, 255, 1), 0 0 10px rgba(0, 198, 255, 1), 0 0 5px rgba(0, 198, 255, 1);
 }
 
-#diceRollClicker.critical20 #rollResult p,
-#diceRollClicker.critical1 #rollResult p {
+#diceRollClicker.critical20 #currentResult p,
+#diceRollClicker.critical1 #currentResult p {
   color: #ffffff;
 }
 
