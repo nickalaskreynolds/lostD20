@@ -60,14 +60,8 @@ function diceRollerama() {
     return formula_numberOfDiceSides;
   };
 
-  // formula current dice
-  function formula_readCurrentDice() {
-    getRadioValue(element_d,"diceSelect");
-    formula_currentDice.innerHTML = "d" + formula_numberOfDiceSides;
-  };
-
   // dice active state 
-  function makeActive(form, radioGroupName) {
+  function makeSelectedDiceActive(form, radioGroupName) {
     // get list of radio buttons with specified name
     var radios = form[radioGroupName];
     // loop through list of radio buttons
@@ -80,10 +74,16 @@ function diceRollerama() {
     };
   };
 
+  // formula current dice
+  function formula_readCurrentDice() {
+    getRadioValue(element_d,"diceSelect");
+    formula_currentDice.innerHTML = "d" + formula_numberOfDiceSides;
+  };
+
   // dice select
   function activateChosenDice() {
     for (var i = 0; i < element_diceSelectLabels.length; i++) {
-      element_diceSelectLabels[i].addEventListener("click", function(){ makeActive(element_d,"diceSelect"); formula_readCurrentDice(); }, false);
+      element_diceSelectLabels[i].addEventListener("click", function(){ makeSelectedDiceActive(element_d,"diceSelect"); formula_readCurrentDice(); }, false);
     };
   };
 
@@ -239,7 +239,7 @@ function diceRollerama() {
     };
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfDice();
-    makeActive(element_d,"diceSelect");
+    makeSelectedDiceActive(element_d,"diceSelect");
     formula_readCurrentDice();
     roll(readSavedAmountOfDice, readSavedDiceSidesValue, readSavedAmountOfBonus, readSavedName);
   };
@@ -392,58 +392,25 @@ function diceRollerama() {
     };
   };
 
-
-
-    
+  // toggle fullscreen
   function toggleFullScreen() {
-  var doc = window.document;
-    if (!document.mozFullScreen && !document.webkitFullScreen) {
-      if (doc.mozRequestFullScreen) {
-        doc.mozRequestFullScreen();
-      } else {
-        doc.webkitRequestFullScreen();
-      }
-    } else {
-      if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else {
-        document.webkitCancelFullScreen();
-      }
-    }
-  }
-  
-  document.addEventListener("keydown", function(e) {
-    if (e.keyCode == 13) {
-      toggleFullScreen();
-    }
-  }, false);
-
-
-
-  // request fullscreen
-  function xxxx() {
-
-    var doc = window.document;
-
-    var docEl = doc.documentElement;
-
-    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-
-    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-      requestFullScreen.call(docEl);
+    var root = window.document;
+    var rootElement = root.documentElement;
+    var requestFullScreen = rootElement.requestFullscreen || rootElement.mozRequestFullScreen || rootElement.webkitRequestFullScreen || rootElement.msRequestFullscreen;
+    var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
+    if(!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
+      requestFullScreen.call(rootElement);
       utilities_goFullscreen.classList.add("active");
       utilities_goFullscreenIcon.classList.remove("diceIcon-expand");
       utilities_goFullscreenIcon.classList.add("diceIcon-compress");
-      element_html.classList.add("fullscreen");
+      // element_html.classList.add("fullscreen");
     }
     else {
-      cancelFullScreen.call(doc);
+      cancelFullScreen.call(root);
       utilities_goFullscreen.classList.remove("active");
       utilities_goFullscreenIcon.classList.remove("diceIcon-compress");
       utilities_goFullscreenIcon.classList.add("diceIcon-expand");
-      element_html.classList.remove("fullscreen");
+      // element_html.classList.remove("fullscreen");
     }
   };
 
@@ -542,7 +509,7 @@ function diceRollerama() {
   modifiers_readAmountOfDice();
   activateChosenDice();
   getRadioValue(element_d,"diceSelect");
-  makeActive(element_d,"diceSelect");
+  makeSelectedDiceActive(element_d,"diceSelect");
   formula_readCurrentDice();
   listMaxHeight();
   localStoreRead();
