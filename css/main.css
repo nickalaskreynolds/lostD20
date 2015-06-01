@@ -31,6 +31,9 @@ html.fullscreen body {
 }*/
 
 @media (min-width: 550px) {
+  body {
+    padding: 160px 0 30px 0;
+  }
   body,
   body.fixed {
     /*padding: 180px 0 30px 0;*/
@@ -51,33 +54,23 @@ html.fullscreen body {
           transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
 }
 
+
+
+
+
 .divider {
+  background-color: #ffffff;
   position: relative;
   margin: 0;
   border: 0;
   -webkit-transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
      -moz-transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
           transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
-  background-color: #ffffff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05), 0 4px 0 rgba(0, 0, 0, 0.05);;
 }
-@media (min-width: 550px) {
-  .divider {
-    margin: 10px 0;
-    border-radius: 4px;
-  }
-}
-
-@media (min-width: 750px) {
-  .divider {
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* z index */
 
 #diceRollClicker.divider {
   z-index: 4;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 #d.divider {
@@ -90,36 +83,110 @@ html.fullscreen body {
 
 #utilities.divider {
   z-index: 3;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 #savedRolls.divider {
   z-index: 2;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 #resultHistory.divider {
   z-index: 1;
 }
 
+
+
+
+
 @media (min-width: 550px) {
-  #diceRollClicker.divider,
-  #utilities.divider,
-  #savedRolls.divider,
-  #resultHistory.divider {
+  .divider {
+    margin: 0 0 10px 0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+
+  #diceRollClicker.divider {
+    margin: 0 7.5% 10px 7.5%;
     border-radius: 0 0 4px 4px;
+  }
+
+  #d.divider {
+
+  }
+
+  #formulaModifiers.divider {
+
+  }
+
+  #utilities.divider {
+
+  }
+
+  #savedRolls.divider {
+
+  }
+
+  #resultHistory.divider {
+
   }
 }
 
+
+
+
 @media (min-width: 750px) {
-  #diceRollClicker.divider,
-  #d.divider,
-  #formulaModifiers.divider,
-  #utilities.divider,
-  #savedRolls.divider,
-  #resultHistory.divider {
-    z-index: inherit;
+  .divider {
+  }
+  #diceRollClicker.divider {
     border-radius: 4px;
+    margin: 0 0 10px 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  #d.divider {
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+  }
+
+  #formulaModifiers.divider {
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+  }
+
+  #utilities.divider {
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+  }
+
+  #savedRolls.divider {
+    border-radius: 4px;
+    margin: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+  }
+
+  #resultHistory.divider {
+    border-radius: 4px;
+    margin: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
   }
 }
+
+
+
+
+
 
 button,
 label {
@@ -157,7 +224,6 @@ button:active .icon {
   left: 0;
   width: 100%;
   min-height: 150px;
-  margin: 0;
   -webkit-transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
      -moz-transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
           transition: all 0.4s cubic-bezier(0.7, -0.6, 0.3, 1.6);
@@ -167,7 +233,6 @@ button:active .icon {
 @media (min-width: 550px) {
   #diceRollClicker {
     width: 85%;
-    margin: 0 7.5%;
   }
 }
 
@@ -177,8 +242,6 @@ button:active .icon {
     top: inherit;
     left: inherit;
     width: initial;
-    margin: 0;
-    border-radius: 4px;
   }
 }
 
@@ -643,21 +706,13 @@ h2 {
 #savedRolls {
   max-height: 300px;
   padding: 0;
-  margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
 }
 
-@media (min-width: 550px) {
-  #savedRolls {
-    margin: 0 0 10px 0;
-  }
-}
-
 @media (min-width: 750px) {
   #savedRolls {
-    margin: 0;
     max-height: inherit;
   }
 }
@@ -701,7 +756,6 @@ h2 {
 #resultHistory {
   max-height: 500px;
   padding: 0;
-  margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
@@ -709,13 +763,13 @@ h2 {
 
 @media (min-width: 550px) {
   #resultHistory {
-    margin: 0 0 10px 0;
+    /*margin: 0 0 10px 0;*/
   }
 }
 
 @media (min-width: 750px) {
   #resultHistory {
-    margin: 0;
+    /*margin: 0;*/
     position: fixed;
     width: 31.5%;
   }
