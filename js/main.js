@@ -2,40 +2,41 @@ function diceRollerama() {
 
   // elements
   var element_html =                                e("html");
-  var element_d =                                   e("#d #diceForm");
+  var element_diceSelector =                        e("#diceSelector");
   var element_diceRollClicker =                     e("#diceRollClicker");
   var element_goRoll =                              e("#goRoll");
   var element_currentResult =                       e("#currentResult");
   var element_savedRolls =                          e("#savedRolls");
-  var element_savedRollsList =                      e("#savedRolls .list");
+  var element_savedRolls_list =                     e("#savedRolls .list");
   var element_resultHistory =                       e("#resultHistory");
-  var element_resultHistoryList =                   e("#resultHistory .list");
-  var element_diceSelectLabels =                    eA("#diceForm label");
+  var element_resultHistory_list =                  e("#resultHistory .list");
+  var element_diceSelect_label =                    eA("#diceSelector label");
   // formula
-  var formula_numberOfDiceSides;
+  var formula_numberOfDiceSides_value;
   var formula_numberOfBonus =                       e("#formula .number.ofBonus");
-  var formula_numberOfBonusInput =                  e("#formula .number.ofBonus input");
-  var formula_numberOfBonusInput_value
+  var formula_numberOfBonus_input =                 e("#formula .number.ofBonus input");
+  var formula_numberOfBonus_input_value
   var formula_numberOfDice =                        e("#formula .number.ofDice");
-  var formula_numberOfDiceInput =                   e("#formula .number.ofDice input");
-  var formula_numberOfDiceInput_value
-  var formula_changeAmountOfBonus_clear =           e("#formula .number.ofBonus .clear");
-  var formula_changeAmountOfDice_clear =            e("#formula .number.ofDice .clear");
-  var formula_currentDice =                         e("#formula .currentDice h1");
-  // modifiers
+  var formula_numberOfDice_input =                  e("#formula .number.ofDice input");
+  var formula_numberOfDice_input_value
+  var formula_currentDice_h1 =                      e("#formula .currentDice h1");
+  // bonus
+  var modifiers_changeAmountOfBonus_clear =         e("#formula .number.ofBonus .clear");
   var modifiers_changeAmountOfBonus_plusFive =      e("#modifiers .changeAmount.ofBonus .plusFive");
   var modifiers_changeAmountOfBonus_plusOne =       e("#modifiers .changeAmount.ofBonus .plusOne");
   var modifiers_changeAmountOfBonus_minusFive =     e("#modifiers .changeAmount.ofBonus .minusFive");
   var modifiers_changeAmountOfBonus_minusOne =      e("#modifiers .changeAmount.ofBonus .minusOne");
+  // number of dice
+  var modifiers_changeAmountOfDice_clear =          e("#formula .number.ofDice .clear");
   var modifiers_changeAmountOfDice_plusFive =       e("#modifiers .changeAmount.ofDice .plusFive");
   var modifiers_changeAmountOfDice_plusOne =        e("#modifiers .changeAmount.ofDice .plusOne");
   var modifiers_changeAmountOfDice_minusFive =      e("#modifiers .changeAmount.ofDice .minusFive");
   var modifiers_changeAmountOfDice_minusOne =       e("#modifiers .changeAmount.ofDice .minusOne");
   // utilities
-  var utilities_saveCurrentFormula =                e("#utilities .tool.saveCurrentFormula");
-  var utilities_goFullscreen =                      e("#utilities .tool.toggleFullscreen");
-  var utilities_goFullscreenIcon =                  e("#utilities .tool.toggleFullscreen .icon");
-  var utilities_clearAll =                          e("#utilities .tool.clearAll");
+  var utilities_saveCurrentFormula =                e("#utilities .saveCurrentFormula");
+  var utilities_goFullscreen =                      e("#utilities .toggleFullscreen");
+  var utilities_goFullscreen_icon =                 e("#utilities .toggleFullscreen .icon");
+  var utilities_clearAll =                          e("#utilities .clearAll");
 
   // get element by class or id
   function e(selector) {
@@ -54,42 +55,35 @@ function diceRollerama() {
     // loop through list of radio buttons
     for (var i = 0; i < radios.length; i++) {
       if ( radios[i].checked ) { // radio checked?
-        formula_numberOfDiceSides = radios[i].value; // if so, hold its value in formula_numberOfDiceSides
+        formula_numberOfDiceSides_value = radios[i].value; // if so, hold its value in formula_numberOfDiceSides_value
       };
     };
-    return formula_numberOfDiceSides;
+    return formula_numberOfDiceSides_value;
   };
 
   // dice active state 
-  function makeSelectedDiceActive(form, radioGroupName) {
+  function makeSelectedRadioActive(form, radioGroupName) {
     // get list of radio buttons with specified name
     var radios = form[radioGroupName];
     // loop through list of radio buttons
     for (var i = 0; i < radios.length; i++) {
       if ( radios[i].checked ) { // radio checked?
-        element_diceSelectLabels[i].classList.add("active");
+        element_diceSelect_label[i].classList.add("active");
       } else {
-        element_diceSelectLabels[i].classList.remove("active");
+        element_diceSelect_label[i].classList.remove("active");
       };
     };
   };
 
   // formula current dice
-  function formula_readCurrentDice() {
-    getRadioValue(element_d,"diceSelect");
-    formula_currentDice.innerHTML = "d" + formula_numberOfDiceSides;
-  };
-
-  // dice select
-  function activateChosenDice() {
-    for (var i = 0; i < element_diceSelectLabels.length; i++) {
-      element_diceSelectLabels[i].addEventListener("click", function(){ makeSelectedDiceActive(element_d,"diceSelect"); formula_readCurrentDice(); }, false);
-    };
+  function changeCurrentDiceH1() {
+    getRadioValue(element_diceSelector,"diceSelect");
+    formula_currentDice_h1.innerHTML = "d" + formula_numberOfDiceSides_value;
   };
 
   // save current formula
-  function saveRollString() {
-    getRadioValue(element_d,"diceSelect");
+  function saveCurrentFormulaString() {
+    getRadioValue(element_diceSelector,"diceSelect");
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfDice();
     var formulaNamesOfJoy = ["Bonk", "Bash", "Blam", "Boink", "Crash", "Smash", "Donk", "Ponk", "Slonk", "Slash", "Whoosh", "Meep", "Beep", "Boop", "Ow", "Slap", "Hick", "Eep", "Kink", "Wack", "Wonk", "Bork", "Wee"]; 
@@ -98,24 +92,23 @@ function diceRollerama() {
     // var saveName = prompt("Name this roll or leave blank for Auto-Awesome name generation.");
     // is the bonus more than or less than 0
     var plusOrMinus;
-    if (formula_numberOfBonusInput_value > 0) {
-      plusOrMinus = "+" + formula_numberOfBonusInput_value;
-    } else if (formula_numberOfBonusInput_value < 0) {
-      plusOrMinus = formula_numberOfBonusInput_value
+    if (formula_numberOfBonus_input_value > 0) {
+      plusOrMinus = "+" + formula_numberOfBonus_input_value;
+    } else if (formula_numberOfBonus_input_value < 0) {
+      plusOrMinus = formula_numberOfBonus_input_value
     } else {
       plusOrMinus = "";
     };
     var writeSavedRoll = function(){
-      element_savedRollsList.innerHTML = 
+      element_savedRolls_list.innerHTML = 
       "<p class=\"savedFormula\">" 
-      // + "<span class=\"name\">" + saveName + " =</span>"
       + " <button class=\"roll\"><span class=\"icon diceIcon-save\"></span> Roll</button>"
       + " <input class=\"name\" type=\"text\" value=\"" + saveName + "\">"
-      + " <span class=\"amountOfDice\">" + formula_numberOfDiceInput_value + "</span>"
-      + " <span class=\"d\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides + "\" data-dice-sides=\"" + formula_numberOfDiceSides + "\"></span></span>" 
+      + " <span class=\"amountOfDice\">" + formula_numberOfDice_input_value + "</span>"
+      + " <span class=\"d\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides_value + "\" data-dice-sides=\"" + formula_numberOfDiceSides_value + "\"></span></span>" 
       + " <span class=\"amountOfBonus\">" + plusOrMinus + "</span>"
       + " <button class=\"clear\"><span class=\"icon diceIcon-close\"></span></button>"
-      + element_savedRollsList.innerHTML;
+      + element_savedRolls_list.innerHTML;
     };
     if (saveName === "") {
       saveName = formulaNamesOfJoyValue;
@@ -123,30 +116,8 @@ function diceRollerama() {
     } else if (saveName) {
       writeSavedRoll();
     };
-    saveRollListeners();
+    addListenerTo_saveCurrentFormula();
     checkListActiveState();
-  };
-
-  // add listeners to saved formula buttons and inputs
-  function saveRollListeners() {
-    var savedFormula = eA(".savedFormula");
-    var savedFormula_roll = eA(".savedFormula .roll");
-    for (var i = 0; i < savedFormula.length; i++) {
-      savedFormula_roll[i].addEventListener("click", runSavedFormula, false);
-    };
-    var savedFormula_clear = eA(".savedFormula .clear");
-    for (var i = 0; i < savedFormula.length; i++) {
-      savedFormula_clear[i].addEventListener("click", function(){ clearSavedFormula(this); localStoreAdd(); }, false);
-    };
-    var savedFormula_name = eA(".savedFormula .name");
-    for (var i = 0; i < savedFormula.length; i++) {
-      savedFormula_name[i].addEventListener("focus", function(){ maxWidth(this); }, false);
-      savedFormula_name[i].addEventListener("focus", function(){ this.select(); }, false);
-      savedFormula_name[i].addEventListener("focusout", function(){ autoWidth(this); }, false);
-      savedFormula_name[i].addEventListener("keyup", function(){ storeInputName(this); localStoreAdd(); }, false);
-      savedFormula_name[i].addEventListener("keyup", dropFocus, false);
-      savedFormula_name[i].style.width = parseInt(savedFormula_name[i].value.length, 10) * 5.6 + 20 + "px";
-    };
   };
 
   // loose focus when enter is pressed
@@ -220,27 +191,27 @@ function diceRollerama() {
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
     var readSavedAmountOfBonus = parseInt(this.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
     var readSavedName = this.parentNode.querySelector(".name").value;
-    console.log(readSavedName);
+    // console.log(readSavedName);
     // selecting formula dice
     e("#d" + readSavedDiceSidesValue).checked = true;
     // if input or var value is less than 0
     if (readSavedAmountOfDice <= 1) {
-      formula_numberOfDiceInput.value = "";
+      formula_numberOfDice_input.value = "";
     } else {
-      formula_numberOfDiceInput.value = readSavedAmountOfDice;
+      formula_numberOfDice_input.value = readSavedAmountOfDice;
     };
     // if input or var value is less than 0
     if (readSavedAmountOfBonus == 0) {
-      formula_numberOfBonusInput.value = "";
+      formula_numberOfBonus_input.value = "";
     } else if (readSavedAmountOfBonus > 0) {
-      formula_numberOfBonusInput.value = "+" + readSavedAmountOfBonus;
+      formula_numberOfBonus_input.value = "+" + readSavedAmountOfBonus;
     } else {
-      formula_numberOfBonusInput.value = readSavedAmountOfBonus;
+      formula_numberOfBonus_input.value = readSavedAmountOfBonus;
     };
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfDice();
-    makeSelectedDiceActive(element_d,"diceSelect");
-    formula_readCurrentDice();
+    makeSelectedRadioActive(element_diceSelector,"diceSelect");
+    changeCurrentDiceH1();
     roll(readSavedAmountOfDice, readSavedDiceSidesValue, readSavedAmountOfBonus, readSavedName);
   };
 
@@ -308,7 +279,7 @@ function diceRollerama() {
       element_diceRollClicker.classList.remove("critical1");
     };
     // print results to history
-      element_resultHistoryList.innerHTML = 
+      element_resultHistory_list.innerHTML = 
         "<p" + critical20Or1 + ">" 
         + savedRollName
         + numberOfDice 
@@ -317,7 +288,7 @@ function diceRollerama() {
         + bonusOrNoBonus 
         + " = <span class=\"hostoryTotal\">" + finalResult + "</span>" 
         + "</p>" 
-        + element_resultHistoryList.innerHTML;
+        + element_resultHistory_list.innerHTML;
 
     checkListActiveState();
     // console.log("---------------------------------------------------");
@@ -330,11 +301,11 @@ function diceRollerama() {
 
   // clear all
   function clearAllFields() {
-    element_resultHistoryList.innerHTML = "";
+    element_resultHistory_list.innerHTML = "";
     element_currentResult.innerHTML = "<p>0</p>";
-    modifiers_plusMinus(0, formula_numberOfBonusInput);
+    modifiers_plusMinus(0, formula_numberOfBonus_input);
     modifiers_readAmountOfBonus();
-    modifiers_plusMinus(0, formula_numberOfDiceInput);
+    modifiers_plusMinus(0, formula_numberOfDice_input);
     modifiers_readAmountOfDice();
     element_diceRollClicker.classList.remove("critical20");
     element_diceRollClicker.classList.remove("critical1");
@@ -343,44 +314,44 @@ function diceRollerama() {
 
   // read bonus input field
   function modifiers_readAmountOfBonus(){
-    formula_numberOfBonusInput_value = parseInt(formula_numberOfBonusInput.value, 10) || 0;
+    formula_numberOfBonus_input_value = parseInt(formula_numberOfBonus_input.value, 10) || 0;
     // if input or var value is less than 0 
-    if (formula_numberOfBonusInput_value == 0 || formula_numberOfBonusInput.value == "") {
-      formula_numberOfBonusInput.value = "";
-    } else if (formula_numberOfBonusInput_value > 0) {
-      formula_numberOfBonusInput.value = "+" + formula_numberOfBonusInput_value;
+    if (formula_numberOfBonus_input_value == 0 || formula_numberOfBonus_input.value == "") {
+      formula_numberOfBonus_input.value = "";
+    } else if (formula_numberOfBonus_input_value > 0) {
+      formula_numberOfBonus_input.value = "+" + formula_numberOfBonus_input_value;
     };
-    if (formula_numberOfBonusInput_value >= 999) {
-      formula_numberOfBonusInput.value = "+999";
+    if (formula_numberOfBonus_input_value >= 999) {
+      formula_numberOfBonus_input.value = "+999";
     };
     // if input bonus is 0 hide the clear button
-    if (formula_numberOfBonusInput_value == 0 || formula_numberOfBonusInput_value == "") {
+    if (formula_numberOfBonus_input_value == 0 || formula_numberOfBonus_input_value == "") {
       formula_numberOfBonus.classList.remove("active");
     } else {
       formula_numberOfBonus.classList.add("active");
     };
-    // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + formula_numberOfBonusInput_value);
-    return formula_numberOfBonusInput_value;
+    // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + formula_numberOfBonus_input_value);
+    return formula_numberOfBonus_input_value;
   };
 
   // read multiple dice input field
   function modifiers_readAmountOfDice(){
-    formula_numberOfDiceInput_value = parseInt(formula_numberOfDiceInput.value, 10) || 0;
+    formula_numberOfDice_input_value = parseInt(formula_numberOfDice_input.value, 10) || 0;
     // if input or var value is less than 0 
-    if (formula_numberOfDiceInput.value <= 0 || formula_numberOfDiceInput.value == "") {
-      formula_numberOfDiceInput_value = 1;
-      formula_numberOfDiceInput.value = "";
-    } else if (formula_numberOfDiceInput.value >= 999) {
-      formula_numberOfDiceInput.value = "999";
+    if (formula_numberOfDice_input.value <= 0 || formula_numberOfDice_input.value == "") {
+      formula_numberOfDice_input_value = 1;
+      formula_numberOfDice_input.value = "";
+    } else if (formula_numberOfDice_input.value >= 999) {
+      formula_numberOfDice_input.value = "999";
     };
     // if input bonus is 1 hide the clear button
-    if (formula_numberOfDiceInput.value == 0 || formula_numberOfDiceInput.value == "") {
+    if (formula_numberOfDice_input.value == 0 || formula_numberOfDice_input.value == "") {
       formula_numberOfDice.classList.remove("active");
     } else {
       formula_numberOfDice.classList.add("active");
     };
-    // console.log("modifiers_readAmountOfDice \t \t multiple dice is " + formula_numberOfDiceInput_value);
-    return formula_numberOfDiceInput_value;
+    // console.log("modifiers_readAmountOfDice \t \t multiple dice is " + formula_numberOfDice_input_value);
+    return formula_numberOfDice_input_value;
   };
 
   // plus or minus modifier or clear
@@ -401,27 +372,27 @@ function diceRollerama() {
     if(!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
       utilities_goFullscreen.classList.add("active");
-      utilities_goFullscreenIcon.classList.remove("diceIcon-expand");
-      utilities_goFullscreenIcon.classList.add("diceIcon-compress");
+      utilities_goFullscreen_icon.classList.remove("diceIcon-expand");
+      utilities_goFullscreen_icon.classList.add("diceIcon-compress");
       // element_html.classList.add("fullscreen");
     }
     else {
       cancelFullScreen.call(root);
       utilities_goFullscreen.classList.remove("active");
-      utilities_goFullscreenIcon.classList.remove("diceIcon-compress");
-      utilities_goFullscreenIcon.classList.add("diceIcon-expand");
+      utilities_goFullscreen_icon.classList.remove("diceIcon-compress");
+      utilities_goFullscreen_icon.classList.add("diceIcon-expand");
       // element_html.classList.remove("fullscreen");
     }
   };
 
   // make list active when it has content
   function checkListActiveState() {
-    if (element_savedRollsList.firstChild) {
+    if (element_savedRolls_list.firstChild) {
       element_savedRolls.classList.add("active");
     } else {
       element_savedRolls.classList.remove("active");
     };
-    if (element_resultHistoryList.firstChild) {
+    if (element_resultHistory_list.firstChild) {
       element_resultHistory.classList.add("active");
     } else {
       element_resultHistory.classList.remove("active");
@@ -446,7 +417,7 @@ function diceRollerama() {
   };
 
   // add fixed class when scrolling
-  function fixedelement_DiceRollClicker() {
+  function fixedHeader() {
     var body = e("body");
     var width = document.documentElement.clientWidth;
     // console.log(window.pageYOffset)
@@ -460,7 +431,7 @@ function diceRollerama() {
   // local storage add
   function localStoreAdd() {
     if (localStorage.getItem) {
-      localStorage.setItem("savedRolls", element_savedRollsList.innerHTML);
+      localStorage.setItem("savedRolls", element_savedRolls_list.innerHTML);
       // console.log("added");
     };
   };
@@ -470,50 +441,79 @@ function diceRollerama() {
     if (localStorage.getItem("savedRolls") == "") {
       localStorage.clear("savedRolls");
     } else if (localStorage.getItem("savedRolls")) {
-      element_savedRollsList.innerHTML = localStorage.getItem("savedRolls");
+      element_savedRolls_list.innerHTML = localStorage.getItem("savedRolls");
       // console.log("read and displayed");
     };
   };
 
   // listeners
   window.addEventListener("resize", function(){ listMaxHeight(); }, false);
-  window.addEventListener("scroll", fixedelement_DiceRollClicker, false);
-  element_goRoll.addEventListener("click", function(){ roll( modifiers_readAmountOfDice(), getRadioValue(element_d,"diceSelect"), modifiers_readAmountOfBonus()); }, false);
+  window.addEventListener("scroll", function(){ fixedHeader(); }, false);
+  element_goRoll.addEventListener("click", function(){ roll( modifiers_readAmountOfDice(), getRadioValue(element_diceSelector,"diceSelect"), modifiers_readAmountOfBonus()); }, false);
   utilities_goFullscreen.addEventListener("click", function(){ toggleFullScreen() }, false);
-  utilities_clearAll.addEventListener("click", clearAllFields, false);
-  utilities_saveCurrentFormula.addEventListener("click", function() { saveRollString(); localStoreAdd(); }, false);
+  utilities_clearAll.addEventListener("click", function(){ clearAllFields(); }, false);
+  utilities_saveCurrentFormula.addEventListener("click", function() { saveCurrentFormulaString(); localStoreAdd(); }, false);
 
-  // formula_currentDice.addEventListener("click", function(){ roll( modifiers_readAmountOfDice(), getRadioValue(element_d,"diceSelect"), modifiers_readAmountOfBonus()); }, false);
-  formula_changeAmountOfBonus_clear.addEventListener("click", function(){ modifiers_plusMinus(0, formula_numberOfBonusInput); modifiers_readAmountOfBonus(); }, false);
-  formula_changeAmountOfDice_clear.addEventListener("click", function(){ modifiers_plusMinus(0, formula_numberOfDiceInput); modifiers_readAmountOfDice(); }, false);
+  // dice select
+  function addListenerTo_element_diceSelect_label() {
+    for (var i = 0; i < element_diceSelect_label.length; i++) {
+      element_diceSelect_label[i].addEventListener("click", function(){ makeSelectedRadioActive(element_diceSelector,"diceSelect"); changeCurrentDiceH1(); }, false);
+    };
+  };
+
+  // add listeners to saved formula buttons and inputs
+  function addListenerTo_saveCurrentFormula() {
+    var formula_savedFormula = eA(".savedFormula");
+    var formula_savedFormula_roll = eA(".savedFormula .roll");
+    for (var i = 0; i < formula_savedFormula.length; i++) {
+      formula_savedFormula_roll[i].addEventListener("click", runSavedFormula, false);
+    };
+    var formula_savedFormula_clear = eA(".savedFormula .clear");
+    for (var i = 0; i < formula_savedFormula.length; i++) {
+      formula_savedFormula_clear[i].addEventListener("click", function(){ clearSavedFormula(this); localStoreAdd(); }, false);
+    };
+    var formula_savedFormula_name = eA(".savedFormula .name");
+    for (var i = 0; i < formula_savedFormula.length; i++) {
+      formula_savedFormula_name[i].addEventListener("focus", function(){ maxWidth(this); }, false);
+      formula_savedFormula_name[i].addEventListener("focus", function(){ this.select(); }, false);
+      formula_savedFormula_name[i].addEventListener("focusout", function(){ autoWidth(this); }, false);
+      formula_savedFormula_name[i].addEventListener("keyup", function(){ storeInputName(this); localStoreAdd(); }, false);
+      formula_savedFormula_name[i].addEventListener("keyup", dropFocus, false);
+      formula_savedFormula_name[i].style.width = parseInt(formula_savedFormula_name[i].value.length, 10) * 5.6 + 20 + "px";
+    };
+  };
+
+  // formula_currentDice_h1.addEventListener("click", function(){ roll( modifiers_readAmountOfDice(), getRadioValue(element_diceSelector,"diceSelect"), modifiers_readAmountOfBonus()); }, false);
+  modifiers_changeAmountOfBonus_clear.addEventListener("click", function(){ modifiers_plusMinus(0, formula_numberOfBonus_input); modifiers_readAmountOfBonus(); }, false);
+  modifiers_changeAmountOfDice_clear.addEventListener("click", function(){ modifiers_plusMinus(0, formula_numberOfDice_input); modifiers_readAmountOfDice(); }, false);
 
   // bonusModifiers
-  formula_numberOfBonusInput.addEventListener("input", function(){ modifiers_readAmountOfBonus(); }, false);
+  formula_numberOfBonus_input.addEventListener("input", function(){ modifiers_readAmountOfBonus(); }, false);
 
-  formula_numberOfBonusInput.addEventListener("focus", function(){ this.select(); }, false);
-  modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function(){ modifiers_plusMinus(5, formula_numberOfBonusInput); modifiers_readAmountOfBonus(); }, false);
-  modifiers_changeAmountOfBonus_plusOne.addEventListener("click", function(){ modifiers_plusMinus(1, formula_numberOfBonusInput); modifiers_readAmountOfBonus(); }, false);
-  modifiers_changeAmountOfBonus_minusOne.addEventListener("click", function(){ modifiers_plusMinus(-1, formula_numberOfBonusInput); modifiers_readAmountOfBonus(); }, false);
-  modifiers_changeAmountOfBonus_minusFive.addEventListener("click", function(){ modifiers_plusMinus(-5, formula_numberOfBonusInput); modifiers_readAmountOfBonus(); }, false);
+  formula_numberOfBonus_input.addEventListener("focus", function(){ this.select(); }, false);
+  modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function(){ modifiers_plusMinus(5, formula_numberOfBonus_input); modifiers_readAmountOfBonus(); }, false);
+  modifiers_changeAmountOfBonus_plusOne.addEventListener("click", function(){ modifiers_plusMinus(1, formula_numberOfBonus_input); modifiers_readAmountOfBonus(); }, false);
+  modifiers_changeAmountOfBonus_minusOne.addEventListener("click", function(){ modifiers_plusMinus(-1, formula_numberOfBonus_input); modifiers_readAmountOfBonus(); }, false);
+  modifiers_changeAmountOfBonus_minusFive.addEventListener("click", function(){ modifiers_plusMinus(-5, formula_numberOfBonus_input); modifiers_readAmountOfBonus(); }, false);
 
   // multipleDice
-  formula_numberOfDiceInput.addEventListener("input", function(){ modifiers_readAmountOfDice(); }, false);
+  formula_numberOfDice_input.addEventListener("input", function(){ modifiers_readAmountOfDice(); }, false);
 
-  formula_numberOfDiceInput.addEventListener("focus", function(){ this.select(); }, false);
-  modifiers_changeAmountOfDice_plusFive.addEventListener("click", function(){ modifiers_plusMinus(5, formula_numberOfDiceInput); modifiers_readAmountOfDice(); }, false);
-  modifiers_changeAmountOfDice_plusOne.addEventListener("click", function(){ modifiers_plusMinus(1, formula_numberOfDiceInput); modifiers_readAmountOfDice(); }, false);
-  modifiers_changeAmountOfDice_minusOne.addEventListener("click", function(){ modifiers_plusMinus(-1, formula_numberOfDiceInput); modifiers_readAmountOfDice(); }, false);
-  modifiers_changeAmountOfDice_minusFive.addEventListener("click", function(){ modifiers_plusMinus(-5, formula_numberOfDiceInput); modifiers_readAmountOfDice(); }, false);
+  formula_numberOfDice_input.addEventListener("focus", function(){ this.select(); }, false);
+  modifiers_changeAmountOfDice_plusFive.addEventListener("click", function(){ modifiers_plusMinus(5, formula_numberOfDice_input); modifiers_readAmountOfDice(); }, false);
+  modifiers_changeAmountOfDice_plusOne.addEventListener("click", function(){ modifiers_plusMinus(1, formula_numberOfDice_input); modifiers_readAmountOfDice(); }, false);
+  modifiers_changeAmountOfDice_minusOne.addEventListener("click", function(){ modifiers_plusMinus(-1, formula_numberOfDice_input); modifiers_readAmountOfDice(); }, false);
+  modifiers_changeAmountOfDice_minusFive.addEventListener("click", function(){ modifiers_plusMinus(-5, formula_numberOfDice_input); modifiers_readAmountOfDice(); }, false);
 
   modifiers_readAmountOfBonus();
   modifiers_readAmountOfDice();
-  activateChosenDice();
-  getRadioValue(element_d,"diceSelect");
-  makeSelectedDiceActive(element_d,"diceSelect");
-  formula_readCurrentDice();
+  addListenerTo_element_diceSelect_label();
+  getRadioValue(element_diceSelector,"diceSelect");
+  makeSelectedRadioActive(element_diceSelector,"diceSelect");
+  changeCurrentDiceH1();
   listMaxHeight();
   localStoreRead();
-  saveRollListeners();
+  addListenerTo_saveCurrentFormula();
   checkListActiveState();
 
 };
