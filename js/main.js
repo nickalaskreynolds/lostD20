@@ -87,19 +87,22 @@ function diceRollerama() {
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfDice();
     var formulaNamesOfJoy = ["Bonk", "Bash", "Blam", "Boink", "Crash", "Smash", "Donk", "Ponk", "Slonk", "Slash", "Whoosh", "Meep", "Beep", "Boop", "Ow", "Slap", "Hick", "Eep", "Kink", "Wack", "Wonk", "Bork", "Wee"]; 
-    // var formulaNamesOfJoyValue = formulaNamesOfJoy[Math.floor(Math.random() * formulaNamesOfJoy.length)];
     var saveName = formulaNamesOfJoy[Math.floor(Math.random() * formulaNamesOfJoy.length)];
-    // var saveName = prompt("Name this roll or leave blank for Auto-Awesome name generation.");
     // is the bonus more than or less than 0
-    var plusOrMinus;
-    if (formula_numberOfBonus_input_value > 0) {
-      plusOrMinus = "+" + formula_numberOfBonus_input_value;
-    } else if (formula_numberOfBonus_input_value < 0) {
-      plusOrMinus = formula_numberOfBonus_input_value
-    } else {
-      plusOrMinus = "";
+    var plusOrMinus = function() {
+      if (formula_numberOfBonus_input_value > 0) {
+        plusOrMinus = "+" + formula_numberOfBonus_input_value;
+      } else if (formula_numberOfBonus_input_value < 0) {
+        plusOrMinus = formula_numberOfBonus_input_value
+      } else {
+        plusOrMinus = "";
+      };
     };
-    var writeSavedRoll = function(){
+    console.log(plusOrMinus);
+      plusOrMinus();
+    console.log(plusOrMinus);
+    var writeSavedRoll = function() {
+      plusOrMinus();
       element_savedRolls_list.innerHTML = 
       "<p class=\"savedFormula\">" 
       + " <button class=\"roll\"><span class=\"icon diceIcon-save\"></span> Roll</button>"
@@ -110,12 +113,7 @@ function diceRollerama() {
       + " <button class=\"clear\"><span class=\"icon diceIcon-close\"></span></button>"
       + element_savedRolls_list.innerHTML;
     };
-    if (saveName === "") {
-      saveName = formulaNamesOfJoyValue;
-      writeSavedRoll();
-    } else if (saveName) {
-      writeSavedRoll();
-    };
+    writeSavedRoll();
     addListenerTo_saveCurrentFormula();
     checkListActiveState();
   };

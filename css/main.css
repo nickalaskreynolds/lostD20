@@ -84,10 +84,16 @@ html.fullscreen body {
 #savedRolls.divider {
   z-index: 2;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05), 0 3px 0 rgba(0, 0, 0, 0.05);
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 
 #resultHistory.divider {
   z-index: 1;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 
 @media (min-width: 550px) {
