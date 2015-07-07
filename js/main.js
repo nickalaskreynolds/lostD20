@@ -407,6 +407,61 @@ function diceRollerama() {
     } else {
       body.classList.remove("fixed");
     };
+
+
+    // console.log("y " + yPosition);
+    // console.log("font size " + currentResultFontSize);
+    // console.log("line height " + currentResultLineHeight);
+    // if (width < 750) {
+    //   if (yPosition >= 80) {
+    //     element_diceRollClicker.style.height = "70px";
+    //   } else {
+    //     element_diceRollClicker.style.height = 150 - yPosition + "px";
+    //   };
+    //   if (yPosition <= 80 ) {
+    //     element_currentResult_p.style.fontSize = currentResultFontSize;
+    //     element_currentResult_p.style.lineHeight = currentResultLineHeight;
+    //   } else if (yPosition >= 80) {
+    //     element_currentResult_p.style.lineHeight = "70px";
+    //   };
+    // };
+
+
+
+
+
+    // var didScroll = false;
+
+    // window.onscroll = doThisStuffOnScroll;
+
+    // function doThisStuffOnScroll() {
+    //   didScroll = true;
+    // }
+
+    // setInterval(function() {
+    //   if(didScroll) {
+    //     didScroll = false;
+    //     console.log('You scrolled');
+
+    //     if (width < 750) {
+    //       if (yPosition >= 80) {
+    //         element_diceRollClicker.style.height = "70px";
+    //       } else {
+    //         element_diceRollClicker.style.height = 150 - yPosition + "px";
+    //       };
+    //       if (yPosition <= 80 ) {
+    //         element_currentResult_p.style.fontSize = currentResultFontSize;
+    //         element_currentResult_p.style.lineHeight = currentResultLineHeight;
+    //       } else if (yPosition >= 80) {
+    //         element_currentResult_p.style.lineHeight = "70px";
+    //       };
+    //     };
+        
+    //   }
+    // }, 100);
+
+
+    
   };
 
   // local storage add
