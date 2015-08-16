@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="row">
+    <div class="seven columns">
+      <section id="diceRollClicker" class="divider">
+        <div id="currentResult">
+          <p>0</p>
+        </div>
+        <div class="alert reolled1">1</div>
+        <div class="alert reolled20">20</div>
+        <button id="goRoll" class="button-primary">Roll the Dice</button>
+      </section>
+      <section id="d" class="divider">
+        <!-- <h2>Dice</h2> -->
+        <form id="diceSelector" class="u-cf">
+          <label for="d2">
+            <input type="radio" name="diceSelect" id="d2" class="diceSelect" value="2">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d2"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d3">
+            <input type="radio" name="diceSelect" id="d3" class="diceSelect" value="3">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d3"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d4">
+            <input type="radio" name="diceSelect" id="d4" class="diceSelect" value="4">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d4"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d6">
+            <input type="radio" name="diceSelect" id="d6" class="diceSelect" value="6">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d6"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d8">
+            <input type="radio" name="diceSelect" id="d8" class="diceSelect" value="8">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d8"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d10">
+            <input type="radio" name="diceSelect" id="d10" class="diceSelect" value="10">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d10"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d12">
+            <input type="radio" name="diceSelect" id="d12" class="diceSelect" value="12">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d12"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d20" class="active">
+            <input type="radio" name="diceSelect" id="d20" class="diceSelect" value="20" checked>
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d20"></span>
+            </span>
+            </span>
+          </label>
+          <label for="d100">
+            <input type="radio" name="diceSelect" id="d100" class="diceSelect" value="100">
+            <span class="label-body">
+                <span class="diceRing">
+                  <span class="icon diceIcon-d100"></span>
+            </span>
+            </span>
+          </label>
+        </form>
+      </section>
+      <section id="formulaModifiers" class="divider">
+        <div id="formula" class="u-cf">
+          <!-- <h2>Current formula</h2> -->
+          <div class="number ofDice">
+            <button class="clear">
+              <span class="icon diceIcon-close"></span>
+            </button>
+            <input type="tel" placeholder="1" maxlength="3">
+          </div>
+          <div class="currentDice">
+            <h1>d20</h1>
+          </div>
+          <div class="number ofBonus">
+            <input type="tel" placeholder="+0" maxlength="4">
+            <button class="clear">
+              <span class="icon diceIcon-close"></span>
+            </button>
+          </div>
+        </div>
+        <div id="modifiers" class="u-cf">
+          <div class="changeAmount ofDice">
+            <button class="minusFive">-5</button>
+            <button class="minusOne">-1</button>
+            <button class="plusOne">+1</button>
+            <button class="plusFive">+5</button>
+            <!-- <h3>Add up to or type the number of dice needed</h3> -->
+          </div>
+          <div class="changeAmount ofBonus">
+            <button class="minusFive">-5</button>
+            <button class="minusOne">-1</button>
+            <button class="plusOne">+1</button>
+            <button class="plusFive">+5</button>
+            <!-- <h3>Add up to or type the bonus needed</h3> -->
+          </div>
+        </div>
+      </section>
+      <section id="utilities" class="u-cf divider">
+        <button class="tool toggleFullscreen">
+          <span class="icon diceIcon-expand"></span> Fullscreen</button>
+        <button class="tool saveCurrentFormula">
+          <span class="icon diceIcon-save"></span> Save Formula</button>
+        <button class="tool clearAll">
+          <span class="icon diceIcon-trash"></span> Clear</button>
+      </section>
+      <section id="savedRolls" class="divider">
+        <div class="list"></div>
+      </section>
+    </div>
+    <div class="five columns">
+      <section id="resultHistory" class="divider">
+        <div class="list"></div>
+      </section>
+    </div>
+  </div>
+</div>

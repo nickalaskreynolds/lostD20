@@ -1,0 +1,20 @@
+{
+  "name": "lost D20",
+  "version": "1.0.0",
+  "authors": [
+    "Kuldeep <crudetoaster@gmail.com>"
+  ],
+  "description": "Dice Roller",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "~2.0.4"
+  },
+  "devDependencies": {}
+}
