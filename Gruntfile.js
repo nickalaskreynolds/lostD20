@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       },
       build: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*'],
+        src: ['{images,fonts,js}/**/*','bower_components/**/*.{css,js}'],
         dest: '<%= folders.build %>/',
         expand: true
       },
@@ -31,7 +31,13 @@ module.exports = function(grunt) {
       dev: '<%= folders.dev %>/*',
       build: '<%= folders.build %>/*',
       tmp: '.tmp/*',
-      sass: '.sass-cache/*'
+      sass: '.sass-cache/*',
+      all: [
+        '<%= folders.dev %>/*',
+        '<%= folders.build %>/*',
+        '.tmp/*',
+        '.sass-cache/*'
+        ]
     },
 
     useminPrepare: {
@@ -44,14 +50,14 @@ module.exports = function(grunt) {
     concat: {
       scripts: {
         src: ['<%= folders.build %>/js/**/*.js'],
-        dest: '<%= folders.build %>/js/scripts.js'
+        dest: '<%= folders.build %>/js/scripts.min.js'
       }
     },
 
     uglify: {
       build: {
-        src: ['<%= folders.build %>/js/scripts.js'],
-        dest: '<%= folders.build %>/js/scripts.js'
+        src: ['<%= folders.build %>/js/scripts.min.js'],
+        dest: '<%= folders.build %>/js/scripts.min.js'
       }
     },
 
@@ -92,20 +98,20 @@ module.exports = function(grunt) {
       }
     },
 
-    // cssmin: {
-    //   build: {
-    //     options: {
-    //       sourceMap: true
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       cwd: '<%= folders.build %>/',
-    //       src: ['css/**/*.css'],
-    //       dest: '<%= folders.build %>/',
-    //       ext: '.min.css'
-    //     }]
-    //   }
-    // },
+    cssmin: {
+      build: {
+        options: {
+          sourceMap: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= folders.build %>/',
+          src: ['css/**/*.css'],
+          dest: '<%= folders.build %>/',
+          ext: '.min.css'
+        }]
+      }
+    },
 
     watch: {
       sass: {
@@ -134,9 +140,9 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          port: 9999,
+          port: 7777,
           base: '<%= folders.dev %>',
-          hostname: 'localhost',
+          hostname: '0.0.0.0',
           livereload: 35729,
           open: {
             target: 'http://localhost:9999'
@@ -210,7 +216,7 @@ module.exports = function(grunt) {
     'assemble:build',
     'copy:build',
     'sass:build',
-    // 'cssmin:build',
+    'cssmin:build',
     'useminPrepare',
     'concat',
     'uglify',
