@@ -140,7 +140,7 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          port: 7777,
+          port: 9999,
           base: '<%= folders.dev %>',
           hostname: '0.0.0.0',
           livereload: 35729,
@@ -190,7 +190,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
