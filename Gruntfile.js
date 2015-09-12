@@ -15,13 +15,13 @@ module.exports = function(grunt) {
     copy: {
       dev: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*','bower_components/**/*.{css,js}'],
+        src: ['{images,fonts,js}/**/*','bower_components/**/*.js'],
         dest: '<%= folders.dev %>/',
         expand: true
       },
       build: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*','bower_components/**/*.{css,js}'],
+        src: ['{images,fonts,js}/**/*'],
         dest: '<%= folders.build %>/',
         expand: true
       },
@@ -49,14 +49,14 @@ module.exports = function(grunt) {
 
     concat: {
       scripts: {
-        src: ['<%= folders.build %>/js/**/*.js'],
+        src: '<%= folders.build %>/js/**/*.js',
         dest: '<%= folders.build %>/js/scripts.min.js'
       }
     },
 
     uglify: {
       build: {
-        src: ['<%= folders.build %>/js/scripts.min.js'],
+        src: '<%= folders.build %>/js/scripts.min.js',
         dest: '<%= folders.build %>/js/scripts.min.js'
       }
     },
@@ -73,9 +73,9 @@ module.exports = function(grunt) {
           compass: false
         },
         files: [
-          // {
-          //   '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
-          // },
+          {
+            '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
+          },
           {
             '<%= folders.dev %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
           }
@@ -87,9 +87,9 @@ module.exports = function(grunt) {
           compass: false
         },
         files: [
-          // {
-          //   '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
-          // },
+          {
+            '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
+          },
           {
             '<%= folders.build %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
           }
@@ -216,8 +216,8 @@ module.exports = function(grunt) {
     'assemble:build',
     'copy:build',
     'sass:build',
-    'cssmin:build',
     'useminPrepare',
+    'cssmin:build',
     'concat',
     'uglify',
     'usemin'

@@ -14,7 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "skeleton": "~2.0.4"
+    "normalize-scss": "~3.0.3",
+    "Skeleton-Sass": "skeleton-scss#*"
   },
   "devDependencies": {}
 }
