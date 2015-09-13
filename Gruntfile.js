@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     copy: {
       dev: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*','bower_components/**/*.js'],
+        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js'],
         dest: '<%= folders.dev %>/',
         expand: true
       },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         '<%= folders.build %>/*',
         '.tmp/*',
         '.sass-cache/*'
-        ]
+      ]
     },
 
     useminPrepare: {
@@ -62,8 +62,7 @@ module.exports = function(grunt) {
     },
 
     usemin: {
-      html: 
-      '<%= folders.build %>/**/*.html'
+      html: '<%= folders.build %>/**/*.html'
     },
 
     sass: {
@@ -72,28 +71,22 @@ module.exports = function(grunt) {
           style: 'compact',
           compass: false
         },
-        files: [
-          {
-            '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
-          },
-          {
-            '<%= folders.dev %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
-          }
-        ]
+        files: [{
+          '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
+        }, {
+          '<%= folders.dev %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
+        }]
       },
       build: {
         options: {
           style: 'expanded',
           compass: false
         },
-        files: [
-          {
-            '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
-          },
-          {
-            '<%= folders.build %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
-          }
-        ]
+        files: [{
+          '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
+        }, {
+          '<%= folders.build %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
+        }]
 
       }
     },
@@ -151,6 +144,18 @@ module.exports = function(grunt) {
       }
     },
 
+    htmlmin: {
+      build: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: {
+          '<%= folders.build %>/index.html': '<%= folders.build %>/index.html'
+        }
+      }
+    },
+
     assemble: {
       options: {
         flatten: false,
@@ -161,35 +166,32 @@ module.exports = function(grunt) {
       dev: {
         options: {
           // layout: 'default.hbs'
-        layout: false
+          layout: false
         },
-        files: [
-          {
-            expand: true,
-            cwd: '<%= folders.src %>/templates/pages/',
-            src: '**/*.hbs',
-            dest: '<%= folders.dev %>/'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: '<%= folders.src %>/templates/pages/',
+          src: '**/*.hbs',
+          dest: '<%= folders.dev %>/'
+        }]
       },
       build: {
         options: {
           // layout: 'default.hbs'
-        layout: false
+          layout: false
         },
-        files: [
-          {
-            expand: true,
-            cwd: '<%= folders.src %>/templates/pages/',
-            src: '**/*.hbs',
-            dest: '<%= folders.build %>/'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: '<%= folders.src %>/templates/pages/',
+          src: '**/*.hbs',
+          dest: '<%= folders.build %>/'
+        }]
       }
     }
 
   });
 
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -220,7 +222,8 @@ module.exports = function(grunt) {
     'cssmin:build',
     'concat',
     'uglify',
-    'usemin'
+    'usemin',
+    'htmlmin'
   ]);
 
 };
