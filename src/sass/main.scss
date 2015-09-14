@@ -149,221 +149,190 @@
 //   }
 // }
 
-button,
-label {
-  letter-spacing: 0;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-button {
-  &:active,
-  &.active {
-    color: #ffffff;
-    border-color: #ff0055;
-    background-color: #ff0055;
-  }
-  &:active .icon {
-    color: #ffffff;
-  }
-}
-
-::selection {
-  color: #ffffff;
-  background: #ff0055;
-  /* WebKit/Blink Browsers */
-}
-
-::-moz-selection {
-  color: #ffffff;
-  background: #ff0055;
-  /* Gecko Browsers */
-}
 
 
 /* dice clicker
 ------------------------------------------------- */
 
-#diceRollClicker {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 150px;
-  -webkit-transition: all $transition-bounce-medium;
-  -moz-transition: all $transition-bounce-medium;
-  transition: all $transition-bounce-medium;
-  background-color: #003c4f;
-}
+// #diceRollClicker {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   min-height: 150px;
+//   transition: all $transition-bounce-medium;
+//   background-color: #003c4f;
+// }
 
-@media (min-width: 550px) {
-  #diceRollClicker {
-    width: 85%;
-  }
-}
+// @media (min-width: 550px) {
+//   #diceRollClicker {
+//     width: 85%;
+//   }
+// }
 
-@media (min-width: 750px) {
-  #diceRollClicker {
-    position: relative;
-    top: inherit;
-    left: inherit;
-    width: initial;
-  }
-}
+// @media (min-width: 750px) {
+//   #diceRollClicker {
+//     position: relative;
+//     top: inherit;
+//     left: inherit;
+//     width: initial;
+//   }
+// }
 
-body {
-  &.fixed #diceRollClicker {
-    min-height: 70px;
-    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4), 0 10px 40px rgba(0, 0, 0, 0.4);*/
-  }
-  &.moveDown #diceRollClicker {
-    top: 0;
-  }
-}
+// body {
+//   &.fixed #diceRollClicker {
+//     min-height: 70px;
+//     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4), 0 10px 40px rgba(0, 0, 0, 0.4);
+//   }
+//   &.moveDown #diceRollClicker {
+//     top: 0;
+//   }
+// }
 
-@media (min-width: 750px) {
-  body.fixed #diceRollClicker {
-    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);*/
-  }
-}
+// @media (min-width: 750px) {
+//   body.fixed #diceRollClicker {
+//     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.1);
+//   }
+// }
 
-@media (min-width: 750px) {
-  body.fixed #diceRollClicker {
-    position: relative;
-    top: inherit;
-    left: inherit;
-    width: initial;
-    min-height: 150px;
-  }
-}
+// @media (min-width: 750px) {
+//   body.fixed #diceRollClicker {
+//     position: relative;
+//     top: inherit;
+//     left: inherit;
+//     width: initial;
+//     min-height: 150px;
+//   }
+// }
 
-#diceRollClicker {
-  &.critical20 {
-    background-color: #33c3f0;
-  }
-  &.critical1 {
-    background-color: #990000;
-  }
-  #goRoll {
-    display: block;
-    float: left;
-    height: 30px;
-    padding: 0 10px;
-    margin: 100px 0 0 20px;
-    font-size: 0.8em;
-    line-height: 30px;
-    -webkit-transition: all $transition-bounce-medium;
-    -moz-transition: all $transition-bounce-medium;
-    transition: all $transition-bounce-medium;
-    color: #ffffff;
-    border: 0;
-    border-color: transparent;
-    border-radius: 4px;
-    background-color: #ff0055;
-  }
-}
+// #diceRollClicker {
+//   &.critical-20 {
+//     background-color: #33c3f0;
+//   }
+//   &.critical-1 {
+//     background-color: #990000;
+//   }
+//   #goRoll {
+//     display: block;
+//     float: left;
+//     height: 30px;
+//     padding: 0 10px;
+//     margin: 100px 0 0 20px;
+//     font-size: 0.8em;
+//     line-height: 30px;
+//     -webkit-transition: all $transition-bounce-medium;
+//     -moz-transition: all $transition-bounce-medium;
+//     transition: all $transition-bounce-medium;
+//     color: #ffffff;
+//     border: 0;
+//     border-color: transparent;
+//     border-radius: 4px;
+//     background-color: #ff0055;
+//   }
+// }
 
-body.fixed #diceRollClicker #goRoll {
-  margin: 20px 0 0 20px;
-}
+// body.fixed #diceRollClicker #goRoll {
+//   margin: 20px 0 0 20px;
+// }
 
-#diceRollClicker #goRoll:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  content: "";
-}
+// #diceRollClicker #goRoll:before {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 150px;
+//   content: "";
+// }
 
-body.fixed #diceRollClicker #goRoll:before {
-  height: 70px;
-}
+// body.fixed #diceRollClicker #goRoll:before {
+//   height: 70px;
+// }
 
-#diceRollClicker #currentResult {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  p {
-    margin: 0;
-    font-size: 5em;
-    line-height: 150px;
-    -webkit-transition: all $transition-bounce-medium;
-    -moz-transition: all $transition-bounce-medium;
-    transition: all $transition-bounce-medium;
-    color: #ffffff;
-    text-shadow: none;
-  }
-}
+// #diceRollClicker #currentResult {
+//   position: absolute;
+//   width: 100%;
+//   text-align: center;
+//   p {
+//     margin: 0;
+//     font-size: 5em;
+//     line-height: 150px;
+//     -webkit-transition: all $transition-bounce-medium;
+//     -moz-transition: all $transition-bounce-medium;
+//     transition: all $transition-bounce-medium;
+//     color: #ffffff;
+//     text-shadow: none;
+//   }
+// }
 
-body.fixed #diceRollClicker #currentResult p {
-  font-size: 2em;
-  line-height: 70px;
-}
+// body.fixed #diceRollClicker #currentResult p {
+//   font-size: 2em;
+//   line-height: 70px;
+// }
 
-@media (min-width: 750px) {
-  body.fixed #diceRollClicker #currentResult p {
-    font-size: 4em;
-    line-height: 150px;
-  }
-}
+// @media (min-width: 750px) {
+//   body.fixed #diceRollClicker #currentResult p {
+//     font-size: 4em;
+//     line-height: 150px;
+//   }
+// }
 
-#diceRollClicker {
-  &:focus #currentResult p,
-  &:active #currentResult p {
-    text-shadow: 0 0 50px rgba(0, 198, 255, 1), 0 0 10px rgba(0, 198, 255, 1), 0 0 5px rgba(0, 198, 255, 1);
-  }
-  &.critical20 #currentResult p,
-  &.critical1 #currentResult p {
-    color: #ffffff;
-  }
-  &.critical20 #goRoll,
-  &.critical1 #goRoll {
-    background-color: #ffffff;
-  }
-  &.critical20 #goRoll {
-    color: #33c3f0;
-  }
-  &.critical1 #goRoll {
-    color: #990000;
-  }
-  .alert {
-    position: absolute;
-    top: 100px;
-    right: 20px;
-    visibility: hidden;
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    font-family: "Antonio Bold";
-    font-size: 1em;
-    line-height: 30px;
-    -webkit-transition: all $transition-bounce-medium;
-    -moz-transition: all $transition-bounce-medium;
-    transition: all $transition-bounce-medium;
-    text-align: center;
-    opacity: 0;
-    border-radius: 4px;
-    background-color: #ffffff;
-  }
-}
+// #diceRollClicker {
+//   &:focus #currentResult p,
+//   &:active #currentResult p {
+//     text-shadow: 0 0 50px rgba(0, 198, 255, 1), 0 0 10px rgba(0, 198, 255, 1), 0 0 5px rgba(0, 198, 255, 1);
+//   }
+//   &.critical-20 #currentResult p,
+//   &.critical-1 #currentResult p {
+//     color: #ffffff;
+//   }
+//   &.critical-20 #goRoll,
+//   &.critical-1 #goRoll {
+//     background-color: #ffffff;
+//   }
+//   &.critical-20 #goRoll {
+//     color: #33c3f0;
+//   }
+//   &.critical-1 #goRoll {
+//     color: #990000;
+//   }
+//   .alert {
+//     position: absolute;
+//     top: 100px;
+//     right: 20px;
+//     visibility: hidden;
+//     width: 30px;
+//     height: 30px;
+//     margin: 0;
+//     font-family: "Antonio Bold";
+//     font-size: 1em;
+//     line-height: 30px;
+//     -webkit-transition: all $transition-bounce-medium;
+//     -moz-transition: all $transition-bounce-medium;
+//     transition: all $transition-bounce-medium;
+//     text-align: center;
+//     opacity: 0;
+//     border-radius: 4px;
+//     background-color: #ffffff;
+//   }
+// }
 
-body.fixed #diceRollClicker .alert {
-  top: 20px;
-}
+// body.fixed #diceRollClicker .alert {
+//   top: 20px;
+// }
 
-#diceRollClicker {
-  .reolled1 {
-    color: #990000;
-  }
-  .reolled20 {
-    color: #33c3f0;
-  }
-  &.critical1 .reolled1,
-  &.critical20 .reolled20 {
-    visibility: visible;
-    opacity: 1;
-  }
-}
+// #diceRollClicker {
+//   .reolled-1 {
+//     color: #990000;
+//   }
+//   .reolled-20 {
+//     color: #33c3f0;
+//   }
+//   &.critical-1 .reolled-1,
+//   &.critical-20 .reolled-20 {
+//     visibility: visible;
+//     opacity: 1;
+//   }
+// }
 
 
 /* d
@@ -804,25 +773,25 @@ h2 {
     line-height: 1em;
     vertical-align: middle;
   }
-  &.critical20 {
+  &.critical-20 {
     color: #33c3f0;
     .multipleDiceResults,
     .icon {
       color: #33c3f0;
     }
   }
-  &.critical1 {
+  &.critical-1 {
     color: #990000;
     .multipleDiceResults,
     .icon {
       color: #990000;
     }
   }
-  &.critical20 .hostoryTotal {
+  &.critical-20 .hostoryTotal {
     color: #ffffff;
     background-color: #33c3f0;
   }
-  &.critical1 .hostoryTotal {
+  &.critical-1 .hostoryTotal {
     color: #ffffff;
     background-color: #990000;
   }

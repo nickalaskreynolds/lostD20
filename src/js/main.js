@@ -206,7 +206,7 @@ function diceRollerama() {
     var readSavedName = this.parentNode.querySelector(".name").value;
     // console.log(readSavedName);
     // selecting formula dice
-    e("#dice" + readSavedDiceSidesValue).checked = true;
+    e("#d" + readSavedDiceSidesValue).checked = true;
     // if input or var value is less than 0
     if (readSavedAmountOfDice <= 1) {
       formula_numberOfDice_input.value = "";
@@ -275,23 +275,23 @@ function diceRollerama() {
     if (whichDice == 20 && numberOfDice == 1) {
       if (naturalMultipleRolls == 20) {
         // if natural 20
-        critical20Or1 = " class=\"critical20\"";
-        element_diceRollClicker.classList.add("critical20");
-        element_diceRollClicker.classList.remove("critical1");
+        critical20Or1 = " class=\"critical-20\"";
+        element_diceRollClicker.classList.add("critical-20");
+        element_diceRollClicker.classList.remove("critical-1");
       } else if (naturalMultipleRolls == 1) {
         // if natural 1
-        critical20Or1 = " class=\"critical1\"";
-        element_diceRollClicker.classList.remove("critical20");
-        element_diceRollClicker.classList.add("critical1");
+        critical20Or1 = " class=\"critical-1\"";
+        element_diceRollClicker.classList.remove("critical-20");
+        element_diceRollClicker.classList.add("critical-1");
       } else {
         critical20Or1 = "";
-        element_diceRollClicker.classList.remove("critical20");
-        element_diceRollClicker.classList.remove("critical1");
+        element_diceRollClicker.classList.remove("critical-20");
+        element_diceRollClicker.classList.remove("critical-1");
       }
     } else {
       critical20Or1 = "";
-      element_diceRollClicker.classList.remove("critical20");
-      element_diceRollClicker.classList.remove("critical1");
+      element_diceRollClicker.classList.remove("critical-20");
+      element_diceRollClicker.classList.remove("critical-1");
     };
     // print results to history
     element_resultHistory_list.innerHTML =
@@ -314,8 +314,8 @@ function diceRollerama() {
     modifiers_readAmountOfBonus();
     modifiers_plusMinus(0, formula_numberOfDice_input);
     modifiers_readAmountOfDice();
-    element_diceRollClicker.classList.remove("critical20");
-    element_diceRollClicker.classList.remove("critical1");
+    element_diceRollClicker.classList.remove("critical-20");
+    element_diceRollClicker.classList.remove("critical-1");
     checkListActiveState();
   };
 
