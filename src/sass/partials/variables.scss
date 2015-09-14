@@ -1,0 +1,45 @@
+// basic colors
+// -------------------------
+$black:                       #000000;
+$white:                       #ffffff;
+$background-color:            #f0f0f0;
+
+// brand colors
+// -------------------------
+$brand-magenta:               #00bbff;
+$brand-magenta-dark:          #00bbff;
+$brand-magenta-light:         #00bbff;
+$brand-aqua:                  #003c4f;
+$brand-aqua-dark:             #00a8e5;
+$brand-aqua-light:            #00a8e5;
+
+// Grays
+// -------------------------
+$brand-gray:                  #555555;
+$brand-gray-dark:             #eeeeee;
+$brand-gray-light:            #f0f0f0;
+
+// typography
+// -------------------------
+$font-family-sans-serif:      "Antonio", Helvetica, Arial, sans-serif;
+$font-family-serif:           Georgia, "Times New Roman", Times, serif;
+
+// transitions
+// -------------------------
+
+$transition-bounce-slow:         0.5s cubic-bezier(0.7, -0.6, 0.3, 1.6);
+$transition-bounce-medium:       0.3s cubic-bezier(0.7, -0.6, 0.3, 1.6);
+$transition-bounce-fast:         0.1s cubic-bezier(0.7, -0.6, 0.3, 1.6);
+$transition-ease-slow:           0.5s ease-in-out;
+$transition-ease-medium:         0.3s ease-in-out;
+$transition-ease-fast:           0.1s ease-in-out;
+
+
+// drop shadows
+// -------------------------
+
+$shadow-large:                    0 1px 1px rgba(0, 0, 0, 0.1),
+                                  0 10px 40px rgba(0, 0, 0, 0.1);
+$shadow-small:                    0 1px 0 rgba(0, 0, 0, 0.05),
+                                  0 2px 0 rgba(0, 0, 0, 0.05),
+                                  0 3px 0 rgba(0, 0, 0, 0.05);

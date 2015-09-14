@@ -206,7 +206,7 @@ function diceRollerama() {
     var readSavedName = this.parentNode.querySelector(".name").value;
     // console.log(readSavedName);
     // selecting formula dice
-    e("#d" + readSavedDiceSidesValue).checked = true;
+    e("#dice" + readSavedDiceSidesValue).checked = true;
     // if input or var value is less than 0
     if (readSavedAmountOfDice <= 1) {
       formula_numberOfDice_input.value = "";
@@ -409,16 +409,33 @@ function diceRollerama() {
   function listMaxHeight() {
     var height = document.documentElement.clientHeight;
     var width = document.documentElement.clientWidth;
-    var parent = getClosest(element_savedRolls, ".columns");
-    var children = parent.childNodes;
-    var childrenHeight = children[1].clientHeight + children[3].clientHeight + children[5].clientHeight + children[7].clientHeight;
-    var savedRollListHeight = height - childrenHeight - 100;
+    // var parent = getClosest(element_savedRolls, ".columns");
+    // var children = parent.childNodes;
+    // console.log(document.documentElement + height);
+    // console.log(document.documentElement + width);
+    // console.log(parent);
+    // console.log(children);
+    // var childrenHeight = children[1].clientHeight + children[3].clientHeight + children[5].clientHeight + children[7].clientHeight;
+    // var savedRollListHeight = height - childrenHeight - 100;
     // console.log(height);
     // console.log(width);
     if (width > 750) {
       height = height - 60;
       // element_savedRolls.style.maxHeight = savedRollListHeight + "px";
       element_resultHistory.style.maxHeight = height + "px";
+    } else {
+      element_resultHistory.style.maxHeight = "";
+    };
+  };
+
+  function listMaxwidth() {
+    var window_width = document.documentElement.clientWidth;
+    var parent = getClosest(element_resultHistory, ".columns");
+    var list_width = parent.clientWidth;
+    if (window_width > 750) {
+      element_resultHistory.style.width = list_width + "px";
+    } else {
+      element_resultHistory.style.width = "";
     };
   };
 
@@ -455,6 +472,7 @@ function diceRollerama() {
   // listeners
   window.addEventListener("resize", function() {
     listMaxHeight();
+    listMaxwidth();
   }, false);
   window.addEventListener("scroll", function() {
     fixedHeader();
@@ -598,6 +616,7 @@ function diceRollerama() {
   makeSelectedRadioActive(element_diceSelector, "diceSelect");
   changeCurrentDiceH1();
   listMaxHeight();
+  listMaxwidth();
   localStoreRead();
   addListenerTo_saveCurrentFormula();
   checkListActiveState();
