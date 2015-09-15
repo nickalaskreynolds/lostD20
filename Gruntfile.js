@@ -75,8 +75,6 @@ module.exports = function(grunt) {
           '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
         }, {
           '<%= folders.dev %>/css/lostd20.css': '<%= folders.src %>/sass/lostd20.scss'
-        }, {
-          '<%= folders.dev %>/css/lostd20-thirds.css': '<%= folders.src %>/sass/lostd20-thirds.scss'
         }]
       },
       build: {
@@ -88,8 +86,6 @@ module.exports = function(grunt) {
           '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
         }, {
           '<%= folders.build %>/css/lostd20.css': '<%= folders.src %>/sass/lostd20.scss'
-        }, {
-          '<%= folders.dev %>/css/lostd20-thirds.css': '<%= folders.src %>/sass/lostd20-thirds.scss'
         }]
       }
     },

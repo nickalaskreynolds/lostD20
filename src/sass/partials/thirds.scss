@@ -1,0 +1,35 @@
+/* core
+------------------------------------------------- */
+
+html,
+body {
+}
+
+section {
+  &.column-third {
+    padding: 30px;
+    box-sizing: border-box;
+  }
+}
+
+
+/* media queries
+------------------------------------------------- */
+
+@media (min-width: 550px) {}
+
+@media (min-width: 750px) {
+  html,
+  body {
+    height: 100%;
+  }
+  section {
+    &.column-third {
+      width: 33.3333333333%;
+      float: left;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
