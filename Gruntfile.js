@@ -50,14 +50,14 @@ module.exports = function(grunt) {
     concat: {
       scripts: {
         src: '<%= folders.build %>/js/**/*.js',
-        dest: '<%= folders.build %>/js/scripts.min.js'
+        dest: '<%= folders.build %>/js/lostd20.min.js'
       }
     },
 
     uglify: {
       build: {
-        src: '<%= folders.build %>/js/scripts.min.js',
-        dest: '<%= folders.build %>/js/scripts.min.js'
+        src: '<%= folders.build %>/js/lostd20.min.js',
+        dest: '<%= folders.build %>/js/lostd20.min.js'
       }
     },
 
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
         files: [{
           '<%= folders.dev %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
         }, {
-          '<%= folders.dev %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
+          '<%= folders.dev %>/css/lostd20.css': '<%= folders.src %>/sass/lostd20.scss'
         }]
       },
       build: {
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
         files: [{
           '<%= folders.build %>/css/vendor.css': '<%= folders.src %>/sass/vendor.scss'
         }, {
-          '<%= folders.build %>/css/styles.css': '<%= folders.src %>/sass/main.scss'
+          '<%= folders.build %>/css/lostd20.css': '<%= folders.src %>/sass/lostd20.scss'
         }]
 
       }

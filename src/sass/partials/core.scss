@@ -320,17 +320,175 @@ section {
         }
       }
     }
+    #modifiers {
+      position: relative;
+      width: 100%;
+      padding: 10px 0 0 0;
+      .changeAmount {
+        &.ofDice,
+        &.ofBonus {
+          width: 40%;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        &.ofDice {
+          float: left;
+          margin-left: 5%;
+        }
+        &.ofBonus {
+          float: right;
+          margin-right: 5%;
+        }
+        button {
+          float: left;
+          width: 25%;
+          height: 40px;
+          padding: 0;
+          margin: 0;
+          font-size: 1em;
+          line-height: 40px;
+          border-color: transparent;
+          &.minusOne,
+          &.minusFive {
+            color: $magenta;
+          }
+          &:active {
+            &.minusOne,
+            &.minusFive {
+              color: $white;
+            }
+            color: $white;
+          }
+        }
+        h3 {
+          padding: 0 30px;
+          margin: 0;
+          font-size: 1em;
+          line-height: 1.5em;
+          text-align: center;
+        }
+        &.ofDice h2 {
+          float: left;
+        }
+        &.ofBonus h2 {
+          float: right;
+        }
+      }
+    }
   }
   &#utilities {
     z-index: 3;
+    position: relative;
+    width: 100%;
+    padding: 0 0 15px 0;
+    box-sizing: border-box;
+    text-align: center;
+    .tool {
+      height: 30px;
+      padding: 0 10px;
+      margin: 0 10px 0 0;
+      box-sizing: border-box;
+      line-height: 30px;
+      border: 0;
+      &:last-child {
+        margin: 0;
+      }
+      .icon {
+        margin: 0 2px 0 0;
+        font-size: 1.5em;
+        line-height: 30px;
+        vertical-align: middle;
+      }
+    }
   }
   &#savedRolls {
+    max-height: 300px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
     z-index: 2;
+    .list {
+      .icon {
+        padding: 0;
+        margin: 0;
+      }
+      .savedFormula {
+        padding: 10px 70px 10px 90px;
+        .deleteSavedFormulaConfirm {
+          position: absolute;
+          top: 20%;
+          right: 20px;
+          height: 60%;
+        }
+        button {
+          padding: 0 10px;
+          margin: 0;
+          border: 0;
+          height: 100%;
+        }
+        .roll {
+          position: absolute;
+          top: 20%;
+          left: 20px;
+          height: 60%;
+        }
+        .clear,
+        .delete {
+          color: $magenta;
+        }
+        button {
+          &:active {
+            color: $white;
+          }
+        }
+      }
+    }
+    .savedFormula {
+      .delete,
+      .cancel {
+        display: none;
+        float: right;
+      }
+      .clear {
+        display: block;
+      }
+      &.showDelete {
+        .delete,
+        .cancel {
+          display: block;
+        }
+        .clear {
+          display: none;
+        }
+      }
+    }
+    &.active {
+      .list {
+        padding: 10px 0;
+      }
+    }
   }
   &#resultHistory {
     box-shadow: $shadow-large;
     border-radius: 4px;
     z-index: 1;
+    max-height: 500px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    &.active {
+      min-height: 70px;
+    }
+    .list p {
+      padding: 10px 20px;
+    }
+    &.active {
+      .list {
+        padding: 10px 0;
+      }
+    }
   }
   // &#diceRollClicker,
   // &#dice,
@@ -338,6 +496,75 @@ section {
   // &#utilities,
   // &#savedRolls,
   // &#resultHistory {}
+}
+
+.list {
+  p {
+    position: relative;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.8em;
+    color: $aqua;
+    border-bottom: 1px solid $gray-light;
+    &:last-child {
+      border-bottom: 0;
+    }
+    .hostoryTotal {
+      padding: 2px 5px;
+      color: $white;
+      border-radius: 4px;
+      background-color: $magenta;
+    }
+    .multipleDiceResults {
+    }
+    .name {
+      background-color: transparent;
+      height: inherit;
+      max-width: 50%;
+      min-width: 5%;
+      padding: 0 0 4px 0;
+      margin: 0 10px 0 0;
+      transition: all $transition-bounce-medium;
+      color: $aqua;
+      border: 0;
+      border-bottom: 2px solid $magenta;
+      border-radius: 0;
+    }
+    button {
+      height: inherit;
+      padding: 5px 10px;
+      margin: 0 10px 0 0;
+      line-height: 1em;
+      vertical-align: middle;
+    }
+    .icon {
+      font-size: 2em;
+      line-height: 1em;
+      vertical-align: middle;
+    }
+    &.critical-20 {
+      color: $critical-20;
+      .multipleDiceResults,
+      .icon {
+        color: $critical-20;
+      }
+    }
+    &.critical-1 {
+      color: $critical-1;
+      .multipleDiceResults,
+      .icon {
+        color: $critical-1;
+      }
+    }
+    &.critical-20 .hostoryTotal {
+      color: $white;
+      background-color: $critical-20;
+    }
+    &.critical-1 .hostoryTotal {
+      color: $white;
+      background-color: $critical-1;
+    }
+  }
 }
 
 
