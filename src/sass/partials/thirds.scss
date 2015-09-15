@@ -1,14 +1,40 @@
 /* core
 ------------------------------------------------- */
 
-html,
-body {
+p {
+  margin: 0 0 10px 0;
+  &.critical-20 {
+    background-color: $critical-20;
+  }
+  &.critical-1 {
+    background-color: $critical-1;
+  }
 }
 
 section {
   &.column-third {
-    padding: 30px;
+    position: relative;
     box-sizing: border-box;
+  }
+  &.controls {
+    padding: 60px;
+    z-index: 2;
+    box-shadow: $shadow-large;
+  }
+  &.results {
+    padding: 60px 0;
+    background-color: $gray-light;
+    z-index: 1;
+    .list {
+      p {
+        padding: 10px 60px;
+      }
+    }
+  }
+  &.formulas {
+    padding: 60px;
+    z-index: 3;
+    box-shadow: $shadow-large;
   }
 }
 

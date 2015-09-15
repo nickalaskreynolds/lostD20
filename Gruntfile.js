@@ -114,7 +114,7 @@ module.exports = function(grunt) {
         }
       },
       hbs: {
-        files: ['<%= folders.src %>/templates/**/*.hbs'],
+        files: ['<%= folders.src %>/hbs/**/*.hbs'],
         tasks: ['assemble:dev'],
         options: {
           livereload: true
@@ -158,9 +158,9 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: false,
-        layout: '<%= folders.src %>/templates/layouts/default.hbs',
-        layoutdir: '<%= folders.src %>/templates/layouts',
-        partials: '<%= folders.src %>/templates/partials/*.hbs'
+        layout: '<%= folders.src %>/hbs/layouts/default.hbs',
+        layoutdir: '<%= folders.src %>/hbs/layouts',
+        partials: '<%= folders.src %>/hbs/partials/*.hbs'
       },
       dev: {
         options: {
@@ -169,7 +169,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= folders.src %>/templates/pages/',
+          cwd: '<%= folders.src %>/hbs/pages/',
           src: '**/*.hbs',
           dest: '<%= folders.dev %>/'
         }]
@@ -181,7 +181,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= folders.src %>/templates/pages/',
+          cwd: '<%= folders.src %>/hbs/pages/',
           src: '**/*.hbs',
           dest: '<%= folders.build %>/'
         }]
