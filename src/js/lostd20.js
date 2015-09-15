@@ -48,6 +48,21 @@ function diceRollerama() {
     return document.querySelectorAll(selector);
   };
 
+  // toggle class
+  function toggleClass(element, theClassName) {
+    element.classList.toggle(theClassName);
+  };
+
+  // add class
+  function addClass(element, theClassName) {
+    element.classList.add(theClassName);
+  };
+
+  // remove class
+  function removeClass(element, theClassName) {
+    element.classList.remove(theClassName);
+  };
+
   // get checked radio val 
   function getRadioValue(form, radioGroupName) {
     // get list of radio buttons with specified name
