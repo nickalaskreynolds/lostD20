@@ -2,41 +2,41 @@ function diceRollerama() {
 
   // elements
   var element_html = e("html");
-  var element_diceSelector = e("#diceSelector");
-  var element_diceRollClicker = e("#diceRollClicker");
-  var element_goRoll = e("#goRoll");
+  var element_diceSelector = e(".diceSelector");
+  // var element_diceRollClicker = e("#diceRollClicker");
+  var element_goRoll = e(".goRoll");
   // var element_currentResult = e("#currentResult");
-  var element_savedRolls = e("#savedRolls");
-  var element_savedRolls_list = e("#savedRolls .list");
-  var element_resultHistory = e("#resultHistory");
-  var element_resultHistory_list = e("#resultHistory .list");
-  var element_diceSelect_label = eA("#diceSelector label");
+  var element_savedRolls = e(".savedRolls");
+  var element_savedRolls_list = e(".savedRolls .list");
+  var element_resultHistory = e(".resultHistory");
+  var element_resultHistory_list = e(".resultHistory .list");
+  var element_diceSelect_label = eA(".diceSelector label");
   // formula
   var formula_numberOfDiceSides_value;
-  var formula_numberOfBonus = e("#formula .number.ofBonus");
-  var formula_numberOfBonus_input = e("#formula .number.ofBonus input");
+  var formula_numberOfBonus = e(".formula .number.ofBonus");
+  var formula_numberOfBonus_input = e(".formula .number.ofBonus input");
   var formula_numberOfBonus_input_value
-  var formula_numberOfDice = e("#formula .number.ofDice");
-  var formula_numberOfDice_input = e("#formula .number.ofDice input");
+  var formula_numberOfDice = e(".formula .number.ofDice");
+  var formula_numberOfDice_input = e(".formula .number.ofDice input");
   var formula_numberOfDice_input_value
-  // var formula_currentDice_h1 = e("#formula .currentDice h1");
+  // var formula_currentDice_h1 = e(".formula .currentDice h1");
   // bonus
-  var modifiers_changeAmountOfBonus_clear = e("#formula .number.ofBonus .clear");
+  var modifiers_changeAmountOfBonus_clear = e(".formula .number.ofBonus .clear");
   var modifiers_changeAmountOfBonus_plusFive = e(".modifiers .changeAmount.ofBonus .plusFive");
   var modifiers_changeAmountOfBonus_plusOne = e(".modifiers .changeAmount.ofBonus .plusOne");
   var modifiers_changeAmountOfBonus_minusFive = e(".modifiers .changeAmount.ofBonus .minusFive");
   var modifiers_changeAmountOfBonus_minusOne = e(".modifiers .changeAmount.ofBonus .minusOne");
   // number of dice
-  var modifiers_changeAmountOfDice_clear = e("#formula .number.ofDice .clear");
+  var modifiers_changeAmountOfDice_clear = e(".formula .number.ofDice .clear");
   var modifiers_changeAmountOfDice_plusFive = e(".modifiers .changeAmount.ofDice .plusFive");
   var modifiers_changeAmountOfDice_plusOne = e(".modifiers .changeAmount.ofDice .plusOne");
   var modifiers_changeAmountOfDice_minusFive = e(".modifiers .changeAmount.ofDice .minusFive");
   var modifiers_changeAmountOfDice_minusOne = e(".modifiers .changeAmount.ofDice .minusOne");
   // utilities
-  var utilities_saveCurrentFormula = e("#utilities .saveCurrentFormula");
-  var utilities_goFullscreen = e("#utilities .toggleFullscreen");
-  var utilities_goFullscreen_icon = e("#utilities .toggleFullscreen .icon");
-  var utilities_clearAll = e("#utilities .clearAll");
+  var utilities_saveCurrentFormula = e(".utilities .saveCurrentFormula");
+  var utilities_goFullscreen = e(".utilities .toggleFullscreen");
+  var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen .icon");
+  var utilities_clearAll = e(".utilities .clearAll");
 
   // get element by class or id
   function e(selector) {
@@ -117,15 +117,15 @@ function diceRollerama() {
       plusOrMinus();
       element_savedRolls_list.innerHTML =
         "<p class=\"savedFormula\">" 
-        + " <button class=\"button button-secondary roll\"><span class=\"icon diceIcon-save\"></span> Roll</button>" 
         + " <input class=\"name\" type=\"text\" value=\"" + saveName + "\">" 
+        + " <a class=\"button button-primary roll\"><span class=\"icon diceIcon-save\"></span> Roll</a>" 
         + " <span class=\"amountOfDice\">" + formula_numberOfDice_input_value + "</span>" 
-        + " <span class=\"d\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides_value + "\" data-dice-sides=\"" + formula_numberOfDiceSides_value + "\"></span></span>" 
+        + " <span class=\"dice\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides_value + "\" data-dice-sides=\"" + formula_numberOfDiceSides_value + "\"></span></span>" 
         + " <span class=\"amountOfBonus\">" + plusOrMinus + "</span>" 
         + " <span class=\"deleteSavedFormulaConfirm\">" 
         + " <button class=\"button button-secondary clear\"><span class=\"icon diceIcon-close\"></span></button>" 
-        + " <button class=\"button button-secondary cancel\">Cancel</button>" 
         + " <button class=\"button button-secondary delete\">Delete</button>" 
+        + " <button class=\"button button-secondary cancel\">Cancel</button>" 
         + " </span>" + " </p>" + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
@@ -213,7 +213,7 @@ function diceRollerama() {
   // roll saved formula
   function runSavedFormula(element) {
     var readSavedAmountOfDice = parseInt(element.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
-    var readSavedDiceSides = element.parentNode.querySelector(".d .icon");
+    var readSavedDiceSides = element.parentNode.querySelector(".dice .icon");
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
     var readSavedAmountOfBonus = parseInt(element.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
     var readSavedName = element.parentNode.querySelector(".name").value;
@@ -310,12 +310,15 @@ function diceRollerama() {
     // print results to history
     element_resultHistory_list.innerHTML =
       "<p" + critical20Or1 + ">" 
+      + "<span class=\"total\">" + finalResult + "</span> " 
+      + "<span class=\"breakdown\">"
       + savedRollName 
       + numberOfDice 
-      + " <span class=\"icon diceIcon-d" + whichDice + "\"></span>" 
+      + " <span class=\"dice\"><span class=\"icon diceIcon-d" + whichDice + "\"></span></span>" 
       + " <span class=\"multipleDiceResults\">" + "(Rolls: " + multipleDiceResultsWithSpaces + ")</span>" 
       + bonusOrNoBonus 
-      + " = <span class=\"hostoryTotal\">" + finalResult + "</span>" 
+      // + " = <span class=\"historyTotal\">" + finalResult + "</span>" 
+      + "</span>"
       + "</p>" 
       + element_resultHistory_list.innerHTML;
 
@@ -341,6 +344,26 @@ function diceRollerama() {
     // checkListActiveState();
   };
 
+  // read multiple dice input field
+  function modifiers_readAmountOfDice() {
+    formula_numberOfDice_input_value = parseInt(formula_numberOfDice_input.value, 10) || 0;
+    // if input or var value is less than 0 
+    if (formula_numberOfDice_input.value <= 0 || formula_numberOfDice_input.value == "") {
+      formula_numberOfDice_input_value = 1;
+      formula_numberOfDice_input.value = "";
+    } else if (formula_numberOfDice_input.value >= 999) {
+      formula_numberOfDice_input.value = "999";
+    };
+    // if input bonus is 1 hide the clear button
+    if (formula_numberOfDice_input.value == 0 || formula_numberOfDice_input.value == "") {
+      addClass(modifiers_changeAmountOfDice_clear, "hide");
+    } else {
+      removeClass(modifiers_changeAmountOfDice_clear, "hide");
+    };
+    // console.log("modifiers_readAmountOfDice \t \t multiple dice is " + formula_numberOfDice_input_value);
+    return formula_numberOfDice_input_value;
+  };
+
   // read bonus input field
   function modifiers_readAmountOfBonus() {
     formula_numberOfBonus_input_value = parseInt(formula_numberOfBonus_input.value, 10) || 0;
@@ -355,32 +378,13 @@ function diceRollerama() {
     };
     // if input bonus is 0 hide the clear button
     if (formula_numberOfBonus_input_value == 0 || formula_numberOfBonus_input_value == "") {
-      formula_numberOfBonus.classList.remove("active");
+      // formula_numberOfBonus.classList.remove("active");
+      addClass(modifiers_changeAmountOfBonus_clear, "hide");
     } else {
-      formula_numberOfBonus.classList.add("active");
+      removeClass(modifiers_changeAmountOfBonus_clear, "hide");
     };
     // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + formula_numberOfBonus_input_value);
     return formula_numberOfBonus_input_value;
-  };
-
-  // read multiple dice input field
-  function modifiers_readAmountOfDice() {
-    formula_numberOfDice_input_value = parseInt(formula_numberOfDice_input.value, 10) || 0;
-    // if input or var value is less than 0 
-    if (formula_numberOfDice_input.value <= 0 || formula_numberOfDice_input.value == "") {
-      formula_numberOfDice_input_value = 1;
-      formula_numberOfDice_input.value = "";
-    } else if (formula_numberOfDice_input.value >= 999) {
-      formula_numberOfDice_input.value = "999";
-    };
-    // if input bonus is 1 hide the clear button
-    if (formula_numberOfDice_input.value == 0 || formula_numberOfDice_input.value == "") {
-      formula_numberOfDice.classList.remove("active");
-    } else {
-      formula_numberOfDice.classList.add("active");
-    };
-    // console.log("modifiers_readAmountOfDice \t \t multiple dice is " + formula_numberOfDice_input_value);
-    return formula_numberOfDice_input_value;
   };
 
   // plus or minus modifier or clear

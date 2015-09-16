@@ -1,14 +1,30 @@
-/* core
-------------------------------------------------- */
+// core
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+::-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
 
-p {
-  margin: 0 0 10px 0;
-  &.critical-20 {
-    background-color: $critical-20;
-  }
-  &.critical-1 {
-    background-color: $critical-1;
-  }
+::selection {
+  color: $white;
+  background: $magenta;
+}
+
+::-moz-selection {
+  color: $white;
+  background: $magenta;
+}
+
+body {
+  font-family: $open-sans-regular;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 section {
@@ -20,14 +36,165 @@ section {
     padding: 60px;
     z-index: 2;
     box-shadow: $shadow-large;
+    text-align: center;
+    .formula {
+      .number {
+        position: relative;
+        text-align: center;
+        &.ofDice,
+        &.ofBonus {
+          input {
+            margin: 0 0 5px 0;
+            padding: 0;
+            width: 60%;
+            text-align: center;
+            font-size: 2rem;
+            line-height: 4rem;
+            height: 4rem;
+            font-family: $open-sans-condensed-light;
+          }
+          .clear {
+            position: absolute;
+            top: 15px;
+            right: 20%;
+          }
+        }
+      }
+      .modifiers {
+        text-align: center;
+      }
+    }
+    .goRoll {
+      margin: 30px 0;
+    }
+    .diceSelector {
+      width: 100%;
+      margin: 30px 0;
+      label {
+        display: inline-block;
+        float: left;
+        width: 20%;
+        padding: 0;
+        margin: 5px 0;
+        line-height: 0;
+        cursor: pointer;
+        text-align: center;
+        border: 0;
+        outline: none;
+        &[for="d10"] {
+          margin-left: 10%;
+        }
+        input {
+          display: none;
+        }
+        .label-body {
+          margin: 0;
+          line-height: 0;
+        }
+        .diceRing {
+          position: relative;
+          display: block;
+          width: 40px;
+          height: 40px;
+          margin: 0 auto;
+          box-sizing: border-box;
+          transition: all $transition-bounce-medium;
+          transform: scale(1);
+          border: 2px solid transparent;
+          border-radius: 50%;
+          background-color: $gray-1;
+          .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            font-size: 2em;
+            line-height: 36px;
+            transition: all $transition-bounce-medium;
+            text-align: center;
+          }
+        }
+        .label-body .diceRing {
+          border-color: transparent;
+        }
+        &:hover .label-body .diceRing {
+          border-color: $magenta;
+          background-color: $white;
+        }
+        &.active .label-body .diceRing {
+          transform: scale(1.6);
+          border-color: $magenta;
+          background-color: $white;
+        }
+        .label-body .icon {
+          color: $white;
+        }
+        &:hover .label-body .icon,
+        &.active .label-body .icon {
+          color: $magenta;
+        }
+      }
+    }
+    .utilities {
+      .button {
+        margin: 0 0 5px 0;
+      }
+    }
   }
   &.results {
     padding: 60px 0;
-    background-color: $gray-light;
+    background-color: $background-color;
     z-index: 1;
     .list {
       p {
-        padding: 10px 60px;
+        padding: 5px 60px;
+        margin: 0 0 20px 0;
+        clear: both;
+        .total {
+          background-color: $aqua;
+          color: $white;
+          border-radius: $global-radius;
+          display: inline-block;
+          text-align: center;
+          font-family: $open-sans-condensed-bold;
+          line-height: 1.5rem;
+          min-width: 20%;
+        }
+        .breakdown {
+          margin: 0 0 20px 0;
+          float: right;
+          line-height: 1.5rem;
+          width: 75%;
+        }
+        .dice {
+          font-size: 2rem;
+          vertical-align: middle;
+          .icon {
+            line-height: 1.5rem;
+          }
+        }
+        // &:first-child {
+        //   padding: 10px 60px;
+        //   color: $aqua;
+        //   font-size: 1.3rem;
+        // }
+        &.critical-20 {
+          color: $white;
+          background-color: $critical-20;
+          .total {
+            background-color: $white;
+            color: $critical-20;
+          }
+        }
+        &.critical-1 {
+          color: $white;
+          background-color: $critical-1;
+          .total {
+            background-color: $white;
+            color: $critical-1;
+          }
+        }
       }
     }
   }
@@ -35,13 +202,50 @@ section {
     padding: 60px;
     z-index: 3;
     box-shadow: $shadow-large;
+    .savedRolls {
+      .list {
+        .savedFormula {
+          .dice {
+            font-size: 2rem;
+            vertical-align: middle;
+          }
+          .name {
+            width: 100%;
+            margin: 0 0 5px 0;
+          }
+          .roll {
+            margin: 0 10px 0 0;
+            display: inline-block;
+          }
+          span {
+            display: inline-block;
+          }
+          .deleteSavedFormulaConfirm {
+            float: right;
+          }
+          .delete,
+          .cancel {
+            display: none;
+          }
+          .clear {
+            display: inline-block;
+          }
+          &.showDelete {
+            .delete,
+            .cancel {
+              display: inline-block;
+            }
+            .clear {
+              display: none;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-
-/* media queries
-------------------------------------------------- */
-
+// media queries
 @media (min-width: 550px) {}
 
 @media (min-width: 750px) {

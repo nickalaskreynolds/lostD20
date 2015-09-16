@@ -1,25 +1,81 @@
 // buttons
 //––––––––––––––––––––––––––––––––––––––––––––––––––
-
 .button,
 button {
   display: inline-block;
-  height: 38px;
-  padding: 0 30px;
-  color: $gray;
+  height: 2rem;
+  padding: 0 15px;
+  color: $gray-1;
   text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 38px;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: $open-sans-semi-bold;
+  line-height: 2rem;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
-  border-radius: $global-radius;
-  border: 1px solid $magenta-dark;
+  background-color: $gray-4;
+  border: 1px solid $gray-3;
   cursor: pointer;
   box-sizing: border-box;
+  border-radius: $global-radius;
+}
+
+.button:focus,
+button:focus,
+.button:hover,
+button:hover {
+  color: $white;
+  background-color: $gray-2;
+  border-color: $gray-2;
+  outline: 0;
+}
+
+.button:active,
+button:active {
+  color: $white;
+  background-color: $gray-4;
+  border-color: $gray-4;
+}
+
+.button.button-primary,
+button.button-primary {
+  color: $white;
+  background-color: $magenta;
+  border-color: $magenta-dark;
+}
+
+.button.button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:hover,
+button.button-primary:focus {
+  color: $white;
+  background-color: $magenta-dark;
+  border-color: $magenta-dark;
+  text-decoration: none;
+}
+
+.button.button-secondary,
+button.button-secondary {
+  color: $gray-1;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.button.button-secondary:hover,
+.button.button-secondary:focus,
+button.button-secondary:hover,
+button.button-secondary:focus {
+  color: $white;
+  background-color: $magenta-dark;
+  border-color: $magenta-dark;
+  text-decoration: none;
+}
+
+.button.button-primary:active,
+.button.button-secondary:active,
+button.button-primary:active,
+button.button-secondary:active {
+  color: $white;
+  background-color: $magenta-light;
 }
 
 input {
@@ -27,128 +83,43 @@ input {
   &[type="reset"],
   &[type="button"] {
     display: inline-block;
-    height: 38px;
-    padding: 0 30px;
-    color: $gray;
+    height: 2rem;
+    padding: 0 15px;
+    color: $gray-1;
     text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 38px;
-    letter-spacing: .1rem;
-    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-family: $open-sans-semi-bold;
+    line-height: 2rem;
     text-decoration: none;
     white-space: nowrap;
-    background-color: transparent;
-    border-radius: $global-radius;
-    border: 1px solid $magenta-dark;
+    background-color: $gray-4;
+    border: 1px solid $gray-3;
     cursor: pointer;
     box-sizing: border-box;
+    border-radius: $global-radius;
   }
-}
-
-.button:hover,
-button:hover {
-  // color: $dark-grey;
-  // border-color: lighten($dark-grey, 33.3%);
-  outline: 0;
 }
 
 input {
   &[type="submit"]:hover,
   &[type="reset"]:hover,
-  &[type="button"]:hover {
-    // color: $dark-grey;
-    // border-color: lighten($dark-grey, 33.3%);
-    outline: 0;
-  }
-}
-
-.button:focus,
-button:focus {
-  // color: $dark-grey;
-  // border-color: lighten($dark-grey, 33.3%);
-  outline: 0;
-}
-
-input {
+  &[type="button"]:hover,
   &[type="submit"]:focus,
   &[type="reset"]:focus,
   &[type="button"]:focus {
-    // color: $dark-grey;
-    // border-color: lighten($dark-grey, 33.3%);
+    color: $white;
+    background-color: $gray-2;
+    border-color: $gray-2;
     outline: 0;
   }
 }
 
-.button.button-primary,
-button.button-primary {
-  color: #fff;
-  background-color: $magenta;
-  border-color: $magenta-dark;
-}
-
-.button.button-secondary,
-button.button-secondary {
-  color: #fff;
-  background-color: $aqua;
-  border-color: $aqua-dark;
-}
-
 input {
-  &[type="submit"].button-primary,
-  &[type="reset"].button-primary,
-  &[type="button"].button-primary {
-    color: #fff;
-    background-color: $magenta;
-    border-color: $magenta-dark;
-  }
-}
-
-.button.button-primary:hover,
-button.button-primary:hover {
-  color: #fff;
-  background-color: $magenta;
-  border-color: $magenta-dark;
-}
-
-input {
-  &[type="submit"].button-primary:hover,
-  &[type="reset"].button-primary:hover,
-  &[type="button"].button-primary:hover {
-    color: #fff;
-    background-color: $magenta;
-    border-color: $magenta-dark;
-  }
-}
-
-.button.button-primary:focus,
-button.button-primary:focus {
-  color: #fff;
-  background-color: $magenta;
-  border-color: $magenta-dark;
-}
-
-input {
-  &[type="submit"].button-primary:focus,
-  &[type="reset"].button-primary:focus,
-  &[type="button"].button-primary:focus {
-    color: #fff;
-    background-color: $magenta;
-    border-color: $magenta-dark;
-  }
-  &[type="email"],
-  &[type="number"],
-  &[type="search"],
-  &[type="text"],
-  &[type="tel"],
-  &[type="url"],
-  &[type="password"] {
-    height: 38px;
-    padding: 6px 10px; // The 6px vertically centers text on FF, ignored by Webkit
-    background-color: #fff;
-    border: 1px solid lighten($magenta-dark, 8.8%);
-    border-radius: $global-radius;
-    box-shadow: none;
-    box-sizing: border-box;
+  &[type="submit"]:active,
+  &[type="reset"]:active,
+  &[type="button"]:active {
+    color: $white;
+    background-color: $gray-4;
+    border-color: $gray-4;
   }
 }
