@@ -13,16 +13,8 @@ label {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-button {
-  &:active,
-  &.active {
-    color: $white;
-    border-color: $magenta;
-    background-color: $magenta;
-  }
-  &:active .icon {
-    color: $white;
-  }
+p {
+  color: $gray;
 }
 
 ::-webkit-full-screen {

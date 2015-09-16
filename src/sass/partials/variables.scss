@@ -35,7 +35,6 @@ $transition-ease-slow:           0.5s ease-in-out;
 $transition-ease-medium:         0.3s ease-in-out;
 $transition-ease-fast:           0.1s ease-in-out;
 
-
 // drop shadows
 // -------------------------
 
@@ -44,3 +43,7 @@ $shadow-large:                    0 1px 1px rgba(0, 0, 0, 0.1),
 $shadow-small:                    0 1px 0 rgba(0, 0, 0, 0.05),
                                   0 2px 0 rgba(0, 0, 0, 0.05),
                                   0 3px 0 rgba(0, 0, 0, 0.05);
+
+// radius
+// -------------------------
+$global-radius:                   4px;

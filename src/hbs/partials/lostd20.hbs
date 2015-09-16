@@ -3,17 +3,17 @@
   <section id="formulaModifiers">
     <div class="modifiers">
       <div class="changeAmount ofDice">
-        <button class="minusFive">-5</button>
-        <button class="minusOne">-1</button>
-        <button class="plusOne">+1</button>
-        <button class="plusFive">+5</button>
+        <a class="button button-secondary minusFive">-5</a>
+        <a class="button button-secondary minusOne">-1</a>
+        <a class="button button-secondary plusOne">+1</a>
+        <a class="button button-secondary plusFive">+5</a>
       </div>
     </div>
     <div id="formula">
       <div class="number ofDice">
-        <button class="clear">
+        <a class="button button-secondary clear">
           <span class="icon diceIcon-close"></span>
-        </button>
+        </a>
         <input type="tel" placeholder="1" maxlength="3">
       </div>
       <form id="diceSelector">
@@ -92,29 +92,26 @@
       </form>
       <div class="number ofBonus">
         <input type="tel" placeholder="+0" maxlength="4">
-        <button class="clear">
+        <a class="button button-secondary clear">
           <span class="icon diceIcon-close"></span>
-        </button>
+        </a>
       </div>
     </div>
     <div class="modifiers">
       <div class="changeAmount ofBonus">
-        <button class="minusFive">-5</button>
-        <button class="minusOne">-1</button>
-        <button class="plusOne">+1</button>
-        <button class="plusFive">+5</button>
+        <a class="button button-secondary minusFive">-5</a>
+        <a class="button button-secondary minusOne">-1</a>
+        <a class="button button-secondary plusOne">+1</a>
+        <a class="button button-secondary plusFive">+5</a>
       </div>
     </div>
-    <button id="goRoll" class="button-primary">Roll the Dice</button>
+    <button id="goRoll" class="button button-primary">Roll the Dice</button>
   </section>
   
   <section id="utilities">
-    <button class="tool toggleFullscreen">
-      <span class="icon diceIcon-expand"></span> Fullscreen</button>
-    <button class="tool saveCurrentFormula">
-      <span class="icon diceIcon-save"></span> Save Formula</button>
-    <button class="tool clearAll">
-      <span class="icon diceIcon-trash"></span> Clear</button>
+    <a class="button button-secondary tool toggleFullscreen"><span class="icon diceIcon-expand"></span> Fullscreen</a>
+    <a class="button button-secondary tool saveCurrentFormula"><span class="icon diceIcon-save"></span> Save Formula</a>
+    <a class="button button-secondary tool clearAll"><span class="icon diceIcon-trash"></span> Clear</a>
   </section>
 
 </section>

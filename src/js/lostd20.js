@@ -116,7 +116,17 @@ function diceRollerama() {
     var writeSavedRoll = function() {
       plusOrMinus();
       element_savedRolls_list.innerHTML =
-        "<p class=\"savedFormula\">" + " <button class=\"roll\"><span class=\"icon diceIcon-save\"></span> Roll</button>" + " <input class=\"name\" type=\"text\" value=\"" + saveName + "\">" + " <span class=\"amountOfDice\">" + formula_numberOfDice_input_value + "</span>" + " <span class=\"d\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides_value + "\" data-dice-sides=\"" + formula_numberOfDiceSides_value + "\"></span></span>" + " <span class=\"amountOfBonus\">" + plusOrMinus + "</span>" + " <span class=\"deleteSavedFormulaConfirm\">" + " <button class=\"clear\"><span class=\"icon diceIcon-close\"></span></button>" + " <button class=\"cancel\">Cancel</button>" + " <button class=\"delete\">Delete</button>" + " </span>" + " </p>" + element_savedRolls_list.innerHTML;
+        "<p class=\"savedFormula\">" 
+        + " <button class=\"button button-secondary roll\"><span class=\"icon diceIcon-save\"></span> Roll</button>" 
+        + " <input class=\"name\" type=\"text\" value=\"" + saveName + "\">" 
+        + " <span class=\"amountOfDice\">" + formula_numberOfDice_input_value + "</span>" 
+        + " <span class=\"d\"><span class=\"icon diceIcon-d" + formula_numberOfDiceSides_value + "\" data-dice-sides=\"" + formula_numberOfDiceSides_value + "\"></span></span>" 
+        + " <span class=\"amountOfBonus\">" + plusOrMinus + "</span>" 
+        + " <span class=\"deleteSavedFormulaConfirm\">" 
+        + " <button class=\"button button-secondary clear\"><span class=\"icon diceIcon-close\"></span></button>" 
+        + " <button class=\"button button-secondary cancel\">Cancel</button>" 
+        + " <button class=\"button button-secondary delete\">Delete</button>" 
+        + " </span>" + " </p>" + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
     addListenerTo_saveCurrentFormula();
