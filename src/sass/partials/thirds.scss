@@ -31,10 +31,11 @@ section {
   &.column-third {
     position: relative;
     box-sizing: border-box;
+    transition: $transition-ease-medium;
   }
   &.controls {
-    padding: 60px;
-    z-index: 2;
+    padding: 30px;
+    z-index: 3;
     box-shadow: $shadow-large;
     text-align: center;
     .formula {
@@ -69,11 +70,11 @@ section {
     }
     .diceSelector {
       width: 100%;
-      margin: 30px 0;
+      margin: 20px 0;
+      text-align: center;
       label {
         display: inline-block;
-        float: left;
-        width: 20%;
+        width: 55px;
         padding: 0;
         margin: 5px 0;
         line-height: 0;
@@ -81,9 +82,6 @@ section {
         text-align: center;
         border: 0;
         outline: none;
-        &[for="d10"] {
-          margin-left: 10%;
-        }
         input {
           display: none;
         }
@@ -143,32 +141,34 @@ section {
     }
   }
   &.results {
-    padding: 60px 0;
-    background-color: $background-color;
-    z-index: 1;
+    padding: 30px 0;
+    box-shadow: $shadow-large;
+    z-index: 2;
     .list {
       p {
-        padding: 0 60px 10px 60px;
+        padding: 0 30px 10px 30px;
         margin: 0 0 10px 0;
         border-bottom: 1px solid $gray-5;
         clear: both;
         color: $gray-3;
         width: 100%;
         box-sizing: border-box;
+        transition: $transition-ease-medium;
         .total {
-          border: 1px solid $magenta;
+          border: 1px solid $gray-3;
           border-radius: $global-radius;
           color: $gray-1;
           display: inline-block;
           text-align: center;
           line-height: 2rem;
-          width: 20%;
+          width: 25%;
           float: left;
         }
         .breakdown {
           line-height: 2rem;
-          width: 75%;
+          width: 70%;
           float: right;
+          font-size: 0.7rem;
         }
         .dice {
           font-size: 2rem;
@@ -178,22 +178,15 @@ section {
           }
         }
         &:first-child {
-          font-size: 1.7rem;
-          -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-          -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
-          -webkit-animation-name: fadeInDown;
-          animation-name: fadeInDown;
+          font-size: 1.5rem;
           .total {
-            background-color: $magenta;
             border-color: $magenta;
-            color: $white;
-            line-height: 3rem;
+            line-height: 2.5rem;
           }
           .breakdown {
             color: $gray-1;
-            line-height: 3rem;
+            line-height: 2.5rem;
+            font-size: 0.7rem;
           }
         }
         &:last-child {
@@ -220,9 +213,8 @@ section {
     }
   }
   &.formulas {
-    padding: 60px;
-    z-index: 3;
-    box-shadow: $shadow-large;
+    padding: 30px;
+    z-index: 1;
     .savedRolls {
       .list {
         .savedFormula {
@@ -282,39 +274,51 @@ section {
       overflow-x: hidden;
       overflow-y: auto;
     }
+    &.controls {
+      z-index: 3;
+      .formula {
+        .number {
+          &.ofDice,
+          &.ofBonus {
+            input {
+              width: 80%;
+            }
+            .clear {
+              right: 10%;
+            }
+          }
+        }
+      }
+    }
+    &.results {
+      background-color: $background-color;
+      z-index: 1;
+      box-shadow: none;
+    }
+    &.formulas {
+      z-index: 2;
+      box-shadow: $shadow-large;
+    }
   }
 }
 
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-20px);
+@media (min-width: 900px) {
+  section {
+    &.column-third {
+      &.controls {
+        padding: 60px;
+      }
+      &.results {
+        padding: 60px 0;
+        .list {
+          p {
+            padding: 0 60px 10px 60px;
+          }
+        }
+      }
+      &.formulas {
+        padding: 60px;
+      }
+    }
   }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
 }

@@ -124,8 +124,8 @@ function diceRollerama() {
         + " <span class=\"amountOfBonus\">" + plusOrMinus + "</span>" 
         + " <span class=\"deleteSavedFormulaConfirm\">" 
         + " <button class=\"button button-secondary clear\"><span class=\"icon diceIcon-close\"></span></button>" 
-        + " <button class=\"button button-secondary delete\">Delete</button>" 
-        + " <button class=\"button button-secondary cancel\">Cancel</button>" 
+        + " <button class=\"button button-secondary cancel\">Nope</button>" 
+        + " <button class=\"button button-secondary delete\">Sure?</button>" 
         + " </span>" + " </p>" + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
