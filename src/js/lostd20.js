@@ -275,7 +275,7 @@ function diceRollerama() {
     if (bonusModifier == 0) {
       bonusOrNoBonus = "";
     } else {
-      bonusOrNoBonus = " " + plusOrMinus + bonusModifier + " Bonus";
+      bonusOrNoBonus = " (" + plusOrMinus + bonusModifier + " Bonus)";
     };
     // if there is a name with the roll
     var savedRollName;
@@ -289,12 +289,12 @@ function diceRollerama() {
     if (whichDice == 20 && numberOfDice == 1) {
       if (naturalMultipleRolls == 20) {
         // if natural 20
-        critical20Or1 = " class=\"critical-20\"";
+        critical20Or1 = " critical-20";
         // element_diceRollClicker.classList.add("critical-20");
         // element_diceRollClicker.classList.remove("critical-1");
       } else if (naturalMultipleRolls == 1) {
         // if natural 1
-        critical20Or1 = " class=\"critical-1\"";
+        critical20Or1 = " critical-1";
         // element_diceRollClicker.classList.remove("critical-20");
         // element_diceRollClicker.classList.add("critical-1");
       } else {
@@ -309,13 +309,13 @@ function diceRollerama() {
     };
     // print results to history
     element_resultHistory_list.innerHTML =
-      "<p" + critical20Or1 + ">" 
+      "<p class=\"u-cf" + critical20Or1 + "\">" 
       + "<span class=\"total\">" + finalResult + "</span> " 
       + "<span class=\"breakdown\">"
       + savedRollName 
       + numberOfDice 
       + " <span class=\"dice\"><span class=\"icon diceIcon-d" + whichDice + "\"></span></span>" 
-      + " <span class=\"multipleDiceResults\">" + "(Rolls: " + multipleDiceResultsWithSpaces + ")</span>" 
+      + " <span class=\"multipleDiceResults\">" + "(Rolled: " + multipleDiceResultsWithSpaces + ")</span>" 
       + bonusOrNoBonus 
       // + " = <span class=\"historyTotal\">" + finalResult + "</span>" 
       + "</span>"

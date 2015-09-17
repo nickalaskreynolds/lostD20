@@ -148,51 +148,72 @@ section {
     z-index: 1;
     .list {
       p {
-        padding: 5px 60px;
-        margin: 0 0 20px 0;
+        padding: 0 60px 10px 60px;
+        margin: 0 0 10px 0;
+        border-bottom: 1px solid $gray-5;
         clear: both;
+        color: $gray-3;
+        width: 100%;
+        box-sizing: border-box;
         .total {
-          background-color: $aqua;
-          color: $white;
+          border: 1px solid $magenta;
           border-radius: $global-radius;
+          color: $gray-1;
           display: inline-block;
           text-align: center;
-          font-family: $open-sans-condensed-bold;
-          line-height: 1.5rem;
-          min-width: 20%;
+          line-height: 2rem;
+          width: 20%;
+          float: left;
         }
         .breakdown {
-          margin: 0 0 20px 0;
-          float: right;
-          line-height: 1.5rem;
+          line-height: 2rem;
           width: 75%;
+          float: right;
         }
         .dice {
           font-size: 2rem;
           vertical-align: middle;
           .icon {
-            line-height: 1.5rem;
+            line-height: 2rem;
           }
         }
-        // &:first-child {
-        //   padding: 10px 60px;
-        //   color: $aqua;
-        //   font-size: 1.3rem;
-        // }
-        &.critical-20 {
-          color: $white;
-          background-color: $critical-20;
+        &:first-child {
+          font-size: 1.7rem;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
           .total {
-            background-color: $white;
-            color: $critical-20;
+            background-color: $magenta;
+            border-color: $magenta;
+            color: $white;
+            line-height: 3rem;
+          }
+          .breakdown {
+            color: $gray-1;
+            line-height: 3rem;
+          }
+        }
+        &:last-child {
+          border: 0;
+          margin: 0;
+        }
+        &.critical-20 {
+          // color: $white;
+          .total {
+            background-color: $critical-20;
+            border-color: $critical-20;
+            color: $white;
           }
         }
         &.critical-1 {
-          color: $white;
-          background-color: $critical-1;
+          // color: $white;
           .total {
-            background-color: $white;
-            color: $critical-1;
+            background-color: $critical-1;
+            border-color: $critical-1;
+            color: $white;
           }
         }
       }
@@ -262,4 +283,38 @@ section {
       overflow-y: auto;
     }
   }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
 }
