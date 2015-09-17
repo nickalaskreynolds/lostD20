@@ -314,7 +314,7 @@ function diceRollerama() {
       + "<span class=\"breakdown\">"
       + savedRollName 
       + numberOfDice 
-      + "<span class=\"dice\"><span class=\"icon diceIcon-d" + whichDice + "\"></span></span>" 
+      + " <span class=\"dice\"><span class=\"icon diceIcon-d" + whichDice + "\"></span></span>" 
       + " <span class=\"multipleDiceResults\">" + "(Rolled: " + multipleDiceResultsWithSpaces + ")</span>" 
       + bonusOrNoBonus 
       // + " = <span class=\"historyTotal\">" + finalResult + "</span>" 
