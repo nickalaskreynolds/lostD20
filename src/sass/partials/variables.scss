@@ -57,6 +57,12 @@ $shadow-small:                       0 1px 0 rgba(0, 0, 0, 0.05),
                                      0 2px 0 rgba(0, 0, 0, 0.05),
                                      0 3px 0 rgba(0, 0, 0, 0.05);
 
+$shadow-large-inset:                 inset 0 1px 1px rgba(0, 0, 0, 0.1),
+                                     inset 0 10px 40px rgba(0, 0, 0, 0.1);
+$shadow-small-inset:                 inset 0 1px 0 rgba(0, 0, 0, 0.05),
+                                     inset 0 2px 0 rgba(0, 0, 0, 0.05),
+                                     0 3px 0 rgba(0, 0, 0, 0.05);
+
 // radius
 // -------------------------
 $global-radius:                      3px;

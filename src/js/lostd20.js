@@ -538,6 +538,21 @@ function diceRollerama() {
     localStoreAdd("savedRolls", element_savedRolls_list);
   }, false);
 
+  // // dice select
+  // function addListenerTo_element_diceSelect_label() {
+  //   for (var i = 0; i < element_diceSelect_label.length; i++) {
+  //     element_diceSelect_label[i].addEventListener("click", function() {
+  //       // console.log(this);
+  //       // if label is active roll the dice with current modifiers if not make active
+  //       if (this.classList.contains("active")) {
+  //         roll(modifiers_readAmountOfDice(), getRadioValue(element_diceSelector, "diceSelect"), modifiers_readAmountOfBonus());
+  //       } else {
+  //         makeSelectedRadioActive(element_diceSelector, "diceSelect");
+  //       };
+  //     }, false);
+  //   };
+  // };
+  
   // dice select
   function addListenerTo_element_diceSelect_label() {
     for (var i = 0; i < element_diceSelect_label.length; i++) {
