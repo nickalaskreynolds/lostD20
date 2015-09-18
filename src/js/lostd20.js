@@ -134,12 +134,12 @@ function diceRollerama() {
   };
 
   // loose focus when enter is pressed
-  // function dropFocus() {
-  //   var keystroke = event.keyCode || event.which;
-  //   if (keystroke == 13) {
-  //     this.blur();
-  //   };
-  // };
+  function dropFocus() {
+    var keystroke = event.keyCode || event.which;
+    if (keystroke == 13) {
+      this.blur();
+    };
+  };
 
   // resize input to text lenght
   function storeInputName(element) {
@@ -606,9 +606,9 @@ function diceRollerama() {
       // formula_savedFormula_name[i].addEventListener("focus", function() {
       //   this.select();
       // });
-      // formula_savedFormula_name[i].addEventListener("click", function() {
-      //   this.select();
-      // });
+      formula_savedFormula_name[i].addEventListener("click", function() {
+        this.select();
+      });
       // formula_savedFormula_name[i].addEventListener("focusout", function() {
       //   autoWidth(this);
       // }, false);
@@ -617,7 +617,7 @@ function diceRollerama() {
         storeInputName(this);
         localStoreAdd("savedRolls", element_savedRolls_list);
       }, false);
-      // formula_savedFormula_name[i].addEventListener("keyup", dropFocus, false);
+      formula_savedFormula_name[i].addEventListener("keyup", dropFocus, false);
       // formula_savedFormula_name[i].style.width = parseInt(formula_savedFormula_name[i].value.length, 10) * 5.6 + 20 + "px";
     };
   };
@@ -637,9 +637,11 @@ function diceRollerama() {
     modifiers_readAmountOfBonus();
   }, false);
 
-  // formula_numberOfBonus_input.addEventListener("focus", function() {
-  //   this.select();
-  // }, false);
+  formula_numberOfBonus_input.addEventListener("keyup", dropFocus, false);
+
+  formula_numberOfBonus_input.addEventListener("click", function() {
+    this.select();
+  }, false);
   modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function() {
     modifiers_plusMinus(5, formula_numberOfBonus_input);
     modifiers_readAmountOfBonus();
@@ -661,10 +663,12 @@ function diceRollerama() {
   formula_numberOfDice_input.addEventListener("input", function() {
     modifiers_readAmountOfDice();
   }, false);
+  
+  formula_numberOfDice_input.addEventListener("keyup", dropFocus, false);
 
-  // formula_numberOfDice_input.addEventListener("focus", function() {
-  //   this.select();
-  // }, false);
+  formula_numberOfDice_input.addEventListener("click", function() {
+    this.select();
+  }, false);
   modifiers_changeAmountOfDice_plusFive.addEventListener("click", function() {
     modifiers_plusMinus(5, formula_numberOfDice_input);
     modifiers_readAmountOfDice();
