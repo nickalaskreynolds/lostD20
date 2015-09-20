@@ -11,6 +11,7 @@ function diceRollerama() {
   var element_savedRolls_list = e(".savedRolls .list");
   var element_resultHistory = e(".resultHistory");
   var element_resultHistory_list = e(".resultHistory .list");
+  var element_results_toggleFullscreen = e(".results .toggleFullscreen");
   var element_diceSelect_label = eA(".diceSelector label");
   // formula
   var formula_numberOfDiceSides_value;
@@ -483,7 +484,7 @@ function diceRollerama() {
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_clear[i].addEventListener("click", function() {
         clearSavedFormula(this);
-        localStoreAdd("savedHistory", element_resultHistory_list);
+        localStoreAdd("savedHistory", element_resultHistory_list);  
       }, false);
     };
 
@@ -584,6 +585,10 @@ function diceRollerama() {
   modifiers_changeAmountOfDice_minusFive.addEventListener("click", function() {
     modifiers_plusMinus(-5, formula_numberOfDice_input);
     modifiers_readAmountOfDice();
+  }, false);
+
+  element_results_toggleFullscreen.addEventListener("click", function() {
+    toggleClass(element_column_results, "fullsize");
   }, false);
 
   modifiers_readAmountOfBonus();
