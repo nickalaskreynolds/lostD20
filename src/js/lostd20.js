@@ -113,16 +113,16 @@ function diceRollerama() {
       element_savedRolls_list.innerHTML =
         '<p class="savedFormula">'
         + '<span class="rollName u-cf">'
-        + ' <a href="#" class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
+        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
         + ' <input class="name" type="text" value="' + saveName + '">' 
         + ' </span>'
         + ' <span class="amountOfDice">' + formula_numberOfDice_input_value + '</span>' 
         + ' <span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span>' 
         + ' <span class="amountOfBonus">' + plusOrMinus + '</span>' 
         + ' <span class="deleteSavedFormulaConfirm">' 
-        + ' <a href="#" class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
-        + ' <a href="#" class="button button-secondary delete">Delete?</a>'
-        + ' <a href="#" class="button button-secondary cancel">Keep</a>'
+        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + ' <a class="button button-secondary delete">Delete?</a>'
+        + ' <a class="button button-secondary cancel">Keep</a>'
         + ' </span>' + ' </p>' + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
