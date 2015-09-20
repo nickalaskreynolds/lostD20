@@ -483,6 +483,7 @@ function diceRollerama() {
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_clear[i].addEventListener("click", function() {
         clearSavedFormula(this);
+        localStoreAdd("savedHistory", element_resultHistory_list);
       }, false);
     };
 
@@ -496,6 +497,7 @@ function diceRollerama() {
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_cancel[i].addEventListener("click", function() {
         cancelSavedFormula(this);
+        localStoreAdd("savedHistory", element_resultHistory_list);
       }, false);
     };
 
@@ -508,7 +510,6 @@ function diceRollerama() {
         storeInputName(this);
         localStoreAdd("savedRolls", element_savedRolls_list);
       }, false);
-
       formula_savedFormula_name[i].addEventListener("keyup", dropFocus, false);
     };
   };
