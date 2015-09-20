@@ -1,0 +1,574 @@
+/* basics
+------------------------------------------------- */
+
+body {
+  padding: 30px 0;
+  font-family: $font-family-sans-serif;
+  background-color: $background-color;
+}
+
+button,
+label {
+  letter-spacing: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+p {
+  color: $gray;
+}
+
+::-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+::selection {
+  color: $white;
+  background: $magenta;
+}
+
+::-moz-selection {
+  color: $white;
+  background: $magenta;
+}
+
+.container {
+  transition: all $transition-bounce-medium;
+}
+
+.controls {
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: $shadow-large;
+}
+
+section {
+  &.divider {
+    background-color: $white;
+    position: relative;
+    transition: all $transition-bounce-medium;
+  }
+  &#diceRollClicker {
+    background-color: $aqua;
+    min-height: 150px;
+    z-index: 4;
+    transition: all $transition-ease-fast;
+    #goRoll {
+      display: block;
+      float: left;
+      height: 30px;
+      padding: 0 10px;
+      margin: 100px 0 0 20px;
+      font-size: 0.8em;
+      line-height: 30px;
+      transition: all $transition-ease-fast;
+      color: $white;
+      border: 0;
+      border-color: transparent;
+      border-radius: 4px;
+      background-color: $magenta;
+      &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        content: "";
+      }
+    }
+    #currentResult {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      p {
+        margin: 0;
+        font-size: 5em;
+        line-height: 150px;
+        transition: all $transition-ease-fast;
+        color: $white;
+        text-shadow: none;
+      }
+    }
+    &:focus,
+    &:active {
+      #currentResult {
+        p {
+          text-shadow: 0 0 50px rgba(0, 198, 255, 1), 0 0 10px rgba(0, 198, 255, 1), 0 0 5px rgba(0, 198, 255, 1);
+        }
+      }
+    }
+    .alert {
+      position: absolute;
+      top: 100px;
+      right: 20px;
+      visibility: hidden;
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      font-family: $font-family-sans-serif;
+      font-size: 1em;
+      line-height: 30px;
+      transition: all $transition-ease-fast;
+      text-align: center;
+      opacity: 0;
+      border-radius: 4px;
+      background-color: $white;
+      &.reolled-1 {
+        color: $critical-1;
+      }
+      &.reolled-20 {
+        color: $critical-20;
+      }
+    }
+    &.critical-20 {
+      background-color: $critical-20;
+      #goRoll {
+        background-color: $white;
+        color: $critical-20;
+      }
+      #currentResult {
+        p {
+          color: $white;
+        }
+      }
+      .alert {
+        &.reolled-20 {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+    &.critical-1 {
+      background-color: $critical-1;
+      #goRoll {
+        background-color: $white;
+        color: $critical-1;
+      }
+      #currentResult {
+        p {
+          color: $white;
+        }
+      }
+      .alert {
+        &.reolled-1 {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &#dice {
+    position: relative;
+    width: 80%;
+    padding: 15px 10%;
+    z-index: 3;
+    #diceSelector {
+      width: 100%;
+      margin: 0;
+      transition: all $transition-bounce-medium;
+      label {
+        display: inline-block;
+        float: left;
+        width: 20%;
+        padding: 0;
+        margin: 5px 0;
+        line-height: 0;
+        cursor: pointer;
+        text-align: center;
+        border: 0;
+        outline: none;
+        &[for="d10"] {
+          margin-left: 10%;
+        }
+        input {
+          display: none;
+        }
+        .label-body {
+          margin: 0;
+          line-height: 0;
+        }
+        .diceRing {
+          position: relative;
+          display: block;
+          width: 40px;
+          height: 40px;
+          margin: 0;
+          box-sizing: border-box;
+          transition: all $transition-ease-medium;
+          transform: scale(1);
+          border: 2px solid transparent;
+          border-radius: 50%;
+          background-color: $magenta;
+          .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            font-size: 2em;
+            line-height: 36px;
+            transition: all $transition-ease-medium;
+            text-align: center;
+          }
+        }
+        .label-body .diceRing {
+          border-color: transparent;
+        }
+        &:hover .label-body .diceRing {
+          border-color: $aqua;
+          background-color: $white;
+        }
+        &.active .label-body .diceRing {
+          transform: scale(1.6);
+          border-color: $aqua;
+          background-color: $white;
+        }
+        .label-body .icon {
+          color: $white;
+        }
+        &:hover .label-body .icon,
+        &.active .label-body .icon {
+          color: $aqua;
+        }
+      }
+    }
+  }
+  &#formulaModifiers {
+    position: relative;
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    z-index: 3;
+    #formula {
+      position: relative;
+      width: 100%;
+      .currentDice,
+      .number {
+        float: left;
+        height: 40px;
+        box-sizing: border-box;
+      }
+      .currentDice {
+        width: 20%;
+      }
+      .number {
+        width: 40%;
+      }
+      .currentDice,
+      .number {
+        h1,
+        input {
+          height: 40px;
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          line-height: 40px;
+          text-align: center;
+          color: $aqua;
+          border: 0;
+          border-radius: 0;
+          background-color: transparent;
+        }
+      }
+      .currentDice {
+        h1 {
+          width: 100%;
+          border-bottom: 2px solid $gray-light;
+        }
+      }
+      .number {
+        input {
+          width: 60%;
+          border-bottom: 2px solid $magenta;
+        }
+        button {
+          width: 30%;
+          height: 100%;
+          padding: 0;
+          margin: 0 5%;
+          font-size: 1.5em;
+          line-height: 100%;
+          transition: transform $transition-bounce-medium;
+          transform: scale(0);
+          text-align: center;
+          color: $magenta;
+          border-color: transparent;
+        }
+        &.ofDice.active button,
+        &.ofBonus.active button {
+          transform: scale(1);
+        }
+        button,
+        &.ofDice input {
+          float: right;
+        }
+        button,
+        &.ofBonus input {
+          float: left;
+        }
+      }
+    }
+    #modifiers {
+      position: relative;
+      width: 100%;
+      padding: 10px 0 0 0;
+      .changeAmount {
+        &.ofDice,
+        &.ofBonus {
+          width: 40%;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        &.ofDice {
+          float: left;
+          margin-left: 5%;
+        }
+        &.ofBonus {
+          float: right;
+          margin-right: 5%;
+        }
+        button {
+          float: left;
+          width: 25%;
+          height: 40px;
+          padding: 0;
+          margin: 0;
+          font-size: 1em;
+          line-height: 40px;
+          border-color: transparent;
+          &.minusOne,
+          &.minusFive {
+            color: $magenta;
+          }
+          &:active {
+            &.minusOne,
+            &.minusFive {
+              color: $white;
+            }
+            color: $white;
+          }
+        }
+        h3 {
+          padding: 0 30px;
+          margin: 0;
+          font-size: 1em;
+          line-height: 1.5em;
+          text-align: center;
+        }
+        &.ofDice h2 {
+          float: left;
+        }
+        &.ofBonus h2 {
+          float: right;
+        }
+      }
+    }
+  }
+  &#utilities {
+    z-index: 3;
+    position: relative;
+    width: 100%;
+    padding: 0 0 15px 0;
+    box-sizing: border-box;
+    text-align: center;
+    .tool {
+      height: 30px;
+      padding: 0 10px;
+      margin: 0 10px 0 0;
+      box-sizing: border-box;
+      line-height: 30px;
+      border: 0;
+      &:last-child {
+        margin: 0;
+      }
+      .icon {
+        margin: 0 2px 0 0;
+        font-size: 1.5em;
+        line-height: 30px;
+        vertical-align: middle;
+      }
+    }
+  }
+  &#savedRolls {
+    max-height: 300px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: 2;
+    .list {
+      .icon {
+        padding: 0;
+        margin: 0;
+      }
+      .savedFormula {
+        padding: 10px 70px 10px 90px;
+        .deleteSavedFormulaConfirm {
+          position: absolute;
+          top: 20%;
+          right: 20px;
+          height: 60%;
+        }
+        button {
+          padding: 0 10px;
+          margin: 0;
+          border: 0;
+          height: 100%;
+        }
+        .roll {
+          position: absolute;
+          top: 20%;
+          left: 20px;
+          height: 60%;
+        }
+        .clear,
+        .delete {
+          color: $magenta;
+        }
+        button {
+          &:active {
+            color: $white;
+          }
+        }
+      }
+    }
+    .savedFormula {
+      .delete,
+      .cancel {
+        display: none;
+        float: right;
+      }
+      .clear {
+        display: block;
+      }
+      &.showDelete {
+        .delete,
+        .cancel {
+          display: block;
+        }
+        .clear {
+          display: none;
+        }
+      }
+    }
+    &.active {
+      .list {
+        padding: 10px 0;
+      }
+    }
+  }
+  &#resultHistory {
+    box-shadow: $shadow-large;
+    border-radius: 4px;
+    z-index: 1;
+    max-height: 500px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    &.active {
+      min-height: 70px;
+    }
+    .list p {
+      padding: 10px 20px;
+    }
+    &.active {
+      .list {
+        padding: 10px 0;
+      }
+    }
+  }
+  // &#diceRollClicker,
+  // &#dice,
+  // &#formulaModifiers,
+  // &#utilities,
+  // &#savedRolls,
+  // &#resultHistory {}
+}
+
+.list {
+  p {
+    position: relative;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.8em;
+    color: $aqua;
+    border-bottom: 1px solid $gray-light;
+    &:last-child {
+      border-bottom: 0;
+    }
+    .hostoryTotal {
+      padding: 2px 5px;
+      color: $white;
+      border-radius: 4px;
+      background-color: $magenta;
+    }
+    .multipleDiceResults {
+    }
+    .name {
+      background-color: transparent;
+      height: inherit;
+      max-width: 50%;
+      min-width: 5%;
+      padding: 0 0 4px 0;
+      margin: 0 10px 0 0;
+      transition: all $transition-bounce-medium;
+      color: $aqua;
+      border: 0;
+      border-bottom: 2px solid $magenta;
+      border-radius: 0;
+    }
+    button {
+      height: inherit;
+      padding: 5px 10px;
+      margin: 0 10px 0 0;
+      line-height: 1em;
+      vertical-align: middle;
+    }
+    .icon {
+      font-size: 2em;
+      line-height: 1em;
+      vertical-align: middle;
+    }
+    &.critical-20 {
+      color: $critical-20;
+      .multipleDiceResults,
+      .icon {
+        color: $critical-20;
+      }
+    }
+    &.critical-1 {
+      color: $critical-1;
+      .multipleDiceResults,
+      .icon {
+        color: $critical-1;
+      }
+    }
+    &.critical-20 .hostoryTotal {
+      color: $white;
+      background-color: $critical-20;
+    }
+    &.critical-1 .hostoryTotal {
+      color: $white;
+      background-color: $critical-1;
+    }
+  }
+}
+
+
+/* media queries
+------------------------------------------------- */
+
+@media (min-width: 550px) {}
+
+@media (min-width: 750px) {
+  section {
+    &#resultHistory {
+      position: fixed;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "lost D20",
+  "version": "1.0.0",
+  "authors": [
+    "Kuldeep <crudetoaster@gmail.com>"
+  ],
+  "description": "Dice Roller",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-scss": "~3.0.3",
+    "Skeleton-Sass": "skeleton-scss#*"
+  },
+  "devDependencies": {}
+}

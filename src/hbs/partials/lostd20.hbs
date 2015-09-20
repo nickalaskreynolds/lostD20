@@ -1,0 +1,136 @@
+<section class="column-third controls">
+  <section id="formulaModifiers">
+    <div class="formula">
+      <div class="number ofDice">
+        <input type="tel" placeholder="1d" maxlength="3" tabindex="1">
+        <a class="button button-secondary clear">
+          <span class="icon diceIcon-close"></span>
+        </a>
+      </div>
+      <div class="modifiers">
+        <div class="changeAmount ofDice">
+          <a class="button button-secondary minusFive" tabindex="1">-5</a>
+          <a class="button button-secondary minusOne" tabindex="1">-1</a>
+          <a class="button button-secondary plusOne" tabindex="1">+1</a>
+          <a class="button button-secondary plusFive" tabindex="1">+5</a>
+        </div>
+      </div>
+      <form class="diceSelector u-cf">
+        <label for="d2">
+          <input type="radio" name="diceSelect" id="d2" class="diceSelect" value="2">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d2"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d3">
+          <input type="radio" name="diceSelect" id="d3" class="diceSelect" value="3">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d3"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d4">
+          <input type="radio" name="diceSelect" id="d4" class="diceSelect" value="4">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d4"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d6">
+          <input type="radio" name="diceSelect" id="d6" class="diceSelect" value="6">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d6"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d8">
+          <input type="radio" name="diceSelect" id="d8" class="diceSelect" value="8">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d8"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d10">
+          <input type="radio" name="diceSelect" id="d10" class="diceSelect" value="10">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d10"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d12">
+          <input type="radio" name="diceSelect" id="d12" class="diceSelect" value="12">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d12"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d20" class="active">
+          <input type="radio" name="diceSelect" id="d20" class="diceSelect" value="20" checked>
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d20"></span>
+            </span>
+          </span>
+        </label>
+        <label for="d100">
+          <input type="radio" name="diceSelect" id="d100" class="diceSelect" value="100">
+          <span class="label-body">
+            <span class="diceRing">
+              <span class="icon diceIcon-d100"></span>
+            </span>
+          </span>
+        </label>
+      </form>
+      <div class="number ofBonus">
+        <input type="tel" placeholder="+0 Bonus" maxlength="4" tabindex="1">
+        <a class="button button-secondary clear">
+          <span class="icon diceIcon-close"></span>
+        </a>
+      </div>
+      <div class="modifiers">
+        <div class="changeAmount ofBonus">
+          <a class="button button-secondary minusFive" tabindex="1">-5</a>
+          <a class="button button-secondary minusOne" tabindex="1">-1</a>
+          <a class="button button-secondary plusOne" tabindex="1">+1</a>
+          <a class="button button-secondary plusFive" tabindex="1">+5</a>
+        </div>
+      </div>
+    </div>
+    <a class="goRoll button button-primary" tabindex="1">Roll the Dice</a>
+  </section>
+  <section class="utilities">
+    <a class="button button-secondary toggleFullscreen" tabindex="1">
+      <span class="icon diceIcon-expand"></span> Fullscreen</a>
+    <a class="button button-secondary saveCurrentFormula" tabindex="1">
+      <span class="icon diceIcon-save"></span> Save Formula</a>
+    <a class="button button-secondary clearAll" tabindex="1">
+      <span class="icon diceIcon-trash"></span> Clear</a>
+  </section>
+</section>
+
+<!-- section divide -->
+
+<section class="column-third formulas">
+  <section class="savedRolls">
+    <div class="list"></div>
+  </section>
+</section>
+
+<!-- section divide -->
+
+<section class="column-third results">
+  <a class="button button-secondary toggleFullscreen">
+    <span class="icon diceIcon-expand"></span>
+  </a>
+  <section class="resultHistory">
+    <div class="list"></div>
+  </section>
+</section>

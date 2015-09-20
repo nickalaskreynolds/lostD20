@@ -1,0 +1,126 @@
+/* buttons
+------------------------------------------------- */
+
+.button,
+button {
+  display: inline-block;
+  height: 2rem;
+  padding: 0 10px;
+  color: $gray-01;
+  text-align: center;
+  font-size: 0.8rem;
+  font-family: $open-sans-semi-bold;
+  line-height: 2rem;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: $gray-04;
+  border: 1px solid $gray-03;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: $global-radius;
+}
+
+.button:focus,
+button:focus,
+.button:hover,
+button:hover {
+  color: $white;
+  background-color: $gray-02;
+  border-color: $gray-02;
+  outline: 0;
+}
+
+.button:active,
+button:active {
+  color: $white;
+  background-color: $gray-04;
+  border-color: $gray-04;
+}
+
+.button.button-primary,
+button.button-primary {
+  color: $white;
+  background-color: $magenta;
+  border-color: $magenta-dark;
+}
+
+.button.button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:hover,
+button.button-primary:focus {
+  color: $white;
+  background-color: $magenta-dark;
+  border-color: $magenta-dark;
+  text-decoration: none;
+}
+
+.button.button-secondary,
+button.button-secondary {
+  color: $gray-01;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.button.button-secondary:hover,
+.button.button-secondary:focus,
+button.button-secondary:hover,
+button.button-secondary:focus {
+  color: $white;
+  background-color: $magenta-dark;
+  border-color: $magenta-dark;
+  text-decoration: none;
+}
+
+.button.button-primary:active,
+.button.button-secondary:active,
+button.button-primary:active,
+button.button-secondary:active {
+  color: $white;
+  background-color: $magenta-light;
+}
+
+input {
+  &[type="submit"],
+  &[type="reset"],
+  &[type="button"] {
+    display: inline-block;
+    height: 2rem;
+    padding: 0 15px;
+    color: $gray-01;
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: $open-sans-semi-bold;
+    line-height: 2rem;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: $gray-04;
+    border: 1px solid $gray-03;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: $global-radius;
+  }
+}
+
+input {
+  &[type="submit"]:hover,
+  &[type="reset"]:hover,
+  &[type="button"]:hover,
+  &[type="submit"]:focus,
+  &[type="reset"]:focus,
+  &[type="button"]:focus {
+    color: $white;
+    background-color: $gray-02;
+    border-color: $gray-02;
+    outline: 0;
+  }
+}
+
+input {
+  &[type="submit"]:active,
+  &[type="reset"]:active,
+  &[type="button"]:active {
+    color: $white;
+    background-color: $gray-04;
+    border-color: $gray-04;
+  }
+}
