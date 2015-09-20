@@ -28,14 +28,6 @@ $gray-12:                             #d6d6d6;
 $gray-13:                             #e8e8e8;
 $gray-14:                             #fafafa;
 
-
-// $gray-1:                              #404040;
-// $gray-2:                              #737373;
-// $gray-3:                              #a6a6a6;
-// $gray-4:                              #d9d9d9;
-// $gray-5:                              #f1f1f1;
-// $gray-6:                              #C0C0C0;
-
 $critical-20:                         #33c3f0;
 $critical-1:                          #990000;
 
@@ -68,17 +60,19 @@ $transition-ease-fast:               0.1s ease-in-out;
 /* drop shadows
 ------------------------------------------------- */
 
-$shadow-large:                       0 1px 1px rgba(0, 0, 0, 0.3),
-                                     0 10px 40px rgba(0, 0, 0, 0.3);
-$shadow-small:                       0 1px 0 rgba(0, 0, 0, 0.05),
-                                     0 2px 0 rgba(0, 0, 0, 0.05),
-                                     0 3px 0 rgba(0, 0, 0, 0.05);
+$shadow-light:                      0 1px 1px rgba(0, 0, 0, 0.1),
+                                    0 1px 40px rgba(0, 0, 0, 0.1);
 
-$shadow-large-inset:                 inset 0 1px 1px rgba(0, 0, 0, 0.3),
-                                     inset 0 10px 40px rgba(0, 0, 0, 0.3);
-$shadow-small-inset:                 inset 0 1px 0 rgba(0, 0, 0, 0.05),
-                                     inset 0 2px 0 rgba(0, 0, 0, 0.05),
-                                     0 3px 0 rgba(0, 0, 0, 0.05);
+$shadow-dark:                       0 1px 1px rgba(0, 0, 0, 0.5),
+                                    0 1px 40px rgba(0, 0, 0, 0.5),
+                                    0 10px 40px rgba(0, 0, 0, 0.5);
+
+$shadow-light-inset:                inset 0 1px 1px -1px rgba(0, 0, 0, 0.1),
+                                    inset 0 1px 40px -10px rgba(0, 0, 0, 0.1);
+
+$shadow-dark-inset:                 inset 0 1px 1px -1px rgba(0, 0, 0, 0.5),
+									inset 0 20px 40px -10px rgba(0, 0, 0, 0.5),
+									inset 0 5px 40px -10px rgba(0, 0, 0, 0.5);
 
 /* radius
 ------------------------------------------------- */

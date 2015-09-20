@@ -2,7 +2,7 @@
 ------------------------------------------------- */
 
 html {
-  font-size: 80%;
+  font-size: 88%;
 }
 
 ::-webkit-full-screen {
@@ -45,6 +45,8 @@ section {
     user-select: none;
     .formula {
       .number {
+        width: 70%;
+        margin: 0 auto;
         position: relative;
         text-align: center;
         &.ofDice,
@@ -68,6 +70,9 @@ section {
       }
       .modifiers {
         text-align: center;
+        .button {
+          padding: 0 15px;
+        }
       }
     }
     .goRoll {
@@ -84,7 +89,7 @@ section {
         display: inline-block;
         width: 60px;
         padding: 0;
-        margin: 10px 0;
+        margin: 5px 0;
         line-height: 0;
         cursor: pointer;
         text-align: center;
@@ -146,94 +151,6 @@ section {
       .button {
         margin: 0 0 5px 0;
       }
-    }
-  }
-  &.results {
-    background-color: $gray-03;
-    box-shadow: $shadow-large-inset;
-    position: fixed;
-    bottom: -300px;
-    height: 150px;
-    width: 100%;
-    z-index: 3;
-    overflow-y: auto;
-    .toggleFullscreen {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: $white;
-    }
-    .list {
-      p {
-        padding: 30px;
-        margin: 0;
-        border-bottom: 1px solid $gray-03;
-        clear: both;
-        color: $gray-06;
-        width: 100%;
-        box-sizing: border-box;
-        transition: $transition-ease-medium;
-        .total {
-          margin: 0;
-          border: 2px solid $gray-04;
-          border-radius: $global-radius;
-          display: inline-block;
-          text-align: center;
-          line-height: 2rem;
-          box-sizing: border-box;
-          width: 22%;
-          float: left;
-        }
-        .breakdown {
-          margin: 3px 0 0 0;
-          line-height: 1.5rem;
-          width: 72%;
-          float: right;
-        }
-        .dice {
-          font-size: 2rem;
-          vertical-align: middle;
-          .icon {
-            line-height: 2rem;
-          }
-        }
-        &:first-child {
-          animation: flash ease-out 0.5s;
-          animation-iteration-count: 1;
-          .total {
-            border-color: $magenta;
-            color: $white;
-          }
-          .breakdown {
-            color: $gray-10;
-          }
-        }
-        &:last-child {
-          border: 0;
-        }
-        &.critical-20 {
-          .total {
-            background-color: $critical-20;
-            border-color: $critical-20;
-            color: $white;
-          }
-        }
-        &.critical-1 {
-          .total {
-            background-color: $critical-1;
-            border-color: $critical-1;
-            color: $white;
-          }
-        }
-      }
-    }
-    &.active {
-      background-color: $gray-02;
-      bottom: 0;
-    }
-    &.fullsize {
-      height: 100%;
-      bottom: 0;
     }
   }
   &.formulas {
@@ -301,6 +218,96 @@ section {
       }
     }
   }
+  &.results {
+    background-color: $gray-03;
+    position: fixed;
+    bottom: -300px;
+    height: 150px;
+    width: 100%;
+    z-index: 3;
+    overflow-y: auto;
+    box-shadow: $shadow-dark-inset;
+    .toggleFullscreen {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: $white;
+    }
+    .list {
+      p {
+        padding: 30px;
+        margin: 0;
+        border-bottom: 1px solid $gray-01;
+        clear: both;
+        color: $gray-06;
+        width: 100%;
+        box-sizing: border-box;
+        transition: $transition-ease-medium;
+        .total {
+          margin: 0;
+          border: 1px solid $gray-01;
+          border-radius: $global-radius;
+          color: $gray-10;
+          display: inline-block;
+          text-align: center;
+          line-height: 2rem;
+          box-sizing: border-box;
+          width: 22%;
+          float: left;
+        }
+        .breakdown {
+          margin: 3px 0 0 0;
+          line-height: 1.5rem;
+          width: 72%;
+          float: right;
+        }
+        .dice {
+          font-size: 2rem;
+          vertical-align: middle;
+          .icon {
+            line-height: 2rem;
+          }
+        }
+        &:first-child {
+          animation: flash ease-out 0.5s;
+          animation-iteration-count: 1;
+          .total {
+            border-color: $magenta;
+            border-width: 2px;
+            color: $white;
+          }
+          .breakdown {
+            color: $gray-10;
+          }
+        }
+        &:last-child {
+          border: 0;
+        }
+        &.critical-20 {
+          .total {
+            background-color: $critical-20;
+            border-color: $critical-20;
+            color: $white;
+          }
+        }
+        &.critical-1 {
+          .total {
+            background-color: $critical-1;
+            border-color: $critical-1;
+            color: $white;
+          }
+        }
+      }
+    }
+    &.active {
+      background-color: $gray-02;
+      bottom: 0;
+    }
+    &.fullsize {
+      height: 100%;
+      bottom: 0;
+    }
+  }
 }
 
 
@@ -324,6 +331,9 @@ section {
     &.controls {
       padding: 30px 20%;
     }
+    &.formulas {
+      padding: 30px 20%;
+    }
     &.results {
       .list {
         p {
@@ -331,15 +341,12 @@ section {
         }
       }
     }
-    &.formulas {
-      padding: 30px 20%;
-    }
   }
 }
 
 @media (min-width: 750px) {
   html {
-    font-size: 90%;
+    font-size: 95%;
   }
   html,
   body {
@@ -359,7 +366,7 @@ section {
     }
     &.controls {
       padding: 30px;
-      box-shadow: $shadow-large;
+      box-shadow: $shadow-light;
       z-index: 3;
       .diceSelector {
         label {
@@ -377,6 +384,11 @@ section {
           }
         }
       }
+    }
+    &.formulas {
+      padding: 30px;
+      z-index: 2;
+      box-shadow: $shadow-dark;
     }
     &.results {
       z-index: 1;
@@ -404,11 +416,6 @@ section {
           }
         }
       }
-    }
-    &.formulas {
-      padding: 30px;
-      z-index: 2;
-      box-shadow: $shadow-large;
     }
   }
 }

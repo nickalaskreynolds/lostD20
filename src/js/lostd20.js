@@ -96,7 +96,7 @@ function diceRollerama() {
     getRadioValue(element_diceSelector, "diceSelect");
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfDice();
-    var formulaNamesOfJoy = ["Bonk", "Bash", "Blam", "Boink", "Crash", "Smash", "Donk", "Ponk", "Slonk", "Slash", "Whoosh", "Meep", "Beep", "Boop", "Ow", "Slap", "Hick", "Eep", "Kink", "Wack", "Wonk", "Bork", "Wee", "Pepper Pow"];
+    var formulaNamesOfJoy = ["Aieee!", "Aiieee!", "Arrgh!", "Awk!", "Awkkkkkk!", "Bam!", "Bang!", "Bang!", "Biff!", "Bloop!", "Blurp!", "Boff!", "Bonk!", "Clank!", "Clank!", "Clash!", "Clunk!", "Clunk!", "Crraack!", "Crash!", "Crraack!", "Crunch!", "Crunch!", "Eee-yow!", "Flrbbbbb!", "Glipp!", "Glurpp!", "Kapow!", "Kayo!", "Ker-sploosh!", "Kerplop!", "Klonk!", "Klunk!", "Krunch!", "Oooff!", "Ooooff!", "Ouch!", "Ouch!", "Owww!", "Ow", "Pam!", "Plop!", "Pow!", "Powie!", "Qunckkk!", "Rakkk!", "Rip!", "Slosh!", "Sock!", "Splats!", "Splatt!", "Sploosh!", "Swaap!", "Swish!", "Swoosh!", "Thunk!", "Thwack!", "Thwacke!", "Thwape!", "Thwapp!", "Uggh!", "Urkkk!", "Vronk!", "Whack!", "Whack!", "Wham!", "Whamm!", "Whammm!", "Whap!", "Z-zwap!", "Zam!", "Zamm!", "Zammm!", "Zap!", "Zap", "Zgruppp!", "Zlonk!", "Zlopp!", "Zlott!", "Zok!", "Zowie!", "Zwapp!", "Zzwap!", "Zzzzwap!", "Zzzzzwap!", "Pepper-Pow!"];
     var saveName = formulaNamesOfJoy[Math.floor(Math.random() * formulaNamesOfJoy.length)];
     // is the bonus more than or less than 0
     var plusOrMinus = function() {
@@ -113,16 +113,16 @@ function diceRollerama() {
       element_savedRolls_list.innerHTML =
         '<p class="savedFormula">'
         + '<span class="rollName u-cf">'
-        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
+        + ' <a href="#" class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
         + ' <input class="name" type="text" value="' + saveName + '">' 
         + ' </span>'
         + ' <span class="amountOfDice">' + formula_numberOfDice_input_value + '</span>' 
         + ' <span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span>' 
         + ' <span class="amountOfBonus">' + plusOrMinus + '</span>' 
         + ' <span class="deleteSavedFormulaConfirm">' 
-        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
-        + ' <a class="button button-secondary delete">Sure?</a>'
-        + ' <a class="button button-secondary cancel">Nope</a>'
+        + ' <a href="#" class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + ' <a href="#" class="button button-secondary delete">Delete?</a>'
+        + ' <a href="#" class="button button-secondary cancel">Keep</a>'
         + ' </span>' + ' </p>' + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
