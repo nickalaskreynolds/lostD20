@@ -19,7 +19,7 @@ html {
 
 body {
   background-color: $white;
-  margin-bottom: 200px;
+  margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
 }
@@ -143,17 +143,23 @@ section {
   }
   &.results {
     background-color: $gray-03;
-    padding: 30px 0;
     box-shadow: $shadow-large-inset;
     position: fixed;
     bottom: 0;
-    height: 30%;
+    height: 300px;
     width: 100%;
     z-index: 3;
     overflow-y: auto;
+
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+
     .list {
       p {
-        padding: 20px 30px;
+        padding: 30px;
         margin: 0;
         border-bottom: 1px solid $gray-03;
         clear: both;
@@ -188,7 +194,6 @@ section {
           }
         }
         &:first-child {
-          padding-top: 0;
           .total {
             border-color: $magenta;
             color: $white;
@@ -199,7 +204,6 @@ section {
         }
         &:last-child {
           border: 0;
-          padding-bottom: 0;
         }
         &.critical-20 {
           .total {
@@ -402,16 +406,9 @@ section {
       }
     }
     &.results {
-      padding: 40px 0;
       .list {
         p {
-          padding: 20px 40px;
-          &:first-child {
-            padding-top: 0;
-          }
-          &:last-child {
-            padding-bottom: 0;
-          }
+          padding: 40px;
         }
       }
     }
@@ -432,10 +429,15 @@ section {
       }
     }
     &.results {
-      padding: 60px 0;
       .list {
         p {
-          padding: 20px 60px;
+          padding: 40px 60px;
+          &:first-child {
+            padding-top: 60px;
+          }
+          &:last-child {
+            padding-bottom: 60px;
+          }
           .total {
             margin: 0;
             width: 22%;
