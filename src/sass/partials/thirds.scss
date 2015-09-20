@@ -1,5 +1,10 @@
-// core
-//––––––––––––––––––––––––––––––––––––––––––––––––––
+/* core
+------------------------------------------------- */
+
+html {
+  font-size: 100%;
+}
+
 ::-webkit-full-screen {
   width: 100%;
   height: 100%;
@@ -12,25 +17,11 @@
   background: $magenta;
 }
 
-::-moz-selection {
-  color: $white;
-  background: $magenta;
-}
-
-button,
-label {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 body {
+  background-color: $gray-14;
   margin-bottom: 200px;
   font-family: $open-sans-regular;
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
-  // -khtml-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
+  user-select: none;
 }
 
 section {
@@ -40,11 +31,10 @@ section {
     transition: $transition-ease-medium;
   }
   &.controls {
+    background-color: $white;
     padding: 30px;
     z-index: 2;
     text-align: center;
-    -moz-user-select: none;
-    -webkit-user-select: none;
     user-select: none;
     .formula {
       .number {
@@ -57,9 +47,9 @@ section {
             padding: 0 0 1rem 0;
             width: 60%;
             text-align: center;
-            font-size: 2rem;
-            line-height: 3rem;
-            height: 3rem;
+            font-size: 3rem;
+            line-height: 4rem;
+            height: 4rem;
             font-family: $open-sans-condensed-light;
           }
           .clear {
@@ -81,11 +71,11 @@ section {
     }
     .diceSelector {
       width: 100%;
-      margin: 30px 0;
+      margin: 30px 0 40px 0;
       text-align: center;
       label {
         display: inline-block;
-        width: 55px;
+        width: 70px;
         padding: 0;
         margin: 5px 0;
         line-height: 0;
@@ -101,25 +91,25 @@ section {
           line-height: 0;
         }
         .diceRing {
+          background-color: $gray-01;
           position: relative;
           display: block;
-          width: 40px;
-          height: 40px;
+          width: 50px;
+          height: 50px;
           margin: 0 auto;
           box-sizing: border-box;
           transition: all $transition-bounce-medium;
           transform: scale(1);
           border: 2px solid transparent;
           border-radius: 50%;
-          background-color: $gray-1;
           .icon {
             position: absolute;
             top: 0;
             left: 0;
-            width: 36px;
-            height: 36px;
-            font-size: 2em;
-            line-height: 36px;
+            width: 46px;
+            height: 46px;
+            font-size: 2.5em;
+            line-height: 46px;
             transition: all $transition-bounce-medium;
             text-align: center;
           }
@@ -152,7 +142,7 @@ section {
     }
   }
   &.results {
-    background-color: $gray-1;
+    background-color: $gray-04;
     padding: 30px 0;
     box-shadow: $shadow-large-inset;
     position: fixed;
@@ -165,14 +155,14 @@ section {
       p {
         padding: 0 30px 10px 30px;
         margin: 0 0 10px 0;
-        border-bottom: 1px solid $gray-2;
+        border-bottom: 1px solid $gray-03;
         clear: both;
-        color: $gray-3;
+        color: $gray-06;
         width: 100%;
         box-sizing: border-box;
         transition: $transition-ease-medium;
         .total {
-          border: 2px solid $gray-2;
+          border: 2px solid $gray-04;
           border-radius: $global-radius;
           display: inline-block;
           text-align: center;
@@ -184,11 +174,11 @@ section {
           margin: 3px 0 0 0;
           width: 70%;
           line-height: 1.5rem;
-          font-size: 0.7rem;
+          font-size: 1rem;
           float: right;
         }
         .dice {
-          font-size: 2rem;
+          font-size: 2.5rem;
           vertical-align: middle;
           .icon {
             line-height: 2rem;
@@ -200,7 +190,7 @@ section {
             color: $white;
           }
           .breakdown {
-            color: $gray-5;
+            color: $gray-10;
           }
         }
         &:last-child {
@@ -223,37 +213,47 @@ section {
         }
       }
     }
+    &.active {
+      background-color: $gray-02;
+    }
   }
   &.formulas {
+    background-color: $white;
     padding: 30px;
     z-index: 1;
-    -moz-user-select: none;
-    -webkit-user-select: none;
     user-select: none;
     .savedRolls {
       .list {
         .savedFormula {
+          margin: 0 0 10px 0;
+          line-height: 1.5rem;
+          font-size: 1rem;
           .amountOfDice,
           .dice,
           .amountOfBonus {
-            color: $gray-3;
-            line-height: 1.5rem;
-            font-size: 0.7rem;
+            color: $gray-06;
           }
           .dice {
             font-size: 2rem;
             vertical-align: middle;
           }
           .name {
+            font-size: 1rem;
+            height: 2rem;
+            line-height: 2rem;
             width: 100%;
-            margin: 0 0 5px 0;
+            margin: 0 0 10px 0;
+            padding: 0;
+          }
+          .button {
+            margin: 0;
+            padding: 0 10px;
+            line-height: 2rem;
+            height: 2rem;
+            display: inline-block;
           }
           .roll {
             margin: 0 10px 0 0;
-            padding: 0 5px;
-            line-height: 1.7rem;
-            height: 1.7rem;
-            display: inline-block;
           }
           span {
             display: inline-block;
@@ -283,7 +283,10 @@ section {
   }
 }
 
-// media queries
+
+/* media queries
+------------------------------------------------- */
+
 @media (min-width: 550px) {}
 
 @media (min-width: 750px) {
@@ -320,7 +323,7 @@ section {
     &.results {
       z-index: 1;
       box-shadow: none;
-      position: static;
+      position: relative;
       bottom: initial;
       height: inherit;
       width: 33.3333333333%;
@@ -369,3 +372,43 @@ section {
     }
   }
 }
+
+
+.element-animation{
+  animation: animationFrames linear 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+}
+
+@keyframes animationFrames{
+  0% {
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  15% {
+    transform:  translate(-25px,0px)  rotate(-5deg) ;
+  }
+  30% {
+    transform:  translate(20px,0px)  rotate(3deg) ;
+  }
+  45% {
+    transform:  translate(-15px,0px)  rotate(-3deg) ;
+  }
+  60% {
+    transform:  translate(10px,0px)  rotate(2deg) ;
+  }
+  75% {
+    transform:  translate(-5px,0px)  rotate(-1deg) ;
+  }
+  100% {
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+}
+
+
+
+
+
+
+
+
+

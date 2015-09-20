@@ -1,19 +1,20 @@
-// buttons
-//––––––––––––––––––––––––––––––––––––––––––––––––––
+/* buttons
+------------------------------------------------- */
+
 .button,
 button {
   display: inline-block;
-  height: 2rem;
+  height: 2.5rem;
   padding: 0 15px;
-  color: $gray-1;
+  color: $gray-01;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: $open-sans-semi-bold;
-  line-height: 2rem;
+  line-height: 2.5rem;
   text-decoration: none;
   white-space: nowrap;
-  background-color: $gray-4;
-  border: 1px solid $gray-3;
+  background-color: $gray-04;
+  border: 1px solid $gray-03;
   cursor: pointer;
   box-sizing: border-box;
   border-radius: $global-radius;
@@ -24,16 +25,16 @@ button:focus,
 .button:hover,
 button:hover {
   color: $white;
-  background-color: $gray-2;
-  border-color: $gray-2;
+  background-color: $gray-02;
+  border-color: $gray-02;
   outline: 0;
 }
 
 .button:active,
 button:active {
   color: $white;
-  background-color: $gray-4;
-  border-color: $gray-4;
+  background-color: $gray-04;
+  border-color: $gray-04;
 }
 
 .button.button-primary,
@@ -55,7 +56,7 @@ button.button-primary:focus {
 
 .button.button-secondary,
 button.button-secondary {
-  color: $gray-1;
+  color: $gray-01;
   background-color: transparent;
   border-color: transparent;
 }
@@ -85,15 +86,15 @@ input {
     display: inline-block;
     height: 2rem;
     padding: 0 15px;
-    color: $gray-1;
+    color: $gray-01;
     text-align: center;
     font-size: 0.8rem;
     font-family: $open-sans-semi-bold;
     line-height: 2rem;
     text-decoration: none;
     white-space: nowrap;
-    background-color: $gray-4;
-    border: 1px solid $gray-3;
+    background-color: $gray-04;
+    border: 1px solid $gray-03;
     cursor: pointer;
     box-sizing: border-box;
     border-radius: $global-radius;
@@ -108,8 +109,8 @@ input {
   &[type="reset"]:focus,
   &[type="button"]:focus {
     color: $white;
-    background-color: $gray-2;
-    border-color: $gray-2;
+    background-color: $gray-02;
+    border-color: $gray-02;
     outline: 0;
   }
 }
@@ -119,7 +120,7 @@ input {
   &[type="reset"]:active,
   &[type="button"]:active {
     color: $white;
-    background-color: $gray-4;
-    border-color: $gray-4;
+    background-color: $gray-04;
+    border-color: $gray-04;
   }
 }

@@ -1,5 +1,6 @@
-// basic colors
-// -------------------------
+/* basic colors
+------------------------------------------------- */
+
 $black:                               #000000;
 $white:                               #ffffff;
 
@@ -13,17 +14,33 @@ $aqua:                                #003c4f;
 $aqua-dark:                           #00303f;
 $aqua-light:                          #326272;
 
-$gray-1:                              #404040;
-$gray-2:                              #737373;
-$gray-3:                              #a6a6a6;
-$gray-4:                              #d9d9d9;
-$gray-5:                              #f1f1f1;
+$gray-01:                             #222222;
+$gray-02:                             #343434;
+$gray-03:                             #464646;
+$gray-04:                             #585858;
+$gray-05:                             #6a6a6a;
+$gray-06:                             #7c7c7c;
+$gray-07:                             #8e8e8e;
+$gray-08:                             #a0a0a0;
+$gray-09:                             #b2b2b2;
+$gray-10:                             #c4c4c4;
+$gray-12:                             #d6d6d6;
+$gray-13:                             #e8e8e8;
+$gray-14:                             #fafafa;
+
+
+// $gray-1:                              #404040;
+// $gray-2:                              #737373;
+// $gray-3:                              #a6a6a6;
+// $gray-4:                              #d9d9d9;
+// $gray-5:                              #f1f1f1;
+// $gray-6:                              #C0C0C0;
 
 $critical-20:                         #33c3f0;
 $critical-1:                          #990000;
 
-// typography
-// -------------------------
+/* typography
+------------------------------------------------- */
 
 $open-sans-bold:                      "Open Sans Bold", Helvetica, Arial, sans-serif;
 $open-sans-regular:                   "Open Sans Regular", Helvetica, Arial, sans-serif;
@@ -38,8 +55,8 @@ $open-sans-condensed-light-italic:    "Open Sans Condensed Light Italic", Helvet
 $open-sans-condensed-light:           "Open Sans Condensed Light", Helvetica, Arial, sans-serif;
 
 
-// transitions
-// -------------------------
+/* transitions
+------------------------------------------------- */
 
 $transition-bounce-slow:             0.5s cubic-bezier(0.7, -0.6, 0.3, 1.6);
 $transition-bounce-medium:           0.3s cubic-bezier(0.7, -0.6, 0.3, 1.6);
@@ -48,21 +65,22 @@ $transition-ease-slow:               0.5s ease-in-out;
 $transition-ease-medium:             0.3s ease-in-out;
 $transition-ease-fast:               0.1s ease-in-out;
 
-// drop shadows
-// -------------------------
+/* drop shadows
+------------------------------------------------- */
 
-$shadow-large:                       0 1px 1px rgba(0, 0, 0, 0.8),
-                                     0 10px 40px rgba(0, 0, 0, 0.8);
+$shadow-large:                       0 1px 1px rgba(0, 0, 0, 0.3),
+                                     0 10px 40px rgba(0, 0, 0, 0.3);
 $shadow-small:                       0 1px 0 rgba(0, 0, 0, 0.05),
                                      0 2px 0 rgba(0, 0, 0, 0.05),
                                      0 3px 0 rgba(0, 0, 0, 0.05);
 
-$shadow-large-inset:                 inset 0 1px 1px rgba(0, 0, 0, 0.8),
-                                     inset 0 10px 40px rgba(0, 0, 0, 0.8);
+$shadow-large-inset:                 inset 0 1px 1px rgba(0, 0, 0, 0.3),
+                                     inset 0 10px 40px rgba(0, 0, 0, 0.3);
 $shadow-small-inset:                 inset 0 1px 0 rgba(0, 0, 0, 0.05),
                                      inset 0 2px 0 rgba(0, 0, 0, 0.05),
                                      0 3px 0 rgba(0, 0, 0, 0.05);
 
-// radius
-// -------------------------
+/* radius
+------------------------------------------------- */
+
 $global-radius:                      3px;

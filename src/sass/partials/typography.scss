@@ -1,14 +1,15 @@
-// typography
-//––––––––––––––––––––––––––––––––––––––––––––––––––
+/* typography
+------------------------------------------------- */
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: $gray-1;
+  color: $gray-03;
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 h1 {
@@ -42,12 +43,15 @@ h6 {
 }
 
 p {
-  color: $gray-1;
+  font-size: 1rem;
+  color: $gray-03;
   margin: 0 0 10px 0;
 }
 
-// Links
-//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+/* Links
+------------------------------------------------- */
+
 a {
   color: $magenta;
   text-decoration: none;
