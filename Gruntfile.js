@@ -94,11 +94,16 @@ module.exports = function(grunt) {
       options: {
         browsers: ['last 3 versions']
       },
+      dev: {
+        files: {
+          '<%= folders.dev %>/css/lostd20.css': '<%= folders.dev %>/css/lostd20.css'
+        }
+      },
       build: {
         files: {
           '<%= folders.build %>/css/lostd20.css': '<%= folders.build %>/css/lostd20.css'
         }
-      },
+      }
     },
 
     cssmin: {
@@ -220,7 +225,7 @@ module.exports = function(grunt) {
     'assemble:dev',
     'copy:dev',
     'sass:dev',
-    'autoprefixer:build',
+    'autoprefixer:dev',
     'connect',
     'watch'
   ]);
@@ -232,8 +237,8 @@ module.exports = function(grunt) {
     'copy:build',
     'sass:build',
     'autoprefixer:build',
-    'useminPrepare',
     'cssmin:build',
+    'useminPrepare',
     'concat',
     'uglify',
     'usemin',
