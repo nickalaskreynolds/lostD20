@@ -79,7 +79,7 @@ module.exports = function(grunt) {
       },
       build: {
         options: {
-          style: 'expanded',
+          style: 'compact',
           compass: false
         },
         files: [{
@@ -88,6 +88,17 @@ module.exports = function(grunt) {
           '<%= folders.build %>/css/lostd20.css': '<%= folders.src %>/sass/lostd20.scss'
         }]
       }
+    },
+
+    autoprefixer: {
+      options: {
+        browsers: ['last 3 versions']
+      },
+      build: {
+        files: {
+          '<%= folders.build %>/css/lostd20.css': '<%= folders.build %>/css/lostd20.css'
+        }
+      },
     },
 
     cssmin: {
@@ -201,6 +212,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-assemble');
+  grunt.loadNpmTasks('grunt-autoprefixer');
 
   grunt.registerTask('dev', [
     'clean:dev',
@@ -208,15 +220,18 @@ module.exports = function(grunt) {
     'assemble:dev',
     'copy:dev',
     'sass:dev',
+    'autoprefixer:build',
     'connect',
     'watch'
   ]);
 
   grunt.registerTask('build', [
     'clean:build',
+    'clean:tmp',
     'assemble:build',
     'copy:build',
     'sass:build',
+    'autoprefixer:build',
     'useminPrepare',
     'cssmin:build',
     'concat',
