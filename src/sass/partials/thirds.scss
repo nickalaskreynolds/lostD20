@@ -2,7 +2,7 @@
 ------------------------------------------------- */
 
 html {
-  font-size: 100%;
+  font-size: 80%;
 }
 
 ::-webkit-full-screen {
@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  background-color: $gray-14;
+  background-color: $white;
   margin-bottom: 200px;
   font-family: $open-sans-regular;
   user-select: none;
@@ -47,9 +47,9 @@ section {
             padding: 0 0 1rem 0;
             width: 60%;
             text-align: center;
-            font-size: 3rem;
-            line-height: 4rem;
-            height: 4rem;
+            font-size: 2rem;
+            line-height: 3rem;
+            height: 3rem;
             font-family: $open-sans-condensed-light;
           }
           .clear {
@@ -71,13 +71,13 @@ section {
     }
     .diceSelector {
       width: 100%;
-      margin: 30px 0 40px 0;
+      margin: 20px 0;
       text-align: center;
       label {
         display: inline-block;
-        width: 70px;
+        width: 60px;
         padding: 0;
-        margin: 5px 0;
+        margin: 0 0 5px 0;
         line-height: 0;
         cursor: pointer;
         text-align: center;
@@ -94,11 +94,11 @@ section {
           background-color: $gray-01;
           position: relative;
           display: block;
-          width: 50px;
-          height: 50px;
+          width: 36px;
+          height: 36px;
           margin: 0 auto;
           box-sizing: border-box;
-          transition: all $transition-bounce-medium;
+          transition: all $transition-ease-fast;
           transform: scale(1);
           border: 2px solid transparent;
           border-radius: 50%;
@@ -106,11 +106,11 @@ section {
             position: absolute;
             top: 0;
             left: 0;
-            width: 46px;
-            height: 46px;
-            font-size: 2.5em;
-            line-height: 46px;
-            transition: all $transition-bounce-medium;
+            width: 32px;
+            height: 32px;
+            font-size: 2em;
+            line-height: 32px;
+            transition: all $transition-ease-fast;
             text-align: center;
           }
         }
@@ -142,7 +142,7 @@ section {
     }
   }
   &.results {
-    background-color: $gray-04;
+    background-color: $gray-03;
     padding: 30px 0;
     box-shadow: $shadow-large-inset;
     position: fixed;
@@ -153,8 +153,8 @@ section {
     overflow-y: auto;
     .list {
       p {
-        padding: 0 30px 10px 30px;
-        margin: 0 0 10px 0;
+        padding: 20px 30px;
+        margin: 0;
         border-bottom: 1px solid $gray-03;
         clear: both;
         color: $gray-06;
@@ -162,29 +162,33 @@ section {
         box-sizing: border-box;
         transition: $transition-ease-medium;
         .total {
+          margin: 0;
           border: 2px solid $gray-04;
           border-radius: $global-radius;
           display: inline-block;
           text-align: center;
           line-height: 2rem;
-          width: 25%;
+          box-sizing: border-box;
+          width: 20%;
           float: left;
         }
         .breakdown {
           margin: 3px 0 0 0;
-          width: 70%;
+          padding: 0 0 0 20px;
+          box-sizing: border-box;
           line-height: 1.5rem;
-          font-size: 1rem;
+          width: 80%;
           float: right;
         }
         .dice {
-          font-size: 2.5rem;
+          font-size: 2rem;
           vertical-align: middle;
           .icon {
             line-height: 2rem;
           }
         }
         &:first-child {
+          padding-top: 0;
           .total {
             border-color: $magenta;
             color: $white;
@@ -195,7 +199,7 @@ section {
         }
         &:last-child {
           border: 0;
-          margin: 0;
+          padding-bottom: 0;
         }
         &.critical-20 {
           .total {
@@ -225,56 +229,57 @@ section {
     .savedRolls {
       .list {
         .savedFormula {
-          margin: 0 0 10px 0;
+          margin: 0 0 30px 0;
           line-height: 1.5rem;
           font-size: 1rem;
+          span {
+            display: inline-block;
+          }
           .amountOfDice,
           .dice,
           .amountOfBonus {
             color: $gray-06;
           }
+          .amountOfDice {
+            margin: 0 0 0 30%;
+          }
           .dice {
             font-size: 2rem;
             vertical-align: middle;
           }
-          .name {
-            font-size: 1rem;
-            height: 2rem;
-            line-height: 2rem;
+          .rollName {
             width: 100%;
-            margin: 0 0 10px 0;
-            padding: 0;
-          }
-          .button {
-            margin: 0;
-            padding: 0 10px;
-            line-height: 2rem;
-            height: 2rem;
-            display: inline-block;
-          }
-          .roll {
-            margin: 0 10px 0 0;
-          }
-          span {
-            display: inline-block;
+            margin: 0 0 5px 0;
+            .name {
+              font-size: 1rem;
+              width: 70%;
+              float: right;
+            }
+            .roll {
+              padding: 0;
+              width: 22%;
+              float: left;
+            }
           }
           .deleteSavedFormulaConfirm {
             float: right;
-          }
-          .delete,
-          .cancel {
-            display: none;
-          }
-          .clear {
-            display: inline-block;
-          }
-          &.showDelete {
             .delete,
             .cancel {
-              display: inline-block;
+              display: none;
             }
             .clear {
-              display: none;
+              display: inline-block;
+            }
+          }
+          &.showDelete {
+            .deleteSavedFormulaConfirm {
+              .delete,
+              .cancel {
+                display: inline-block;
+              }
+              .clear {
+                display: none;
+              }
             }
           }
         }
@@ -290,10 +295,16 @@ section {
 @media (min-width: 550px) {}
 
 @media (min-width: 750px) {
+  html {
+    font-size: 90%;
+  }
   html,
   body {
     height: 100%;
     margin: 0;
+  }
+  body {
+    background-color: $gray-14;
   }
   section {
     &.column-third {
@@ -319,6 +330,22 @@ section {
           }
         }
       }
+      .diceSelector {
+        label {
+          width: 60px;
+          margin: 0 0 20px 0;
+          .diceRing {
+            width: 42px;
+            height: 42px;
+            .icon {
+              width: 38px;
+              height: 38px;
+              font-size: 2em;
+              line-height: 38px;
+            }
+          }
+        }
+      }
     }
     &.results {
       z-index: 1;
@@ -330,14 +357,15 @@ section {
       overflow-y: visible;
       .list {
         p {
-          &:first-child {
-            font-size: 1.5rem;
-            .total {
-              line-height: 2.5rem;
-            }
-            .breakdown {
-              margin: 7px 0 0 0;
-            }
+          .total {
+            margin: 0 0 10px 0;
+            width: 100%;
+            float: none;
+          }
+          .breakdown {
+            padding: 0;
+            width: 100%;
+            float: none;
           }
         }
       }
@@ -350,65 +378,108 @@ section {
 }
 
 @media (min-width: 900px) {
+  html {
+    font-size: 100%;
+  }
   section {
-    &.column-third {
-      &.controls {
-        padding: 60px;
-      }
-      &.results {
-        padding: 60px 0;
-        .list {
-          p {
-            padding: 0 60px 10px 60px;
-            &:first-child {
-              padding-bottom: 60px;
+    &.controls {
+      padding: 40px;
+      .diceSelector {
+        label {
+          width: 70px;
+          margin: 0 0 20px 0;
+          .diceRing {
+            width: 48px;
+            height: 48px;
+            .icon {
+              width: 44px;
+              height: 44px;
+              font-size: 2.4em;
+              line-height: 44px;
             }
           }
         }
       }
-      &.formulas {
-        padding: 60px;
+    }
+    &.results {
+      padding: 40px 0;
+      .list {
+        p {
+          padding: 20px 40px;
+          &:first-child {
+            padding-top: 0;
+          }
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
       }
+    }
+    &.formulas {
+      padding: 40px;
     }
   }
 }
 
+@media (min-width: 1000px) {
+  section {
+    &.controls {
+      padding: 60px;
+      .diceSelector {
+        label {
+          width: 80px;
+        }
+      }
+    }
+    &.results {
+      padding: 60px 0;
+      .list {
+        p {
+          padding: 20px 60px;
+          .total {
+            margin: 0;
+            width: 22%;
+            float: left;
+          }
+          .breakdown {
+            width: 70%;
+            float: right;
+          }
+        }
+      }
+    }
+    &.formulas {
+      padding: 60px;
+    }
+  }
+}
 
-.element-animation{
+.element-animation {
   animation: animationFrames linear 1s;
   animation-iteration-count: 1;
   transform-origin: 50% 50%;
 }
 
-@keyframes animationFrames{
+@keyframes animationFrames {
   0% {
-    transform:  translate(0px,0px)  rotate(0deg) ;
+    transform: translate(0px, 0px) rotate(0deg);
   }
   15% {
-    transform:  translate(-25px,0px)  rotate(-5deg) ;
+    transform: translate(-25px, 0px) rotate(-5deg);
   }
   30% {
-    transform:  translate(20px,0px)  rotate(3deg) ;
+    transform: translate(20px, 0px) rotate(3deg);
   }
   45% {
-    transform:  translate(-15px,0px)  rotate(-3deg) ;
+    transform: translate(-15px, 0px) rotate(-3deg);
   }
   60% {
-    transform:  translate(10px,0px)  rotate(2deg) ;
+    transform: translate(10px, 0px) rotate(2deg);
   }
   75% {
-    transform:  translate(-5px,0px)  rotate(-1deg) ;
+    transform: translate(-5px, 0px) rotate(-1deg);
   }
   100% {
-    transform:  translate(0px,0px)  rotate(0deg) ;
+    transform: translate(0px, 0px) rotate(0deg);
   }
 }
-
-
-
-
-
-
-
-
-

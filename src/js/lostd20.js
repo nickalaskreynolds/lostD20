@@ -110,16 +110,18 @@ function diceRollerama() {
     var writeSavedRoll = function() {
       plusOrMinus();
       element_savedRolls_list.innerHTML =
-        '<p class="savedFormula">' 
+        '<p class="savedFormula">'
+        + '<span class="rollName u-cf">'
+        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
         + ' <input class="name" type="text" value="' + saveName + '">' 
-        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>' 
+        + ' </span>'
         + ' <span class="amountOfDice">' + formula_numberOfDice_input_value + '</span>' 
         + ' <span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span>' 
         + ' <span class="amountOfBonus">' + plusOrMinus + '</span>' 
         + ' <span class="deleteSavedFormulaConfirm">' 
-        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>' 
-        + ' <a class="button button-secondary delete">Sure?</a>' 
-        + ' <a class="button button-secondary cancel">Nope</a>' 
+        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + ' <a class="button button-secondary delete">Sure?</a>'
+        + ' <a class="button button-secondary cancel">Nope</a>'
         + ' </span>' + ' </p>' + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
@@ -196,11 +198,12 @@ function diceRollerama() {
 
   // roll saved formula
   function runSavedFormula(element) {
-    var readSavedAmountOfDice = parseInt(element.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
-    var readSavedDiceSides = element.parentNode.querySelector(".dice .icon");
+    console.log(element);
+    var readSavedAmountOfDice = parseInt(element.parentNode.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
+    var readSavedDiceSides = element.parentNode.parentNode.querySelector(".dice .icon");
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
-    var readSavedAmountOfBonus = parseInt(element.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
-    var readSavedName = element.parentNode.querySelector(".name").value;
+    var readSavedAmountOfBonus = parseInt(element.parentNode.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
+    var readSavedName = element.parentNode.parentNode.querySelector(".name").value;
     // console.log(readSavedName);
     // selecting formula dice
     e("#d" + readSavedDiceSidesValue).checked = true;
