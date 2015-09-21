@@ -170,13 +170,13 @@ section {
           .amountOfDice,
           .dice,
           .amountOfBonus {
-            color: $gray-06;
+            // color: $white;
           }
           .amountOfDice {
-            margin: 0 0 0 28%;
+            // margin: 0 0 0 28%;
           }
           .dice {
-            font-size: 2rem;
+            font-size: 1.8rem;
             vertical-align: middle;
           }
           .rollName {
@@ -186,6 +186,23 @@ section {
               padding: 0;
               width: 22%;
               float: left;
+            color: $white;
+              > span {
+                width: 33.3333333333%;
+                display: inline-block;
+                height: 100%;
+                vertical-align: text-bottom;
+                &.amountOfDice {
+                  text-align: right;
+                }
+                &.dice {
+
+                }
+                &.amountOfBonus {
+                  text-align: left;
+
+                }
+              }
             }
             .name {
               font-size: 1rem;
@@ -195,6 +212,9 @@ section {
           }
           .deleteSavedFormulaConfirm {
             float: right;
+            .delete {
+              margin: 0 5px 0 0;
+            }
             .delete,
             .cancel {
               display: none;

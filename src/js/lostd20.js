@@ -103,27 +103,45 @@ function diceRollerama() {
       if (formula_numberOfBonus_input_value > 0) {
         plusOrMinus = "+" + formula_numberOfBonus_input_value;
       } else if (formula_numberOfBonus_input_value < 0) {
-        plusOrMinus = formula_numberOfBonus_input_value
+        plusOrMinus = formula_numberOfBonus_input_value;
       } else {
         plusOrMinus = "";
       };
     };
+    // if number of dice is 1
+    var oneDiceOrMore = function() {
+      if (formula_numberOfDice_input_value == 1) {
+        oneDiceOrMore = " hide";
+      } else {
+        oneDiceOrMore = "";
+      };
+    };
     var writeSavedRoll = function() {
       plusOrMinus();
+      oneDiceOrMore();
       element_savedRolls_list.innerHTML =
-        '<p class="savedFormula">'
+          '<p class="savedFormula">'
+          // roll button and name
         + '<span class="rollName u-cf">'
-        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
-        + ' <input class="name" type="text" value="' + saveName + '">' 
-        + ' </span>'
-        + ' <span class="amountOfDice">' + formula_numberOfDice_input_value + '</span>' 
-        + ' <span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span>' 
-        + ' <span class="amountOfBonus">' + plusOrMinus + '</span>' 
-        + ' <span class="deleteSavedFormulaConfirm">' 
-        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
-        + ' <a class="button button-secondary delete">Delete?</a>'
-        + ' <a class="button button-secondary cancel">Keep</a>'
-        + ' </span>' + ' </p>' + element_savedRolls_list.innerHTML;
+        // + '<a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
+        + '<a class="button button-primary roll">'
+
+        + '<span class="amountOfDice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span><span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span><span class="amountOfBonus">' + plusOrMinus + '</span>'
+
+        + '</a>'
+        + '<input class="name" type="text" value="' + saveName + '">'
+        + '</span>'
+        // formula
+        // + '<span class="amountOfDice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> ' 
+        // + '<span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span> '
+        // + '<span class="amountOfBonus">' + plusOrMinus + '</span>'
+        // delete
+        + '<span class="deleteSavedFormulaConfirm">'
+        + '<a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + '<a class="button button-secondary delete">Delete?</a><a class="button button-secondary cancel">Keep</a>'
+        + '</span>' 
+        + '</p>' 
+        + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
     addListenerTo_saveCurrentFormula();
@@ -199,7 +217,6 @@ function diceRollerama() {
 
   // roll saved formula
   function runSavedFormula(element) {
-    console.log(element);
     var readSavedAmountOfDice = parseInt(element.parentNode.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
     var readSavedDiceSides = element.parentNode.parentNode.querySelector(".dice .icon");
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
