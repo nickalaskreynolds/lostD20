@@ -125,15 +125,15 @@ function diceRollerama() {
         + '<span class="icon diceIcon-save"></span>'
         + '<input class="name" type="text" value="' + saveName + '">'
         // roll button
-        + '<a class="button button-primary roll">Roll</a> '
+        + '<a href="javascript:void(0)" class="button button-primary roll">Roll</a> '
         // formula
         + '<span class="amountOfDice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> ' 
         + '<span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span> '
         + '<span class="amountOfBonus">' + plusOrMinus + '</span>'
         // delete
-        + '<a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
         + '<span class="deleteConfirm">'
-        + '<a class="button button-primary delete">Delete?</a><a class="button button-secondary cancel">Keep</a>'
+        + '<a href="javascript:void(0)" class="button button-primary delete">Delete?</a><a href="javascript:void(0)" class="button button-secondary cancel">Keep</a>'
         + '</span>' 
         + '</p>' 
         + element_savedRolls_list.innerHTML;
