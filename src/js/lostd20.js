@@ -133,7 +133,7 @@ function diceRollerama() {
         // delete
         + '<a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
         + '<span class="deleteConfirm">'
-        + '<a class="button button-secondary delete">Delete?</a><a class="button button-secondary cancel">Keep</a>'
+        + '<a class="button button-primary delete">Delete?</a><a class="button button-secondary cancel">Keep</a>'
         + '</span>' 
         + '</p>' 
         + element_savedRolls_list.innerHTML;

@@ -18,7 +18,7 @@ button {
   cursor: pointer;
   box-sizing: border-box;
   border-radius: $global-radius;
-  transition: $transition-ease-fast;
+  transition: all $transition-ease-fast;
 }
 
 .button:focus,
@@ -36,7 +36,6 @@ button:active {
   color: $white;
   background-color: $gray-04;
   border-color: $gray-04;
-  transition: $transition-ease-fast;
 }
 
 .button.button-primary,
