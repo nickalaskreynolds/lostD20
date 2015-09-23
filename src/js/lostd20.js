@@ -250,6 +250,13 @@ function diceRollerama() {
 
 
 
+    if (utilities_toggleDropLowest.dataset.active == "true") {
+      console.log(true);
+    } else if (utilities_toggleDropLowest.dataset.active == "false") {
+      console.log(false);
+    };
+
+
     // find lowest number index in array
     var indexOfSmallest = function(array) {
       var lowestRoll = 0;
@@ -441,23 +448,15 @@ function diceRollerama() {
     };
   };
 
-
-
-
-
   // toggle drop lowest
   function toggleDropLowest() {
     toggleClass(utilities_toggleDropLowest, "active");
     var readDataSet = utilities_toggleDropLowest.dataset.active;
-    console.log("readDataSet = " + readDataSet);
-    if (readDataSet = "false") {
+    if (readDataSet == "false") {
       utilities_toggleDropLowest.dataset.active = "true";
-      console.log(true);
-    } else if (readDataSet = "true") {
+    } else if (readDataSet == "true") {
       utilities_toggleDropLowest.dataset.active = "false";
-      console.log(false);
     };
-    console.log("readDataSet now = " + readDataSet);
   };
 
   // go roll
@@ -479,6 +478,10 @@ function diceRollerama() {
   utilities_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormulaString();
     localStoreAdd("savedRolls", element_savedRolls_list);
+  }, false);
+
+  utilities_goFullscreen.addEventListener("click", function() {
+    toggleFullScreen();
   }, false);
 
 
