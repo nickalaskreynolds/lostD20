@@ -103,27 +103,40 @@ function diceRollerama() {
       if (formula_numberOfBonus_input_value > 0) {
         plusOrMinus = "+" + formula_numberOfBonus_input_value;
       } else if (formula_numberOfBonus_input_value < 0) {
-        plusOrMinus = formula_numberOfBonus_input_value
+        plusOrMinus = formula_numberOfBonus_input_value;
       } else {
         plusOrMinus = "";
       };
     };
+    // if number of dice is 1
+    var oneDiceOrMore = function() {
+      if (formula_numberOfDice_input_value == 1) {
+        oneDiceOrMore = " hidden";
+      } else {
+        oneDiceOrMore = "";
+      };
+    };
     var writeSavedRoll = function() {
       plusOrMinus();
+      oneDiceOrMore();
       element_savedRolls_list.innerHTML =
-        '<p class="savedFormula">'
-        + '<span class="rollName u-cf">'
-        + ' <a class="button button-primary roll"><span class="icon diceIcon-save"></span> Roll</a>'
-        + ' <input class="name" type="text" value="' + saveName + '">' 
-        + ' </span>'
-        + ' <span class="amountOfDice">' + formula_numberOfDice_input_value + '</span>' 
-        + ' <span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span>' 
-        + ' <span class="amountOfBonus">' + plusOrMinus + '</span>' 
-        + ' <span class="deleteSavedFormulaConfirm">' 
-        + ' <a class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
-        + ' <a class="button button-secondary delete">Delete?</a>'
-        + ' <a class="button button-secondary cancel">Keep</a>'
-        + ' </span>' + ' </p>' + element_savedRolls_list.innerHTML;
+          '<p class="savedFormula">'
+        // name
+        + '<span class="icon diceIcon-save"></span>'
+        + '<input class="name" type="text" value="' + saveName + '">'
+        // roll button
+        + '<a href="javascript:void(0)" class="button button-primary roll">Roll</a> '
+        // formula
+        + '<span class="amountOfDice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> ' 
+        + '<span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span> '
+        + '<span class="amountOfBonus">' + plusOrMinus + '</span>'
+        // delete
+        + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + '<span class="deleteConfirm">'
+        + '<a href="javascript:void(0)" class="button button-primary delete">Delete?</a><a href="javascript:void(0)" class="button button-secondary cancel">Keep</a>'
+        + '</span>' 
+        + '</p>' 
+        + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
     addListenerTo_saveCurrentFormula();
@@ -176,35 +189,29 @@ function diceRollerama() {
 
   // remove saved formula
   function clearSavedFormula(element) {
-    var deleteSavedFormulaConfirm = getClosest(element, ".deleteSavedFormulaConfirm");
-    var savedFormula = getClosest(deleteSavedFormulaConfirm, ".savedFormula");
-    savedFormula.classList.add("showDelete");
-    checkListColumnState();
+    var savedFormula = getClosest(element, ".savedFormula");
+    addClass(savedFormula, "showDelete");
   };
 
   // remove saved formula
   function deleteSavedFormula(element) {
-    var deleteSavedFormulaConfirm = getClosest(element, ".deleteSavedFormulaConfirm");
-    var toRemove = getClosest(deleteSavedFormulaConfirm, ".savedFormula");
+    var toRemove = getClosest(element, ".savedFormula");
     toRemove.parentNode.removeChild(toRemove);
-    checkListColumnState();
   };
 
   // cancel remove saved formula
   function cancelSavedFormula(element) {
-    var deleteSavedFormulaConfirm = getClosest(element, ".deleteSavedFormulaConfirm");
-    var savedFormula = getClosest(deleteSavedFormulaConfirm, ".savedFormula");
-    savedFormula.classList.remove("showDelete");
+    var savedFormula = getClosest(element, ".savedFormula");
+    removeClass(savedFormula, "showDelete");
   };
 
   // roll saved formula
   function runSavedFormula(element) {
-    console.log(element);
-    var readSavedAmountOfDice = parseInt(element.parentNode.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
-    var readSavedDiceSides = element.parentNode.parentNode.querySelector(".dice .icon");
+    var readSavedAmountOfDice = parseInt(element.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
+    var readSavedDiceSides = element.parentNode.querySelector(".dice .icon");
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
-    var readSavedAmountOfBonus = parseInt(element.parentNode.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
-    var readSavedName = element.parentNode.parentNode.querySelector(".name").value;
+    var readSavedAmountOfBonus = parseInt(element.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
+    var readSavedName = element.parentNode.querySelector(".name").value;
     // console.log(readSavedName);
     // selecting formula dice
     e("#d" + readSavedDiceSidesValue).checked = true;
@@ -389,11 +396,6 @@ function diceRollerama() {
 
   // make list active when it has content
   function checkListColumnState() {
-    if (element_savedRolls_list.firstChild) {
-      element_column_formulas.classList.add("active");
-    } else {
-      element_column_formulas.classList.remove("active");
-    };
     if (element_resultHistory_list.firstChild) {
       element_column_results.classList.add("active");
     } else {
@@ -473,6 +475,7 @@ function diceRollerama() {
     var formula_savedFormula_delete = eA(".savedFormula .delete");
     var formula_savedFormula_cancel = eA(".savedFormula .cancel");
     var formula_savedFormula_name = eA(".savedFormula .name");
+    var formula_savedFormula_deleteConfirm = eA(".savedFormula .deleteConfirm");
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_roll[i].addEventListener("click", function() {
@@ -484,7 +487,7 @@ function diceRollerama() {
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_clear[i].addEventListener("click", function() {
         clearSavedFormula(this);
-        localStoreAdd("savedHistory", element_resultHistory_list);  
+        localStoreAdd("savedHistory", element_resultHistory_list);
       }, false);
     };
 
