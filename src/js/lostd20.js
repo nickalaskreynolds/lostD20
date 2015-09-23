@@ -246,6 +246,25 @@ function diceRollerama() {
     for (var i = 0; i < numberOfDice; i++) {
       multipleDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
+
+
+
+
+    var indexOfSmallest = function(array) {
+      var lowestRoll = 0;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] < array[lowestRoll]) {
+          lowestRoll = i
+        };
+      };
+      return lowestRoll;
+    };
+    console.log(indexOfSmallest(multipleDiceResults));
+
+
+
+
+
     // sum all array numbers
     var naturalMultipleRolls = multipleDiceResults.reduce(function(a, b) {
       return a + b;
