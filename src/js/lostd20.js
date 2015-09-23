@@ -34,6 +34,7 @@ function diceRollerama() {
   var modifiers_changeAmountOfDice_minusFive = e(".modifiers .changeAmount.ofDice .minusFive");
   var modifiers_changeAmountOfDice_minusOne = e(".modifiers .changeAmount.ofDice .minusOne");
   // utilities
+  var utilities_toggleDropLowest = e(".utilities .toggleDropLowest");
   var utilities_saveCurrentFormula = e(".utilities .saveCurrentFormula");
   var utilities_goFullscreen = e(".utilities .toggleFullscreen");
   var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen .icon");
@@ -249,17 +250,18 @@ function diceRollerama() {
 
 
 
-
+    // find lowest number index in array
     var indexOfSmallest = function(array) {
       var lowestRoll = 0;
       for (var i = 0; i < array.length; i++) {
         if (array[i] < array[lowestRoll]) {
-          lowestRoll = i
+          lowestRoll = i;
+          // console.log("update lowest roll index = " + lowestRoll);
         };
       };
       return lowestRoll;
     };
-    console.log(indexOfSmallest(multipleDiceResults));
+    indexOfSmallest(multipleDiceResults);
 
 
 
@@ -311,17 +313,16 @@ function diceRollerama() {
     };
     // print results to history
     element_resultHistory_list.innerHTML =
-      '<p class="u-cf' + critical20Or1 + '">' 
-      + '<span class="total">' + finalResult + '</span> ' 
+        '<p class="u-cf' + critical20Or1 + '">'
+      + '<span class="total">' + finalResult + '</span> '
       + '<span class="breakdown">'
-      + savedRollName 
-      + numberOfDice 
-      + ' <span class="dice"><span class="icon diceIcon-d' + whichDice + '"></span></span>' 
-      + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' 
-      + bonusOrNoBonus 
-      // + ' = <span class="historyTotal">' + finalResult + '</span>' 
+      + savedRollName
+      + numberOfDice
+      + ' <span class="dice"><span class="icon diceIcon-d' + whichDice + '"></span></span>'
+      + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>'
+      + bonusOrNoBonus
       + '</span>'
-      + '</p>' 
+      + '</p>'
       + element_resultHistory_list.innerHTML;
 
     checkListColumnState();
@@ -402,14 +403,14 @@ function diceRollerama() {
     var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
     if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
-      utilities_goFullscreen.classList.add("active");
-      utilities_goFullscreen_icon.classList.remove("diceIcon-expand");
-      utilities_goFullscreen_icon.classList.add("diceIcon-compress");
+      toggleClass(utilities_goFullscreen, "active");
+      removeClass(utilities_goFullscreen_icon, "diceIcon-expand");
+      addClass(utilities_goFullscreen_icon, "diceIcon-compress");
     } else {
       cancelFullScreen.call(root);
-      utilities_goFullscreen.classList.remove("active");
-      utilities_goFullscreen_icon.classList.remove("diceIcon-compress");
-      utilities_goFullscreen_icon.classList.add("diceIcon-expand");
+      toggleClass(utilities_goFullscreen, "active");
+      removeClass(utilities_goFullscreen_icon, "diceIcon-compress");
+      addClass(utilities_goFullscreen_icon, "diceIcon-expand");
     }
   };
 
@@ -441,13 +442,33 @@ function diceRollerama() {
   };
 
 
+
+
+
+  // toggle drop lowest
+  function toggleDropLowest() {
+    toggleClass(utilities_toggleDropLowest, "active");
+    var readDataSet = utilities_toggleDropLowest.dataset.active;
+    console.log("readDataSet = " + readDataSet);
+    if (readDataSet = "false") {
+      utilities_toggleDropLowest.dataset.active = "true";
+      console.log(true);
+    } else if (readDataSet = "true") {
+      utilities_toggleDropLowest.dataset.active = "false";
+      console.log(false);
+    };
+    console.log("readDataSet now = " + readDataSet);
+  };
+
+  // go roll
   element_goRoll.addEventListener("click", function() {
     roll(modifiers_readAmountOfDice(), getRadioValue(element_diceSelector, "diceSelect"), modifiers_readAmountOfBonus());
     localStoreAdd("savedHistory", element_resultHistory_list);
   }, false);
 
-  utilities_goFullscreen.addEventListener("click", function() {
-    toggleFullScreen()
+  // utilities
+  utilities_toggleDropLowest.addEventListener("click", function() {
+    toggleDropLowest();
   }, false);
 
   utilities_clearAll.addEventListener("click", function() {
@@ -457,7 +478,6 @@ function diceRollerama() {
 
   utilities_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormulaString();
-    // localStoreAdd();
     localStoreAdd("savedRolls", element_savedRolls_list);
   }, false);
 

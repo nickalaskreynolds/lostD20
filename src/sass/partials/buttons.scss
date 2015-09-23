@@ -22,9 +22,9 @@ button {
 }
 
 .button:focus,
-button:focus,
 .button:hover,
-button:hover {
+button:focus,
+button:hover, {
   color: $white;
   background-color: $gray-02;
   border-color: $gray-02;
@@ -47,8 +47,10 @@ button.button-primary {
 
 .button.button-primary:hover,
 .button.button-primary:focus,
+.button.button-primary.active,
 button.button-primary:hover,
-button.button-primary:focus {
+button.button-primary:focus,
+button.button-primary.active {
   color: $white;
   background-color: $magenta-dark;
   border-color: $magenta-dark;
@@ -64,8 +66,10 @@ button.button-secondary {
 
 .button.button-secondary:hover,
 .button.button-secondary:focus,
+.button.button-secondary.active,
 button.button-secondary:hover,
-button.button-secondary:focus {
+button.button-secondary:focus,
+button.button-secondary.active {
   color: $white;
   background-color: $magenta-dark;
   border-color: $magenta-dark;
