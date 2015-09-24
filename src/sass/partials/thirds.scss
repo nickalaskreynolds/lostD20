@@ -275,13 +275,6 @@ section {
     overflow-y: auto;
     box-shadow: $shadow-dark-inset;
     transition: height $transition-ease-medium;
-    .toggleFullscreen {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      color: $white;
-      display: none;
-    }
     .list {
       p {
         margin: 0;
@@ -353,6 +346,13 @@ section {
           }
         }
       }
+    }
+    .toggleFullscreen {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      color: $white;
+      display: none;
     }
     &.active {
       background-color: $gray-02;
@@ -465,9 +465,6 @@ section {
       height: inherit;
       width: 33.3333333333%;
       overflow-y: visible;
-      .toggleFullscreen {
-        display: none;
-      }
       .list {
         p {
           padding: 30px;
@@ -481,6 +478,14 @@ section {
             width: 100%;
             float: none;
           }
+        }
+      }
+      .toggleFullscreen {
+        display: none;
+      }
+      &.active {
+        .toggleFullscreen {
+          display: none;
         }
       }
     }
