@@ -114,7 +114,8 @@ section {
           transform: scale(1);
           border: 2px solid transparent;
           border-radius: 50%;
-          .icon {
+          [class^="diceIcon-"],
+          [class*=" diceIcon-"] {
             position: absolute;
             top: 0;
             left: 0;
@@ -126,24 +127,34 @@ section {
             text-align: center;
           }
         }
-        .label-body .diceRing {
-          border-color: transparent;
+        .label-body {
+          .diceRing {
+            border-color: transparent;
+            [class^="diceIcon-"],
+            [class*=" diceIcon-"] {
+              color: $white;
+            }
+          }
         }
-        &:hover .label-body .diceRing {
-          border-color: $magenta;
-          background-color: $white;
+        &:hover,
+        &.active {
+          .label-body {
+            .diceRing {
+              border-color: $magenta;
+              background-color: $white;
+              [class^="diceIcon-"],
+              [class*=" diceIcon-"] {
+                color: $magenta;
+              }
+            }
+          }
         }
-        &.active .label-body .diceRing {
-          transform: scale(1.6);
-          border-color: $magenta;
-          background-color: $white;
-        }
-        .label-body .icon {
-          color: $white;
-        }
-        &:hover .label-body .icon,
-        &.active .label-body .icon {
-          color: $magenta;
+        &.active {
+          .label-body {
+            .diceRing {
+              transform: scale(1.6);
+            }
+          }
         }
       }
     }
@@ -176,7 +187,7 @@ section {
           width: 90%;
           box-sizing: border-box;
         }
-        .diceIcon-save {
+        .icon-bookmark {
           width: 10%;
           float: left;
           line-height: 2rem;
@@ -403,7 +414,8 @@ section {
           .diceRing {
             width: 42px;
             height: 42px;
-            .icon {
+            [class^="diceIcon-"],
+            [class*=" diceIcon-"] {
               width: 38px;
               height: 38px;
               font-size: 2em;
@@ -465,7 +477,8 @@ section {
           .diceRing {
             width: 48px;
             height: 48px;
-            .icon {
+            [class^="diceIcon-"],
+            [class*=" diceIcon-"] {
               width: 44px;
               height: 44px;
               font-size: 2.4em;
