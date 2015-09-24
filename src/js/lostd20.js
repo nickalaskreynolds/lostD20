@@ -248,38 +248,38 @@ function diceRollerama() {
       multipleDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
 
-
-
-    if (utilities_toggleDropLowest.dataset.active == "true") {
-      console.log(true);
-    } else if (utilities_toggleDropLowest.dataset.active == "false") {
-      console.log(false);
-    };
-
-
+    // make lowest index var
+    var lowestRollIndex;
     // find lowest number index in array
-    var indexOfSmallest = function(array) {
-      var lowestRoll = 0;
+    var indexOfSmallestValue = function(array) {
+      lowestRollIndex = 0;
       for (var i = 0; i < array.length; i++) {
-        if (array[i] < array[lowestRoll]) {
-          lowestRoll = i;
-          // console.log("update lowest roll index = " + lowestRoll);
+        if (array[i] < array[lowestRollIndex]) {
+          lowestRollIndex = i;
         };
       };
-      return lowestRoll;
+      return lowestRollIndex;
     };
-    indexOfSmallest(multipleDiceResults);
-
-
-
-
-
+    // run find the lowest value function passing in the array of rolls
+    indexOfSmallestValue(multipleDiceResults);
     // sum all array numbers
     var naturalMultipleRolls = multipleDiceResults.reduce(function(a, b) {
       return a + b;
     });
+    // check if drop lowest toggle is true or false
+    var toggleDropLowestState = utilities_toggleDropLowest.dataset.active;
+    // make a subtract var
+    var lowestToSubtract;
+    if (toggleDropLowestState == "true" && numberOfDice > 1) {
+      // ser var lowestToSubtract value to the index in multipleDiceResults with the lowest value
+      lowestToSubtract = multipleDiceResults[lowestRollIndex];
+      // wrap the content in the lowest value index with a span
+      multipleDiceResults[lowestRollIndex] = '<span class="strike">' +  multipleDiceResults[lowestRollIndex] + '</span>';
+    } else {
+      lowestToSubtract = 0;
+    };
     // add bonus to final total
-    var finalResult = naturalMultipleRolls + bonusModifier;
+    var finalResult = naturalMultipleRolls + bonusModifier - lowestToSubtract;
     // make array with spaces for history
     var multipleDiceResultsWithSpaces = multipleDiceResults.join(", ");
     // is the bonus more than or less than 0
@@ -331,7 +331,6 @@ function diceRollerama() {
       + '</span>'
       + '</p>'
       + element_resultHistory_list.innerHTML;
-
     checkListColumnState();
     // console.log("---------------------------------------------------");
     // console.log("roll \t \t dice selected is d  \t \t " + whichDice);
