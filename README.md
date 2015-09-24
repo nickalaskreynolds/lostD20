@@ -14,3 +14,17 @@ Features
 - Rename formulas which also print in roll history
 - Full screen mode
 - Responsive layout from mobile up
+
+
+To use
+======
+
+Dependencies:
+NodeJS, Bower, Grunt
+
+Clone repo, navigate to root and run
+`grunt dev` for live development
+`grunt build` to build project into build directory 
+
+
+
