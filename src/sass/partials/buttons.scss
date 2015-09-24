@@ -19,12 +19,17 @@ button {
   box-sizing: border-box;
   border-radius: $global-radius;
   transition: all $transition-ease-fast;
+  transform: scale(1);
 }
 
 .button:focus,
+button:focus {
+  background-color: $gray-13;
+  outline: 0;
+}
+
 .button:hover,
-button:focus,
-button:hover, {
+button:hover {
   color: $white;
   background-color: $gray-02;
   border-color: $gray-02;
@@ -36,6 +41,7 @@ button:active {
   color: $white;
   background-color: $gray-04;
   border-color: $gray-04;
+  transform: scale(0.95);
 }
 
 .button.button-primary,
@@ -45,11 +51,16 @@ button.button-primary {
   border-color: $magenta-dark;
 }
 
-.button.button-primary:hover,
 .button.button-primary:focus,
+button.button-primary:focus {
+  background-color: $magenta-light;
+  text-decoration: none;
+  color: $white;
+}
+
+.button.button-primary:hover,
 .button.button-primary.active,
 button.button-primary:hover,
-button.button-primary:focus,
 button.button-primary.active {
   color: $white;
   background-color: $magenta-dark;
@@ -64,11 +75,15 @@ button.button-secondary {
   border-color: transparent;
 }
 
-.button.button-secondary:hover,
 .button.button-secondary:focus,
+button.button-secondary:focus {
+  background-color: $gray-13;
+  text-decoration: none;
+}
+
+.button.button-secondary:hover,
 .button.button-secondary.active,
 button.button-secondary:hover,
-button.button-secondary:focus,
 button.button-secondary.active {
   color: $white;
   background-color: $magenta-dark;

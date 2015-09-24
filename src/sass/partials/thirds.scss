@@ -213,8 +213,7 @@ section {
           transition: all $transition-ease-fast;
           // text-align: center;
           float: right;
-          .delete {
-          }
+          .delete {}
           .delete,
           .cancel {
             margin: 0 10px 0 0;
@@ -280,6 +279,7 @@ section {
           float: right;
           .strike {
             text-decoration: line-through;
+            color: $gray-03;
           }
         }
         .dice {
@@ -299,6 +299,9 @@ section {
           }
           .breakdown {
             color: $gray-10;
+            .strike {
+              color: $magenta;
+            }
           }
         }
         &:last-child {
