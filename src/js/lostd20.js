@@ -34,6 +34,7 @@ function diceRollerama() {
   var modifiers_changeAmountOfDice_minusFive = e(".modifiers .changeAmount.ofDice .minusFive");
   var modifiers_changeAmountOfDice_minusOne = e(".modifiers .changeAmount.ofDice .minusOne");
   // utilities
+  var utilities_toggleDropLowest = e(".utilities .toggleDropLowest");
   var utilities_saveCurrentFormula = e(".utilities .saveCurrentFormula");
   var utilities_goFullscreen = e(".utilities .toggleFullscreen");
   var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen .icon");
@@ -246,12 +247,39 @@ function diceRollerama() {
     for (var i = 0; i < numberOfDice; i++) {
       multipleDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
+
+    // make lowest index var
+    var lowestRollIndex;
+    // find lowest number index in array
+    var indexOfSmallestValue = function(array) {
+      lowestRollIndex = 0;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] < array[lowestRollIndex]) {
+          lowestRollIndex = i;
+        };
+      };
+      return lowestRollIndex;
+    };
+    // run find the lowest value function passing in the array of rolls
+    indexOfSmallestValue(multipleDiceResults);
     // sum all array numbers
     var naturalMultipleRolls = multipleDiceResults.reduce(function(a, b) {
       return a + b;
     });
+    // check if drop lowest toggle is true or false
+    var toggleDropLowestState = utilities_toggleDropLowest.dataset.active;
+    // make a subtract var
+    var lowestToSubtract;
+    if (toggleDropLowestState == "true" && numberOfDice > 1) {
+      // ser var lowestToSubtract value to the index in multipleDiceResults with the lowest value
+      lowestToSubtract = multipleDiceResults[lowestRollIndex];
+      // wrap the content in the lowest value index with a span
+      multipleDiceResults[lowestRollIndex] = '<span class="strike">' +  multipleDiceResults[lowestRollIndex] + '</span>';
+    } else {
+      lowestToSubtract = 0;
+    };
     // add bonus to final total
-    var finalResult = naturalMultipleRolls + bonusModifier;
+    var finalResult = naturalMultipleRolls + bonusModifier - lowestToSubtract;
     // make array with spaces for history
     var multipleDiceResultsWithSpaces = multipleDiceResults.join(", ");
     // is the bonus more than or less than 0
@@ -292,19 +320,17 @@ function diceRollerama() {
     };
     // print results to history
     element_resultHistory_list.innerHTML =
-      '<p class="u-cf' + critical20Or1 + '">' 
-      + '<span class="total">' + finalResult + '</span> ' 
+        '<p class="u-cf' + critical20Or1 + '">'
+      + '<span class="total">' + finalResult + '</span> '
       + '<span class="breakdown">'
-      + savedRollName 
-      + numberOfDice 
-      + ' <span class="dice"><span class="icon diceIcon-d' + whichDice + '"></span></span>' 
-      + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' 
-      + bonusOrNoBonus 
-      // + ' = <span class="historyTotal">' + finalResult + '</span>' 
+      + savedRollName
+      + numberOfDice
+      + ' <span class="dice"><span class="icon diceIcon-d' + whichDice + '"></span></span>'
+      + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>'
+      + bonusOrNoBonus
       + '</span>'
-      + '</p>' 
+      + '</p>'
       + element_resultHistory_list.innerHTML;
-
     checkListColumnState();
     // console.log("---------------------------------------------------");
     // console.log("roll \t \t dice selected is d  \t \t " + whichDice);
@@ -383,14 +409,14 @@ function diceRollerama() {
     var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
     if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
-      utilities_goFullscreen.classList.add("active");
-      utilities_goFullscreen_icon.classList.remove("diceIcon-expand");
-      utilities_goFullscreen_icon.classList.add("diceIcon-compress");
+      toggleClass(utilities_goFullscreen, "active");
+      removeClass(utilities_goFullscreen_icon, "diceIcon-expand");
+      addClass(utilities_goFullscreen_icon, "diceIcon-compress");
     } else {
       cancelFullScreen.call(root);
-      utilities_goFullscreen.classList.remove("active");
-      utilities_goFullscreen_icon.classList.remove("diceIcon-compress");
-      utilities_goFullscreen_icon.classList.add("diceIcon-expand");
+      toggleClass(utilities_goFullscreen, "active");
+      removeClass(utilities_goFullscreen_icon, "diceIcon-compress");
+      addClass(utilities_goFullscreen_icon, "diceIcon-expand");
     }
   };
 
@@ -421,14 +447,26 @@ function diceRollerama() {
     };
   };
 
+  // toggle drop lowest
+  function toggleDropLowest() {
+    toggleClass(utilities_toggleDropLowest, "active");
+    var readDataSet = utilities_toggleDropLowest.dataset.active;
+    if (readDataSet == "false") {
+      utilities_toggleDropLowest.dataset.active = "true";
+    } else if (readDataSet == "true") {
+      utilities_toggleDropLowest.dataset.active = "false";
+    };
+  };
 
+  // go roll
   element_goRoll.addEventListener("click", function() {
     roll(modifiers_readAmountOfDice(), getRadioValue(element_diceSelector, "diceSelect"), modifiers_readAmountOfBonus());
     localStoreAdd("savedHistory", element_resultHistory_list);
   }, false);
 
-  utilities_goFullscreen.addEventListener("click", function() {
-    toggleFullScreen()
+  // utilities
+  utilities_toggleDropLowest.addEventListener("click", function() {
+    toggleDropLowest();
   }, false);
 
   utilities_clearAll.addEventListener("click", function() {
@@ -438,8 +476,11 @@ function diceRollerama() {
 
   utilities_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormulaString();
-    // localStoreAdd();
     localStoreAdd("savedRolls", element_savedRolls_list);
+  }, false);
+
+  utilities_goFullscreen.addEventListener("click", function() {
+    toggleFullScreen();
   }, false);
 
 
