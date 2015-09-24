@@ -38,8 +38,8 @@ function diceRollerama() {
   var utilities_toggleDropLowest = e(".utilities .toggleDropLowest");
   var utilities_toggleDropLowest_icon = e(".utilities .toggleDropLowest span");
   var utilities_saveCurrentFormula = e(".utilities .saveCurrentFormula");
-  var utilities_goFullscreen = e(".utilities .toggleFullscreen");
-  var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen span");
+  var utilities_toggleFullscreen = e(".utilities .toggleFullscreen");
+  var utilities_toggleFullscreen_icon = e(".utilities .toggleFullscreen span");
   var utilities_clearAll = e(".utilities .clearAll");
 
   // get element by class or id
@@ -126,7 +126,7 @@ function diceRollerama() {
           '<p class="savedFormula">'
         // name
         + '<span class="icon-bookmark"></span>'
-        + '<input class="name" type="text" value="' + saveName + '">'
+        + '<input class="name" type="text" placeholder="The roll with no name" value="' + saveName + '">'
         // roll button
         + '<a href="javascript:void(0)" class="button button-primary roll">Roll</a> '
         // formula
@@ -136,9 +136,10 @@ function diceRollerama() {
         // delete
         + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon-close"></span></a>'
         + '<span class="deleteConfirm">'
-        + '<a href="javascript:void(0)" class="button button-primary delete">Delete?</a><a href="javascript:void(0)" class="button button-secondary cancel">Keep</a>'
+        + 'Delete this roll?'
+        + '<a href="javascript:void(0)" class="button button-secondary cancel">Keep</a><a href="javascript:void(0)" class="button button-primary delete">Delete</a>'
         + '</span>' 
-        + '</p>' 
+        + '</p>'
         + element_savedRolls_list.innerHTML;
     };
     writeSavedRoll();
@@ -411,14 +412,14 @@ function diceRollerama() {
     var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
     if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
-      toggleClass(utilities_goFullscreen, "active");
-      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen");
+      toggleClass(utilities_toggleFullscreen, "active");
+      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen");
     } else {
       cancelFullScreen.call(root);
-      toggleClass(utilities_goFullscreen, "active");
-      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen");
+      toggleClass(utilities_toggleFullscreen, "active");
+      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen");
     }
   };
 
@@ -483,7 +484,7 @@ function diceRollerama() {
     localStoreAdd("savedRolls", element_savedRolls_list);
   }, false);
 
-  utilities_goFullscreen.addEventListener("click", function() {
+  utilities_toggleFullscreen.addEventListener("click", function() {
     toggleFullScreen();
   }, false);
 

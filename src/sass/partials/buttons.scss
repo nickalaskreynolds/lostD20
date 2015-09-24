@@ -8,7 +8,7 @@ button {
   padding: 0 10px;
   color: $gray-01;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-family: $open-sans-semi-bold;
   line-height: 2rem;
   text-decoration: none;
@@ -19,84 +19,64 @@ button {
   box-sizing: border-box;
   border-radius: $global-radius;
   transition: all $transition-ease-fast;
-  transform: scale(1);
-}
-
-.button:focus,
-button:focus {
-  background-color: $gray-13;
-  outline: 0;
-}
-
-.button:hover,
-button:hover {
-  color: $white;
-  background-color: $gray-02;
-  border-color: $gray-02;
-  outline: 0;
-}
-
-.button:active,
-button:active {
-  color: $white;
-  background-color: $gray-04;
-  border-color: $gray-04;
-  transform: scale(0.95);
-}
-
-.button.button-primary,
-button.button-primary {
-  color: $white;
-  background-color: $magenta;
-  border-color: $magenta-dark;
-}
-
-.button.button-primary:focus,
-button.button-primary:focus {
-  background-color: $magenta-light;
-  text-decoration: none;
-  color: $white;
-}
-
-.button.button-primary:hover,
-.button.button-primary.active,
-button.button-primary:hover,
-button.button-primary.active {
-  color: $white;
-  background-color: $magenta-dark;
-  border-color: $magenta-dark;
-  text-decoration: none;
-}
-
-.button.button-secondary,
-button.button-secondary {
-  color: $gray-01;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.button.button-secondary:focus,
-button.button-secondary:focus {
-  background-color: $gray-13;
-  text-decoration: none;
-}
-
-.button.button-secondary:hover,
-.button.button-secondary.active,
-button.button-secondary:hover,
-button.button-secondary.active {
-  color: $white;
-  background-color: $magenta-dark;
-  border-color: $magenta-dark;
-  text-decoration: none;
-}
-
-.button.button-primary:active,
-.button.button-secondary:active,
-button.button-primary:active,
-button.button-secondary:active {
-  color: $white;
-  background-color: $magenta-light;
+  &:focus {
+    background-color: $gray-13;
+    outline: 0;
+  }
+  &:hover {
+    color: $white;
+    background-color: $gray-02;
+    border-color: $gray-02;
+    outline: 0;
+  }
+  &:active,
+  &.active {
+    color: $white;
+    background-color: $gray-04;
+    border-color: $gray-04;
+    // transform: scale(0.9);
+  }
+  &.button-primary {
+    color: $white;
+    background-color: $magenta;
+    border-color: $magenta-dark;
+    &:focus {
+      background-color: $magenta-light;
+      text-decoration: none;
+      color: $white;
+    }
+    &:hover,
+    &.active {
+      color: $white;
+      background-color: $magenta-dark;
+      border-color: $magenta-dark;
+      text-decoration: none;
+    }
+    &:active {
+      color: $white;
+      background-color: $magenta-light;
+    }
+  }
+  &.button-secondary {
+    color: $gray-01;
+    background-color: transparent;
+    border-color: transparent;
+    &:focus {
+      background-color: $gray-13;
+      text-decoration: none;
+    }
+    &:hover,
+    &.active {
+      color: $white;
+      background-color: $magenta-dark;
+      border-color: $magenta-dark;
+      text-decoration: none;
+    }
+    &:active {
+      color: $white;
+      background-color: $magenta-light;
+    }
+  }
 }
 
 input {
@@ -118,29 +98,17 @@ input {
     cursor: pointer;
     box-sizing: border-box;
     border-radius: $global-radius;
-  }
-}
-
-input {
-  &[type="submit"]:hover,
-  &[type="reset"]:hover,
-  &[type="button"]:hover,
-  &[type="submit"]:focus,
-  &[type="reset"]:focus,
-  &[type="button"]:focus {
-    color: $white;
-    background-color: $gray-02;
-    border-color: $gray-02;
-    outline: 0;
-  }
-}
-
-input {
-  &[type="submit"]:active,
-  &[type="reset"]:active,
-  &[type="button"]:active {
-    color: $white;
-    background-color: $gray-04;
-    border-color: $gray-04;
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $gray-02;
+      border-color: $gray-02;
+      outline: 0;
+    }
+    &:active {
+      color: $white;
+      background-color: $gray-04;
+      border-color: $gray-04;
+    }
   }
 }
