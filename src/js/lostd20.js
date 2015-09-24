@@ -12,6 +12,7 @@ function diceRollerama() {
   var element_resultHistory = e(".resultHistory");
   var element_resultHistory_list = e(".resultHistory .list");
   var element_results_toggleFullscreen = e(".results .toggleFullscreen");
+  var element_results_toggleFullscreen_icon = e(".results .toggleFullscreen span");
   var element_diceSelect_label = eA(".diceSelector label");
   // formula
   var formula_numberOfDiceSides_value;
@@ -35,9 +36,10 @@ function diceRollerama() {
   var modifiers_changeAmountOfDice_minusOne = e(".modifiers .changeAmount.ofDice .minusOne");
   // utilities
   var utilities_toggleDropLowest = e(".utilities .toggleDropLowest");
+  var utilities_toggleDropLowest_icon = e(".utilities .toggleDropLowest span");
   var utilities_saveCurrentFormula = e(".utilities .saveCurrentFormula");
   var utilities_goFullscreen = e(".utilities .toggleFullscreen");
-  var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen .icon");
+  var utilities_goFullscreen_icon = e(".utilities .toggleFullscreen span");
   var utilities_clearAll = e(".utilities .clearAll");
 
   // get element by class or id
@@ -123,16 +125,16 @@ function diceRollerama() {
       element_savedRolls_list.innerHTML =
           '<p class="savedFormula">'
         // name
-        + '<span class="icon diceIcon-save"></span>'
+        + '<span class="icon-bookmark"></span>'
         + '<input class="name" type="text" value="' + saveName + '">'
         // roll button
         + '<a href="javascript:void(0)" class="button button-primary roll">Roll</a> '
         // formula
         + '<span class="amountOfDice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> ' 
-        + '<span class="dice"><span class="icon diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span> '
+        + '<span class="dice"><span class="diceIcon-d' + formula_numberOfDiceSides_value + '" data-dice-sides="' + formula_numberOfDiceSides_value + '"></span></span> '
         + '<span class="amountOfBonus">' + plusOrMinus + '</span>'
         // delete
-        + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon diceIcon-close"></span></a>'
+        + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon-close"></span></a>'
         + '<span class="deleteConfirm">'
         + '<a href="javascript:void(0)" class="button button-primary delete">Delete?</a><a href="javascript:void(0)" class="button button-secondary cancel">Keep</a>'
         + '</span>' 
@@ -209,7 +211,7 @@ function diceRollerama() {
   // roll saved formula
   function runSavedFormula(element) {
     var readSavedAmountOfDice = parseInt(element.parentNode.querySelector(".amountOfDice").textContent, 10) || 0;
-    var readSavedDiceSides = element.parentNode.querySelector(".dice .icon");
+    var readSavedDiceSides = element.parentNode.querySelector(".dice span");
     var readSavedDiceSidesValue = parseInt(readSavedDiceSides.dataset.diceSides, 10) || 0;
     var readSavedAmountOfBonus = parseInt(element.parentNode.querySelector(".amountOfBonus").textContent, 10) || 0;
     var readSavedName = element.parentNode.querySelector(".name").value;
@@ -325,7 +327,7 @@ function diceRollerama() {
       + '<span class="breakdown">'
       + savedRollName
       + numberOfDice
-      + ' <span class="dice"><span class="icon diceIcon-d' + whichDice + '"></span></span>'
+      + ' <span class="dice"><span class="diceIcon-d' + whichDice + '"></span></span>'
       + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>'
       + bonusOrNoBonus
       + '</span>'
@@ -410,13 +412,13 @@ function diceRollerama() {
     if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
       toggleClass(utilities_goFullscreen, "active");
-      removeClass(utilities_goFullscreen_icon, "diceIcon-expand");
-      addClass(utilities_goFullscreen_icon, "diceIcon-compress");
+      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen");
     } else {
       cancelFullScreen.call(root);
       toggleClass(utilities_goFullscreen, "active");
-      removeClass(utilities_goFullscreen_icon, "diceIcon-compress");
-      addClass(utilities_goFullscreen_icon, "diceIcon-expand");
+      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(utilities_goFullscreen_icon, "icon-fullscreen");
     }
   };
 
@@ -450,6 +452,8 @@ function diceRollerama() {
   // toggle drop lowest
   function toggleDropLowest() {
     toggleClass(utilities_toggleDropLowest, "active");
+    toggleClass(utilities_toggleDropLowest_icon, "icon-arrow-drop-down");
+    toggleClass(utilities_toggleDropLowest_icon, "icon-arrow-drop-down-circle");
     var readDataSet = utilities_toggleDropLowest.dataset.active;
     if (readDataSet == "false") {
       utilities_toggleDropLowest.dataset.active = "true";
@@ -633,6 +637,9 @@ function diceRollerama() {
 
   element_results_toggleFullscreen.addEventListener("click", function() {
     toggleClass(element_column_results, "fullsize");
+    toggleClass(element_results_toggleFullscreen, "active");
+    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-more");
+    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-less");
   }, false);
 
   modifiers_readAmountOfBonus();
