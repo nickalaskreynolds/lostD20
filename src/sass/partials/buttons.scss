@@ -55,6 +55,11 @@ button {
       border-color: $magenta-dark;
       text-decoration: none;
     }
+    &.active {
+      &:focus {
+        background-color: $magenta-light;
+      }
+    }
     &:active {
       color: $white;
       background-color: $magenta-light;
@@ -74,6 +79,11 @@ button {
       background-color: $magenta-dark;
       border-color: $magenta-dark;
       text-decoration: none;
+    }
+    &.active {
+      &:focus {
+        background-color: $magenta-light;
+      }
     }
     &:active {
       color: $white;
