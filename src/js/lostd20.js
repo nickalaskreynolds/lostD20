@@ -482,73 +482,48 @@ function diceRollerama() {
     };
   };
 
-
-
-function delay3000(functionToDelay) {
-  window.setTimeout(functionToDelay, 3000);
-};
-
-function slowAlert() {
-  alert("That was really slow!");
-};
-
-
-// delay3000(slowAlert);
+  // delay function
+  function delayFunction(functionToDelay) {
+    window.setTimeout(functionToDelay, 500);
+  };
 
   // move saved formula up or down
   function savedFormula_moveUpDown(element) {
-    // console.log(element.className);
-    // var siblingDirection;
     var node = element.parentNode;
     var nodesParent = element.parentNode.parentNode;
+    // console.log("node = ");
+    // console.log(node);
+    // console.log("nodesParent = ");
+    // console.log(nodesParent);
+    // console.log("nodesPreviousSibling = ");
+    // console.log(nodesPreviousSibling);
+    // console.log("nodesNextSibling = ");
+    // console.log(nodesNextSibling);
 
-
-console.log("node = ");
-console.log(node);
-console.log("nodesParent = ");
-console.log(nodesParent);
-console.log("nodesPreviousSibling = ");
-console.log(nodesPreviousSibling);
-console.log("nodesNextSibling = ");
-console.log(nodesNextSibling);
-
-
+    // if element has move up class
     if (element.classList.contains("move-up")) {
-      console.log("move up (true)");
-    var nodesPreviousSibling = element.parentNode.previousSibling;
-      nodesParent.insertBefore(node, nodesPreviousSibling);
-      // var siblingDirection = element.parentNode.previousSibling;
+      var nodesPreviousSibling = element.parentNode.previousSibling;
+      addClass(node, "moving-up");
+      addClass(node.previousSibling, "moving-down");
+      var move = function() {
+        removeClass(node.previousSibling, "moving-down");
+        removeClass(node, "moving-up");
+        nodesParent.insertBefore(node, nodesPreviousSibling);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
+      };
+      delayFunction(move);
     } else if (element.classList.contains("move-down")) {
-      console.log("move down (else)");
-    var nodesNextSibling = element.parentNode.nextSibling.nextSibling;
-      nodesParent.insertBefore(node, nodesNextSibling);
-      // var siblingDirection = element.parentNode.nextSibling;
+      var nodesNextSibling = element.parentNode.nextSibling.nextSibling;
+      addClass(node.nextSibling, "moving-up");
+      addClass(node, "moving-down");
+      var move = function() {
+        removeClass(node.nextSibling, "moving-up");
+        removeClass(node, "moving-down");
+        nodesParent.insertBefore(node, nodesNextSibling);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
+      };
+      delayFunction(move);
     };
-
-
-
-
-
-    // if (element.classList.contains("move-up")) {
-    //   console.log("true");
-    //   var siblingDirection = element.parentNode.previousSibling;
-    // } else if (element.classList.contains("move-down")) {
-    //   console.log("else");
-    //   var siblingDirection = element.parentNode.nextSibling;
-    // };
-
-
-
-
-
-
-    // parent.insertBefore(nodeToMove, siblingDirection);
-
-    // console.log(upOrDown);
-    // var parent = this.parentNode.parentNode;
-    // var nodeToMove = this.parentNode;
-    // var siblingUp = this.parentNode.previousSibling;
-    // var siblingDown = this.parentNode.nextSibling;
   };
 
   // go roll
@@ -606,7 +581,6 @@ console.log(nodesNextSibling);
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_moveUp[i].addEventListener("click", function() {
-        // console.log(this);
         savedFormula_moveUpDown(this);
         localStoreAdd("savedFormulas", element_savedFormulas_list);
       }, false);
@@ -614,7 +588,6 @@ console.log(nodesNextSibling);
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_moveDown[i].addEventListener("click", function() {
-        // console.log(this);
         savedFormula_moveUpDown(this);
         localStoreAdd("savedFormulas", element_savedFormulas_list);
       }, false);
