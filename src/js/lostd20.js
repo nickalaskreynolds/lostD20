@@ -462,6 +462,24 @@ function diceRollerama() {
     };
   };
 
+  // arrow key input change 
+  function keystroke_modifiers_plusMinus(whichInputField) {
+    var keystroke = event.keyCode || event.which;
+    if (keystroke == 38 || keystroke == 39) {
+      if (event.shiftKey == true) {
+        modifiers_plusMinus(5, whichInputField);
+      } else {
+        modifiers_plusMinus(1, whichInputField);
+      };
+    } else if (keystroke == 40 || keystroke == 37) {
+      if (event.shiftKey == true) {
+        modifiers_plusMinus(-5, whichInputField);
+      } else {
+        modifiers_plusMinus(-1, whichInputField);
+      };
+    };
+  };
+
   // go roll
   element_goRoll.addEventListener("click", function() {
     roll(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
@@ -564,6 +582,11 @@ function diceRollerama() {
 
   formula_numberOfBonus_input.addEventListener("keyup", dropFocus, false);
 
+  formula_numberOfBonus_input.addEventListener("keydown", function() {
+    keystroke_modifiers_plusMinus(formula_numberOfBonus_input);
+    modifiers_readAmountOfBonus();
+  }, false);
+
   formula_numberOfBonus_input.addEventListener("click", function() {
     this.select();
   }, false);
@@ -594,6 +617,11 @@ function diceRollerama() {
   }, false);
 
   formula_numberOfDice_input.addEventListener("keyup", dropFocus, false);
+
+  formula_numberOfDice_input.addEventListener("keydown", function() {
+    keystroke_modifiers_plusMinus(formula_numberOfDice_input);
+    modifiers_readAmountOfDice();
+  }, false);
 
   formula_numberOfDice_input.addEventListener("click", function() {
     this.select();
