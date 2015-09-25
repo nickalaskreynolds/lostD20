@@ -272,7 +272,7 @@ section {
     z-index: 3;
     overflow-y: auto;
     box-shadow: $shadow-dark-inset;
-    transition: height $transition-ease-medium;
+    transition: all $transition-ease-medium;
     .list {
       p {
         margin: 0;
