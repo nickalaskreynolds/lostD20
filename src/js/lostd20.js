@@ -486,22 +486,6 @@ function diceRollerama() {
   utilities_toggleFullscreen.addEventListener("click", function() {
     toggleFullScreen();
   }, false);
-
-
-  // // dice select
-  // function addListenerTo_element_diceForm_label() {
-  //   for (var i = 0; i < element_diceForm_label.length; i++) {
-  //     element_diceForm_label[i].addEventListener("click", function() {
-  //       // console.log(this);
-  //       // if label is active roll the dice with current modifiers if not make active
-  //       if (this.classList.contains("active")) {
-  //         roll(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
-  //       } else {
-  //         makeSelectedRadioActive(element_diceForm, "dice-select");
-  //       };
-  //     }, false);
-  //   };
-  // };
   
   // dice select
   function addListenerTo_element_diceForm_label() {
