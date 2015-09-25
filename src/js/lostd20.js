@@ -134,6 +134,8 @@ function diceRollerama() {
         + '<span class="amountOfBonus">' + plusOrMinus + '</span>'
         // delete
         + '<a href="javascript:void(0)" class="button button-secondary clear"><span class="icon-close"></span></a>'
+        + '<a href="javascript:void(0)" class="button button-secondary move-up"><span class="icon-expand-less"></span></a>'
+        + '<a href="javascript:void(0)" class="button button-secondary move-down"><span class="icon-expand-more"></span></a>'
         + '<span class="deleteConfirm">'
         + 'Delete this roll?'
         + '<a href="javascript:void(0)" class="button button-secondary cancel">Keep</a><a href="javascript:void(0)" class="button button-primary delete">Delete</a>'
@@ -480,6 +482,75 @@ function diceRollerama() {
     };
   };
 
+
+
+function delay3000(functionToDelay) {
+  window.setTimeout(functionToDelay, 3000);
+};
+
+function slowAlert() {
+  alert("That was really slow!");
+};
+
+
+// delay3000(slowAlert);
+
+  // move saved formula up or down
+  function savedFormula_moveUpDown(element) {
+    // console.log(element.className);
+    // var siblingDirection;
+    var node = element.parentNode;
+    var nodesParent = element.parentNode.parentNode;
+
+
+console.log("node = ");
+console.log(node);
+console.log("nodesParent = ");
+console.log(nodesParent);
+console.log("nodesPreviousSibling = ");
+console.log(nodesPreviousSibling);
+console.log("nodesNextSibling = ");
+console.log(nodesNextSibling);
+
+
+    if (element.classList.contains("move-up")) {
+      console.log("move up (true)");
+    var nodesPreviousSibling = element.parentNode.previousSibling;
+      nodesParent.insertBefore(node, nodesPreviousSibling);
+      // var siblingDirection = element.parentNode.previousSibling;
+    } else if (element.classList.contains("move-down")) {
+      console.log("move down (else)");
+    var nodesNextSibling = element.parentNode.nextSibling.nextSibling;
+      nodesParent.insertBefore(node, nodesNextSibling);
+      // var siblingDirection = element.parentNode.nextSibling;
+    };
+
+
+
+
+
+    // if (element.classList.contains("move-up")) {
+    //   console.log("true");
+    //   var siblingDirection = element.parentNode.previousSibling;
+    // } else if (element.classList.contains("move-down")) {
+    //   console.log("else");
+    //   var siblingDirection = element.parentNode.nextSibling;
+    // };
+
+
+
+
+
+
+    // parent.insertBefore(nodeToMove, siblingDirection);
+
+    // console.log(upOrDown);
+    // var parent = this.parentNode.parentNode;
+    // var nodeToMove = this.parentNode;
+    // var siblingUp = this.parentNode.previousSibling;
+    // var siblingDown = this.parentNode.nextSibling;
+  };
+
   // go roll
   element_goRoll.addEventListener("click", function() {
     roll(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
@@ -498,7 +569,7 @@ function diceRollerama() {
 
   utilities_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormulaString();
-    localStoreAdd("savedRolls", element_savedFormulas_list);
+    localStoreAdd("savedFormulas", element_savedFormulas_list);
   }, false);
 
   utilities_toggleFullscreen.addEventListener("click", function() {
@@ -518,6 +589,8 @@ function diceRollerama() {
   function addListenerTo_saveCurrentFormula() {
     var formula_savedFormula = eA(".savedFormula");
     var formula_savedFormula_roll = eA(".savedFormula .roll");
+    var formula_savedFormula_moveUp = eA(".savedFormula .move-up");
+    var formula_savedFormula_moveDown = eA(".savedFormula .move-down");
     var formula_savedFormula_clear = eA(".savedFormula .clear");
     var formula_savedFormula_delete = eA(".savedFormula .delete");
     var formula_savedFormula_cancel = eA(".savedFormula .cancel");
@@ -532,6 +605,22 @@ function diceRollerama() {
     };
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
+      formula_savedFormula_moveUp[i].addEventListener("click", function() {
+        // console.log(this);
+        savedFormula_moveUpDown(this);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
+      }, false);
+    };
+
+    for (var i = 0; i < formula_savedFormula.length; i++) {
+      formula_savedFormula_moveDown[i].addEventListener("click", function() {
+        // console.log(this);
+        savedFormula_moveUpDown(this);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
+      }, false);
+    };
+
+    for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_clear[i].addEventListener("click", function() {
         clearSavedFormula(this);
         localStoreAdd("savedHistory", element_resultHistory_list);
@@ -541,7 +630,7 @@ function diceRollerama() {
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_delete[i].addEventListener("click", function() {
         deleteSavedFormula(this);
-        localStoreAdd("savedRolls", element_savedFormulas_list);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
       }, false);
     };
 
@@ -559,7 +648,7 @@ function diceRollerama() {
       formula_savedFormula_name[i].addEventListener("keyup", function() {
         // take input value and add it to the input node value attribute
         storeInputName(this);
-        localStoreAdd("savedRolls", element_savedFormulas_list);
+        localStoreAdd("savedFormulas", element_savedFormulas_list);
       }, false);
       formula_savedFormula_name[i].addEventListener("keyup", dropFocus, false);
     };
@@ -664,7 +753,7 @@ function diceRollerama() {
 
   makeSelectedRadioActive(element_diceForm, "dice-select");
 
-  localStoreRead("savedRolls", element_savedFormulas_list);
+  localStoreRead("savedFormulas", element_savedFormulas_list);
 
   localStoreRead("savedHistory", element_resultHistory_list);
 

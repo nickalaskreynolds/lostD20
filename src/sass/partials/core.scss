@@ -185,6 +185,8 @@ section {
         box-sizing: border-box;
         transition: background-color $transition-ease-medium;
         overflow: hidden;
+        animation: flash-light ease-out 0.5s;
+        animation-iteration-count: 1;
         > span {
           display: inline-block;
         }
@@ -218,11 +220,13 @@ section {
         .roll {
           margin: 0 10px 0 10%;
         }
+        .move-up,
+        .move-down,
         .clear {
           float: right;
           transform: scale(1);
-          opacity: 0;
           transition: all $transition-ease-medium;
+          margin: 0 0 0 5px;
         }
         .deleteConfirm {
           background-color: $gray-02;
@@ -268,12 +272,13 @@ section {
           }
         }
         &:first-child {
-          animation: flash-light ease-out 0.5s;
-          animation-iteration-count: 1;
+          .move-up {
+            display: none;
+          }
         }
-        &:hover {
-          .clear {
-            opacity: 1;
+        &:last-child {
+          .move-down {
+            display: none;
           }
         }
       }
@@ -556,7 +561,6 @@ section {
     &.formulas {
       .list {
         p {
-          padding: 40px 60px;
           padding: 40px 60px;
           &:first-child {
             padding-top: 60px;
