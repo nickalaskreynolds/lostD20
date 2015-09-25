@@ -95,12 +95,17 @@ section {
         text-align: center;
         border: 0;
         outline: none;
+        position: relative;
         input {
-          display: none;
+          opacity: 0;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
         }
-        .label-body {
-          margin: 0;
-          line-height: 0;
+        .label-text {
+          display: none;
         }
         .diceRing {
           background-color: $gray-01;
@@ -114,6 +119,7 @@ section {
           transform: scale(1);
           border: 2px solid transparent;
           border-radius: 50%;
+          z-index: 2;
           [class^="diceIcon-"],
           [class*=" diceIcon-"] {
             position: absolute;
@@ -123,37 +129,38 @@ section {
             height: 32px;
             font-size: 2em;
             line-height: 32px;
+            color: $white;
             transition: all $transition-ease-fast;
             text-align: center;
           }
         }
-        .label-body {
+        &:hover {
           .diceRing {
-            border-color: transparent;
+            background-color: $gray-04;
+          }
+        }
+        &:focus,
+        &.active {
+          .diceRing {
+            border-color: $magenta;
+            background-color: $white;
             [class^="diceIcon-"],
             [class*=" diceIcon-"] {
-              color: $white;
+              color: $magenta;
             }
           }
         }
-        &:hover,
-        &.active {
-          .label-body {
-            .diceRing {
-              border-color: $magenta;
-              background-color: $white;
-              [class^="diceIcon-"],
-              [class*=" diceIcon-"] {
-                color: $magenta;
-              }
+        &:focus {
+          .diceRing {
+            [class^="diceIcon-"],
+            [class*=" diceIcon-"] {
+              transform: scale(1.7);
             }
           }
         }
         &.active {
-          .label-body {
-            .diceRing {
-              transform: scale(1.6);
-            }
+          .diceRing {
+            transform: scale(1.6);
           }
         }
       }
