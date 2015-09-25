@@ -76,6 +76,19 @@ button {
       color: $white;
       background-color: $magenta-light;
     }
+    &.dark-background {
+        background-color: $gray-02;
+      &:focus {
+        background-color: $gray-03;
+      }
+      &:hover,
+      &.active {
+        background-color: $magenta-dark;
+      }
+      &:active {
+        background-color: $magenta-light;
+      }
+    }
   }
 }
 
