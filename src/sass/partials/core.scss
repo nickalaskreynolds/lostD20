@@ -22,12 +22,13 @@ body {
   margin-bottom: 150px;
   font-family: $open-sans-regular;
   user-select: none;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 .button,
 button,
 label {
-  letter-spacing: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -63,7 +64,7 @@ section {
           }
           .clear {
             position: absolute;
-            top: 0.5rem;
+            bottom: 12px;
             right: 0;
           }
         }
@@ -71,14 +72,14 @@ section {
       .modifiers {
         text-align: center;
         .button {
-          padding: 0 15px;
+          padding-left: 15px;
+          padding-right: 15px;
         }
       }
       .go-roll {
         margin: 20px 0;
-        line-height: 3rem;
-        height: 3rem;
-        padding: 0 10%;
+        line-height: 4rem;
+        padding: 0 15%;
       }
     }
     .dice-form {
@@ -167,7 +168,7 @@ section {
     }
     .utilities {
       .button {
-        margin: 0 0 5px 0;
+        margin: 5px;
       }
     }
   }
@@ -206,6 +207,7 @@ section {
         .amountOfBonus {
           font-size: 1rem;
           color: $gray-08;
+          font-family: $open-sans-condensed-light;
         }
         .dice {
           color: $gray-08;
@@ -303,7 +305,7 @@ section {
         }
         .breakdown {
           margin: 3px 0 0 0;
-          line-height: 1.5rem;
+          line-height: 2rem;
           width: 72%;
           float: right;
           .strike {
@@ -354,16 +356,17 @@ section {
     }
     .toggle-fullscreen {
       position: fixed;
-      bottom: 10px;
+      bottom: -300px;
       right: 10px;
       color: $white;
-      display: none;
+      transition: all $transition-ease-medium;
+      display: block;
     }
     &.active {
       background-color: $gray-02;
       bottom: 0;
       .toggle-fullscreen {
-        display: block;
+        bottom: 10px;
       }
     }
     &.fullsize {
@@ -487,11 +490,6 @@ section {
       }
       .toggle-fullscreen {
         display: none;
-      }
-      &.active {
-        .toggle-fullscreen {
-          display: none;
-        }
       }
     }
   }

@@ -328,7 +328,7 @@ function diceRollerama() {
       + savedRollName
       + numberOfDice
       + ' <span class="dice"><span class="diceIcon-d' + whichDice + '"></span></span>'
-      + ' <span class="multipleDiceResults">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>'
+      + ' <span class="multiple-dice-results">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>'
       + bonusOrNoBonus
       + '</span>'
       + '</p>'
