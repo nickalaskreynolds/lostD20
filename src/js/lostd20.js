@@ -452,8 +452,8 @@ function diceRollerama() {
   // toggle drop lowest
   function toggleDropLowest() {
     toggleClass(utilities_toggleDropLowest, "active");
-    toggleClass(utilities_toggleDropLowest_icon, "icon-arrow-drop-down");
-    toggleClass(utilities_toggleDropLowest_icon, "icon-arrow-drop-down-circle");
+    toggleClass(utilities_toggleDropLowest_icon, "icon-check-box");
+    toggleClass(utilities_toggleDropLowest_icon, "icon-check-box-outline-blank");
     var readDataSet = utilities_toggleDropLowest.dataset.active;
     if (readDataSet == "false") {
       utilities_toggleDropLowest.dataset.active = "true";
