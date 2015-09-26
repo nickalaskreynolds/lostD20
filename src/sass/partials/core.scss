@@ -178,58 +178,62 @@ section {
     user-select: none;
     .list {
       .saved-formula {
-        padding: 10px 20%;
         position: relative;
+        padding: 10px 20%;
+        width: 100%;
+        box-sizing: border-box;
         transition: all $transition-ease-medium;
-        animation: flash-light ease-out 0.5s;
-        animation-iteration-count: 1;
-        .saved-formula-wrapper {
-          position: relative;
+        .roll {
           width: 100%;
-          box-sizing: border-box;
-          .roll {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .name {
+          position: relative;
+          z-index: 1;
+          input {
+            background-color: transparent;
+            border-bottom: 2px solid $gray-13;
+            margin: 0;
             width: 100%;
-            padding-left: 0;
-            padding-right: 0;
-          }
-          .name {
-            position: relative;
-            z-index: 1;
-            input {
-              background-color: transparent;
-              border-bottom: 2px solid $gray-13;
-              margin: 0;
-              width: 100%;
-              padding: 5px 25% 5px 0;
-              font-size: 1.1rem;
-              line-height: 1.5rem;
-              height: inherit;
-              transition: border $transition-ease-medium;
-              &:focus {
-                border-color: $magenta;
-              }
+            padding: 0 0 5px 0;
+            font-size: 1.1rem;
+            line-height: 2rem;
+            height: inherit;
+            transition: border $transition-ease-medium;
+            &:focus {
+              border-color: $magenta;
             }
-          }
-          .controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 2;
-            .button {
-              float: right;
-              margin: 0 5px 0 0;
-              padding: 2px 5px;
-              &:first-child {
-                margin: 0;
-              }
-            }
-          }
-          .formula {
-            padding: 8px 0 0 0;
-            color: $gray-08;
           }
         }
+        .controls {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          z-index: 2;
+          .button {
+            float: right;
+            margin: 0 5px 0 0;
+            padding: 2px 5px;
+            &:first-child {
+              margin: 0;
+            }
+          }
+        }
+        .formula {
+          line-height: 2rem;
+          margin: 5px 0 0 0;
+          color: $gray-08;
+        }
+        &.moving-up {
+
+        }
+        &.moving-down {
+          
+        }
         &:first-child {
+          animation: flash-light ease-out 0.5s;
+          animation-iteration-count: 1;
           .controls {
             .move-up {
               transform: scale(0);

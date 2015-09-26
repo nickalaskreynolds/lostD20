@@ -122,41 +122,43 @@ function diceRollerama() {
       plusOrMinus();
       oneDiceOrMore();
       element_savedFormulas_list.innerHTML =
-          '<div class="saved-formula">'
-          + '<div class="saved-formula-wrapper cf">'
+        '<div class="saved-formula">'
+        + '<div class="row">'
+          + '<div class="col-10">'
             + '<div class="row">'
-              + '<div class="col-10">'
-                + '<div class="row">'
-                  + '<div class="col-12">'
-                    + '<div class="name">'
-                      + '<input type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
-                    + '</div>'
-                    + '<div class="controls">'
-                      + '<a href="javascript:void(0)" class="button button-secondary clear" tabindex="1"><span class="icon-close"></span></a>'
-                      + '<a href="javascript:void(0)" class="button button-secondary move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
-                      + '<a href="javascript:void(0)" class="button button-secondary move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
-                    + '</div>'
-                  + '</div>'
-                  + '<div class="col-12">'
-                    + '<div class="formula">'
-                      + '<span class="amount-of-dice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> '
-                      + '<span class="which-dice" data-dice="'+ formula_numberOfDiceSides_value +'">d' + formula_numberOfDiceSides_value + '</span> '
-                      + '<span class="amount-of-bonus">' + plusOrMinus + '</span>'
-                    + '</div>'
-                  + '</div>'
+              + '<div class="col-12">'
+                + '<div class="name">'
+                  + '<input type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
+                + '</div>'
+                + '<div class="controls">'
+                  + '<a href="javascript:void(0)" class="button button-secondary clear" tabindex="1"><span class="icon-close"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-secondary move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-secondary move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
                 + '</div>'
               + '</div>'
-              + '<div class="col-2">'
-                + '<a href="javascript:void(0)" class="button button-primary roll" tabindex="1">Roll</a>'
+              + '<div class="col-12">'
+                + '<div class="formula">'
+                  + '<span class="amount-of-dice' + oneDiceOrMore + '">' + formula_numberOfDice_input_value + '</span> '
+                  + '<span class="which-dice" data-dice="'+ formula_numberOfDiceSides_value +'">d' + formula_numberOfDiceSides_value + '</span> '
+                  + '<span class="amount-of-bonus">' + plusOrMinus + '</span>'
+                + '</div>'
               + '</div>'
             + '</div>'
           + '</div>'
+          + '<div class="col-2">'
+            + '<a href="javascript:void(0)" class="button button-primary roll" tabindex="1">Roll</a>'
+          + '</div>'
         + '</div>'
-        + element_savedFormulas_list.innerHTML;
+      + '</div>'
+      + element_savedFormulas_list.innerHTML;
     };
     writeSavedRoll();
     addListenerTo_saveCurrentFormula();
-    checkListColumnState();
+    // addClass(document.querySelector(".saved-formula"), "flash-dark");
+    // var removeFlash = function() {
+    //   removeClass(document.querySelector(".saved-formula"), "flash-dark");
+    // };
+    // delayFunction(removeFlash, 1000);
   };
 
   // roll saved formula
@@ -165,10 +167,10 @@ function diceRollerama() {
     var readSaved_diceSides = getClosest(element, ".saved-formula").querySelector(".which-dice").dataset.dice;
     var readSaved_amountOfBonus = parseInt(getClosest(element, ".saved-formula").querySelector(".amount-of-bonus").textContent, 10) || 0;
     var readSaved_name = getClosest(element, ".saved-formula").querySelector(".name input").value;
-      console.log("amount of dice  "+readSaved_amountOfDice);
-      console.log("dice sides  "+readSaved_diceSides);
-      console.log("amount of bonus  "+readSaved_amountOfBonus);
-      console.log("name  "+readSaved_name);
+    // console.log("amount of dice  "+readSaved_amountOfDice);
+    // console.log("dice sides  "+readSaved_diceSides);
+    // console.log("amount of bonus  "+readSaved_amountOfBonus);
+    // console.log("name  "+readSaved_name);
     // selecting formula dice
     e("#d" + readSaved_diceSides).checked = true;
     // if input or var value is less than 0
@@ -497,22 +499,25 @@ function diceRollerama() {
   };
 
   // delay function
-  function delayFunction(functionToDelay) {
-    window.setTimeout(functionToDelay, 500);
+  function delayFunction(functionToDelay, time) {
+    window.setTimeout(functionToDelay, time);
   };
 
   // move saved formula up or down
   function savedFormula_moveUpDown(element) {
-    var node = element.parentNode;
-    var nodesParent = element.parentNode.parentNode;
-    // console.log("node = ");
-    // console.log(node);
-    // console.log("nodesParent = ");
-    // console.log(nodesParent);
-    // console.log("nodesPreviousSibling = ");
-    // console.log(nodesPreviousSibling);
-    // console.log("nodesNextSibling = ");
-    // console.log(nodesNextSibling);
+    // var node = element.parentNode;
+    var node = getClosest(element, ".saved-formula");
+    var nodesParent = getClosest(element, ".list");
+    var nodesPreviousSibling = node.previousSibling;
+    var nodesNextSibling = node.nextSibling;
+    console.log("node = ");
+    console.log(node);
+    console.log("nodesParent = ");
+    console.log(nodesParent);
+    console.log("nodesPreviousSibling = ");
+    console.log(nodesPreviousSibling);
+    console.log("nodesNextSibling = ");
+    console.log(nodesNextSibling);
 
     // if element has move up class
     if (element.classList.contains("move-up")) {
@@ -525,7 +530,7 @@ function diceRollerama() {
         nodesParent.insertBefore(node, nodesPreviousSibling);
         localStoreAdd("saved-formulas", element_savedFormulas_list);
       };
-      delayFunction(move);
+      delayFunction(move, 500);
     } else if (element.classList.contains("move-down")) {
       var nodesNextSibling = element.parentNode.nextSibling.nextSibling;
       addClass(node.nextSibling, "moving-up");
@@ -536,7 +541,7 @@ function diceRollerama() {
         nodesParent.insertBefore(node, nodesNextSibling);
         localStoreAdd("saved-formulas", element_savedFormulas_list);
       };
-      delayFunction(move);
+      delayFunction(move, 500);
     };
   };
 
