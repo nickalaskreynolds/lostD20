@@ -177,116 +177,70 @@ section {
     z-index: 1;
     user-select: none;
     .list {
-      p {
-        margin: 0;
-        padding: 30px;
-        width: 100%;
+      .saved-formula {
+        padding: 10px 20%;
         position: relative;
-        box-sizing: border-box;
-        transition: none;
-        overflow: hidden;
+        transition: all $transition-ease-medium;
         animation: flash-light ease-out 0.5s;
         animation-iteration-count: 1;
-        > span {
-          display: inline-block;
-        }
-        &.moving-up {
-          transform: translateY(-100%);
-          transition: all $transition-ease-medium;
-        }
-        &.moving-down {
-          transform: translateY(100%);
-          transition: all $transition-ease-medium;
-        }
-        .name {
-          background-color: transparent;
-          font-size: 1rem;
-          margin: 0 0 8px 0;
-          padding: 0;
-          width: 90%;
-          box-sizing: border-box;
-        }
-        .icon-bookmark {
-          width: 10%;
-          float: left;
-          line-height: 2rem;
-          height: 2rem;
-          text-align: center;
-        }
-        .amountOfDice,
-        .amountOfBonus {
-          font-size: 1rem;
-          color: $gray-08;
-          font-family: $open-sans-condensed-light;
-        }
-        .dice {
-          color: $gray-08;
-          font-size: 2rem;
-          line-height: 1rem;
-          vertical-align: middle;
-        }
-        .roll {
-          margin: 0 10px 0 10%;
-        }
-        .move-up,
-        .move-down,
-        .clear {
-          float: right;
-          transform: scale(1);
-          transition: all $transition-ease-medium;
-          margin: 0 0 0 5px;
-        }
-        .deleteConfirm {
-          background-color: $gray-02;
-          padding: 10px 10%;
-          position: absolute;
-          bottom: -50%;
-          left: 0;
+        .saved-formula-wrapper {
+          position: relative;
           width: 100%;
-          opacity: 0;
           box-sizing: border-box;
-          color: $gray-10;
-          line-height: 2rem;
-          transition: all $transition-ease-fast;
-          .button,
-          button {
-            &.button-secondary {
-              color: $gray-10;
-              &:hover,
-              &.active {
-                color: $white;
+          .roll {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+          }
+          .name {
+            position: relative;
+            z-index: 1;
+            input {
+              background-color: transparent;
+              border-bottom: 2px solid $gray-13;
+              margin: 0;
+              width: 100%;
+              padding: 5px 25% 5px 0;
+              font-size: 1.1rem;
+              line-height: 1.5rem;
+              height: inherit;
+              transition: border $transition-ease-medium;
+              &:focus {
+                border-color: $magenta;
               }
             }
           }
-          .delete {
-            margin: 0 10px 0 0;
-            left: 30%;
+          .controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            .button {
+              float: right;
+              margin: 0 5px 0 0;
+              padding: 2px 5px;
+              &:first-child {
+                margin: 0;
+              }
+            }
           }
-          .cancel {
-            right: 30%;
-          }
-          .delete,
-          .cancel {
-            float: right;
-          }
-        }
-        &.showDelete {
-          .clear {
-            transform: scale(0);
-          }
-          .deleteConfirm {
-            opacity: 1;
-            bottom: 0;
+          .formula {
+            padding: 8px 0 0 0;
+            color: $gray-08;
           }
         }
         &:first-child {
-          .move-up {
-            display: none;
+          .controls {
+            .move-up {
+              transform: scale(0);
+            }
           }
         }
         &:last-child {
-          .move-down {
-            display: none;
+          .controls {
+            .move-down {
+              transform: scale(0);
+            }
           }
         }
       }
@@ -571,7 +525,7 @@ section {
       padding: 30px 0;
       .list {
         p {
-          padding: 30px;
+          padding: 30px 60px;
         }
       }
     }
