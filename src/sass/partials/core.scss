@@ -340,6 +340,20 @@ section {
       color: $white;
       transition: all $transition-ease-medium;
       display: block;
+      .expand {
+        display: inline-block;
+      }
+      .collapse {
+        display: none;
+      }
+      &.active {
+        .expand {
+          display: none;
+        }
+        .collapse {
+          display: inline-block;
+        }
+      }
     }
     &.active {
       background-color: $gray-02;
