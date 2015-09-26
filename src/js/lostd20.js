@@ -505,43 +505,41 @@ function diceRollerama() {
 
   // move saved formula up or down
   function savedFormula_moveUpDown(element) {
-    // var node = element.parentNode;
     var node = getClosest(element, ".saved-formula");
     var nodesParent = getClosest(element, ".list");
-    var nodesPreviousSibling = node.previousSibling;
-    var nodesNextSibling = node.nextSibling;
-    console.log("node = ");
-    console.log(node);
-    console.log("nodesParent = ");
-    console.log(nodesParent);
-    console.log("nodesPreviousSibling = ");
-    console.log(nodesPreviousSibling);
-    console.log("nodesNextSibling = ");
-    console.log(nodesNextSibling);
-
+    // var nodesPreviousSibling = node.previousSibling;
+    // var nodesNextSibling = node.nextSibling;
+    // console.log("node = ");
+    // console.log(node);
+    // console.log("nodesParent = ");
+    // console.log(nodesParent);
+    // console.log("nodesPreviousSibling = ");
+    // console.log(nodesPreviousSibling);
+    // console.log("nodesNextSibling = ");
+    // console.log(nodesNextSibling);
     // if element has move up class
     if (element.classList.contains("move-up")) {
-      var nodesPreviousSibling = element.parentNode.previousSibling;
+      var nodesPreviousSibling = node.previousSibling;
       addClass(node, "moving-up");
       addClass(node.previousSibling, "moving-down");
-      var move = function() {
+      var moveSavedFormulas = function() {
         removeClass(node.previousSibling, "moving-down");
         removeClass(node, "moving-up");
         nodesParent.insertBefore(node, nodesPreviousSibling);
         localStoreAdd("saved-formulas", element_savedFormulas_list);
       };
-      delayFunction(move, 500);
+      delayFunction(moveSavedFormulas, 500);
     } else if (element.classList.contains("move-down")) {
-      var nodesNextSibling = element.parentNode.nextSibling.nextSibling;
+      var nodesNextSibling = node.nextSibling.nextSibling;
       addClass(node.nextSibling, "moving-up");
       addClass(node, "moving-down");
-      var move = function() {
+      var moveSavedFormulas = function() {
         removeClass(node.nextSibling, "moving-up");
         removeClass(node, "moving-down");
         nodesParent.insertBefore(node, nodesNextSibling);
         localStoreAdd("saved-formulas", element_savedFormulas_list);
       };
-      delayFunction(move, 500);
+      delayFunction(moveSavedFormulas, 500);
     };
   };
 

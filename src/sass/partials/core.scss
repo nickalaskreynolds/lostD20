@@ -182,7 +182,8 @@ section {
         padding: 10px 20%;
         width: 100%;
         box-sizing: border-box;
-        transition: all $transition-ease-medium;
+        animation: flash-light ease-out 0.5s;
+        animation-iteration-count: 1;
         .roll {
           width: 100%;
           padding-left: 0;
@@ -226,14 +227,14 @@ section {
           color: $gray-08;
         }
         &.moving-up {
-
+          transform: translateY(-100%);
+          transition: all $transition-ease-medium;
         }
         &.moving-down {
-          
+          transform: translateY(100%);
+          transition: all $transition-ease-medium;
         }
         &:first-child {
-          animation: flash-light ease-out 0.5s;
-          animation-iteration-count: 1;
           .controls {
             .move-up {
               transform: scale(0);
