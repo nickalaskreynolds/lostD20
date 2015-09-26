@@ -124,7 +124,7 @@ function diceRollerama() {
       element_savedFormulas_list.innerHTML =
         '<div class="saved-formula">'
         + '<div class="row">'
-          + '<div class="col-10">'
+          + '<div class="col-9">'
             + '<div class="row">'
               + '<div class="col-12">'
                 + '<div class="name">'
@@ -145,7 +145,7 @@ function diceRollerama() {
               + '</div>'
             + '</div>'
           + '</div>'
-          + '<div class="col-2">'
+          + '<div class="col-3">'
             + '<a href="javascript:void(0)" class="button button-primary roll" tabindex="1">Roll</a>'
           + '</div>'
         + '</div>'
@@ -616,20 +616,6 @@ function diceRollerama() {
         localStoreAdd("saved-formulas", element_savedFormulas_list);
       }, false);
     };
-
-    // for (var i = 0; i < formula_savedFormula.length; i++) {
-    //   formula_savedFormula_delete[i].addEventListener("click", function() {
-    //     deleteSavedFormula(this);
-    //     localStoreAdd("saved-formulas", element_savedFormulas_list);
-    //   }, false);
-    // };
-
-    // for (var i = 0; i < formula_savedFormula.length; i++) {
-    //   formula_savedFormula_cancel[i].addEventListener("click", function() {
-    //     cancelSavedFormula(this);
-    //     localStoreAdd("saved-history", element_resultHistory_list);
-    //   }, false);
-    // };
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
       formula_savedFormula_name[i].addEventListener("click", function() {
