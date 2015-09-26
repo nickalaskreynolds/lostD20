@@ -19,7 +19,7 @@ html {
 
 body {
   background-color: $white;
-  margin-bottom: 150px;
+  margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
   font-size: 1rem;
@@ -78,7 +78,7 @@ section {
       }
       .go-roll {
         margin: 20px 0;
-        line-height: 4rem;
+        line-height: 3rem;
         padding: 0 15%;
       }
     }
@@ -254,7 +254,7 @@ section {
   &.results {
     background-color: $gray-03;
     position: fixed;
-    bottom: -300px;
+    bottom: -150px;
     height: 150px;
     width: 100%;
     z-index: 3;
@@ -264,7 +264,7 @@ section {
     .list {
       p {
         margin: 0;
-        padding: 30px;
+        padding: 20px 30px;
         border-bottom: 1px solid $gray-01;
         color: $gray-06;
         width: 100%;
@@ -335,7 +335,7 @@ section {
     }
     .toggle-fullscreen {
       position: fixed;
-      bottom: -300px;
+      bottom: -150px;
       right: 10px;
       color: $white;
       transition: all $transition-ease-medium;
@@ -359,34 +359,23 @@ section {
 /* media queries
 ------------------------------------------------- */
 
-@media (min-height: 800px) {
-  body {
-    margin-bottom: 300px;
-  }
-  section {
-    &.results {
-      height: 300px;
-    }
-  }
-}
-
 @media (min-width: 550px) {
   section {
     &.column-third {}
     &.controls {
-      padding: 30px 20%;
+      padding: 30px 15%;
     }
     &.formulas {
       .list {
         .saved-formula {
-          padding: 30px 20%;
+          padding: 10px 15%;
         }
       }
     }
     &.results {
       .list {
         p {
-          padding: 30px 20%;
+          padding: 20px 15%;
         }
       }
     }
@@ -400,22 +389,13 @@ section {
   html,
   body {
     height: 100%;
-    margin: 0;
   }
   body {
-    background-color: $gray-14;
+    margin-bottom: 300px;
   }
   section {
-    &.column-third {
-      width: 33.3333333333%;
-      float: left;
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
     &.controls {
-      padding: 30px;
-      box-shadow: $shadow-light;
+      padding: 30px 15%;
       z-index: 3;
       .dice-form {
         label {
@@ -437,38 +417,25 @@ section {
     }
     &.formulas {
       z-index: 2;
-      box-shadow: $shadow-dark;
       .list {
         .saved-formula {
-          padding: 30px;
+          padding: 10px 15%;
         }
       }
     }
     &.results {
-      z-index: 1;
-      box-shadow: none;
-      position: relative;
-      bottom: initial;
-      height: inherit;
-      width: 33.3333333333%;
+      z-index: 3;
+      position: fixed;
+      width: 100%;
       overflow-y: visible;
+      bottom: -150px;
+      right: 0;
+      height: 150px;
+      box-shadow: $shadow-dark-inset;
       .list {
         p {
-          padding: 30px;
-          .total {
-            margin: 0 0 10px 0;
-            width: 100%;
-            float: none;
-          }
-          .breakdown {
-            padding: 0;
-            width: 100%;
-            float: none;
-          }
+          padding: 20px 15%;
         }
-      }
-      .toggle-fullscreen {
-        display: none;
       }
     }
   }
@@ -478,9 +445,21 @@ section {
   html {
     font-size: 100%;
   }
+  body {
+    margin: 0;
+  }
   section {
+    &.column-third {
+      float: left;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
     &.controls {
+      width: 50%;
       padding: 40px;
+      z-index: 2;
+      box-shadow: $shadow-light;
       .dice-form {
         label {
           width: 70px;
@@ -499,7 +478,10 @@ section {
       }
     }
     &.formulas {
-      padding: 30px 0;
+      width: 50%;
+      padding: 30px 0 300px 0;
+      z-index: 1;
+      box-shadow: $shadow-dark;
       .list {
         .saved-formula {
           padding: 10px 40px;
@@ -507,9 +489,13 @@ section {
       }
     }
     &.results {
+      width: 50%;
+      right: 0;
+      height: 150px;
+      z-index: 3;
       .list {
         p {
-          padding: 40px;
+          padding: 20px 40px;
         }
       }
     }
@@ -518,6 +504,13 @@ section {
 
 @media (min-width: 1000px) {
   section {
+    &.column-third {
+      width: 33.3333333333%;
+      float: left;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
     &.controls {
       padding: 60px;
       .dice-form {
@@ -535,15 +528,11 @@ section {
       }
     }
     &.results {
+      padding: 50px 0;
+      bottom: inherit;
       .list {
         p {
-          padding: 40px 60px;
-          &:first-child {
-            padding-top: 60px;
-          }
-          &:last-child {
-            padding-bottom: 60px;
-          }
+          padding: 10px 60px;
           .total {
             margin: 0;
             width: 22%;
@@ -554,6 +543,9 @@ section {
             float: right;
           }
         }
+      }
+      .toggle-fullscreen {
+        display: none;
       }
     }
   }
