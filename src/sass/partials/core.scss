@@ -14,7 +14,7 @@ html {
 
 ::selection {
   color: $white;
-  background: $magenta;
+  background: $primary-color;
 }
 
 body {
@@ -143,11 +143,11 @@ section {
         &:focus,
         &.active {
           .diceRing {
-            border-color: $magenta;
+            border-color: $primary-color;
             background-color: $white;
             [class^="diceIcon-"],
             [class*=" diceIcon-"] {
-              color: $magenta;
+              color: $primary-color;
             }
           }
         }
@@ -204,7 +204,7 @@ section {
             height: inherit;
             transition: border $transition-ease-medium;
             &:focus {
-              border-color: $magenta;
+              border-color: $primary-color;
             }
           }
         }
@@ -310,14 +310,14 @@ section {
           animation: flash-dark ease-out 0.5s;
           animation-iteration-count: 1;
           .total {
-            border-color: $magenta;
+            border-color: $primary-color;
             border-width: 2px;
             color: $white;
           }
           .breakdown {
             color: $gray-10;
             .strike {
-              color: $magenta;
+              color: $primary-color;
             }
           }
         }

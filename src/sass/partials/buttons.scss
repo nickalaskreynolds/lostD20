@@ -46,28 +46,28 @@ button {
   }
   &.button-primary {
     color: $white;
-    background-color: $magenta;
-    border-color: $magenta-dark;
+    background-color: $primary-color;
+    border-color: $primary-color-dark;
     &:focus {
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
       text-decoration: none;
       color: $white;
     }
     &:hover,
     &.active {
       color: $white;
-      background-color: $magenta-dark;
-      border-color: $magenta-dark;
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
       text-decoration: none;
     }
     &.active {
       &:focus {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
     &:active {
       color: $white;
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
     }
   }
   &.button-secondary {
@@ -81,18 +81,18 @@ button {
     &:hover,
     &.active {
       color: $white;
-      background-color: $magenta-dark;
-      border-color: $magenta-dark;
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
       text-decoration: none;
     }
     &.active {
       &:focus {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
     &:active {
       color: $white;
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
     }
     &.button-dark-background {
       background-color: $gray-02;
@@ -102,10 +102,10 @@ button {
       }
       &:hover,
       &.active {
-        background-color: $magenta-dark;
+        background-color: $primary-color-dark;
       }
       &:active {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
   }
