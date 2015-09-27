@@ -42,10 +42,6 @@ function diceRollerama() {
   var utilities_clearAll = e(".utilities .clear-all");
   // snack bar
   var element_snacks = e(".snacks");
-  // var element_snackBar = e(".snack-bar");
-  // var element_snackBar_p = e(".snack-bar p");
-  // var element_snackBar_undo = e(".snack-bar .undo");
-  // var element_snackBar_clear = e(".snack-bar .clear");
 
   // get element by class or id
   function e(selector) {
@@ -144,32 +140,6 @@ function diceRollerama() {
     var savedFormula = getClosest(element, ".saved-formula");
     savedFormula.dataset.rollName = element.value;
   };
-
-  // // show snack bar
-  // function snackBarShow() {
-  //   addClass(element_snackBar, "active");
-  //   delayFunction(snackBarHide, 4000);
-  // };
-
-  // // hide snack bar
-  // function snackBarHide() {
-  //   removeClass(element_snackBar, "active");
-  //   clearTimeout(delayFunction)
-  // };
-
-  // // snack bar message
-  // function snackBarMessage(message) {
-  //   element_snackBar_p.innerHTML = message;
-  // };
-
-  // // snack bar message
-  // function snackBarUndo(element, timeoutCancel) {
-  //   console.log(element);
-  //   console.log(timeoutCancel);
-  //   // var formulaToSave = getClosest(element, ".saved-formula");
-  //   // removeClass(formulaToSave, "to-be-deleted");
-  //   // removeClass(element_snackBar, "active");
-  // };
 
   // roll current settings/formula
   function rollCurrentFormula(numberOfDice, whichDice, bonusModifier, rollName) {
@@ -638,11 +608,6 @@ function diceRollerama() {
     rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-history", element_resultHistory_list);
   }, false);
-
-  // snack bar clear
-  // element_snackBar_clear.addEventListener("click", function() {
-  //   snackBarHide();
-  // }, false);
 
   // utilities
   utilities_toggleDropLowest.addEventListener("click", function() {
