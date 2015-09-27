@@ -399,7 +399,7 @@ function diceRollerama() {
         '<section id="snack-' + timestamp + '" class="snack-bar" data-roll-name="' + readSaved_name + '" data-ammount-of-dice="' + readSaved_amountOfDice + '" data-dice="' + readSaved_diceSides + '" data-ammount-of-bonus="' + readSaved_amountOfBonus +'">'
         + '<div class="row">'
           + '<div class="col-6">'
-            + '<p class="message">' + readSaved_name + ' deleted</p>'
+            + '<p class="message">' + readSaved_name + ' removed.</p>'
           + '</div>'
           + '<div class="col-6">'
             + '<a href="javascript:void(0)" class="button button-secondary button-dark-background clear">'
@@ -410,19 +410,34 @@ function diceRollerama() {
         + '</div>'
       + '</section>';
     element_snacks.innerHTML = snackPrompt + element_snacks.innerHTML;
+    var newSnackBar = e("#snack-" + timestamp);
+    var reveal = function() {
+      addClass(newSnackBar, "reveal");
+    };
+    delayFunction(reveal, 10);
     addListenerTo_snackBars();
+    // clear snack bars
     var autoClearSnackBar = function() {
       snackBarToClear = e("#snack-" + timestamp);
-      console.log(snackBarToClear);
-      snackBarToClear.remove();
+      // if the snack bar hasn't been dismised or undone
+      if (snackBarToClear) {
+        clearSackBar(snackBarToClear);
+      };
     };
     delayFunction(autoClearSnackBar, 6000);
   };
 
   function clearSackBar(element) {
     var snackBar = getClosest(element, ".snack-bar");
-    snackBar.remove();
-  }
+    var removeReveal = function() {
+      removeClass(snackBar, "reveal");
+    };
+    delayFunction(removeReveal, 10);
+    var deleteSackBar = function() {
+      snackBar.remove();
+    };
+    delayFunction(deleteSackBar, 310);
+  };
 
   function undoSackBar(element) {
     var snackBar = getClosest(element, ".snack-bar");
@@ -431,8 +446,8 @@ function diceRollerama() {
     var readSaved_diceSides = parseInt(snackBar.dataset.dice, 10);
     var readSaved_amountOfBonus = parseInt(snackBar.dataset.ammountOfBonus, 10);
     saveCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
-    snackBar.remove();
-  }
+    clearSackBar(element);
+  };
 
   // clear all
   function clearAllFields() {

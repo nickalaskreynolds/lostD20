@@ -266,7 +266,7 @@ section {
     width: 100%;
     z-index: 3;
     overflow-y: auto;
-    box-shadow: $shadow-dark-inset;
+    box-shadow: $shadow-large-inset;
     transition: all $transition-ease-medium;
     .list {
       p {
@@ -375,43 +375,42 @@ section {
   }
   &.snacks {
     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    width: 70%;
-    transform: translateX(-50%);
+    left: 0;
+    bottom: 0;
+    width: 100%;
     z-index: 4;
     .snack-bar {
       background-color: $gray-02;
-      padding: 10px;
-      margin: 0 0 10px 0;
+      border-bottom: 1px solid $gray-03;
+      padding: 0 10px;
+      margin: 0;
       box-sizing: border-box;
       width: 100%;
-      box-shadow: $shadow-light;
-      border-radius: $global-radius;
-      transition: all $transition-ease-medium;
-      &:last-child {
-        margin: 0;
-      }
+      opacity: 0;
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      box-shadow: $shadow-medium;
+      transition: height $transition-ease-medium, opacity $transition-ease-medium, padding $transition-ease-medium;
       p {
         color: $white;
         line-height: 1.5rem;
         margin: 6px 10px;
-        // font-size: 0.8rem;
       }
       .button {
         margin: 0 0 0 5px;
-        padding: 3px 8px;
-        // font-size: 0.8rem;
         float: right;
         display: inline-block;
         [class^="icon-"],
-        [class*=" icon-"] {
-          // font-size: 1rem;
-        }
+        [class*=" icon-"] {}
       }
-      &.active {
-        bottom: 10px;
+      &:first-child {
+        margin: 0;
+      }
+      &.reveal {
+        padding: 10px;
         opacity: 1;
+        height: 53px;
       }
     }
   }
@@ -441,6 +440,17 @@ section {
         }
       }
     }
+    &.snacks {
+      width: 70%;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      .snack-bar {
+        border: 0;
+        margin: 5px 0 0 0;
+        border-radius: $global-radius;
+      }
+    }
   }
 }
 
@@ -456,6 +466,7 @@ section {
     margin-bottom: 300px;
   }
   section {
+    &.column-third {}
     &.controls {
       padding: 30px 15%;
       z-index: 2;
@@ -493,7 +504,7 @@ section {
       bottom: -150px;
       right: 0;
       height: 150px;
-      box-shadow: $shadow-dark-inset;
+      box-shadow: $shadow-large-inset;
       .list {
         p {
           padding: 20px 15%;
@@ -521,7 +532,7 @@ section {
       width: 50%;
       padding: 40px;
       z-index: 2;
-      box-shadow: $shadow-light;
+      box-shadow: $shadow-small;
       .dice-form {
         label {
           width: 70px;
@@ -543,7 +554,7 @@ section {
       width: 50%;
       padding: 30px 0 300px 0;
       z-index: 1;
-      box-shadow: $shadow-dark;
+      box-shadow: $shadow-large;
       .list {
         .saved-formula {
           padding: 10px 40px;
@@ -612,6 +623,14 @@ section {
       }
       .toggle-fullscreen {
         display: none;
+      }
+    }
+    &.snacks {
+      width: 50%;
+      left: 20px;
+      transform: none;
+      .snack-bar {
+        margin: 10px 0 0 0;
       }
     }
   }
