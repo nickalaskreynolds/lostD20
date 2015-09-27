@@ -188,8 +188,8 @@ section {
         overflow: hidden;
         transform: scale(1);
         transition: height $transition-ease-medium, padding $transition-ease-medium;
-        animation: flash-light ease-out 0.5s;
-        animation-iteration-count: 1;
+        // animation: flash-light ease-out 0.5s;
+        // animation-iteration-count: 1;
         .name {
           position: relative;
           z-index: 1;
@@ -226,12 +226,6 @@ section {
           line-height: 2rem;
           margin: 5px 0 0 0;
           color: $gray-08;
-        }
-        &.to-be-deleted {
-          background-color: $gray-13;
-          // height: 0;
-          // padding-top: 0;
-          // padding-bottom: 0;
         }
         &.moving-up {
           transform: translateY(-100%);
