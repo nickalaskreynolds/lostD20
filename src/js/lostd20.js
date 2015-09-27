@@ -40,6 +40,11 @@ function diceRollerama() {
   var utilities_toggleFullscreen = e(".utilities .toggle-fullscreen");
   var utilities_toggleFullscreen_icon = e(".utilities .toggle-fullscreen span");
   var utilities_clearAll = e(".utilities .clear-all");
+  // snack bar
+  var element_snackBar = e(".snack-bar");
+  var element_snackBar_p = e(".snack-bar p");
+  var element_snackBar_undo = e(".snack-bar .undo");
+  var element_snackBar_clear = e(".snack-bar .clear");
 
   // get element by class or id
   function e(selector) {
@@ -146,7 +151,7 @@ function diceRollerama() {
             + '</div>'
           + '</div>'
           + '<div class="col-3">'
-            + '<a href="javascript:void(0)" class="button button-primary roll" tabindex="1">Roll</a>'
+            + '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="1">Roll</a>'
           + '</div>'
         + '</div>'
       + '</div>'
@@ -240,7 +245,10 @@ function diceRollerama() {
   // remove saved formula
   function clearSavedFormula(element) {
     var toRemove = getClosest(element, ".saved-formula");
-    toRemove.parentNode.removeChild(toRemove);
+    var removeFormula = function(argument) {
+      toRemove.parentNode.removeChild(toRemove);
+    };
+    delayFunction(removeFormula, 3000);
   };
 
   // // remove saved formula
@@ -547,6 +555,11 @@ function diceRollerama() {
   element_goRoll.addEventListener("click", function() {
     roll(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-history", element_resultHistory_list);
+  }, false);
+
+  // snack bar
+  element_snackBar_clear.addEventListener("click", function() {
+    removeClass(element_snackBar, "active")
   }, false);
 
   // utilities

@@ -18,6 +18,11 @@ button {
   border-radius: $global-radius;
   transition: all $transition-ease-fast;
   display: inline-block;
+  &.button-block {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
   [class^="icon-"],
   [class*=" icon-"] {
     font-size: 1.3rem;
@@ -89,8 +94,9 @@ button {
       color: $white;
       background-color: $magenta-light;
     }
-    &.dark-background {
+    &.button-dark-background {
       background-color: $gray-02;
+      color: $white;
       &:focus {
         background-color: $gray-03;
       }

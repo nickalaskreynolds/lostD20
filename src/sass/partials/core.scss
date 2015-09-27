@@ -184,11 +184,6 @@ section {
         box-sizing: border-box;
         animation: flash-light ease-out 0.5s;
         animation-iteration-count: 1;
-        .roll {
-          width: 100%;
-          padding-left: 0;
-          padding-right: 0;
-        }
         .name {
           position: relative;
           z-index: 1;
@@ -337,7 +332,6 @@ section {
       position: fixed;
       bottom: -150px;
       right: 10px;
-      color: $white;
       transition: all $transition-ease-medium;
       display: block;
       .expand {
@@ -365,6 +359,42 @@ section {
     &.fullsize {
       height: 100%;
       bottom: 0;
+    }
+  }
+  &.snack-bar {
+    background-color: $gray-02;
+    padding: 10px;
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    width: 70%;
+    box-sizing: border-box;
+    z-index: 4;
+    opacity: 0;
+    transform: translateX(-50%);
+    box-shadow: $shadow-light;
+    border-radius: $global-radius;
+    transition: all $transition-ease-medium;
+    p {
+      color: $white;
+      line-height: 1.5rem;
+      margin: 6px 10px;
+      font-size: 0.8rem;
+    }
+    .button {
+      font-size: 0.8rem;
+      margin: 0 0 0 5px;
+      padding: 3px 8px;
+      float: right;
+      display: inline-block;
+      [class^="icon-"],
+      [class*=" icon-"] {
+        font-size: 1rem;
+      }
+    }
+    &.active {
+      bottom: 10px;
+      opacity: 1;
     }
   }
 }
@@ -410,7 +440,7 @@ section {
   section {
     &.controls {
       padding: 30px 15%;
-      z-index: 3;
+      z-index: 2;
       .dice-form {
         label {
           width: 60px;
@@ -430,7 +460,7 @@ section {
       }
     }
     &.formulas {
-      z-index: 2;
+      z-index: 1;
       .list {
         .saved-formula {
           padding: 10px 15%;
@@ -527,6 +557,7 @@ section {
     }
     &.controls {
       padding: 60px;
+      z-index: 3;
       .dice-form {
         label {
           width: 80px;
@@ -535,6 +566,7 @@ section {
     }
     &.formulas {
       padding: 50px 0;
+      z-index: 2;
       .list {
         .saved-formula {
           padding: 10px 60px;
@@ -544,6 +576,8 @@ section {
     &.results {
       padding: 50px 0;
       bottom: inherit;
+      box-shadow: none;
+      z-index: 1;
       .list {
         p {
           padding: 10px 60px;
