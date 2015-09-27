@@ -376,6 +376,9 @@ section {
       bottom: 0;
     }
   }
+}
+
+aside {
   &.snacks {
     position: fixed;
     left: 0;
@@ -445,6 +448,8 @@ section {
         }
       }
     }
+  }
+  aside {
     &.snacks {
       width: 70%;
       left: 50%;
@@ -638,6 +643,8 @@ section {
         display: none;
       }
     }
+  }
+  aside {
     &.snacks {
       width: 50%;
       left: 20px;

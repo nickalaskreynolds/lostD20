@@ -366,7 +366,7 @@ function diceRollerama() {
     localStoreAdd("saved-formulas", element_savedFormulas_list);
     var timestamp = Date.now();
     var snackPrompt = 
-        '<section id="snack-' + timestamp + '" class="snack-bar" data-roll-name="' + readSaved_name + '" data-ammount-of-dice="' + readSaved_amountOfDice + '" data-dice="' + readSaved_diceSides + '" data-ammount-of-bonus="' + readSaved_amountOfBonus +'">'
+        '<div id="snack-' + timestamp + '" class="snack-bar" data-roll-name="' + readSaved_name + '" data-ammount-of-dice="' + readSaved_amountOfDice + '" data-dice="' + readSaved_diceSides + '" data-ammount-of-bonus="' + readSaved_amountOfBonus +'">'
         + '<div class="row">'
           + '<div class="col-6">'
             + '<p class="message">' + readSaved_name + ' removed.</p>'
@@ -378,7 +378,7 @@ function diceRollerama() {
             + '<a href="javascript:void(0)" class="button button-secondary button-dark-background undo">Undo</a>'
           + '</div>'
         + '</div>'
-      + '</section>';
+      + '</div>';
     element_snacks.innerHTML = snackPrompt + element_snacks.innerHTML;
     var newSnackBar = e("#snack-" + timestamp);
     var reveal = function() {
