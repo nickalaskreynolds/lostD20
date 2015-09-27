@@ -392,11 +392,11 @@ function diceRollerama() {
     var readSaved_amountOfDice = parseInt(savedFormula.dataset.ammountOfDice, 10);
     var readSaved_diceSides = parseInt(savedFormula.dataset.dice, 10);
     var readSaved_amountOfBonus = parseInt(savedFormula.dataset.ammountOfBonus, 10);
-    localStoreAdd("saved-formulas", element_savedFormulas_list);
     savedFormula.remove();
+    localStoreAdd("saved-formulas", element_savedFormulas_list);
     var timestamp = Date.now();
     var snackPrompt = 
-        '<section class="snack-bar ' + timestamp + '" data-roll-name="' + readSaved_name + '" data-ammount-of-dice="' + readSaved_amountOfDice + '" data-dice="' + readSaved_diceSides + '" data-ammount-of-bonus="' + readSaved_amountOfBonus +'">'
+        '<section id="snack-' + timestamp + '" class="snack-bar" data-roll-name="' + readSaved_name + '" data-ammount-of-dice="' + readSaved_amountOfDice + '" data-dice="' + readSaved_diceSides + '" data-ammount-of-bonus="' + readSaved_amountOfBonus +'">'
         + '<div class="row">'
           + '<div class="col-6">'
             + '<p class="message">' + readSaved_name + ' deleted</p>'
@@ -411,12 +411,12 @@ function diceRollerama() {
       + '</section>';
     element_snacks.innerHTML = snackPrompt + element_snacks.innerHTML;
     addListenerTo_snackBars();
-    var autoClearSnackBar = function (id) {
-      snackBarToClear = document.querySelector("." + id);
+    var autoClearSnackBar = function() {
+      snackBarToClear = e("#snack-" + timestamp);
       console.log(snackBarToClear);
-      // snackBar.remove();
+      snackBarToClear.remove();
     };
-    autoClearSnackBar(timestamp);
+    delayFunction(autoClearSnackBar, 6000);
   };
 
   function clearSackBar(element) {
