@@ -53,18 +53,18 @@ p {
 ------------------------------------------------- */
 
 a {
-  color: $magenta;
+  color: $primary-color;
   text-decoration: none;
   &:visited {
-    color: $magenta;
+    color: $primary-color;
   }
   &:hover,
   &:focus {
-    color: $magenta-dark;
+    color: $primary-color-dark;
     text-decoration: underline;
   }
   &:active {
-    color: $magenta-light;
+    color: $primary-color-light;
   }
 }
 
@@ -83,7 +83,7 @@ input {
     padding: 6px 0;
     background-color: $white;
     border: 0;
-    border-bottom: 2px solid $magenta;
+    border-bottom: 2px solid $primary-color;
     box-shadow: none;
     box-sizing: border-box;
   }
@@ -98,7 +98,7 @@ input {
   &[type="url"]:focus,
   &[type="password"]:focus {
     outline: 0;
-    border-color: $magenta-light;
+    border-color: $primary-color-light;
   }
 }
 

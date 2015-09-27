@@ -14,7 +14,7 @@ html {
 
 ::selection {
   color: $white;
-  background: $magenta;
+  background: $primary-color;
 }
 
 body {
@@ -143,11 +143,11 @@ section {
         &:focus,
         &.active {
           .diceRing {
-            border-color: $magenta;
+            border-color: $primary-color;
             background-color: $white;
             [class^="diceIcon-"],
             [class*=" diceIcon-"] {
-              color: $magenta;
+              color: $primary-color;
             }
           }
         }
@@ -174,21 +174,22 @@ section {
   }
   &.formulas {
     background-color: $white;
+    padding: 0;
     z-index: 1;
     user-select: none;
     .list {
       .saved-formula {
+        background-color: transparent;
         position: relative;
-        padding: 10px 40px;
+        padding: 10px 30px;
         width: 100%;
         box-sizing: border-box;
+        opacity: 1;
+        overflow: hidden;
+        transform: scale(1);
+        transition: height $transition-ease-medium, padding $transition-ease-medium;
         animation: flash-light ease-out 0.5s;
         animation-iteration-count: 1;
-        .roll {
-          width: 100%;
-          padding-left: 0;
-          padding-right: 0;
-        }
         .name {
           position: relative;
           z-index: 1;
@@ -203,7 +204,7 @@ section {
             height: inherit;
             transition: border $transition-ease-medium;
             &:focus {
-              border-color: $magenta;
+              border-color: $primary-color;
             }
           }
         }
@@ -225,6 +226,12 @@ section {
           line-height: 2rem;
           margin: 5px 0 0 0;
           color: $gray-08;
+        }
+        &.to-be-deleted {
+          background-color: $gray-13;
+          // height: 0;
+          // padding-top: 0;
+          // padding-bottom: 0;
         }
         &.moving-up {
           transform: translateY(-100%);
@@ -253,18 +260,20 @@ section {
   }
   &.results {
     background-color: $gray-03;
+    padding: 10px 0;
     position: fixed;
     bottom: -150px;
     height: 150px;
     width: 100%;
     z-index: 3;
     overflow-y: auto;
-    box-shadow: $shadow-dark-inset;
+    box-shadow: $shadow-large-inset;
     transition: all $transition-ease-medium;
     .list {
+      transition: all $transition-ease-medium;
       p {
         margin: 0;
-        padding: 20px 30px;
+        padding: 10px 30px;
         border-bottom: 1px solid $gray-01;
         color: $gray-06;
         width: 100%;
@@ -303,14 +312,14 @@ section {
           animation: flash-dark ease-out 0.5s;
           animation-iteration-count: 1;
           .total {
-            border-color: $magenta;
+            border-color: $primary-color;
             border-width: 2px;
             color: $white;
           }
           .breakdown {
             color: $gray-10;
             .strike {
-              color: $magenta;
+              color: $primary-color;
             }
           }
         }
@@ -336,8 +345,7 @@ section {
     .toggle-fullscreen {
       position: fixed;
       bottom: -150px;
-      right: 10px;
-      color: $white;
+      right: 30px;
       transition: all $transition-ease-medium;
       display: block;
       .expand {
@@ -359,12 +367,57 @@ section {
       background-color: $gray-02;
       bottom: 0;
       .toggle-fullscreen {
-        bottom: 10px;
+        bottom: 30px;
       }
     }
     &.fullsize {
+      padding: 20px 0;
       height: 100%;
       bottom: 0;
+    }
+  }
+}
+
+aside {
+  &.snacks {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 4;
+    .snack-bar {
+      background-color: $gray-02;
+      border-bottom: 1px solid $gray-03;
+      padding: 0 10px;
+      margin: 0;
+      box-sizing: border-box;
+      width: 100%;
+      opacity: 0;
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      box-shadow: $shadow-medium;
+      transition: height $transition-ease-medium, opacity $transition-ease-medium, padding $transition-ease-medium;
+      p {
+        color: $white;
+        line-height: 1.5rem;
+        margin: 6px 10px;
+      }
+      .button {
+        margin: 0 0 0 5px;
+        float: right;
+        display: inline-block;
+        [class^="icon-"],
+        [class*=" icon-"] {}
+      }
+      &:first-child {
+        margin: 0;
+      }
+      &.reveal {
+        padding: 10px;
+        opacity: 1;
+        height: 53px;
+      }
     }
   }
 }
@@ -380,6 +433,7 @@ section {
       padding: 30px 15%;
     }
     &.formulas {
+      padding: 30px 0;
       .list {
         .saved-formula {
           padding: 10px 15%;
@@ -387,10 +441,24 @@ section {
       }
     }
     &.results {
+      padding: 30px 0;
       .list {
         p {
           padding: 20px 15%;
         }
+      }
+    }
+  }
+  aside {
+    &.snacks {
+      width: 70%;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      .snack-bar {
+        border: 0;
+        margin: 5px 0 0 0;
+        border-radius: $global-radius;
       }
     }
   }
@@ -400,17 +468,14 @@ section {
   html {
     font-size: 95%;
   }
-  html,
-  body {
-    height: 100%;
-  }
   body {
     margin-bottom: 300px;
   }
   section {
+    &.column-third {}
     &.controls {
-      padding: 30px 15%;
-      z-index: 3;
+      padding: 40px 15%;
+      z-index: 2;
       .dice-form {
         label {
           width: 60px;
@@ -430,7 +495,8 @@ section {
       }
     }
     &.formulas {
-      z-index: 2;
+      padding: 40px 0;
+      z-index: 1;
       .list {
         .saved-formula {
           padding: 10px 15%;
@@ -438,18 +504,21 @@ section {
       }
     }
     &.results {
+      padding: 10px 0;
       z-index: 3;
       position: fixed;
       width: 100%;
-      overflow-y: visible;
       bottom: -150px;
       right: 0;
       height: 150px;
-      box-shadow: $shadow-dark-inset;
+      box-shadow: $shadow-large-inset;
       .list {
         p {
           padding: 20px 15%;
         }
+      }
+      &.fullsize {
+        padding: 20px 0;
       }
     }
   }
@@ -458,6 +527,10 @@ section {
 @media (min-width: 900px) {
   html {
     font-size: 100%;
+  }
+  html,
+  body {
+    height: 100%;
   }
   body {
     margin: 0;
@@ -473,7 +546,7 @@ section {
       width: 50%;
       padding: 40px;
       z-index: 2;
-      box-shadow: $shadow-light;
+      box-shadow: $shadow-small;
       .dice-form {
         label {
           width: 70px;
@@ -495,14 +568,15 @@ section {
       width: 50%;
       padding: 30px 0 300px 0;
       z-index: 1;
-      box-shadow: $shadow-dark;
+      box-shadow: $shadow-large;
       .list {
         .saved-formula {
-          padding: 10px 40px;
+          padding: 20px 40px;
         }
       }
     }
     &.results {
+      padding: 10px 0;
       width: 50%;
       right: 0;
       height: 150px;
@@ -511,6 +585,9 @@ section {
         p {
           padding: 20px 40px;
         }
+      }
+      &.fullsize {
+        padding: 30px 0;
       }
     }
   }
@@ -527,6 +604,7 @@ section {
     }
     &.controls {
       padding: 60px;
+      z-index: 3;
       .dice-form {
         label {
           width: 80px;
@@ -534,19 +612,22 @@ section {
       }
     }
     &.formulas {
-      padding: 50px 0;
+      padding: 40px 0;
+      z-index: 2;
       .list {
         .saved-formula {
-          padding: 10px 60px;
+          padding: 20px 60px;
         }
       }
     }
     &.results {
-      padding: 50px 0;
+      padding: 40px 0;
       bottom: inherit;
+      box-shadow: none;
+      z-index: 1;
       .list {
         p {
-          padding: 10px 60px;
+          padding: 20px 60px;
           .total {
             margin: 0;
             width: 22%;
@@ -560,6 +641,16 @@ section {
       }
       .toggle-fullscreen {
         display: none;
+      }
+    }
+  }
+  aside {
+    &.snacks {
+      width: 50%;
+      left: 20px;
+      transform: none;
+      .snack-bar {
+        margin: 10px 0 0 0;
       }
     }
   }

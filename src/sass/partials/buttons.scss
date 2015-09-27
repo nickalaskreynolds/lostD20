@@ -18,6 +18,11 @@ button {
   border-radius: $global-radius;
   transition: all $transition-ease-fast;
   display: inline-block;
+  &.button-block {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
   [class^="icon-"],
   [class*=" icon-"] {
     font-size: 1.3rem;
@@ -41,28 +46,28 @@ button {
   }
   &.button-primary {
     color: $white;
-    background-color: $magenta;
-    border-color: $magenta-dark;
+    background-color: $primary-color;
+    border-color: $primary-color-dark;
     &:focus {
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
       text-decoration: none;
       color: $white;
     }
     &:hover,
     &.active {
       color: $white;
-      background-color: $magenta-dark;
-      border-color: $magenta-dark;
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
       text-decoration: none;
     }
     &.active {
       &:focus {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
     &:active {
       color: $white;
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
     }
   }
   &.button-secondary {
@@ -76,30 +81,31 @@ button {
     &:hover,
     &.active {
       color: $white;
-      background-color: $magenta-dark;
-      border-color: $magenta-dark;
+      background-color: $primary-color-dark;
+      border-color: $primary-color-dark;
       text-decoration: none;
     }
     &.active {
       &:focus {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
     &:active {
       color: $white;
-      background-color: $magenta-light;
+      background-color: $primary-color-light;
     }
-    &.dark-background {
+    &.button-dark-background {
       background-color: $gray-02;
+      color: $white;
       &:focus {
         background-color: $gray-03;
       }
       &:hover,
       &.active {
-        background-color: $magenta-dark;
+        background-color: $primary-color-dark;
       }
       &:active {
-        background-color: $magenta-light;
+        background-color: $primary-color-light;
       }
     }
   }
