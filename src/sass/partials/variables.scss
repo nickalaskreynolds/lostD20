@@ -11,8 +11,8 @@ $primary-color-dark:                  #cc0044;
 $primary-color-light:                 #ff3276;
 
 $secondary-color:                     #003c4f;
-$secondary-color-dark:                #00303f;
-$secondary-color-light:               #326272;
+$secondary-color-dark:                #003242;
+$secondary-color-light:               #086482;
 
 $gray-01:                             #222222; // dark
 $gray-02:                             #343434;
@@ -80,4 +80,6 @@ $shadow-large-inset:                inset 0 1px 1px -1px rgba(0, 0, 0, 0.5),
 /* radius
 ------------------------------------------------- */
 
-$global-radius:                      3px;
+$border-radius-small:                       3px;
+$border-radius-medium:                      6px;
+$border-radius-large:                       10px;

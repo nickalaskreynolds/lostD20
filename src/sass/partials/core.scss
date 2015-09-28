@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  background-color: $white;
+    background-color: $secondary-color-dark;
   margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
@@ -39,7 +39,7 @@ section {
     transition: width $transition-ease-medium, padding $transition-ease-medium;
   }
   &.controls {
-    background-color: $white;
+    background-color: $secondary-color;
     padding: 30px;
     z-index: 2;
     text-align: center;
@@ -54,12 +54,12 @@ section {
         &.of-bonus {
           input {
             margin: 0 0 5px 0;
-            padding: 0 0 1rem 0;
+            padding: 1rem 0;
             width: 100%;
             text-align: center;
             font-size: 2rem;
-            line-height: 3rem;
-            height: 3rem;
+            line-height: 4rem;
+            height: 4rem;
             font-family: $open-sans-condensed-light;
           }
           .clear {
@@ -88,7 +88,7 @@ section {
       text-align: center;
       label {
         display: inline-block;
-        width: 60px;
+        width: 70px;
         padding: 0;
         margin: 5px 0;
         line-height: 0;
@@ -109,16 +109,16 @@ section {
           display: none;
         }
         .diceRing {
-          background-color: $gray-01;
+            background-color: transparent;
           position: relative;
           display: block;
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           margin: 0 auto;
           box-sizing: border-box;
           transition: all $transition-ease-fast;
           transform: scale(1);
-          border: 2px solid transparent;
+          border: 2px solid $primary-color;
           border-radius: 50%;
           z-index: 2;
           [class^="diceIcon-"],
@@ -126,10 +126,10 @@ section {
             position: absolute;
             top: 0;
             left: 0;
-            width: 32px;
-            height: 32px;
-            font-size: 2em;
-            line-height: 32px;
+            width: 36px;
+            height: 36px;
+            font-size: 2.3em;
+            line-height: 36px;
             color: $white;
             transition: all $transition-ease-fast;
             text-align: center;
@@ -137,17 +137,16 @@ section {
         }
         &:hover {
           .diceRing {
-            background-color: $gray-04;
+              border-color: $white;
           }
         }
         &:focus,
         &.active {
           .diceRing {
-            border-color: $primary-color;
-            background-color: $white;
+            border-color: $white;
             [class^="diceIcon-"],
             [class*=" diceIcon-"] {
-              color: $primary-color;
+              color: $white;
             }
           }
         }
@@ -173,7 +172,6 @@ section {
     }
   }
   &.formulas {
-    background-color: $white;
     padding: 0;
     z-index: 1;
     user-select: none;
@@ -194,18 +192,11 @@ section {
           position: relative;
           z-index: 1;
           input {
-            background-color: transparent;
-            border-bottom: 2px solid $gray-13;
             margin: 0;
             width: 100%;
-            padding: 0 0 5px 0;
             font-size: 1.1rem;
             line-height: 2rem;
             height: inherit;
-            transition: border $transition-ease-medium;
-            &:focus {
-              border-color: $primary-color;
-            }
           }
         }
         .controls {
@@ -276,7 +267,7 @@ section {
         .total {
           margin: 0;
           border: 1px solid $gray-01;
-          border-radius: $global-radius;
+          border-radius: $border-radius-small;
           color: $gray-10;
           display: inline-block;
           text-align: center;
@@ -452,7 +443,7 @@ aside {
       transform: translateX(-50%);
       .snack-bar {
         border: 0;
-        border-radius: $global-radius;
+        border-radius: $border-radius-small;
         &.reveal {
           margin: 5px 0 0 0;
         }
@@ -543,7 +534,7 @@ aside {
       width: 50%;
       padding: 40px;
       z-index: 2;
-      box-shadow: $shadow-small;
+      box-shadow: $shadow-medium;
       .dice-form {
         label {
           width: 70px;

@@ -76,29 +76,31 @@ input {
   &[type="tel"],
   &[type="url"],
   &[type="password"] {
+    background-color: transparent;
     height: 2rem;
     font-size: 0.9rem;
     font-family: $open-sans-semi-bold;
     line-height: 2rem;
     padding: 6px 0;
-    background-color: $white;
+    color: $white;
     border: 0;
-    border-bottom: 2px solid $primary-color;
+    border-bottom: 2px solid $secondary-color-light;
     box-shadow: none;
     box-sizing: border-box;
-  }
-}
-
-input {
-  &[type="email"]:focus,
-  &[type="number"]:focus,
-  &[type="search"]:focus,
-  &[type="text"]:focus,
-  &[type="tel"]:focus,
-  &[type="url"]:focus,
-  &[type="password"]:focus {
-    outline: 0;
-    border-color: $primary-color-light;
+    transition: padding $transition-ease-medium, border $transition-ease-medium, background-color $transition-ease-medium;
+    &:hover {
+      border-color: $primary-color;
+    }
+    &:focus {
+      border-color: $primary-color;
+      padding-right: 10px;
+      padding-left: 10px;
+      outline: 0;
+      background-color: $secondary-color-light;
+      color: $white;
+      border-radius: $border-radius-small;
+    }
+    &:active {}
   }
 }
 
