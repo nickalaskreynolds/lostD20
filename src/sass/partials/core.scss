@@ -339,7 +339,7 @@ section {
     .toggle-fullscreen {
       position: fixed;
       bottom: -150px;
-      right: 30px;
+      right: 20px;
       transition: all $transition-ease-medium;
       display: block;
       .expand {
@@ -361,7 +361,7 @@ section {
       background-color: $gray-02;
       bottom: 0;
       .toggle-fullscreen {
-        bottom: 30px;
+        bottom: 20px;
       }
     }
     &.fullsize {
@@ -381,17 +381,16 @@ aside {
     z-index: 4;
     .snack-bar {
       background-color: $gray-02;
-      border-bottom: 1px solid $gray-03;
+      border-bottom: 1px solid $gray-01;
       padding: 0 10px;
       margin: 0;
       box-sizing: border-box;
       width: 100%;
-      opacity: 0;
       position: relative;
       height: 0;
       overflow: hidden;
       box-shadow: $shadow-medium;
-      transition: height $transition-ease-medium, opacity $transition-ease-medium, padding $transition-ease-medium;
+      transition: height $transition-ease-medium, margin $transition-ease-medium, padding $transition-ease-medium;
       p {
         color: $white;
         line-height: 1.5rem;
@@ -407,9 +406,11 @@ aside {
       &:first-child {
         margin: 0;
       }
+      &:last-child {
+        border: 0;
+      }
       &.reveal {
         padding: 10px;
-        opacity: 1;
         height: 53px;
       }
     }
@@ -451,8 +452,10 @@ aside {
       transform: translateX(-50%);
       .snack-bar {
         border: 0;
-        margin: 5px 0 0 0;
         border-radius: $global-radius;
+        &.reveal {
+          margin: 5px 0 0 0;
+        }
       }
     }
   }
@@ -644,7 +647,9 @@ aside {
       left: 20px;
       transform: none;
       .snack-bar {
-        margin: 10px 0 0 0;
+        &.reveal {
+          margin: 10px 0 0 0;
+        }
       }
     }
   }

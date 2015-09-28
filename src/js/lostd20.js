@@ -379,7 +379,7 @@ function diceRollerama() {
           + '</div>'
         + '</div>'
       + '</div>';
-    element_snacks.innerHTML = snackPrompt + element_snacks.innerHTML;
+    element_snacks.innerHTML = element_snacks.innerHTML + snackPrompt;
     var newSnackBar = e("#snack-" + timestamp);
     var reveal = function() {
       addClass(newSnackBar, "reveal");
@@ -393,10 +393,16 @@ function diceRollerama() {
       if (snackBarToClear) {
         clearSackBar(snackBarToClear);
       };
+
     };
     delayFunction(autoClearSnackBar, 6000);
+      newSnackBar.addEventListener("mouseover", function() {
+          clearTimeout(delayFunction);
+          console.log("hover");
+        }, false);
   };
 
+  // snack bar clear
   function clearSackBar(element) {
     var snackBar = getClosest(element, ".snack-bar");
     var removeReveal = function() {
@@ -406,9 +412,10 @@ function diceRollerama() {
     var deleteSackBar = function() {
       snackBar.remove();
     };
-    delayFunction(deleteSackBar, 310);
+    delayFunction(deleteSackBar, 500);
   };
 
+  // snack bar undo
   function undoSackBar(element) {
     var snackBar = getClosest(element, ".snack-bar");
     var readSaved_name = snackBar.dataset.rollName;
@@ -419,13 +426,18 @@ function diceRollerama() {
     clearSackBar(element);
   };
 
+  // delay function
+  function delayFunction(functionToDelay, time) {
+    window.setTimeout(functionToDelay, time);
+  };
+
   // clear all
   function clearAllFields() {
     element_resultHistory_list.innerHTML = "";
-    modifiers_plusMinus(0, formula_numberOfBonus_input);
-    modifiers_readAmountOfBonus();
-    modifiers_plusMinus(0, formula_numberOfDice_input);
-    modifiers_readAmountOfDice();
+    // modifiers_plusMinus(0, formula_numberOfBonus_input);
+    // modifiers_readAmountOfBonus();
+    // modifiers_plusMinus(0, formula_numberOfDice_input);
+    // modifiers_readAmountOfDice();
     checkListColumnState();
   };
 
@@ -556,11 +568,6 @@ function diceRollerama() {
         modifiers_plusMinus(-1, whichInputField);
       };
     };
-  };
-
-  // delay function
-  function delayFunction(functionToDelay, time) {
-    window.setTimeout(functionToDelay, time);
   };
 
   // move saved formula up or down
