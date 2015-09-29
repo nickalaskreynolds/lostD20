@@ -81,18 +81,18 @@ button {
     &:hover,
     &.active {
       color: $white;
-      background-color: $primary-color-dark;
-      border-color: $primary-color-dark;
+      background-color: $secondary-color-dark;
+      border-color: $secondary-color-dark;
       text-decoration: none;
     }
     &.active {
       &:focus {
-        background-color: $primary-color-light;
+        background-color: $secondary-color-light;
       }
     }
     &:active {
       color: $white;
-      background-color: $primary-color-light;
+      background-color: $secondary-color-light;
     }
     &.button-dark-background {
       background-color: $gray-02;
@@ -143,4 +143,10 @@ input {
       border-color: $gray-04;
     }
   }
+}
+
+.button,
+button,
+label {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background-color: $secondary-color-dark;
+  background-color: $background-color;
   margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
@@ -26,384 +26,398 @@ body {
   line-height: 1rem;
 }
 
-.button,
-button,
-label {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+.container {
+  padding: 36px 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-section {
-  &.column-third {
-    position: relative;
+.utilities {
+  height: 36px;
+  background-color: $secondary-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: $shadow-small;
+  z-index: 4;
+  .button {
+    border-radius: 0;
+    float: left;
+  }
+}
+
+.column-third {
+  position: relative;
+  box-sizing: border-box;
+  transition: width $transition-ease-medium, padding $transition-ease-medium;
+  .wrapper {
     box-sizing: border-box;
-    transition: width $transition-ease-medium, padding $transition-ease-medium;
   }
-  &.controls {
-    background-color: $secondary-color;
-    padding: 30px;
-    z-index: 2;
+}
+
+.controls {
+  background-color: $background-color;
+  z-index: 2;
+  text-align: center;
+  user-select: none;
+  .number {
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
     text-align: center;
-    user-select: none;
-    .formula {
-      .number {
-        width: 70%;
-        margin: 0 auto;
-        position: relative;
-        text-align: center;
-        &.of-dice,
-        &.of-bonus {
-          input {
-            margin: 0 0 5px 0;
-            padding: 1rem 0;
-            width: 100%;
-            text-align: center;
-            font-size: 2rem;
-            line-height: 4rem;
-            height: 4rem;
-            font-family: $open-sans-condensed-light;
-          }
-          .clear {
-            position: absolute;
-            bottom: 12px;
-            right: 0;
-          }
-        }
-      }
-      .modifiers {
-        text-align: center;
-        .button {
-          padding-left: 15px;
-          padding-right: 15px;
-        }
-      }
-      .go-roll {
-        margin: 20px 0;
-        line-height: 3rem;
-        padding: 0 15%;
-      }
-    }
-    .dice-form {
-      width: 100%;
-      margin: 20px 0;
-      text-align: center;
-      label {
-        display: inline-block;
-        width: 70px;
-        padding: 0;
-        margin: 5px 0;
-        line-height: 0;
-        cursor: pointer;
-        text-align: center;
-        border: 0;
-        outline: none;
-        position: relative;
-        input {
-          opacity: 0;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-        }
-        .label-text {
-          display: none;
-        }
-        .diceRing {
-            background-color: transparent;
-          position: relative;
-          display: block;
-          width: 40px;
-          height: 40px;
-          margin: 0 auto;
-          box-sizing: border-box;
-          transition: all $transition-ease-fast;
-          transform: scale(1);
-          border: 2px solid $primary-color;
-          border-radius: 50%;
-          z-index: 2;
-          [class^="diceIcon-"],
-          [class*=" diceIcon-"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 36px;
-            height: 36px;
-            font-size: 2.3em;
-            line-height: 36px;
-            color: $white;
-            transition: all $transition-ease-fast;
-            text-align: center;
-          }
-        }
-        &:hover {
-          .diceRing {
-              border-color: $white;
-          }
-        }
-        &:focus,
-        &.active {
-          .diceRing {
-            border-color: $white;
-            [class^="diceIcon-"],
-            [class*=" diceIcon-"] {
-              color: $white;
-            }
-          }
-        }
-        &:focus {
-          .diceRing {
-            [class^="diceIcon-"],
-            [class*=" diceIcon-"] {
-              transform: scale(1.7);
-            }
-          }
-        }
-        &.active {
-          .diceRing {
-            transform: scale(1.6);
-          }
-        }
-      }
-    }
-    .utilities {
-      .button {
-        margin: 5px;
-      }
-    }
-  }
-  &.formulas {
-    padding: 0;
-    z-index: 1;
-    user-select: none;
-    .list {
-      .saved-formula {
-        background-color: transparent;
-        position: relative;
-        padding: 10px 30px;
+    &.of-dice,
+    &.of-bonus {
+      input {
+        margin: 0 0 5px 0;
+        padding: 1rem 0;
         width: 100%;
-        box-sizing: border-box;
-        opacity: 1;
-        overflow: hidden;
-        transform: scale(1);
-        transition: height $transition-ease-medium, padding $transition-ease-medium;
-        // animation: flash-light ease-out 0.5s;
-        // animation-iteration-count: 1;
-        .name {
-          position: relative;
-          z-index: 1;
-          input {
-            margin: 0;
-            width: 100%;
-            font-size: 1.1rem;
-            line-height: 2rem;
-            height: inherit;
-          }
-        }
-        .controls {
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          z-index: 2;
-          .button {
-            float: right;
-            margin: 0 5px 0 0;
-            padding: 2px 5px;
-            &:first-child {
-              margin: 0;
-            }
-          }
-        }
-        .formula {
-          line-height: 2rem;
-          margin: 5px 0 0 0;
-          color: $gray-08;
-        }
-        &.moving-up {
-          transform: translateY(-100%);
-          transition: transform $transition-ease-medium;
-        }
-        &.moving-down {
-          transform: translateY(100%);
-          transition: transform $transition-ease-medium;
-        }
-        &:first-child {
-          .controls {
-            .move-up {
-              transform: scale(0);
-            }
-          }
-        }
-        &:last-child {
-          .controls {
-            .move-down {
-              transform: scale(0);
-            }
-          }
-        }
+        text-align: center;
+        font-size: 2rem;
+        line-height: 4rem;
+        height: 4rem;
+        font-family: $open-sans-condensed-light;
+      }
+      .clear {
+        position: absolute;
+        bottom: 12px;
+        right: 0;
       }
     }
   }
-  &.results {
-    background-color: $gray-03;
-    padding: 10px 0;
-    position: fixed;
-    bottom: -150px;
-    height: 150px;
+  .modifiers {
+    text-align: center;
+    .button {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+  .go-roll {
+    margin: 20px 0;
+    line-height: 3rem;
+    padding: 0 15%;
+  }
+  .dice-form {
     width: 100%;
-    z-index: 3;
-    overflow-y: auto;
-    box-shadow: $shadow-large-inset;
-    transition: all $transition-ease-medium;
-    .list {
-      transition: all $transition-ease-medium;
-      p {
-        margin: 0;
-        padding: 10px 30px;
-        border-bottom: 1px solid $gray-01;
-        color: $gray-06;
-        width: 100%;
-        box-sizing: border-box;
-        transition: background-color $transition-ease-medium;
-        .total {
-          margin: 0;
-          border: 1px solid $gray-01;
-          border-radius: $border-radius-small;
-          color: $gray-10;
-          display: inline-block;
-          text-align: center;
-          line-height: 2rem;
-          box-sizing: border-box;
-          width: 22%;
-          float: left;
-        }
-        .breakdown {
-          margin: 3px 0 0 0;
-          line-height: 2rem;
-          width: 72%;
-          float: right;
-          .strike {
-            text-decoration: line-through;
-            color: $gray-03;
-          }
-        }
-        .dice {
-          font-size: 2rem;
-          vertical-align: middle;
-          .icon {
-            line-height: 2rem;
-          }
-        }
-        &:first-child {
-          animation: flash-dark ease-out 0.5s;
-          animation-iteration-count: 1;
-          .total {
-            border-color: $primary-color;
-            border-width: 2px;
-            color: $white;
-          }
-          .breakdown {
-            color: $gray-10;
-            .strike {
-              color: $primary-color;
-            }
-          }
-        }
-        &:last-child {
-          border: 0;
-        }
-        &.critical-20 {
-          .total {
-            background-color: $critical-20;
-            border-color: $critical-20;
-            color: $white;
-          }
-        }
-        &.critical-1 {
-          .total {
-            background-color: $critical-1;
-            border-color: $critical-1;
-            color: $white;
-          }
-        }
+    margin: 20px 0;
+    text-align: center;
+    label {
+      display: inline-block;
+      width: 70px;
+      padding: 0;
+      margin: 5px 0;
+      line-height: 0;
+      cursor: pointer;
+      text-align: center;
+      border: 0;
+      outline: none;
+      position: relative;
+      input {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
       }
-    }
-    .toggle-fullscreen {
-      position: fixed;
-      bottom: -150px;
-      right: 20px;
-      transition: all $transition-ease-medium;
-      display: block;
-      .expand {
-        display: inline-block;
-      }
-      .collapse {
+      .label-text {
         display: none;
       }
+      .diceRing {
+        background-color: transparent;
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        transition: all $transition-ease-fast;
+        transform: scale(1);
+        border: 2px solid $secondary-color-light;
+        border-radius: 50%;
+        z-index: 2;
+        [class^="diceIcon-"],
+        [class*=" diceIcon-"] {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 36px;
+          height: 36px;
+          font-size: 2.3em;
+          line-height: 36px;
+          color: $white;
+          transition: all $transition-ease-fast;
+          text-align: center;
+        }
+      }
+      &:hover {
+        .diceRing {
+          border-color: $white;
+        }
+      }
+      &:focus,
       &.active {
-        .expand {
-          display: none;
-        }
-        .collapse {
-          display: inline-block;
+        .diceRing {
+          border-color: $white;
+          [class^="diceIcon-"],
+          [class*=" diceIcon-"] {
+            color: $white;
+          }
         }
       }
-    }
-    &.active {
-      background-color: $gray-02;
-      bottom: 0;
-      .toggle-fullscreen {
-        bottom: 20px;
+      &:focus {
+        .diceRing {
+          [class^="diceIcon-"],
+          [class*=" diceIcon-"] {
+            transform: scale(1.7);
+          }
+        }
       }
-    }
-    &.fullsize {
-      padding: 20px 0;
-      height: 100%;
-      bottom: 0;
+      &.active {
+        .diceRing {
+          transform: scale(1.6);
+        }
+      }
     }
   }
 }
 
-aside {
-  &.snacks {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 4;
-    .snack-bar {
-      background-color: $gray-02;
-      border-bottom: 1px solid $gray-01;
-      padding: 0 10px;
-      margin: 0;
-      box-sizing: border-box;
-      width: 100%;
+.formulas {
+  padding: 0;
+  z-index: 1;
+  user-select: none;
+  background-color: $secondary-color;
+  .list {
+    .saved-formula {
+      background-color: transparent;
       position: relative;
-      height: 0;
+      padding: 10px 30px;
+      width: 100%;
+      box-sizing: border-box;
+      opacity: 1;
       overflow: hidden;
-      box-shadow: $shadow-medium;
-      transition: height $transition-ease-medium, margin $transition-ease-medium, padding $transition-ease-medium;
-      p {
-        color: $white;
-        line-height: 1.5rem;
-        margin: 6px 10px;
+      transform: scale(1);
+      transition: height $transition-ease-medium, padding $transition-ease-medium;
+      // animation: flash-light ease-out 0.5s;
+      // animation-iteration-count: 1;
+      .name {
+        position: relative;
+        z-index: 1;
+        input {
+          margin: 0;
+          width: 100%;
+          font-size: 1.1rem;
+          line-height: 2rem;
+          height: inherit;
+        }
       }
-      .button {
-        margin: 0 0 0 5px;
-        float: right;
-        display: inline-block;
-        [class^="icon-"],
-        [class*=" icon-"] {}
+      .controls {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        .button {
+          float: right;
+          margin: 0 5px 0 0;
+          padding: 2px 5px;
+          &:first-child {
+            margin: 0;
+          }
+        }
+      }
+      .formula {
+        line-height: 2rem;
+        margin: 5px 0 0 0;
+        color: $gray-08;
+      }
+      &.moving-up {
+        transform: translateY(-100%);
+        transition: transform $transition-ease-medium;
+      }
+      &.moving-down {
+        transform: translateY(100%);
+        transition: transform $transition-ease-medium;
       }
       &:first-child {
+        .controls {
+          .move-up {
+            transform: scale(0);
+          }
+        }
+      }
+      &:last-child {
+        .controls {
+          .move-down {
+            transform: scale(0);
+          }
+        }
+      }
+    }
+  }
+}
+
+.results {
+  background-color: $secondary-color-dark;
+  padding: 10px 0;
+  position: fixed;
+  bottom: -150px;
+  height: 150px;
+  width: 100%;
+  z-index: 3;
+  overflow-y: auto;
+  box-shadow: $shadow-large-inset;
+  transition: all $transition-ease-medium;
+  .list {
+    transition: all $transition-ease-medium;
+    p {
+      margin: 0;
+      padding: 10px 30px;
+      border-bottom: 1px solid $gray-01;
+      color: $gray-06;
+      width: 100%;
+      box-sizing: border-box;
+      transition: background-color $transition-ease-medium;
+      .total {
         margin: 0;
+        border: 1px solid $gray-01;
+        border-radius: $border-radius-small;
+        color: $gray-10;
+        display: inline-block;
+        text-align: center;
+        line-height: 2rem;
+        box-sizing: border-box;
+        width: 22%;
+        float: left;
+      }
+      .breakdown {
+        margin: 3px 0 0 0;
+        line-height: 2rem;
+        width: 72%;
+        float: right;
+        .strike {
+          text-decoration: line-through;
+          color: $gray-03;
+        }
+      }
+      .dice {
+        font-size: 2rem;
+        vertical-align: middle;
+        .icon {
+          line-height: 2rem;
+        }
+      }
+      &:first-child {
+        animation: flash-dark ease-out 0.5s;
+        animation-iteration-count: 1;
+        .total {
+          border-color: $primary-color;
+          border-width: 2px;
+          color: $white;
+        }
+        .breakdown {
+          color: $gray-10;
+          .strike {
+            color: $primary-color;
+          }
+        }
       }
       &:last-child {
         border: 0;
       }
-      &.reveal {
-        padding: 10px;
-        height: 53px;
+      &.critical-20 {
+        .total {
+          background-color: $critical-20;
+          border-color: $critical-20;
+          color: $white;
+        }
       }
+      &.critical-1 {
+        .total {
+          background-color: $critical-1;
+          border-color: $critical-1;
+          color: $white;
+        }
+      }
+    }
+  }
+  .toggle-fullscreen {
+    position: fixed;
+    bottom: -150px;
+    right: 20px;
+    transition: all $transition-ease-medium;
+    display: block;
+    .expand {
+      display: inline-block;
+    }
+    .collapse {
+      display: none;
+    }
+    &.active {
+      .expand {
+        display: none;
+      }
+      .collapse {
+        display: inline-block;
+      }
+    }
+  }
+  &.active {
+    background-color: $gray-01;
+    bottom: 0;
+    .toggle-fullscreen {
+      bottom: 20px;
+    }
+  }
+  &.fullsize {
+    padding: 20px 0;
+    height: 100%;
+    bottom: 0;
+  }
+}
+
+.snacks {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 4;
+  .snack-bar {
+    background-color: $gray-02;
+    border-bottom: 1px solid $gray-01;
+    padding: 0 10px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    box-shadow: $shadow-medium;
+    transition: height $transition-ease-medium, margin $transition-ease-medium, padding $transition-ease-medium;
+    p {
+      color: $white;
+      line-height: 1.5rem;
+      margin: 6px 10px;
+    }
+    .button {
+      margin: 0 0 0 5px;
+      float: right;
+      display: inline-block;
+      [class^="icon-"],
+      [class*=" icon-"] {}
+    }
+    &:first-child {
+      margin: 0;
+    }
+    &:last-child {
+      border: 0;
+    }
+    &.reveal {
+      padding: 10px;
+      height: 53px;
     }
   }
 }
@@ -413,40 +427,33 @@ aside {
 ------------------------------------------------- */
 
 @media (min-width: 550px) {
-  section {
-    &.column-third {}
-    &.controls {
-      padding: 30px 15%;
-    }
-    &.formulas {
-      padding: 30px 0;
-      .list {
-        .saved-formula {
-          padding: 10px 15%;
-        }
-      }
-    }
-    &.results {
-      padding: 30px 0;
-      .list {
-        p {
-          padding: 20px 15%;
-        }
+  .column-third {}
+  .controls {}
+  .formulas {
+    .list {
+      .saved-formula {
+        padding: 10px 15%;
       }
     }
   }
-  aside {
-    &.snacks {
-      width: 70%;
-      left: 50%;
-      bottom: 20px;
-      transform: translateX(-50%);
-      .snack-bar {
-        border: 0;
-        border-radius: $border-radius-small;
-        &.reveal {
-          margin: 5px 0 0 0;
-        }
+  .results {
+    padding: 30px 0;
+    .list {
+      p {
+        padding: 20px 15%;
+      }
+    }
+  }
+  .snacks {
+    width: 70%;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    .snack-bar {
+      border: 0;
+      border-radius: $border-radius-small;
+      &.reveal {
+        margin: 5px 0 0 0;
       }
     }
   }
@@ -459,11 +466,9 @@ aside {
   body {
     margin-bottom: 300px;
   }
-  section {
-    &.column-third {}
-    &.controls {
-      padding: 40px 15%;
-      z-index: 2;
+  .controls {
+    z-index: 2;
+    .wrapper {
       .dice-form {
         label {
           width: 60px;
@@ -482,24 +487,27 @@ aside {
         }
       }
     }
-    &.formulas {
-      padding: 40px 0;
-      z-index: 1;
+  }
+  .formulas {
+    z-index: 1;
+    .wrapper {
       .list {
         .saved-formula {
           padding: 10px 15%;
         }
       }
     }
-    &.results {
-      padding: 10px 0;
-      z-index: 3;
-      position: fixed;
-      width: 100%;
-      bottom: -150px;
-      right: 0;
-      height: 150px;
-      box-shadow: $shadow-large-inset;
+  }
+  .results {
+    padding: 10px 0;
+    z-index: 3;
+    position: fixed;
+    width: 100%;
+    bottom: -150px;
+    right: 0;
+    height: 150px;
+    box-shadow: $shadow-large-inset;
+    .wrapper {
       .list {
         p {
           padding: 20px 15%;
@@ -523,52 +531,59 @@ aside {
   body {
     margin: 0;
   }
-  section {
-    &.column-third {
-      float: left;
+  .container {
+    .wrapper {
       height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
     }
-    &.controls {
-      width: 50%;
-      padding: 40px;
-      z-index: 2;
-      box-shadow: $shadow-medium;
+  }
+  .column-third {
+    float: left;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .controls {
+    width: 50%;
+    z-index: 2;
+    box-shadow: $shadow-medium;
+    .wrapper {
       .dice-form {
         label {
           width: 70px;
           .diceRing {
-            width: 48px;
-            height: 48px;
+            width: 54px;
+            height: 54px;
             [class^="diceIcon-"],
             [class*=" diceIcon-"] {
-              width: 44px;
-              height: 44px;
-              font-size: 2.4em;
-              line-height: 44px;
+              width: 50px;
+              height: 50px;
+              font-size: 2.8em;
+              line-height: 50px;
             }
           }
         }
       }
     }
-    &.formulas {
-      width: 50%;
-      padding: 30px 0 300px 0;
-      z-index: 1;
-      box-shadow: $shadow-large;
+  }
+  .formulas {
+    width: 50%;
+    z-index: 1;
+    box-shadow: $shadow-large;
+    .wrapper {
       .list {
         .saved-formula {
           padding: 20px 40px;
         }
       }
     }
-    &.results {
-      padding: 10px 0;
-      width: 50%;
-      right: 0;
-      height: 150px;
-      z-index: 3;
+  }
+  .results {
+    padding: 10px 0;
+    width: 50%;
+    right: 0;
+    height: 150px;
+    z-index: 3;
+    .wrapper {
       .list {
         p {
           padding: 20px 40px;
@@ -582,37 +597,39 @@ aside {
 }
 
 @media (min-width: 1000px) {
-  section {
-    &.column-third {
-      width: 33.3333333333%;
-      float: left;
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-    &.controls {
+  .column-third {
+    width: 33.3333333333%;
+    float: left;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .controls {
+    z-index: 3;
+    .wrapper {
       padding: 60px;
-      z-index: 3;
       .dice-form {
         label {
           width: 80px;
         }
       }
     }
-    &.formulas {
-      padding: 40px 0;
-      z-index: 2;
+  }
+  .formulas {
+    z-index: 2;
+    .wrapper {
       .list {
         .saved-formula {
           padding: 20px 60px;
         }
       }
     }
-    &.results {
-      padding: 40px 0;
-      bottom: inherit;
-      box-shadow: none;
-      z-index: 1;
+  }
+  .results {
+    bottom: inherit;
+    box-shadow: none;
+    z-index: 1;
+    .wrapper {
       .list {
         p {
           padding: 20px 60px;
@@ -632,15 +649,13 @@ aside {
       }
     }
   }
-  aside {
-    &.snacks {
-      width: 50%;
-      left: 20px;
-      transform: none;
-      .snack-bar {
-        &.reveal {
-          margin: 10px 0 0 0;
-        }
+  .snacks {
+    width: 50%;
+    left: 20px;
+    transform: none;
+    .snack-bar {
+      &.reveal {
+        margin: 10px 0 0 0;
       }
     }
   }
