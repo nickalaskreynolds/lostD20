@@ -18,364 +18,357 @@ html {
 }
 
 body {
-  background-color: $background-color;
+  background-color: $secondary-color;
   margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
   font-size: 1rem;
   line-height: 1rem;
+  color: $gray-02;
 }
 
 .container {
-  padding: 36px 0 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: static;
+  top: auto;
+  left: auto;
   width: 100%;
-  height: 100%;
+  height: inherit;
   box-sizing: border-box;
-}
-
-.utilities {
-  height: 36px;
-  background-color: $secondary-color;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: $shadow-small;
-  z-index: 4;
-  .button {
-    border-radius: 0;
-    float: left;
-  }
-}
-
-.column-third {
-  position: relative;
-  box-sizing: border-box;
-  transition: width $transition-ease-medium, padding $transition-ease-medium;
-  .wrapper {
-    box-sizing: border-box;
-  }
-}
-
-.controls {
-  background-color: $background-color;
-  z-index: 2;
-  text-align: center;
-  user-select: none;
-  .number {
-    width: 70%;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    &.of-dice,
-    &.of-bonus {
-      input {
-        margin: 0 0 5px 0;
-        padding: 1rem 0;
-        width: 100%;
-        text-align: center;
-        font-size: 2rem;
-        line-height: 4rem;
-        height: 4rem;
-        font-family: $open-sans-condensed-light;
-      }
-      .clear {
-        position: absolute;
-        bottom: 12px;
-        right: 0;
-      }
-    }
-  }
-  .modifiers {
-    text-align: center;
-    .button {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-  }
-  .go-roll {
-    margin: 20px 0;
-    line-height: 3rem;
-    padding: 0 15%;
-  }
-  .dice-form {
-    width: 100%;
-    margin: 20px 0;
-    text-align: center;
-    label {
-      display: inline-block;
-      width: 70px;
-      padding: 0;
-      margin: 5px 0;
-      line-height: 0;
-      cursor: pointer;
-      text-align: center;
-      border: 0;
-      outline: none;
-      position: relative;
-      input {
-        opacity: 0;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-      }
-      .label-text {
-        display: none;
-      }
-      .diceRing {
-        background-color: transparent;
-        position: relative;
-        display: block;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        box-sizing: border-box;
-        transition: all $transition-ease-fast;
-        transform: scale(1);
-        border: 2px solid $secondary-color-light;
-        border-radius: 50%;
-        z-index: 2;
-        [class^="diceIcon-"],
-        [class*=" diceIcon-"] {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 36px;
-          height: 36px;
-          font-size: 2.3em;
-          line-height: 36px;
-          color: $white;
-          transition: all $transition-ease-fast;
+  .main-column {
+    &.controls {
+      background-color: $background-color;
+      box-sizing: border-box;
+      .wrapper {
+        padding: 60px 30px 30px 30px;
+        .number {
+          width: 70%;
+          margin: 0 auto;
+          position: relative;
           text-align: center;
-        }
-      }
-      &:hover {
-        .diceRing {
-          border-color: $white;
-        }
-      }
-      &:focus,
-      &.active {
-        .diceRing {
-          border-color: $white;
-          [class^="diceIcon-"],
-          [class*=" diceIcon-"] {
-            color: $white;
+          &.of-dice,
+          &.of-bonus {
+            input {
+              margin: 0 0 5px 0;
+              padding: 1rem 0;
+              width: 100%;
+              text-align: center;
+              font-size: 2rem;
+              line-height: 4rem;
+              height: 4rem;
+              font-family: $open-sans-condensed-light;
+            }
+            .clear {
+              position: absolute;
+              bottom: 12px;
+              right: 0;
+            }
           }
         }
-      }
-      &:focus {
-        .diceRing {
-          [class^="diceIcon-"],
-          [class*=" diceIcon-"] {
-            transform: scale(1.7);
+        .modifiers {
+          text-align: center;
+          .button {
+            padding-left: 15px;
+            padding-right: 15px;
           }
         }
-      }
-      &.active {
-        .diceRing {
-          transform: scale(1.6);
+        .go-roll {
+          margin: 20px auto;
+          line-height: 3rem;
+          padding: 0;
+          width: 55%;
+          display: block;
         }
-      }
-    }
-  }
-}
-
-.formulas {
-  padding: 0;
-  z-index: 1;
-  user-select: none;
-  background-color: $secondary-color;
-  .list {
-    .saved-formula {
-      background-color: transparent;
-      position: relative;
-      padding: 10px 30px;
-      width: 100%;
-      box-sizing: border-box;
-      opacity: 1;
-      overflow: hidden;
-      transform: scale(1);
-      transition: height $transition-ease-medium, padding $transition-ease-medium;
-      // animation: flash-light ease-out 0.5s;
-      // animation-iteration-count: 1;
-      .name {
-        position: relative;
-        z-index: 1;
-        input {
-          margin: 0;
+        .dice-form {
           width: 100%;
-          font-size: 1.1rem;
-          line-height: 2rem;
-          height: inherit;
-        }
-      }
-      .controls {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 2;
-        .button {
-          float: right;
-          margin: 0 5px 0 0;
-          padding: 2px 5px;
-          &:first-child {
-            margin: 0;
-          }
-        }
-      }
-      .formula {
-        line-height: 2rem;
-        margin: 5px 0 0 0;
-        color: $gray-08;
-      }
-      &.moving-up {
-        transform: translateY(-100%);
-        transition: transform $transition-ease-medium;
-      }
-      &.moving-down {
-        transform: translateY(100%);
-        transition: transform $transition-ease-medium;
-      }
-      &:first-child {
-        .controls {
-          .move-up {
-            transform: scale(0);
-          }
-        }
-      }
-      &:last-child {
-        .controls {
-          .move-down {
-            transform: scale(0);
+          margin: 10px 0;
+          text-align: center;
+          label {
+            display: inline-block;
+            width: 60px;
+            padding: 0;
+            margin: 5px 0;
+            line-height: 0;
+            cursor: pointer;
+            text-align: center;
+            border: 0;
+            outline: none;
+            position: relative;
+            input {
+              opacity: 0;
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 1;
+            }
+            .label-text {
+              display: none;
+            }
+            .diceRing {
+              background-color: transparent;
+              position: relative;
+              display: block;
+              width: 40px;
+              height: 40px;
+              margin: 0 auto;
+              box-sizing: border-box;
+              transition: all $transition-ease-fast;
+              transform: scale(1);
+              border: 2px solid $secondary-color-dark;
+              border-radius: 50%;
+              z-index: 2;
+              [class^="diceIcon-"],
+              [class*=" diceIcon-"] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 36px;
+                height: 36px;
+                font-size: 2.3em;
+                line-height: 36px;
+                color: $secondary-color-dark;
+                transition: all $transition-ease-fast;
+                text-align: center;
+              }
+            }
+            &:hover {
+              .diceRing {
+                border-color: $gray-10;
+                [class^="diceIcon-"],
+                [class*=" diceIcon-"] {
+                  color: $gray-10;
+                }
+              }
+            }
+            &:focus,
+            &.active {
+              .diceRing {
+                border-color: $primary-color;
+                [class^="diceIcon-"],
+                [class*=" diceIcon-"] {
+                  color: $primary-color;
+                }
+              }
+            }
+            &:focus {
+              .diceRing {
+                [class^="diceIcon-"],
+                [class*=" diceIcon-"] {
+                  transform: scale(1.7);
+                }
+              }
+            }
+            &.active {
+              .diceRing {
+                transform: scale(1.6);
+              }
+            }
           }
         }
       }
     }
-  }
-}
-
-.results {
-  background-color: $secondary-color-dark;
-  padding: 10px 0;
-  position: fixed;
-  bottom: -150px;
-  height: 150px;
-  width: 100%;
-  z-index: 3;
-  overflow-y: auto;
-  box-shadow: $shadow-large-inset;
-  transition: all $transition-ease-medium;
-  .list {
-    transition: all $transition-ease-medium;
-    p {
-      margin: 0;
-      padding: 10px 30px;
-      border-bottom: 1px solid $gray-01;
-      color: $gray-06;
-      width: 100%;
+    &.formulas {
+      background-color: $secondary-color;
       box-sizing: border-box;
-      transition: background-color $transition-ease-medium;
-      .total {
-        margin: 0;
-        border: 1px solid $gray-01;
-        border-radius: $border-radius-small;
-        color: $gray-10;
-        display: inline-block;
-        text-align: center;
-        line-height: 2rem;
-        box-sizing: border-box;
-        width: 22%;
-        float: left;
-      }
-      .breakdown {
-        margin: 3px 0 0 0;
-        line-height: 2rem;
-        width: 72%;
-        float: right;
-        .strike {
-          text-decoration: line-through;
-          color: $gray-03;
-        }
-      }
-      .dice {
-        font-size: 2rem;
-        vertical-align: middle;
-        .icon {
-          line-height: 2rem;
-        }
-      }
-      &:first-child {
-        animation: flash-dark ease-out 0.5s;
-        animation-iteration-count: 1;
-        .total {
-          border-color: $primary-color;
-          border-width: 2px;
-          color: $white;
-        }
-        .breakdown {
-          color: $gray-10;
-          .strike {
-            color: $primary-color;
+      .wrapper {
+        padding: 20px 0;
+        .list {
+          .saved-formula {
+            background-color: transparent;
+            position: relative;
+            padding: 10px 30px;
+            width: 100%;
+            box-sizing: border-box;
+            opacity: 1;
+            overflow: hidden;
+            transform: scale(1);
+            transition: height $transition-ease-medium, padding $transition-ease-medium;
+            // animation: flash-light ease-out 0.5s;
+            // animation-iteration-count: 1;
+            .name {
+              position: relative;
+              z-index: 1;
+              input {
+                margin: 0;
+                width: 100%;
+                font-size: 1.1rem;
+                line-height: 2rem;
+                height: inherit;
+              }
+            }
+            .formula-controls {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              z-index: 2;
+              .button {
+                float: right;
+                margin: 0 5px 0 0;
+                padding: 2px 5px;
+                &:first-child {
+                  margin: 0;
+                }
+              }
+            }
+            .formula {
+              line-height: 2rem;
+              margin: 5px 0 0 0;
+              color: $gray-08;
+            }
+            &.moving-up {
+              transform: translateY(-100%);
+              transition: transform $transition-ease-medium;
+            }
+            &.moving-down {
+              transform: translateY(100%);
+              transition: transform $transition-ease-medium;
+            }
+            &:first-child {
+              .controls {
+                .move-up {
+                  transform: scale(0);
+                }
+              }
+            }
+            &:last-child {
+              .controls {
+                .move-down {
+                  transform: scale(0);
+                }
+              }
+            }
           }
         }
       }
-      &:last-child {
-        border: 0;
-      }
-      &.critical-20 {
-        .total {
-          background-color: $critical-20;
-          border-color: $critical-20;
-          color: $white;
+    }
+    &.results {
+      background-color: $gray-02;
+      padding: 0;
+      position: fixed;
+      bottom: -150px;
+      height: 150px;
+      width: 100%;
+      z-index: 3;
+      overflow-y: auto;
+      box-shadow: $shadow-large-inset;
+      transition: all $transition-ease-medium;
+      box-sizing: border-box;
+      .wrapper {
+        padding: 20px 0;
+      transition: all $transition-ease-medium;
+        .list {
+          transition: all $transition-ease-medium;
+          p {
+            margin: 0;
+            padding: 10px 30px;
+            border-bottom: 1px solid $gray-02;
+            color: $gray-06;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color $transition-ease-medium;
+            .total {
+              margin: 0;
+              border: 1px solid $gray-01;
+              border-radius: $border-radius-small;
+              color: $gray-10;
+              display: inline-block;
+              text-align: center;
+              line-height: 2rem;
+              box-sizing: border-box;
+              width: 22%;
+              float: left;
+            }
+            .breakdown {
+              margin: 3px 0 0 0;
+              line-height: 2rem;
+              width: 72%;
+              float: right;
+              .strike {
+                text-decoration: line-through;
+                color: $gray-03;
+              }
+            }
+            .dice {
+              font-size: 2rem;
+              vertical-align: middle;
+              .icon {
+                line-height: 2rem;
+              }
+            }
+            &:first-child {
+              animation: flash-dark ease-out 0.5s;
+              animation-iteration-count: 1;
+              .total {
+                border-color: $primary-color;
+                border-width: 2px;
+                color: $white;
+              }
+              .breakdown {
+                color: $gray-10;
+                .strike {
+                  color: $primary-color;
+                }
+              }
+            }
+            &:last-child {
+              border: 0;
+            }
+            &.critical-20 {
+              .total {
+                background-color: $critical-20;
+                border-color: $critical-20;
+                color: $white;
+              }
+            }
+            &.critical-1 {
+              .total {
+                background-color: $critical-1;
+                border-color: $critical-1;
+                color: $white;
+              }
+            }
+          }
+        }
+        .toggle-fullscreen {
+          position: fixed;
+          bottom: -150px;
+          right: 20px;
+          transition: all $transition-ease-medium;
+          display: block;
+          .expand {
+            display: inline-block;
+          }
+          .collapse {
+            display: none;
+          }
+          &.active {
+            .expand {
+              display: none;
+            }
+            .collapse {
+              display: inline-block;
+            }
+          }
         }
       }
-      &.critical-1 {
-        .total {
-          background-color: $critical-1;
-          border-color: $critical-1;
-          color: $white;
+      &.active {
+        background-color: $gray-01;
+        bottom: 0;
+        .wrapper {
+          padding: 10px 0;
+          .toggle-fullscreen {
+            bottom: 20px;
+          }
+        }
+      }
+      &.fullsize {
+        height: 100%;
+        bottom: 0;
+        .wrapper {
+          padding: 60px 0;
         }
       }
     }
-  }
-  .toggle-fullscreen {
-    position: fixed;
-    bottom: -150px;
-    right: 20px;
-    transition: all $transition-ease-medium;
-    display: block;
-    .expand {
-      display: inline-block;
-    }
-    .collapse {
-      display: none;
-    }
-    &.active {
-      .expand {
-        display: none;
-      }
-      .collapse {
-        display: inline-block;
-      }
-    }
-  }
-  &.active {
-    background-color: $gray-01;
-    bottom: 0;
-    .toggle-fullscreen {
-      bottom: 20px;
-    }
-  }
-  &.fullsize {
-    padding: 20px 0;
-    height: 100%;
-    bottom: 0;
   }
 }
 
@@ -422,28 +415,28 @@ body {
   }
 }
 
+.utilities {
+  background-color: $secondary-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: $shadow-small;
+  z-index: 4;
+  .button {
+    border-radius: 0;
+    float: left;
+  }
+  .utility-name {
+    display: none;
+  }
+}
+
 
 /* media queries
 ------------------------------------------------- */
 
 @media (min-width: 550px) {
-  .column-third {}
-  .controls {}
-  .formulas {
-    .list {
-      .saved-formula {
-        padding: 10px 15%;
-      }
-    }
-  }
-  .results {
-    padding: 30px 0;
-    .list {
-      p {
-        padding: 20px 15%;
-      }
-    }
-  }
   .snacks {
     width: 70%;
     left: 50%;
@@ -464,58 +457,68 @@ body {
     font-size: 95%;
   }
   body {
-    margin-bottom: 300px;
+    margin: 0;
   }
-  .controls {
-    z-index: 2;
-    .wrapper {
-      .dice-form {
-        label {
-          width: 60px;
-          margin: 10px 0;
-          .diceRing {
-            width: 42px;
-            height: 42px;
-            [class^="diceIcon-"],
-            [class*=" diceIcon-"] {
-              width: 38px;
-              height: 38px;
-              font-size: 2em;
-              line-height: 38px;
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .main-column {
+      position: relative;
+      height: 100%;
+      width: 50%;
+      float: left;
+      overflow-x: hidden;
+      overflow-y: auto;
+      .wrapper {
+        position: relative;
+      }
+      &.controls {
+        .wrapper {
+          padding: 80px 40px 40px 40px;
+        }
+      }
+      &.formulas {
+        .wrapper {
+          padding: 80px 0 40px 0;
+          .list {
+            .saved-formula {
+              padding: 10px 40px;
             }
           }
         }
       }
-    }
-  }
-  .formulas {
-    z-index: 1;
-    .wrapper {
-      .list {
-        .saved-formula {
-          padding: 10px 15%;
+      &.results {
+        position: fixed;
+        bottom: -180px;
+        right: 0;
+        height: 180px;
+        width: 50%;
+        z-index: 3;
+        .wrapper {
+          padding: 20px 0;
+          .result-history {
+            .list {
+              p {
+                padding: 20px 40px;
+              }
+            }
+          }
+        }
+        &.fullsize {
+          padding: 40px 0;
+        }
+        &.active {
+          bottom: 0;
         }
       }
     }
   }
-  .results {
-    padding: 10px 0;
-    z-index: 3;
-    position: fixed;
-    width: 100%;
-    bottom: -150px;
-    right: 0;
-    height: 150px;
-    box-shadow: $shadow-large-inset;
-    .wrapper {
-      .list {
-        p {
-          padding: 20px 15%;
-        }
-      }
-      &.fullsize {
-        padding: 20px 0;
-      }
+  .utilities {
+    .utility-name {
+      display: inline-block;
     }
   }
 }
@@ -528,126 +531,80 @@ body {
   body {
     height: 100%;
   }
+}
+
+@media (min-width: 1000px) {
   body {
     margin: 0;
   }
   .container {
-    .wrapper {
-      height: 100%;
-    }
-  }
-  .column-third {
-    float: left;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .controls {
-    width: 50%;
-    z-index: 2;
-    box-shadow: $shadow-medium;
-    .wrapper {
-      .dice-form {
-        label {
-          width: 70px;
-          .diceRing {
-            width: 54px;
-            height: 54px;
-            [class^="diceIcon-"],
-            [class*=" diceIcon-"] {
-              width: 50px;
-              height: 50px;
-              font-size: 2.8em;
-              line-height: 50px;
+    .main-column {
+      width: 33.3333333333%;
+      &.controls {
+        box-shadow: $shadow-medium;
+        z-index: 3;
+        .wrapper {
+          padding: 80px 40px 40px 40px;
+          .dice-form {
+            label {
+              margin: 10px 0;
+              width: 80px;
+              .diceRing {
+                width: 50px;
+                height: 50px;
+                [class^="diceIcon-"],
+                [class*=" diceIcon-"] {
+                  width: 46px;
+                  height: 46px;
+                  font-size: 2.5em;
+                  line-height: 46px;
+                }
+              }
             }
           }
         }
       }
-    }
-  }
-  .formulas {
-    width: 50%;
-    z-index: 1;
-    box-shadow: $shadow-large;
-    .wrapper {
-      .list {
-        .saved-formula {
-          padding: 20px 40px;
-        }
-      }
-    }
-  }
-  .results {
-    padding: 10px 0;
-    width: 50%;
-    right: 0;
-    height: 150px;
-    z-index: 3;
-    .wrapper {
-      .list {
-        p {
-          padding: 20px 40px;
-        }
-      }
-      &.fullsize {
-        padding: 30px 0;
-      }
-    }
-  }
-}
-
-@media (min-width: 1000px) {
-  .column-third {
-    width: 33.3333333333%;
-    float: left;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .controls {
-    z-index: 3;
-    .wrapper {
-      padding: 60px;
-      .dice-form {
-        label {
-          width: 80px;
-        }
-      }
-    }
-  }
-  .formulas {
-    z-index: 2;
-    .wrapper {
-      .list {
-        .saved-formula {
-          padding: 20px 60px;
-        }
-      }
-    }
-  }
-  .results {
-    bottom: inherit;
-    box-shadow: none;
-    z-index: 1;
-    .wrapper {
-      .list {
-        p {
-          padding: 20px 60px;
-          .total {
-            margin: 0;
-            width: 22%;
-            float: left;
-          }
-          .breakdown {
-            width: 70%;
-            float: right;
+      &.formulas {
+        background-color: $secondary-color;
+        box-shadow: $shadow-medium;
+        z-index: 2;
+        .wrapper {
+          padding: 80px 0 40px 0;
+          .list {
+            .saved-formula {
+              padding: 20px 40px;
+            }
           }
         }
       }
-      .toggle-fullscreen {
-        display: none;
+      &.results {
+        position: static;
+        height: inherit;
+        z-index: 1;
+        bottom: auto;
+        box-shadow: none;
+        bottom: auto;
+        right: auto;
+        height: 100%;
+        width: 33.3333333333%;
+        .wrapper {
+          padding: 80px 0 40px 0;
+          .result-history {
+            .list {
+              p {
+                padding: 20px 40px;
+              }
+            }
+          }
+          .toggle-fullscreen {
+            display: none;
+          }
+        }
       }
     }
+  }
+  .utilities {
+    box-shadow: $shadow-medium;
   }
   .snacks {
     width: 50%;

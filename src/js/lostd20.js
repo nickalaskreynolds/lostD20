@@ -2,9 +2,9 @@ function diceRollerama() {
 
   // elements
   var element_html = e("html");
-  // var element_columnControls = e(".column-third.controls");
-  var element_columnResults = e(".column-third.results");
-  // var element_columnFormulas = e(".column-third.formulas");
+  // var element_columnControls = e(".main-column.controls");
+  var element_columnResults = e(".main-column.results");
+  // var element_columnFormulas = e(".main-column.formulas");
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
   var element_goRoll = e(".go-roll");
@@ -291,12 +291,12 @@ function diceRollerama() {
             + '<div class="row">'
               + '<div class="col-12">'
                 + '<div class="name">'
-                  + '<input type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
+                  + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
                 + '</div>'
-                + '<div class="controls">'
-                  + '<a href="javascript:void(0)" class="button button-secondary clear" tabindex="1"><span class="icon-close"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-secondary move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-secondary move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
+                + '<div class="formula-controls">'
+                  + '<a href="javascript:void(0)" class="button button-dark clear" tabindex="1"><span class="icon-close"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
                 + '</div>'
               + '</div>'
               + '<div class="col-12">'
@@ -374,10 +374,10 @@ function diceRollerama() {
             + '<p class="message">' + readSaved_name + ' removed.</p>'
           + '</div>'
           + '<div class="col-6">'
-            + '<a href="javascript:void(0)" class="button button-secondary button-dark-background clear">'
+            + '<a href="javascript:void(0)" class="button button-dark clear">'
               + '<span class="icon-close"></span>'
             + '</a>'
-            + '<a href="javascript:void(0)" class="button button-secondary button-dark-background undo">Undo</a>'
+            + '<a href="javascript:void(0)" class="button button-dark undo">Undo</a>'
           + '</div>'
         + '</div>'
       + '</div>';
@@ -441,6 +441,8 @@ function diceRollerama() {
     // modifiers_plusMinus(0, controls_numberOfDice_input);
     // modifiers_readAmountOfDice();
     checkListColumnState();
+    removeClass(element_columnResults, "active");
+    removeClass(element_columnResults, "fullsize");
   };
 
   // read multiple dice input field
