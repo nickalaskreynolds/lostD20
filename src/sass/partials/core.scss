@@ -23,8 +23,7 @@ body {
 }
 
 body {
-  background: $secondary-color-dark;
-  margin-bottom: 300px;
+  background-color: $background-color;
   font-family: $open-sans-regular;
   user-select: none;
   font-size: 1rem;
@@ -178,10 +177,11 @@ body {
       }
     }
     &.formulas {
-      background-color: $secondary-color-dark;
+      background-color: $background-color;
       z-index: 2;
+      transition: all $transition-ease-medium;
       .wrapper {
-        padding: 30px 0 300px 0;
+        padding: 0;
         .list {
           .saved-formula {
             background-color: transparent;
@@ -245,9 +245,15 @@ body {
           }
         }
       }
+      &.active {
+        background-color: $secondary-color-dark;
+        .wrapper {
+          padding: 30px 0 300px 0;
+        }
+      }
     }
     &.results {
-      background-color: $secondary-color-dark;
+      background-color: $background-color;
       position: fixed;
       bottom: -150px;
       height: 150px;

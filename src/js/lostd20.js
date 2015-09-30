@@ -2,9 +2,9 @@ function diceRollerama() {
 
   // elements
   var element_html = e("html");
-  // var element_columnControls = e(".main-column.controls");
+  var element_columnControls = e(".main-column.controls");
   var element_columnResults = e(".main-column.results");
-  // var element_columnFormulas = e(".main-column.formulas");
+  var element_columnFormulas = e(".main-column.formulas");
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
   var element_goRoll = e(".go-roll");
@@ -301,9 +301,9 @@ function diceRollerama() {
               + '</div>'
               + '<div class="col-8">'
                 + '<div class="formula-controls">'
-                  + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>'
                   + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
                   + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>'
                   + '<a href="javascript:void(0)" class="button button-dark button-small roll" tabindex="1">Roll</a>'
                 + '</div>'
               + '</div>'
@@ -515,6 +515,11 @@ function diceRollerama() {
 
   // make list active when it has content
   function checkListColumnState() {
+    if (element_formulas_list.firstChild) {
+      element_columnFormulas.classList.add("active");
+    } else {
+      element_columnFormulas.classList.remove("active");
+    };
     if (element_results_list.firstChild) {
       element_columnResults.classList.add("active");
     } else {
@@ -631,6 +636,7 @@ function diceRollerama() {
   utilities_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-formulas", element_formulas_list);
+    checkListColumnState();
   }, false);
 
   utilities_toggleFullscreen.addEventListener("click", function() {
@@ -662,6 +668,7 @@ function diceRollerama() {
       formula_savedFormula_undo[i].addEventListener("click", function() {
         undoSackBar(this);
         localStoreAdd("saved-formulas", element_formulas_list);
+        checkListColumnState();
       }, false);
     };
 
@@ -701,6 +708,7 @@ function diceRollerama() {
       formula_savedFormula_clear[i].addEventListener("click", function() {
         clearSavedFormula(this);
         localStoreAdd("saved-formulas", element_formulas_list);
+        checkListColumnState();
       }, false);
     };
 
