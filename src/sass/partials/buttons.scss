@@ -4,7 +4,7 @@
 .button,
 button {
   padding: 5px 10px;
-  color: $gray-01;
+  color: $gray-02;
   text-align: center;
   font-size: 0.9rem;
   font-family: $open-sans-semi-bold;
@@ -15,8 +15,9 @@ button {
   border: 1px solid $gray-03;
   cursor: pointer;
   box-sizing: border-box;
-  border-radius: $global-radius;
+  border-radius: $border-radius-small;
   transition: all $transition-ease-fast;
+  text-decoration: none;
   display: inline-block;
   &.button-block {
     width: 100%;
@@ -28,15 +29,25 @@ button {
     font-size: 1.3rem;
     vertical-align: text-bottom;
   }
+  &.button-small {
+    padding: 5px 7px 3px 7px;
+    line-height: 1rem;
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: 1rem;
+      vertical-align: top;
+    }
+  }
   &:focus {
-    background-color: $gray-13;
     outline: 0;
+    text-decoration: none;
   }
   &:hover {
     color: $white;
     background-color: $gray-02;
     border-color: $gray-02;
     outline: 0;
+    text-decoration: none;
   }
   &:active,
   &.active {
@@ -45,68 +56,74 @@ button {
     border-color: $gray-04;
   }
   &.button-primary {
-    color: $white;
-    background-color: $primary-color;
-    border-color: $primary-color-dark;
-    &:focus {
-      background-color: $primary-color-light;
-      text-decoration: none;
+    &:link,
+    &:visited {
       color: $white;
-    }
-    &:hover,
-    &.active {
-      color: $white;
-      background-color: $primary-color-dark;
+      background-color: $primary-color;
       border-color: $primary-color-dark;
+    }
+    &:focus,
+    &:hover {
+      background-color: $primary-color-dark;
+      outline: 0;
       text-decoration: none;
     }
+    &:active,
     &.active {
-      &:focus {
-        background-color: $primary-color-light;
-      }
-    }
-    &:active {
-      color: $white;
       background-color: $primary-color-light;
     }
   }
   &.button-secondary {
-    color: $gray-01;
-    background-color: transparent;
-    border-color: transparent;
+    &:link,
+    &:visited {
+      color: $gray-02;
+      background-color: transparent;
+      border-color: transparent;
+    }
     &:focus {
-      background-color: $gray-13;
+      color: $white;
+      background-color: $secondary-color-light;
+      border-color: $secondary-color-dark;
+      outline: 0;
       text-decoration: none;
     }
-    &:hover,
-    &.active {
+    &:hover {
       color: $white;
-      background-color: $primary-color-dark;
-      border-color: $primary-color-dark;
+      background-color: $secondary-color-dark;
+      border-color: $secondary-color-dark;
+      outline: 0;
       text-decoration: none;
     }
+    &:active,
     &.active {
-      &:focus {
-        background-color: $primary-color-light;
-      }
-    }
-    &:active {
       color: $white;
-      background-color: $primary-color-light;
+      background-color: $secondary-color-light;
+      border-color: $secondary-color-dark;
     }
-    &.button-dark-background {
-      background-color: $gray-02;
+  }
+  &.button-dark {
+    &:link,
+    &:visited {
       color: $white;
-      &:focus {
-        background-color: $gray-03;
-      }
-      &:hover,
-      &.active {
-        background-color: $primary-color-dark;
-      }
-      &:active {
-        background-color: $primary-color-light;
-      }
+      background-color: transparent;
+      border-color: transparent;
+    }
+    &:focus {
+      color: $white;
+      background-color: $gray-alpha-04;
+      outline: 0;
+      text-decoration: none;
+    }
+    &:hover {
+      color: $white;
+      background-color: $gray-alpha-03;
+      outline: 0;
+      text-decoration: none;
+    }
+    &:active,
+    &.active {
+      color: $white;
+      background-color: $secondary-color-light-alpha;
     }
   }
 }
@@ -129,7 +146,7 @@ input {
     border: 1px solid $gray-03;
     cursor: pointer;
     box-sizing: border-box;
-    border-radius: $global-radius;
+    border-radius: $border-radius-small;
     &:hover,
     &:focus {
       color: $white;
@@ -143,4 +160,10 @@ input {
       border-color: $gray-04;
     }
   }
+}
+
+.button,
+button,
+label {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
