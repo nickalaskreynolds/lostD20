@@ -26,14 +26,14 @@ function diceRollerama() {
   var controls_numberOfDice_input_value
   var controls_numberOfDice_clear = e(".controls .number.of-dice .clear");
   // bonus
-  var modifiers_changeAmountOfBonus_plusFive = e(".modifiers .change-amount.of-bonus .plus-five");
+  // var modifiers_changeAmountOfBonus_plusFive = e(".modifiers .change-amount.of-bonus .plus-five");
   var modifiers_changeAmountOfBonus_plusOne = e(".modifiers .change-amount.of-bonus .plus-one");
-  var modifiers_changeAmountOfBonus_minusFive = e(".modifiers .change-amount.of-bonus .minus-five");
+  // var modifiers_changeAmountOfBonus_minusFive = e(".modifiers .change-amount.of-bonus .minus-five");
   var modifiers_changeAmountOfBonus_minusOne = e(".modifiers .change-amount.of-bonus .minus-one");
   // number of dice
-  var modifiers_changeAmountOfDice_plusFive = e(".modifiers .change-amount.of-dice .plus-five");
+  // var modifiers_changeAmountOfDice_plusFive = e(".modifiers .change-amount.of-dice .plus-five");
   var modifiers_changeAmountOfDice_plusOne = e(".modifiers .change-amount.of-dice .plus-one");
-  var modifiers_changeAmountOfDice_minusFive = e(".modifiers .change-amount.of-dice .minus-five");
+  // var modifiers_changeAmountOfDice_minusFive = e(".modifiers .change-amount.of-dice .minus-five");
   var modifiers_changeAmountOfDice_minusOne = e(".modifiers .change-amount.of-dice .minus-one");
   // utilities
   var utilities_toggleDropLowest = e(".utilities .toggle-drop-lowest");
@@ -294,9 +294,9 @@ function diceRollerama() {
                   + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
                 + '</div>'
                 + '<div class="formula-controls">'
-                  + '<a href="javascript:void(0)" class="button button-dark clear" tabindex="1"><span class="icon-close"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-dark move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-dark move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
                 + '</div>'
               + '</div>'
               + '<div class="col-12">'
@@ -746,10 +746,10 @@ function diceRollerama() {
     this.select();
   }, false);
 
-  modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function() {
-    modifiers_plusMinus(5, controls_numberOfBonus_input);
-    modifiers_readAmountOfBonus();
-  }, false);
+  // modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function() {
+  //   modifiers_plusMinus(5, controls_numberOfBonus_input);
+  //   modifiers_readAmountOfBonus();
+  // }, false);
 
   modifiers_changeAmountOfBonus_plusOne.addEventListener("click", function() {
     modifiers_plusMinus(1, controls_numberOfBonus_input);
@@ -761,10 +761,10 @@ function diceRollerama() {
     modifiers_readAmountOfBonus();
   }, false);
 
-  modifiers_changeAmountOfBonus_minusFive.addEventListener("click", function() {
-    modifiers_plusMinus(-5, controls_numberOfBonus_input);
-    modifiers_readAmountOfBonus();
-  }, false);
+  // modifiers_changeAmountOfBonus_minusFive.addEventListener("click", function() {
+  //   modifiers_plusMinus(-5, controls_numberOfBonus_input);
+  //   modifiers_readAmountOfBonus();
+  // }, false);
 
   // multipleDice
   controls_numberOfDice_input.addEventListener("input", function() {
@@ -782,10 +782,10 @@ function diceRollerama() {
     this.select();
   }, false);
 
-  modifiers_changeAmountOfDice_plusFive.addEventListener("click", function() {
-    modifiers_plusMinus(5, controls_numberOfDice_input);
-    modifiers_readAmountOfDice();
-  }, false);
+  // modifiers_changeAmountOfDice_plusFive.addEventListener("click", function() {
+  //   modifiers_plusMinus(5, controls_numberOfDice_input);
+  //   modifiers_readAmountOfDice();
+  // }, false);
 
   modifiers_changeAmountOfDice_plusOne.addEventListener("click", function() {
     modifiers_plusMinus(1, controls_numberOfDice_input);
@@ -797,10 +797,10 @@ function diceRollerama() {
     modifiers_readAmountOfDice();
   }, false);
 
-  modifiers_changeAmountOfDice_minusFive.addEventListener("click", function() {
-    modifiers_plusMinus(-5, controls_numberOfDice_input);
-    modifiers_readAmountOfDice();
-  }, false);
+  // modifiers_changeAmountOfDice_minusFive.addEventListener("click", function() {
+  //   modifiers_plusMinus(-5, controls_numberOfDice_input);
+  //   modifiers_readAmountOfDice();
+  // }, false);
 
   element_results_toggleFullscreen.addEventListener("click", function() {
     toggleClass(element_columnResults, "fullsize");

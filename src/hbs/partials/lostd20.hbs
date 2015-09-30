@@ -15,16 +15,16 @@
     <div class="wrapper">
       <div class="number of-dice">
         <input type="tel" placeholder="1d" maxlength="3" tabindex="1">
-        <a href="javascript:void(0)" class="button button-secondary clear">
+        <a href="javascript:void(0)" class="button button-secondary button-small clear">
           <span class="icon-close"></span>
         </a>
-      </div>
-      <div class="modifiers">
-        <div class="change-amount of-dice">
-          <a href="javascript:void(0)" class="button button-secondary minus-five" tabindex="1">-5</a>
-          <a href="javascript:void(0)" class="button button-secondary minus-one" tabindex="1">-1</a>
-          <a href="javascript:void(0)" class="button button-secondary plus-one" tabindex="1">+1</a>
-          <a href="javascript:void(0)" class="button button-secondary plus-five" tabindex="1">+5</a>
+        <div class="modifiers">
+          <div class="change-amount of-dice cf">
+            {{!-- <a href="javascript:void(0)" class="button button-secondary button-small minus-five" tabindex="1">-5</a> --}}
+            <a href="javascript:void(0)" class="button button-secondary button-small minus-one" tabindex="1"><span class="icon-remove"></span></a>
+            <a href="javascript:void(0)" class="button button-secondary button-small plus-one" tabindex="1"><span class="icon-add"></span></a>
+            {{!-- <a href="javascript:void(0)" class="button button-secondary button-small plus-five" tabindex="1">+5</a> --}}
+          </div>
         </div>
       </div>
       <form class="dice-form cf">
@@ -94,16 +94,16 @@
       </form>
       <div class="number of-bonus">
         <input type="tel" placeholder="+0 Bonus" maxlength="4" tabindex="1">
-        <a href="javascript:void(0)" class="button button-secondary clear">
+        <a href="javascript:void(0)" class="button button-secondary button-small clear">
           <span class="icon-close"></span>
         </a>
-      </div>
-      <div class="modifiers">
-        <div class="change-amount of-bonus">
-          <a href="javascript:void(0)" class="button button-secondary minus-five" tabindex="1">-5</a>
-          <a href="javascript:void(0)" class="button button-secondary minus-one" tabindex="1">-1</a>
-          <a href="javascript:void(0)" class="button button-secondary plus-one" tabindex="1">+1</a>
-          <a href="javascript:void(0)" class="button button-secondary plus-five" tabindex="1">+5</a>
+        <div class="modifiers">
+          <div class="change-amount of-bonus cf">
+            {{!-- <a href="javascript:void(0)" class="button button-secondary button-small minus-five" tabindex="1">-5</a> --}}
+            <a href="javascript:void(0)" class="button button-secondary button-small minus-one" tabindex="1"><span class="icon-remove"></span></a>
+            <a href="javascript:void(0)" class="button button-secondary button-small plus-one" tabindex="1"><span class="icon-add"></span></a>
+            {{!-- <a href="javascript:void(0)" class="button button-secondary button-small plus-five" tabindex="1">+5</a> --}}
+          </div>
         </div>
       </div>
       <a href="javascript:void(0)" class="button button-primary go-roll" tabindex="1">Roll The Dice</a>

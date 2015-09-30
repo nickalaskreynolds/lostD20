@@ -29,6 +29,16 @@ button {
     font-size: 1.3rem;
     vertical-align: text-bottom;
   }
+  &.button-small {
+    padding: 3px 5px;
+    font-size: 1rem;
+    line-height: 1rem;
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: 1rem;
+      vertical-align: top;
+    }
+  }
   &:focus {
     outline: 0;
     text-decoration: none;
@@ -71,7 +81,13 @@ button {
       background-color: transparent;
       border-color: transparent;
     }
-    &:focus,
+    &:focus {
+      color: $white;
+      background-color: $secondary-color-light;
+      border-color: $secondary-color-dark;
+      outline: 0;
+      text-decoration: none;
+    }
     &:hover {
       color: $white;
       background-color: $secondary-color-dark;
@@ -93,7 +109,12 @@ button {
       background-color: transparent;
       border-color: transparent;
     }
-    &:focus,
+    &:focus {
+      color: $white;
+      background-color: $gray-alpha-04;
+      outline: 0;
+      text-decoration: none;
+    }
     &:hover {
       color: $white;
       background-color: $gray-alpha-03;

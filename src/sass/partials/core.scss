@@ -43,36 +43,45 @@ body {
       background-color: $background-color;
       z-index: 1;
       .wrapper {
-        padding: 60px 30px 30px 30px;
+        padding: 60px 7% 30px 7%;
         .number {
-          width: 70%;
-          margin: 0 auto;
           position: relative;
           text-align: center;
           &.of-dice,
           &.of-bonus {
             input {
-              margin: 0 0 5px 0;
-              padding: 1rem 0;
-              width: 100%;
+              padding: 0;
+              margin: 0 auto;
+              width: 40%;
               text-align: center;
-              font-size: 2rem;
-              line-height: 4rem;
-              height: 4rem;
+              font-size: 1.5rem;
+              line-height: 2.5rem;
+              height: 2.5rem;
               font-family: $open-sans-condensed-light;
             }
             .clear {
               position: absolute;
-              bottom: 12px;
-              right: 0;
+              right: 30%;
+              bottom: 7px;
             }
           }
-        }
-        .modifiers {
-          text-align: center;
-          .button {
-            padding-left: 15px;
-            padding-right: 15px;
+          &.of-dice {
+            margin: 0 0 20px 0;
+          }
+          &.of-bonus {
+            margin: 20px 0 0 0;
+          }
+          .modifiers {
+            .button {
+              position: absolute;
+              bottom: 6px;
+              &.minus-one {
+                left: 10%;
+              }
+              &.plus-one {
+                right: 10%;
+              }
+            }
           }
         }
         .go-roll {
@@ -128,7 +137,7 @@ body {
                 left: 0;
                 width: 36px;
                 height: 36px;
-                font-size: 2.3em;
+                font-size: 2.1em;
                 line-height: 36px;
                 color: $secondary-color-dark;
                 transition: all $transition-ease-fast;
@@ -154,17 +163,9 @@ body {
                 }
               }
             }
-            &:focus {
-              .diceRing {
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  transform: scale(1.7);
-                }
-              }
-            }
             &.active {
               .diceRing {
-                transform: scale(1.6);
+                transform: scale(1.3);
               }
             }
           }
@@ -202,13 +203,12 @@ body {
             }
             .formula-controls {
               position: absolute;
-              bottom: 0;
+              bottom: 6px;
               right: 0;
               z-index: 2;
               .button {
                 float: right;
                 margin: 0 5px 0 0;
-                padding: 2px 5px;
                 &:first-child {
                   margin: 0;
                 }
@@ -228,14 +228,14 @@ body {
               transition: transform $transition-ease-medium;
             }
             &:first-child {
-              .controls {
+              .formula-controls {
                 .move-up {
                   transform: scale(0);
                 }
               }
             }
             &:last-child {
-              .controls {
+              .formula-controls {
                 .move-down {
                   transform: scale(0);
                 }
@@ -439,6 +439,59 @@ body {
 ------------------------------------------------- */
 
 @media (min-width: 550px) {
+  .container {
+    .main-column {
+      &.controls {
+        .wrapper {
+          padding: 60px 21% 30px 21%;
+        }
+      }
+      &.formulas {
+        .wrapper {
+          padding: 60px 0 30px 0;
+          .list {
+            .saved-formula {
+              padding: 10px 21%;
+            }
+          }
+        }
+      }
+      &.results {
+        .wrapper {
+          padding: 60px 0 30px 0;
+          .result-history {
+            .list {
+              p {
+                padding: 10px 21%;
+              }
+            }
+          }
+        }
+        &.active {
+          .wrapper {
+            .result-history {
+              .list {
+                p {
+                  padding: 10px 21%;
+                }
+              }
+            }
+          }
+        }
+        &.fullsize {
+          .wrapper {
+            .result-history {
+              .list {
+                p {
+                  padding: 10px 21%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .snacks {
     width: 70%;
     left: 50%;
@@ -578,20 +631,20 @@ body {
         box-shadow: $shadow-medium;
         z-index: 3;
         .wrapper {
-          padding: 80px 40px 40px 40px;
+          padding: 60px 40px 40px 40px;
           .dice-form {
             label {
-              margin: 10px 0;
+              margin: 5px 0;
               width: 80px;
               .diceRing {
-                width: 50px;
-                height: 50px;
+                width: 46px;
+                height: 46px;
                 [class^="diceIcon-"],
                 [class*=" diceIcon-"] {
-                  width: 46px;
-                  height: 46px;
-                  font-size: 2.5em;
-                  line-height: 46px;
+                  width: 42px;
+                  height: 42px;
+                  font-size: 2.2em;
+                  line-height: 42px;
                 }
               }
             }
