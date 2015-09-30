@@ -287,29 +287,27 @@ function diceRollerama() {
       element_formulas_list.innerHTML =
         '<div class="saved-formula" data-roll-name="' + saveName + '" data-ammount-of-dice="' + controls_numberOfDice_input_value + '" data-dice="' + controls_numberOfDiceSides_value + '" data-ammount-of-bonus="' + controls_numberOfBonus_input_value +'">'
         + '<div class="row">'
-          + '<div class="col-9">'
+          + '<div class="col-12">'
+            + '<div class="name">'
+              + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
+            + '</div>'
             + '<div class="row">'
-              + '<div class="col-12">'
-                + '<div class="name">'
-                  + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">'
-                + '</div>'
-                + '<div class="formula-controls">'
-                  + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
-                  + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
-                + '</div>'
-              + '</div>'
-              + '<div class="col-12">'
-                + '<div class="formula">'
+              + '<div class="col-4">'
+                + '<div class="formula-record">'
                   + '<span class="amount-of-dice' + oneDiceOrMore + '">' + controls_numberOfDice_input_value + '</span> '
                   + '<span class="which-dice">d' + controls_numberOfDiceSides_value + '</span> '
                   + '<span class="amount-of-bonus">' + plusOrMinus + '</span>'
                 + '</div>'
               + '</div>'
+              + '<div class="col-8">'
+                + '<div class="formula-controls">'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>'
+                  + '<a href="javascript:void(0)" class="button button-dark button-small roll" tabindex="1">Roll</a>'
+                + '</div>'
+              + '</div>'
             + '</div>'
-          + '</div>'
-          + '<div class="col-3">'
-            + '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="1">Roll</a>'
           + '</div>'
         + '</div>'
       + '</div>'
@@ -397,7 +395,7 @@ function diceRollerama() {
       };
 
     };
-    delayFunction(autoClearSnackBar, 99996000);
+    delayFunction(autoClearSnackBar, 6000);
       newSnackBar.addEventListener("mouseover", function() {
           clearTimeout(delayFunction);
           console.log("hover");
