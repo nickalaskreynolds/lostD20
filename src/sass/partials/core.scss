@@ -555,6 +555,11 @@ body {
             }
           }
         }
+        &.active {
+          .wrapper {
+            padding: 60px 0 40px 0;
+          }
+        }
       }
       &.results {
         position: fixed;
@@ -636,6 +641,11 @@ body {
           .wrapper {
             padding: 60px 0 40px 0;
           }
+          &.active {
+            .wrapper {
+              padding: 60px 0 40px 0;
+            }
+          }
         }
       }
     }
@@ -658,16 +668,16 @@ body {
           .dice-form {
             label {
               margin: 5px 0;
-              width: 65px;
+              width: 80px;
               .diceRing {
-                width: 46px;
-                height: 46px;
+                width: 52px;
+                height: 52px;
                 [class^="diceIcon-"],
                 [class*=" diceIcon-"] {
-                  width: 42px;
-                  height: 42px;
-                  font-size: 2.2em;
-                  line-height: 42px;
+                  width: 48px;
+                  height: 48px;
+                  font-size: 2.5em;
+                  line-height: 48px;
                 }
               }
             }
@@ -683,6 +693,11 @@ body {
             .saved-formula {
               padding: 20px 40px;
             }
+          }
+        }
+        &.active {
+          .wrapper {
+            padding: 60px 0 40px 0;
           }
         }
       }
