@@ -374,10 +374,10 @@ function diceRollerama() {
             + '<p class="message">' + readSaved_name + ' removed.</p>'
           + '</div>'
           + '<div class="col-6">'
-            + '<a href="javascript:void(0)" class="button button-dark clear">'
+            + '<a href="javascript:void(0)" class="button button-dark button-small clear">'
               + '<span class="icon-close"></span>'
             + '</a>'
-            + '<a href="javascript:void(0)" class="button button-dark undo">Undo</a>'
+            + '<a href="javascript:void(0)" class="button button-dark button-small undo">Undo</a>'
           + '</div>'
         + '</div>'
       + '</div>';
@@ -397,7 +397,7 @@ function diceRollerama() {
       };
 
     };
-    delayFunction(autoClearSnackBar, 6000);
+    delayFunction(autoClearSnackBar, 99996000);
       newSnackBar.addEventListener("mouseover", function() {
           clearTimeout(delayFunction);
           console.log("hover");

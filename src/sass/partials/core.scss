@@ -5,6 +5,11 @@ html {
   font-size: 88%;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 ::-webkit-full-screen {
   width: 100%;
   height: 100%;
@@ -97,9 +102,9 @@ body {
           text-align: center;
           label {
             display: inline-block;
-            width: 60px;
+            width: 52px;
             padding: 0;
-            margin: 5px 0;
+            margin: 2px 0;
             line-height: 0;
             cursor: pointer;
             text-align: center;
@@ -176,7 +181,7 @@ body {
       background-color: $secondary-color-dark;
       z-index: 2;
       .wrapper {
-        padding: 20px 0;
+          padding: 30px 0 300px 0;
         .list {
           .saved-formula {
             background-color: transparent;
@@ -395,14 +400,21 @@ body {
     p {
       color: $white;
       line-height: 1.5rem;
-      margin: 6px 10px;
+      margin: 0 10px;
+      font-size: 0.8rem;
     }
     .button {
       margin: 0 0 0 5px;
+      padding-top: 0;
+      padding-bottom: 0;
       float: right;
       display: inline-block;
+      font-size: 0.8rem;
+      line-height: 1.5rem;
       [class^="icon-"],
-      [class*=" icon-"] {}
+      [class*=" icon-"] {
+        font-size: 0.8rem;
+      }
     }
     &:first-child {
       margin: 0;
@@ -412,7 +424,7 @@ body {
     }
     &.reveal {
       padding: 10px;
-      height: 53px;
+      height: 43px;
     }
   }
 }
@@ -448,7 +460,7 @@ body {
       }
       &.formulas {
         .wrapper {
-          padding: 60px 0 30px 0;
+          padding: 30px 0 300px 0;
           .list {
             .saved-formula {
               padding: 10px 21%;
@@ -458,21 +470,22 @@ body {
       }
       &.results {
         .wrapper {
-          padding: 60px 0 30px 0;
+          padding: 20px 0;
           .result-history {
             .list {
               p {
-                padding: 10px 21%;
+              padding: 10px 21%;
               }
             }
           }
         }
         &.active {
           .wrapper {
+            padding: 10px 0 30px 0;
             .result-history {
               .list {
                 p {
-                  padding: 10px 21%;
+              padding: 10px 21%;
                 }
               }
             }
@@ -480,10 +493,11 @@ body {
         }
         &.fullsize {
           .wrapper {
+            padding: 60px 0 30px 0;
             .result-history {
               .list {
                 p {
-                  padding: 10px 21%;
+              padding: 10px 21%;
                 }
               }
             }
@@ -537,7 +551,7 @@ body {
       &.formulas {
         z-index: 1;
         .wrapper {
-          padding: 80px 0 40px 0;
+          padding: 60px 0 40px 0;
           .list {
             .saved-formula {
               padding: 10px 40px;
@@ -557,18 +571,34 @@ body {
           .result-history {
             .list {
               p {
-                padding: 20px 40px;
+                padding: 10px 40px;
+              }
+            }
+          }
+        }
+        &.active {
+          .wrapper {
+            padding: 10px 0 30px 0;
+            .result-history {
+              .list {
+                p {
+                  padding: 10px 40px;
+                }
               }
             }
           }
         }
         &.fullsize {
           .wrapper {
-            padding: 60px 0 40px 0;
+            padding: 60px 0 30px 0;
+            .result-history {
+              .list {
+                p {
+                  padding: 10px 40px;
+                }
+              }
+            }
           }
-        }
-        &.active {
-          .wrapper {}
         }
       }
     }
@@ -583,10 +613,6 @@ body {
 @media (min-width: 900px) {
   html {
     font-size: 100%;
-  }
-  html,
-  body {
-    height: 100%;
   }
   .container {
     .main-column {
@@ -631,11 +657,11 @@ body {
         box-shadow: $shadow-medium;
         z-index: 3;
         .wrapper {
-          padding: 60px 40px 40px 40px;
+          padding: 80px 40px 40px 40px;
           .dice-form {
             label {
               margin: 5px 0;
-              width: 80px;
+              width: 65px;
               .diceRing {
                 width: 46px;
                 height: 46px;
@@ -674,7 +700,7 @@ body {
         height: 100%;
         width: 33.3333333333%;
         .wrapper {
-          padding: 60px 0 40px 0;
+          padding: 70px 0 40px 0;
           .result-history {
             .list {
               p {
@@ -688,12 +714,12 @@ body {
         }
         &.active {
           .wrapper {
-            padding: 60px 0 40px 0;
+            padding: 70px 0 40px 0;
           }
         }
         &.fullsize {
           .wrapper {
-            padding: 60px 0 40px 0;
+            padding: 70px 0 40px 0;
           }
         }
       }
@@ -706,11 +732,6 @@ body {
     width: 50%;
     left: 20px;
     transform: none;
-    .snack-bar {
-      &.reveal {
-        margin: 10px 0 0 0;
-      }
-    }
   }
 }
 
