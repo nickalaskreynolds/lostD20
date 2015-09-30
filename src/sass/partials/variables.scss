@@ -67,22 +67,23 @@ $transition-ease-fast:               0.1s ease-in-out;
 /* drop shadows
 ------------------------------------------------- */
 
-$shadow-small:                      0 1px 3px rgba(0, 0, 0, 0.1),
+$shadow-small:                      0 1px 2px rgba(0, 0, 0, 0.1),
                                     0 1px 20px rgba(0, 0, 0, 0.3);
 
 $shadow-medium:                     0 1px 5px rgba(0, 0, 0, 0.2),
-                                    0 10px 20px rgba(0, 0, 0, 0.2);
+                                    0 5px 20px rgba(0, 0, 0, 0.2);
 
-$shadow-large:                      0 1px 1px rgba(0, 0, 0, 0.5),
-                                    0 1px 40px rgba(0, 0, 0, 0.5),
-                                    0 10px 40px rgba(0, 0, 0, 0.5);
+$shadow-large:                      0 1px 5px rgba(0, 0, 0, 0.5),
+                                    0 1px 20px rgba(0, 0, 0, 0.5);
 
-$shadow-small-inset:                inset 0 1px 1px -1px rgba(0, 0, 0, 0.1),
-                                    inset 0 1px 40px -10px rgba(0, 0, 0, 0.1);
+$shadow-small-inset:                inset 0 1px 2px rgba(0, 0, 0, 0.1),
+                                    inset 0 1px 20px rgba(0, 0, 0, 0.3);
 
-$shadow-large-inset:                inset 0 1px 1px -1px rgba(0, 0, 0, 0.5),
-									inset 0 20px 40px -10px rgba(0, 0, 0, 0.5),
-									inset 0 5px 40px -10px rgba(0, 0, 0, 0.5);
+$shadow-medium-inset:               inset 0 1px 5px rgba(0, 0, 0, 0.2),
+                                    inset 0 5px 20px rgba(0, 0, 0, 0.2);
+
+$shadow-large-inset:                inset 0 1px 5px rgba(0, 0, 0, 0.5),
+                                    inset 0 1px 20px rgba(0, 0, 0, 0.5);
 
 /* radius
 ------------------------------------------------- */

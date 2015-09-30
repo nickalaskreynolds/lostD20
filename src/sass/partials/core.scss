@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  background-color: $secondary-color;
+  background: $secondary-color-dark;
   margin-bottom: 300px;
   font-family: $open-sans-regular;
   user-select: none;
@@ -35,9 +35,13 @@ body {
   height: inherit;
   box-sizing: border-box;
   .main-column {
+    box-sizing: border-box;
+    .wrapper {
+      position: relative;
+    }
     &.controls {
       background-color: $background-color;
-      box-sizing: border-box;
+      z-index: 1;
       .wrapper {
         padding: 60px 30px 30px 30px;
         .number {
@@ -168,8 +172,8 @@ body {
       }
     }
     &.formulas {
-      background-color: $secondary-color;
-      box-sizing: border-box;
+      background-color: $secondary-color-dark;
+      z-index: 2;
       .wrapper {
         padding: 20px 0;
         .list {
@@ -243,19 +247,18 @@ body {
     }
     &.results {
       background-color: $gray-02;
-      padding: 0;
       position: fixed;
       bottom: -150px;
       height: 150px;
       width: 100%;
       z-index: 3;
       overflow-y: auto;
-      box-shadow: $shadow-large-inset;
+      box-shadow: $shadow-medium-inset;
       transition: all $transition-ease-medium;
       box-sizing: border-box;
       .wrapper {
-        padding: 20px 0;
-      transition: all $transition-ease-medium;
+        padding: 10px 0;
+        transition: all $transition-ease-medium;
         .list {
           transition: all $transition-ease-medium;
           p {
@@ -355,7 +358,6 @@ body {
         background-color: $gray-01;
         bottom: 0;
         .wrapper {
-          padding: 10px 0;
           .toggle-fullscreen {
             bottom: 20px;
           }
@@ -365,7 +367,7 @@ body {
         height: 100%;
         bottom: 0;
         .wrapper {
-          padding: 60px 0;
+          padding: 40px 0 60px 0;
         }
       }
     }
@@ -472,15 +474,15 @@ body {
       float: left;
       overflow-x: hidden;
       overflow-y: auto;
-      .wrapper {
-        position: relative;
-      }
       &.controls {
+        box-shadow: $shadow-medium;
+        z-index: 2;
         .wrapper {
           padding: 80px 40px 40px 40px;
         }
       }
       &.formulas {
+        z-index: 1;
         .wrapper {
           padding: 80px 0 40px 0;
           .list {
@@ -508,10 +510,12 @@ body {
           }
         }
         &.fullsize {
-          padding: 40px 0;
+          .wrapper {
+            padding: 60px 0 40px 0;
+          }
         }
         &.active {
-          bottom: 0;
+          .wrapper {}
         }
       }
     }
@@ -531,10 +535,40 @@ body {
   body {
     height: 100%;
   }
+  .container {
+    .main-column {
+      &.controls {
+        .wrapper {
+          padding: 80px 40px 40px 40px;
+        }
+      }
+      &.formulas {
+        .wrapper {
+          padding: 60px 0 40px 0;
+        }
+      }
+      &.results {
+        .wrapper {
+          padding: 60px 0 40px 0;
+        }
+        &.active {
+          .wrapper {
+            padding: 20px 0;
+          }
+        }
+        &.fullsize {
+          .wrapper {
+            padding: 60px 0 40px 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 1000px) {
   body {
+    background-color: $secondary-color-dark;
     margin: 0;
   }
   .container {
@@ -565,11 +599,10 @@ body {
         }
       }
       &.formulas {
-        background-color: $secondary-color;
         box-shadow: $shadow-medium;
         z-index: 2;
         .wrapper {
-          padding: 80px 0 40px 0;
+          padding: 60px 0 40px 0;
           .list {
             .saved-formula {
               padding: 20px 40px;
@@ -588,7 +621,7 @@ body {
         height: 100%;
         width: 33.3333333333%;
         .wrapper {
-          padding: 80px 0 40px 0;
+          padding: 60px 0 40px 0;
           .result-history {
             .list {
               p {
@@ -598,6 +631,16 @@ body {
           }
           .toggle-fullscreen {
             display: none;
+          }
+        }
+        &.active {
+          .wrapper {
+            padding: 60px 0 40px 0;
+          }
+        }
+        &.fullsize {
+          .wrapper {
+            padding: 60px 0 40px 0;
           }
         }
       }
