@@ -1,7 +1,6 @@
 function diceRollerama() {
 
   // elements
-  var element_html = e("html");
   var element_columnControls = e(".main-column.controls");
   var element_columnResults = e(".main-column.results");
   var element_columnFormulas = e(".main-column.formulas");
@@ -26,24 +25,24 @@ function diceRollerama() {
   var controls_numberOfDice_input_value
   var controls_numberOfDice_clear = e(".controls .number.of-dice .clear");
   // bonus
-  // var modifiers_changeAmountOfBonus_plusFive = e(".modifiers .change-amount.of-bonus .plus-five");
-  var modifiers_changeAmountOfBonus_plusOne = e(".modifiers .change-amount.of-bonus .plus-one");
-  // var modifiers_changeAmountOfBonus_minusFive = e(".modifiers .change-amount.of-bonus .minus-five");
-  var modifiers_changeAmountOfBonus_minusOne = e(".modifiers .change-amount.of-bonus .minus-one");
+  var changeAmountOfBonus_plusOne = e(".change-amount-of-bonus.plus-one");
+  var changeAmountOfBonus_minusOne = e(".change-amount-of-bonus.minus-one");
   // number of dice
-  // var modifiers_changeAmountOfDice_plusFive = e(".modifiers .change-amount.of-dice .plus-five");
-  var modifiers_changeAmountOfDice_plusOne = e(".modifiers .change-amount.of-dice .plus-one");
-  // var modifiers_changeAmountOfDice_minusFive = e(".modifiers .change-amount.of-dice .minus-five");
-  var modifiers_changeAmountOfDice_minusOne = e(".modifiers .change-amount.of-dice .minus-one");
+  var changeAmountOfDice_plusOne = e(".change-amount-of-dice.plus-one");
+  var changeAmountOfDice_minusOne = e(".change-amount-of-dice.minus-one");
   // utilities
-  var utilities_toggleDropLowest = e(".utilities .toggle-drop-lowest");
-  var utilities_toggleDropLowest_icon = e(".utilities .toggle-drop-lowest span");
-  var utilities_saveCurrentFormula = e(".utilities .save-current-formula");
-  var utilities_toggleFullscreen = e(".utilities .toggle-fullscreen");
-  var utilities_toggleFullscreen_icon = e(".utilities .toggle-fullscreen span");
-  var utilities_clearAll = e(".utilities .clear-all");
+  var nav_toggleDropLowest = e("nav .toggle-drop-lowest");
+  var nav_toggleDropLowest_icon = e("nav .toggle-drop-lowest span");
+  var nav_saveCurrentFormula = e("nav .save-current-formula");
+  var nav_toggleFullscreen = e("nav .toggle-fullscreen");
+  var nav_toggleFullscreen_icon = e("nav .toggle-fullscreen span");
+  var nav_clearAll = e("nav .clear-all");
   // snack bar
   var element_snacks = e(".snacks");
+
+  // --------------------------------------------------------------------------
+  // helper functions
+  // --------------------------------------------------------------------------
 
   // get element by class or id
   function e(selector) {
@@ -100,6 +99,26 @@ function diceRollerama() {
     };
     return false;
   };
+
+  // --------------------------------------------------------------------------
+  // nav
+  // --------------------------------------------------------------------------
+
+  var nav = e("nav");
+  var navList = e(".nav-list");
+  var navToggle = e(".nav-toggle");
+
+  navToggle.addEventListener("click", function() {
+    toggleClass(nav, "open");
+  }, false);
+
+  window.addEventListener('click', function(event) {
+    if (nav.classList.contains("open")) {
+      if (event.target != nav && event.target.parentNode != nav && event.target.parentNode.parentNode != nav && event.target.parentNode.parentNode.parentNode != nav) {
+        removeClass(nav, "open");
+      };
+    };
+  });
 
   // get checked radio val 
   function getRadioValue(form, radioGroupName) {
@@ -175,7 +194,7 @@ function diceRollerama() {
       return a + b;
     });
     // check if drop lowest toggle is true or false
-    var toggleDropLowestState = utilities_toggleDropLowest.dataset.active;
+    var toggleDropLowestState = nav_toggleDropLowest.dataset.active;
     // make a subtract var
     var lowestToSubtract;
     if (toggleDropLowestState == "true" && numberOfDice > 1) {
@@ -265,7 +284,7 @@ function diceRollerama() {
     // is the bonus more than or less than 0
     var plusOrMinus = function() {
       if (controls_numberOfBonus_input_value > 0) {
-        plusOrMinus = "+" + controls_numberOfBonus_input_value;
+        plusOrMinus = controls_numberOfBonus_input_value;
       } else if (controls_numberOfBonus_input_value < 0) {
         plusOrMinus = controls_numberOfBonus_input_value;
       } else {
@@ -398,7 +417,6 @@ function diceRollerama() {
     delayFunction(autoClearSnackBar, 6000);
       newSnackBar.addEventListener("mouseover", function() {
           clearTimeout(delayFunction);
-          console.log("hover");
         }, false);
   };
 
@@ -454,11 +472,11 @@ function diceRollerama() {
       controls_numberOfDice_input.value = "999";
     };
     // if input bonus is 1 hide the clear button
-    if (controls_numberOfDice_input.value == 0 || controls_numberOfDice_input.value == "") {
-      addClass(controls_numberOfDice_clear, "hide");
-    } else {
-      removeClass(controls_numberOfDice_clear, "hide");
-    };
+    // if (controls_numberOfDice_input.value == 0 || controls_numberOfDice_input.value == "") {
+    //   addClass(controls_numberOfDice_clear, "hide");
+    // } else {
+    //   removeClass(controls_numberOfDice_clear, "hide");
+    // };
     // console.log("modifiers_readAmountOfDice \t \t multiple dice is " + controls_numberOfDice_input_value);
     return controls_numberOfDice_input_value;
   };
@@ -470,17 +488,17 @@ function diceRollerama() {
     if (controls_numberOfBonus_input_value == 0 || controls_numberOfBonus_input.value == "") {
       controls_numberOfBonus_input.value = "";
     } else if (controls_numberOfBonus_input_value > 0) {
-      controls_numberOfBonus_input.value = "+" + controls_numberOfBonus_input_value;
+      controls_numberOfBonus_input.value = controls_numberOfBonus_input_value;
     };
     if (controls_numberOfBonus_input_value >= 999) {
-      controls_numberOfBonus_input.value = "+999";
+      controls_numberOfBonus_input.value = "999";
     };
     // if input bonus is 0 hide the clear button
-    if (controls_numberOfBonus_input_value == 0 || controls_numberOfBonus_input_value == "") {
-      addClass(controls_numberOfBonus_clear, "hide");
-    } else {
-      removeClass(controls_numberOfBonus_clear, "hide");
-    };
+    // if (controls_numberOfBonus_input_value == 0 || controls_numberOfBonus_input_value == "") {
+    //   addClass(controls_numberOfBonus_clear, "hide");
+    // } else {
+    //   removeClass(controls_numberOfBonus_clear, "hide");
+    // };
     // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + controls_numberOfBonus_input_value);
     return controls_numberOfBonus_input_value;
   };
@@ -502,14 +520,14 @@ function diceRollerama() {
     var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
     if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
       requestFullScreen.call(rootElement);
-      toggleClass(utilities_toggleFullscreen, "active");
-      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen");
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
     } else {
       cancelFullScreen.call(root);
-      toggleClass(utilities_toggleFullscreen, "active");
-      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(utilities_toggleFullscreen_icon, "icon-fullscreen");
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
     }
   };
 
@@ -548,14 +566,14 @@ function diceRollerama() {
 
   // toggle drop lowest
   function toggleDropLowest() {
-    toggleClass(utilities_toggleDropLowest, "active");
-    toggleClass(utilities_toggleDropLowest_icon, "icon-check-box");
-    toggleClass(utilities_toggleDropLowest_icon, "icon-check-box-outline-blank");
-    var readDataSet = utilities_toggleDropLowest.dataset.active;
+    toggleClass(nav_toggleDropLowest, "active");
+    toggleClass(nav_toggleDropLowest_icon, "icon-check-box");
+    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-outline-blank");
+    var readDataSet = nav_toggleDropLowest.dataset.active;
     if (readDataSet == "false") {
-      utilities_toggleDropLowest.dataset.active = "true";
+      nav_toggleDropLowest.dataset.active = "true";
     } else if (readDataSet == "true") {
-      utilities_toggleDropLowest.dataset.active = "false";
+      nav_toggleDropLowest.dataset.active = "false";
     };
   };
 
@@ -624,22 +642,22 @@ function diceRollerama() {
   }, false);
 
   // utilities
-  utilities_toggleDropLowest.addEventListener("click", function() {
+  nav_toggleDropLowest.addEventListener("click", function() {
     toggleDropLowest();
   }, false);
 
-  utilities_clearAll.addEventListener("click", function() {
+  nav_clearAll.addEventListener("click", function() {
     clearAllFields();
     localStoreAdd("saved-history", element_results_list);
   }, false);
 
-  utilities_saveCurrentFormula.addEventListener("click", function() {
+  nav_saveCurrentFormula.addEventListener("click", function() {
     saveCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-formulas", element_formulas_list);
     checkListColumnState();
   }, false);
 
-  utilities_toggleFullscreen.addEventListener("click", function() {
+  nav_toggleFullscreen.addEventListener("click", function() {
     toggleFullScreen();
   }, false);
   
@@ -744,7 +762,7 @@ function diceRollerama() {
   controls_numberOfBonus_input.addEventListener("keypress", dropFocusOnEnter, false);
 
   controls_numberOfBonus_input.addEventListener("keydown", function() {
-    keystroke_modifiers_plusMinus(controls_numberOfBonus_input);
+    // keystroke_modifiers_plusMinus(controls_numberOfBonus_input);
     modifiers_readAmountOfBonus();
   }, false);
 
@@ -752,25 +770,15 @@ function diceRollerama() {
     this.select();
   }, false);
 
-  // modifiers_changeAmountOfBonus_plusFive.addEventListener("click", function() {
-  //   modifiers_plusMinus(5, controls_numberOfBonus_input);
-  //   modifiers_readAmountOfBonus();
-  // }, false);
-
-  modifiers_changeAmountOfBonus_plusOne.addEventListener("click", function() {
+  changeAmountOfBonus_plusOne.addEventListener("click", function() {
     modifiers_plusMinus(1, controls_numberOfBonus_input);
     modifiers_readAmountOfBonus();
   }, false);
 
-  modifiers_changeAmountOfBonus_minusOne.addEventListener("click", function() {
+  changeAmountOfBonus_minusOne.addEventListener("click", function() {
     modifiers_plusMinus(-1, controls_numberOfBonus_input);
     modifiers_readAmountOfBonus();
   }, false);
-
-  // modifiers_changeAmountOfBonus_minusFive.addEventListener("click", function() {
-  //   modifiers_plusMinus(-5, controls_numberOfBonus_input);
-  //   modifiers_readAmountOfBonus();
-  // }, false);
 
   // multipleDice
   controls_numberOfDice_input.addEventListener("input", function() {
@@ -780,7 +788,7 @@ function diceRollerama() {
   controls_numberOfDice_input.addEventListener("keypress", dropFocusOnEnter, false);
 
   controls_numberOfDice_input.addEventListener("keydown", function() {
-    keystroke_modifiers_plusMinus(controls_numberOfDice_input);
+    // keystroke_modifiers_plusMinus(controls_numberOfDice_input);
     modifiers_readAmountOfDice();
   }, false);
 
@@ -788,25 +796,15 @@ function diceRollerama() {
     this.select();
   }, false);
 
-  // modifiers_changeAmountOfDice_plusFive.addEventListener("click", function() {
-  //   modifiers_plusMinus(5, controls_numberOfDice_input);
-  //   modifiers_readAmountOfDice();
-  // }, false);
-
-  modifiers_changeAmountOfDice_plusOne.addEventListener("click", function() {
+  changeAmountOfDice_plusOne.addEventListener("click", function() {
     modifiers_plusMinus(1, controls_numberOfDice_input);
     modifiers_readAmountOfDice();
   }, false);
 
-  modifiers_changeAmountOfDice_minusOne.addEventListener("click", function() {
+  changeAmountOfDice_minusOne.addEventListener("click", function() {
     modifiers_plusMinus(-1, controls_numberOfDice_input);
     modifiers_readAmountOfDice();
   }, false);
-
-  // modifiers_changeAmountOfDice_minusFive.addEventListener("click", function() {
-  //   modifiers_plusMinus(-5, controls_numberOfDice_input);
-  //   modifiers_readAmountOfDice();
-  // }, false);
 
   element_results_toggleFullscreen.addEventListener("click", function() {
     toggleClass(element_columnResults, "fullsize");

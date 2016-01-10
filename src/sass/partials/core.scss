@@ -1,382 +1,361 @@
 /* core
 ------------------------------------------------- */
 
-html {
-  font-size: 88%;
-}
-
-html,
 body {
-  height: 100%;
+  background: $white;
+  padding: 0 0 500px 0;
 }
 
-::-webkit-full-screen {
-  width: 100%;
-  height: 100%;
+.main-column {
   box-sizing: border-box;
-  overflow: auto;
+  .wrapper {
+    position: relative;
+  }
 }
 
-::selection {
-  color: $white;
-  background: $primary-color;
-}
-
-body {
-  background-color: $background-color;
-  font-family: $open-sans-regular;
-  user-select: none;
-  font-size: 1rem;
-  line-height: 1rem;
-  color: $gray-02;
-}
-
-.container {
-  position: static;
-  top: auto;
-  left: auto;
-  width: 100%;
-  height: inherit;
-  box-sizing: border-box;
-  .main-column {
-    box-sizing: border-box;
-    .wrapper {
-      position: relative;
+.controls {
+  padding: 60px 0;
+  z-index: 1;
+  .number {
+    position: relative;
+    text-align: center;
+    &.of-dice,
+    &.of-bonus {
+      border: 1px solid $gray-12;
+      .button {
+        border-color: transparent;
+        position: relative;
+        float: left;
+        [class^="icon-"],
+        [class*=" icon-"] {
+          font-size: 1.3rem;
+        }
+        &.minus-one {
+          width: 20%;
+        }
+        &.plus-one {
+          width: 20%;
+        }
+        &.clear {
+          width: 20%;
+        }
+      }
+      p {
+        margin: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
+        width: 20%;
+        text-align: left;
+        font-size: 1.2rem;
+        height: 40px;
+        line-height: 38px;
+        float: left;
+        color: $gray-04;
+        font-family: $open-sans-bold;
+      }
+      input {
+        width: 20%;
+        float: left;
+        text-align: center;
+      }
     }
-    &.controls {
-      background-color: $background-color;
-      z-index: 1;
-      .wrapper {
-        padding: 60px 7% 30px 7%;
-        .number {
-          position: relative;
-          text-align: center;
-          &.of-dice,
-          &.of-bonus {
-            input {
-              padding: 0;
-              margin: 0 auto;
-              width: 40%;
-              text-align: center;
-              font-size: 1.5rem;
-              line-height: 2.5rem;
-              height: 2.5rem;
-              font-family: $open-sans-condensed-light;
-            }
-            .clear {
-              position: absolute;
-              right: 30%;
-              bottom: 7px;
-            }
-          }
-          &.of-dice {
-            margin: 0 0 20px 0;
-          }
-          &.of-bonus {
-            margin: 20px 0 0 0;
-          }
-          .modifiers {
-            .button {
-              position: absolute;
-              bottom: 7px;
-              &.minus-one {
-                left: 18%;
-              }
-              &.plus-one {
-                right: 18%;
-              }
-            }
-          }
+    &.of-dice {
+      // margin: 0 0 20px 0;
+      border-radius: 5px 5px 0 0;
+      .button {
+        &.minus-one {
+          border-radius: $border-radius-medium 0 0 0;
         }
-        .go-roll {
-          margin: 20px auto;
-          line-height: 3rem;
-          padding: 0;
-          width: 55%;
-          display: block;
+        &.plus-one {
+          border-radius: 0;
         }
-        .dice-form {
-          width: 100%;
-          margin: 10px 0;
-          text-align: center;
-          label {
-            display: inline-block;
-            width: 52px;
-            padding: 0;
-            margin: 2px 0;
-            line-height: 0;
-            cursor: pointer;
-            text-align: center;
-            border: 0;
-            outline: none;
-            position: relative;
-            input {
-              opacity: 0;
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              z-index: 1;
-            }
-            .label-text {
-              display: none;
-            }
-            .diceRing {
-              background-color: transparent;
-              position: relative;
-              display: block;
-              width: 40px;
-              height: 40px;
-              margin: 0 auto;
-              box-sizing: border-box;
-              transition: all $transition-ease-fast;
-              transform: scale(1);
-              border: 2px solid $secondary-color-dark;
-              border-radius: 50%;
-              z-index: 2;
-              [class^="diceIcon-"],
-              [class*=" diceIcon-"] {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 36px;
-                height: 36px;
-                font-size: 2.1em;
-                line-height: 36px;
-                color: $secondary-color-dark;
-                transition: all $transition-ease-fast;
-                text-align: center;
-              }
-            }
-            &:hover {
-              .diceRing {
-                border-color: $gray-10;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  color: $gray-10;
-                }
-              }
-            }
-            &:focus,
-            &.active {
-              .diceRing {
-                border-color: $primary-color;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  color: $primary-color;
-                }
-              }
-            }
-            &.active {
-              .diceRing {
-                transform: scale(1.3);
-              }
-            }
-          }
+        &.clear {
+          border-radius: 0 $border-radius-medium 0 0;
         }
       }
     }
-    &.formulas {
-      background-color: $background-color;
-      z-index: 2;
-      transition: all $transition-ease-medium;
-      .wrapper {
-        padding: 0;
-        .list {
-          .saved-formula {
-            background-color: transparent;
-            position: relative;
-            padding: 10px 30px;
-            width: 100%;
-            box-sizing: border-box;
-            opacity: 1;
-            overflow: hidden;
-            transform: scale(1);
-            transition: height $transition-ease-medium, padding $transition-ease-medium;
-            .name {
-              position: relative;
-              z-index: 1;
-              input {
-                margin: 0;
-                width: 100%;
-                height: inherit;
-              }
-            }
-            .formula-controls {
-              line-height: 2rem;
-              margin: 5px 0 0 0;
-              text-align: right;
-              .button {
-                margin: 0 10px 0 0;
-                &:last-child {
-                  margin: 0;
-                }
-              }
-            }
-            .formula-record {
-              line-height: 2rem;
-              margin: 5px 0 0 0;
-              color: $gray-08;
-            }
-            &.moving-up {
-              transform: translateY(-100%);
-              transition: transform $transition-ease-medium;
-            }
-            &.moving-down {
-              transform: translateY(100%);
-              transition: transform $transition-ease-medium;
-            }
-            &:first-child {
-              // animation: flash-light ease-out 0.5s;
-              // animation-iteration-count: 1;
-              .formula-controls {
-                .move-up {
-                  transform: scale(0);
-                }
-              }
-            }
-            &:last-child {
-              .formula-controls {
-                .move-down {
-                  transform: scale(0);
-                }
-              }
-            }
-          }
+    &.of-bonus {
+      // margin: 20px 0 0 0;
+      border-radius: 0 0 5px 5px;
+      .button {
+        &.minus-one {
+          border-radius: 0 0 0 $border-radius-medium;
+        }
+        &.plus-one {
+          border-radius: 0;
+        }
+        &.clear {
+          border-radius: 0 0 $border-radius-medium 0;
+        }
+      }
+    }
+  }
+  .go-roll {
+    margin-top: 30px;
+  }
+  .dice-form {
+    border-left: 1px solid $gray-12;
+    border-right: 1px solid $gray-12;
+    // border-radius: 5px;
+    text-align: center;
+    font-size: 0rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    label {
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      text-align: center;
+      border: 0;
+      outline: none;
+      position: relative;
+      width: 11.1111111111%;
+      display: inline-block;
+      font-size: 1rem;
+      z-index: 3;
+      transition: all $transition-ease-fast;
+      &:first-child {
+        // border-radius: $border-radius-medium 0 0 $border-radius-medium;
+      }
+      &:last-child {
+        // border-radius: 0 $border-radius-medium $border-radius-medium 0;
+      }
+      input {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        cursor: pointer;
+      }
+      .label-text {
+        display: none;
+      }
+      [class^="diceIcon-"],
+      [class*=" diceIcon-"] {
+        font-size: 2em;
+        line-height: 80px;
+        color: $secondary-color;
+        transition: all $transition-ease-fast;
+        transform: scale(1);
+        text-align: center;
+        display: block;
+      }
+      &:hover {
+        [class^="diceIcon-"],
+        [class*=" diceIcon-"] {
+          color: $secondary-color-light;
         }
       }
       &.active {
-        background-color: $secondary-color-dark;
-        .wrapper {
-          padding: 30px 0 300px 0;
+        background-color: $secondary-color;
+        z-index: 2;
+        [class^="diceIcon-"],
+        [class*=" diceIcon-"] {
+          color: $white;
+          transform: scale(2.2);
         }
       }
     }
-    &.results {
-      background-color: $background-color;
+  }
+}
+
+.formulas {
+  background-color: $background-color;
+  z-index: 2;
+  transition: all $transition-ease-medium;
+  .list {
+    .saved-formula {
+      background-color: transparent;
+      position: relative;
+      padding: 10px 30px;
+      width: 100%;
+      box-sizing: border-box;
+      opacity: 1;
+      overflow: hidden;
+      transform: scale(1);
+      transition: height $transition-ease-medium, padding $transition-ease-medium;
+      .name {
+        position: relative;
+        z-index: 1;
+        input {
+          margin: 0;
+          width: 100%;
+          height: inherit;
+        }
+      }
+      .formula-controls {
+        line-height: 2rem;
+        margin: 5px 0 0 0;
+        text-align: right;
+        .button {
+          margin: 0 10px 0 0;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+      .formula-record {
+        line-height: 2rem;
+        margin: 5px 0 0 0;
+        color: $gray-08;
+      }
+      &.moving-up {
+        transform: translateY(-100%);
+        transition: transform $transition-ease-medium;
+      }
+      &.moving-down {
+        transform: translateY(100%);
+        transition: transform $transition-ease-medium;
+      }
+      &:first-child {
+        // animation: flash-light ease-out 0.5s;
+        // animation-iteration-count: 1;
+        .formula-controls {
+          .move-up {
+            transform: scale(0);
+          }
+        }
+      }
+      &:last-child {
+        .formula-controls {
+          .move-down {
+            transform: scale(0);
+          }
+        }
+      }
+    }
+  }
+  &.active {
+    background-color: $secondary-color-dark;
+  }
+}
+
+.results {
+  background-color: $background-color;
+  position: fixed;
+  bottom: -150px;
+  height: 150px;
+  width: 100%;
+  z-index: 3;
+  overflow-y: auto;
+  box-shadow: $shadow-medium-inset;
+  transition: all $transition-ease-medium;
+  box-sizing: border-box;
+  .wrapper {
+    padding: 10px 0;
+    transition: all $transition-ease-medium;
+    .list {
+      transition: all $transition-ease-medium;
+      p {
+        margin: 0;
+        padding: 10px 30px;
+        border-bottom: 1px solid $gray-02;
+        color: $gray-06;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color $transition-ease-medium;
+        .total {
+          margin: 0;
+          border: 1px solid $gray-01;
+          border-radius: $border-radius-small;
+          color: $gray-10;
+          display: inline-block;
+          text-align: center;
+          line-height: 2rem;
+          box-sizing: border-box;
+          width: 22%;
+          float: left;
+        }
+        .breakdown {
+          margin: 3px 0 0 0;
+          line-height: 2rem;
+          width: 72%;
+          float: right;
+          .strike {
+            text-decoration: line-through;
+            color: $gray-03;
+          }
+        }
+        .dice {
+          font-size: 2rem;
+          vertical-align: middle;
+          .icon {
+            line-height: 2rem;
+          }
+        }
+        &:first-child {
+          animation: flash-dark ease-out 0.5s;
+          animation-iteration-count: 1;
+          .total {
+            border-color: $primary-color;
+            border-width: 2px;
+            color: $white;
+          }
+          .breakdown {
+            color: $gray-10;
+            .strike {
+              color: $primary-color;
+            }
+          }
+        }
+        &:last-child {
+          border: 0;
+        }
+        &.critical-20 {
+          .total {
+            background-color: $critical-20;
+            border-color: $critical-20;
+            color: $white;
+          }
+        }
+        &.critical-1 {
+          .total {
+            background-color: $critical-1;
+            border-color: $critical-1;
+            color: $white;
+          }
+        }
+      }
+    }
+    .toggle-fullscreen {
       position: fixed;
       bottom: -150px;
-      height: 150px;
-      width: 100%;
-      z-index: 3;
-      overflow-y: auto;
-      box-shadow: $shadow-medium-inset;
+      right: 20px;
       transition: all $transition-ease-medium;
-      box-sizing: border-box;
-      .wrapper {
-        padding: 10px 0;
-        transition: all $transition-ease-medium;
-        .list {
-          transition: all $transition-ease-medium;
-          p {
-            margin: 0;
-            padding: 10px 30px;
-            border-bottom: 1px solid $gray-02;
-            color: $gray-06;
-            width: 100%;
-            box-sizing: border-box;
-            transition: background-color $transition-ease-medium;
-            .total {
-              margin: 0;
-              border: 1px solid $gray-01;
-              border-radius: $border-radius-small;
-              color: $gray-10;
-              display: inline-block;
-              text-align: center;
-              line-height: 2rem;
-              box-sizing: border-box;
-              width: 22%;
-              float: left;
-            }
-            .breakdown {
-              margin: 3px 0 0 0;
-              line-height: 2rem;
-              width: 72%;
-              float: right;
-              .strike {
-                text-decoration: line-through;
-                color: $gray-03;
-              }
-            }
-            .dice {
-              font-size: 2rem;
-              vertical-align: middle;
-              .icon {
-                line-height: 2rem;
-              }
-            }
-            &:first-child {
-              animation: flash-dark ease-out 0.5s;
-              animation-iteration-count: 1;
-              .total {
-                border-color: $primary-color;
-                border-width: 2px;
-                color: $white;
-              }
-              .breakdown {
-                color: $gray-10;
-                .strike {
-                  color: $primary-color;
-                }
-              }
-            }
-            &:last-child {
-              border: 0;
-            }
-            &.critical-20 {
-              .total {
-                background-color: $critical-20;
-                border-color: $critical-20;
-                color: $white;
-              }
-            }
-            &.critical-1 {
-              .total {
-                background-color: $critical-1;
-                border-color: $critical-1;
-                color: $white;
-              }
-            }
-          }
-        }
-        .toggle-fullscreen {
-          position: fixed;
-          bottom: -150px;
-          right: 20px;
-          transition: all $transition-ease-medium;
-          display: block;
-          .expand {
-            display: inline-block;
-          }
-          .collapse {
-            display: none;
-          }
-          &.active {
-            .expand {
-              display: none;
-            }
-            .collapse {
-              display: inline-block;
-            }
-          }
-        }
+      display: block;
+      .expand {
+        display: inline-block;
+      }
+      .collapse {
+        display: none;
       }
       &.active {
-        background-color: $gray-01;
-        bottom: 0;
-        .wrapper {
-          .toggle-fullscreen {
-            bottom: 20px;
-          }
+        .expand {
+          display: none;
+        }
+        .collapse {
+          display: inline-block;
         }
       }
-      &.fullsize {
-        height: 100%;
-        bottom: 0;
-        .wrapper {
-          padding: 40px 0 60px 0;
-        }
+    }
+  }
+  &.active {
+    background-color: $gray-01;
+    bottom: 0;
+    .wrapper {
+      .toggle-fullscreen {
+        bottom: 20px;
       }
+    }
+  }
+  &.fullsize {
+    height: 100%;
+    bottom: 0;
+    .wrapper {
+      padding: 40px 0 60px 0;
     }
   }
 }
@@ -426,338 +405,9 @@ body {
   }
 }
 
-.utilities {
-  background-color: $secondary-color;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: $shadow-small;
-  z-index: 4;
-  text-align: center;
-  .button {
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 0;
-    display: inline-block;
-    font-size: 0.8rem;
-    .utility-name {
-      display: none;
-    }
-  }
-}
-
 
 /* media queries
 ------------------------------------------------- */
-
-@media (min-width: 550px) {
-  .container {
-    .main-column {
-      &.controls {
-        .wrapper {
-          padding: 60px 21% 30px 21%;
-        }
-      }
-      &.formulas {
-        .wrapper {
-          padding: 30px 0 300px 0;
-          .list {
-            .saved-formula {
-              padding: 10px 21%;
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 30px 0 300px 0;
-          }
-        }
-      }
-      &.results {
-        .wrapper {
-          padding: 20px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 10px 21%;
-              }
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 10px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 21%;
-                }
-              }
-            }
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 21%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .snacks {
-    width: 70%;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    .snack-bar {
-      border: 0;
-      border-radius: $border-radius-small;
-      &.reveal {
-        margin: 5px 0 0 0;
-      }
-    }
-  }
-  .utilities {
-    .button {
-      font-size: 1rem;
-      .utility-name {
-        display: inline-block;
-      }
-    }
-  }
-}
-
-@media (min-width: 750px) {
-  html {
-    font-size: 95%;
-  }
-  body {
-    margin: 0;
-  }
-  .container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    .main-column {
-      position: relative;
-      height: 100%;
-      width: 50%;
-      float: left;
-      overflow-x: hidden;
-      overflow-y: auto;
-      &.controls {
-        box-shadow: $shadow-medium;
-        z-index: 2;
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-        }
-      }
-      &.formulas {
-        z-index: 1;
-        .wrapper {
-          padding: 60px 0 300px 0;
-          .list {
-            .saved-formula {
-              padding: 10px 40px;
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 60px 0 300px 0;
-          }
-        }
-      }
-      &.results {
-        position: fixed;
-        bottom: -180px;
-        right: 0;
-        height: 180px;
-        width: 50%;
-        z-index: 3;
-        .wrapper {
-          padding: 20px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 10px 40px;
-              }
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 10px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 40px;
-                }
-              }
-            }
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 40px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 900px) {
-  html {
-    font-size: 100%;
-  }
-  .container {
-    .main-column {
-      &.controls {
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-        }
-      }
-      &.formulas {
-        .wrapper {
-          padding: 60px 0 40px 0;
-        }
-      }
-      &.results {
-        .wrapper {
-          padding: 60px 0 40px 0;
-        }
-        &.active {
-          .wrapper {
-            padding: 20px 0;
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 40px 0;
-          }
-          &.active {
-            .wrapper {
-              padding: 60px 0 40px 0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1000px) {
-  body {
-    background-color: $secondary-color-dark;
-    margin: 0;
-  }
-  .container {
-    .main-column {
-      width: 33.3333333333%;
-      &.controls {
-        box-shadow: $shadow-medium;
-        z-index: 3;
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-          .dice-form {
-            label {
-              margin: 5px 0;
-              width: 80px;
-              .diceRing {
-                width: 52px;
-                height: 52px;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  width: 48px;
-                  height: 48px;
-                  font-size: 2.5em;
-                  line-height: 48px;
-                }
-              }
-            }
-          }
-        }
-      }
-      &.formulas {
-        box-shadow: $shadow-medium;
-        z-index: 2;
-        .wrapper {
-          padding: 60px 0 40px 0;
-          .list {
-            .saved-formula {
-              padding: 20px 40px;
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 60px 0 40px 0;
-          }
-        }
-      }
-      &.results {
-        position: static;
-        height: inherit;
-        z-index: 1;
-        bottom: auto;
-        box-shadow: none;
-        bottom: auto;
-        right: auto;
-        height: 100%;
-        width: 33.3333333333%;
-        .wrapper {
-          padding: 70px 0 40px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 20px 40px;
-              }
-            }
-          }
-          .toggle-fullscreen {
-            display: none;
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 70px 0 40px 0;
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 70px 0 40px 0;
-          }
-        }
-      }
-    }
-  }
-  .utilities {
-    box-shadow: $shadow-medium;
-  }
-  .snacks {
-    width: 50%;
-    left: 20px;
-    transform: none;
-  }
-}
 
 
 /* animations

@@ -9,12 +9,14 @@ $background-color:                    #fafafa;
 $primary-color:                       #ff0055;
 $primary-color-dark:                  #cc0044;
 $primary-color-light:                 #ff3276;
-$primary-color-light-alpha:           rgba(255, 0, 85,0.5);
+$primary-color-dark-alpha:            rgba(255, 0, 85,0.5);
+$primary-color-light-alpha:           rgba(255, 0, 85,0.05);
 
 $secondary-color:                     #003c4f;
 $secondary-color-dark:                #003242;
 $secondary-color-light:               #086482;
-$secondary-color-light-alpha:         rgba(8, 100, 130,0.5);
+$secondary-color-dark-alpha:          rgba(0, 70, 130,0.5);
+$secondary-color-light-alpha:         rgba(0, 70, 130,0.05);
 
 $gray-01:                             #222222; // dark
 $gray-02:                             #343434;
@@ -26,17 +28,57 @@ $gray-07:                             #8e8e8e;
 $gray-08:                             #a0a0a0;
 $gray-09:                             #b2b2b2;
 $gray-10:                             #c4c4c4;
-$gray-12:                             #d6d6d6;
-$gray-13:                             #e8e8e8;
-$gray-14:                             #fafafa; // light
+$gray-11:                             #d6d6d6;
+$gray-12:                             #e8e8e8;
+$gray-13:                             #fafafa; // light
 
 $critical-20:                         #33c3f0;
 $critical-1:                          #990000;
+
+$gray-alpha-01:                       rgba(0, 0, 0, 0.87); // dark
+$gray-alpha-02:                       rgba(0, 0, 0, 0.80);
+$gray-alpha-03:                       rgba(0, 0, 0, 0.72);
+$gray-alpha-04:                       rgba(0, 0, 0, 0.65);
+$gray-alpha-05:                       rgba(0, 0, 0, 0.59);
+$gray-alpha-06:                       rgba(0, 0, 0, 0.51);
+$gray-alpha-07:                       rgba(0, 0, 0, 0.44);
+$gray-alpha-08:                       rgba(0, 0, 0, 0.37);
+$gray-alpha-09:                       rgba(0, 0, 0, 0.30);
+$gray-alpha-10:                       rgba(0, 0, 0, 0.23);
+$gray-alpha-11:                       rgba(0, 0, 0, 0.16);
+$gray-alpha-12:                       rgba(0, 0, 0, 0.09);
+$gray-alpha-13:                       rgba(0, 0, 0, 0.02); // light
 
 $gray-alpha-01:                       rgba(0, 0, 0, 0.8); // dark
 $gray-alpha-02:                       rgba(0, 0, 0, 0.6);
 $gray-alpha-03:                       rgba(0, 0, 0, 0.4);
 $gray-alpha-04:                       rgba(0, 0, 0, 0.2); // light
+
+
+/* grid
+------------------------------------------------- */
+
+$screen-xs:                           400px;
+$screen-xs-min:                       $screen-xs;
+
+$screen-sm:                           550px;
+$screen-sm-min:                       $screen-sm;
+
+$screen-md:                           700px;
+$screen-md-min:                       $screen-md;
+
+$screen-lg:                           900px;
+$screen-lg-min:                       $screen-lg;
+
+$screen-xl:                           1300px;
+$screen-xl-min:                       $screen-xl;
+
+$screen-xs-max:                       ($screen-sm-min - 1);
+$screen-sm-max:                       ($screen-md-min - 1);
+$screen-md-max:                       ($screen-lg-min - 1);
+$screen-lg-max:                       ($screen-xl-min - 1);
+
+$gutter:                              12px;
 
 /* typography
 ------------------------------------------------- */
@@ -53,6 +95,9 @@ $open-sans-condensed-bold:            "Open Sans Condensed Bold", Helvetica, Ari
 $open-sans-condensed-light-italic:    "Open Sans Condensed Light Italic", Helvetica, Arial, sans-serif;
 $open-sans-condensed-light:           "Open Sans Condensed Light", Helvetica, Arial, sans-serif;
 
+$small-text:                          0.8rem;
+
+$border:                              2px solid transparent;
 
 /* transitions
 ------------------------------------------------- */
@@ -64,30 +109,37 @@ $transition-ease-slow:               0.5s ease-in-out;
 $transition-ease-medium:             0.3s ease-in-out;
 $transition-ease-fast:               0.1s ease-in-out;
 
+/* z-index
+------------------------------------------------- */
+
+$body:                               1000;
+$nav:                                2000;
+$prompt:                             3000;
+
 /* drop shadows
 ------------------------------------------------- */
 
-$shadow-small:                      0 1px 2px rgba(0, 0, 0, 0.1),
-                                    0 1px 20px rgba(0, 0, 0, 0.3);
+$shadow-small:                      0 1px 1px rgba(0, 0, 0, 0.1),
+                                    0 1px 10px rgba(0, 0, 0, 0.1);
 
-$shadow-medium:                     0 1px 5px rgba(0, 0, 0, 0.2),
-                                    0 5px 20px rgba(0, 0, 0, 0.2);
+$shadow-medium:                     0 1px 2px rgba(0, 0, 0, 0.2),
+                                    0 1px 20px rgba(0, 0, 0, 0.2);
 
-$shadow-large:                      0 1px 5px rgba(0, 0, 0, 0.5),
-                                    0 1px 20px rgba(0, 0, 0, 0.5);
+$shadow-large:                      0 1px 3px rgba(0, 0, 0, 0.3),
+                                    0 1px 30px rgba(0, 0, 0, 0.3);
 
-$shadow-small-inset:                inset 0 1px 2px rgba(0, 0, 0, 0.1),
-                                    inset 0 1px 20px rgba(0, 0, 0, 0.3);
+$shadow-small-inset:                inset 0 1px 1px rgba(0, 0, 0, 0.1),
+                                    inset 0 1px 10px rgba(0, 0, 0, 0.1);
 
-$shadow-medium-inset:               inset 0 1px 5px rgba(0, 0, 0, 0.2),
-                                    inset 0 5px 20px rgba(0, 0, 0, 0.2);
+$shadow-medium-inset:               inset 0 1px 2px rgba(0, 0, 0, 0.2),
+                                    inset 0 1px 20px rgba(0, 0, 0, 0.2);
 
-$shadow-large-inset:                inset 0 1px 5px rgba(0, 0, 0, 0.5),
-                                    inset 0 1px 20px rgba(0, 0, 0, 0.5);
+$shadow-large-inset:                inset 0 1px 3px rgba(0, 0, 0, 0.3),
+                                    inset 0 1px 30px rgba(0, 0, 0, 0.3);
 
 /* radius
 ------------------------------------------------- */
 
-$border-radius-small:               3px;
-$border-radius-medium:              6px;
-$border-radius-large:               10px;
+$border-radius-small:               2px;
+$border-radius-medium:              4px;
+$border-radius-large:               6px;
