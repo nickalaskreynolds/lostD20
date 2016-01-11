@@ -35,14 +35,17 @@ button {
     display: inline-block;
   }
   &.button-small {
-    padding: 3px 10px 3px 5px;
-    line-height: 1rem;
+    padding: 0 10px 0 5px;
+    line-height: 18px;
+    height: 20px;
     font-size: $small-text;
     [class^="icon-"],
     [class*=" icon-"] {
-      line-height: 1rem;
+      line-height: 18px;
+      height: 18px;
       margin: 0 5px 0 0;
       font-size: $small-text;
+      display: inline-block;
     }
   }
   &:focus {

@@ -160,153 +160,6 @@ body {
   }
 }
 
-// .controls {
-//   z-index: 1;
-//   .number {
-//     position: relative;
-//     text-align: center;
-//     &.of-dice,
-//     &.of-bonus {
-//       border: 1px solid $gray-12;
-//       .button {
-//         border-color: transparent;
-//         position: relative;
-//         float: left;
-//         [class^="icon-"],
-//         [class*=" icon-"] {
-//           font-size: 1.3rem;
-//         }
-//         &.minus-one {
-//           width: 20%;
-//         }
-//         &.plus-one {
-//           width: 20%;
-//         }
-//         &.clear {
-//           width: 20%;
-//         }
-//       }
-//       p {
-//         margin: 0;
-//         padding: 0 10px;
-//         box-sizing: border-box;
-//         width: 20%;
-//         text-align: left;
-//         font-size: 1.2rem;
-//         height: 40px;
-//         line-height: 38px;
-//         float: left;
-//         color: $gray-04;
-//         font-family: $open-sans-bold;
-//       }
-//       input {
-//         width: 20%;
-//         float: left;
-//         text-align: center;
-//       }
-//     }
-//     &.of-dice {
-//       // margin: 0 0 20px 0;
-//       border-radius: 5px 5px 0 0;
-//       .button {
-//         &.minus-one {
-//           border-radius: $border-radius-medium 0 0 0;
-//         }
-//         &.plus-one {
-//           border-radius: 0;
-//         }
-//         &.clear {
-//           border-radius: 0 $border-radius-medium 0 0;
-//         }
-//       }
-//     }
-//     &.of-bonus {
-//       // margin: 20px 0 0 0;
-//       border-radius: 0 0 5px 5px;
-//       .button {
-//         &.minus-one {
-//           border-radius: 0 0 0 $border-radius-medium;
-//         }
-//         &.plus-one {
-//           border-radius: 0;
-//         }
-//         &.clear {
-//           border-radius: 0 0 $border-radius-medium 0;
-//         }
-//       }
-//     }
-//   }
-//   .go-roll {
-//     margin-top: 30px;
-//   }
-//   .dice-form {
-//     border-left: 1px solid $gray-12;
-//     border-right: 1px solid $gray-12;
-//     // border-radius: 5px;
-//     text-align: center;
-//     font-size: 0rem;
-//     position: relative;
-//     z-index: 1;
-//     overflow: hidden;
-//     label {
-//       padding: 0;
-//       margin: 0;
-//       cursor: pointer;
-//       text-align: center;
-//       border: 0;
-//       outline: none;
-//       position: relative;
-//       width: 11.1111111111%;
-//       display: inline-block;
-//       font-size: 1rem;
-//       z-index: 3;
-//       transition: all $transition-ease-fast;
-//       &:first-child {
-//         // border-radius: $border-radius-medium 0 0 $border-radius-medium;
-//       }
-//       &:last-child {
-//         // border-radius: 0 $border-radius-medium $border-radius-medium 0;
-//       }
-//       input {
-//         opacity: 0;
-//         position: absolute;
-//         left: 50%;
-//         top: 50%;
-//         transform: translate(-50%, -50%);
-//         z-index: 1;
-//         cursor: pointer;
-//       }
-//       .label-text {
-//         display: none;
-//       }
-//       [class^="diceIcon-"],
-//       [class*=" diceIcon-"] {
-//         font-size: 2em;
-//         line-height: 80px;
-//         color: $secondary-color;
-//         transition: all $transition-ease-fast;
-//         transform: scale(1);
-//         text-align: center;
-//         display: block;
-//       }
-//       &:hover {
-//         [class^="diceIcon-"],
-//         [class*=" diceIcon-"] {
-//           color: $secondary-color-light;
-//         }
-//       }
-//       &.active {
-//         background-color: $secondary-color;
-//         z-index: 2;
-//         [class^="diceIcon-"],
-//         [class*=" diceIcon-"] {
-//           color: $white;
-//           transform: scale(2.2);
-//         }
-//       }
-//     }
-//   }
-// }
 .formulas {
   background-color: $background-color;
   z-index: 2;
@@ -381,130 +234,150 @@ body {
 .results {
   background-color: $background-color;
   position: fixed;
-  bottom: -150px;
-  height: 150px;
+  bottom: -200px;
+  height: 200px;
   width: 100%;
   z-index: 3;
   overflow-y: auto;
   box-shadow: $shadow-medium-inset;
   transition: all $transition-ease-medium;
   box-sizing: border-box;
-  .wrapper {
-    padding: 10px 0;
-    transition: all $transition-ease-medium;
-    .list {
-      transition: all $transition-ease-medium;
-      p {
-        margin: 0;
-        padding: 10px 30px;
-        border-bottom: 1px solid $gray-02;
-        color: $gray-06;
-        width: 100%;
-        box-sizing: border-box;
-        transition: background-color $transition-ease-medium;
-        .total {
-          margin: 0;
-          border: 1px solid $gray-01;
-          border-radius: $border-radius-small;
-          color: $gray-10;
-          display: inline-block;
-          text-align: center;
-          line-height: 2rem;
-          box-sizing: border-box;
-          width: 22%;
-          float: left;
-        }
-        .breakdown {
-          margin: 3px 0 0 0;
-          line-height: 2rem;
-          width: 72%;
-          float: right;
-          .strike {
-            text-decoration: line-through;
-            color: $gray-03;
-          }
-        }
-        .dice {
-          font-size: 2rem;
-          vertical-align: middle;
-          .icon {
-            line-height: 2rem;
-          }
-        }
-        &:first-child {
-          animation: flash-dark ease-out 0.5s;
-          animation-iteration-count: 1;
-          .total {
-            border-color: $primary-color;
-            border-width: 2px;
-            color: $white;
-          }
-          .breakdown {
-            color: $gray-10;
-            .strike {
-              color: $primary-color;
-            }
-          }
-        }
-        &:last-child {
-          border: 0;
-        }
-        &.critical-20 {
-          .total {
-            background-color: $critical-20;
-            border-color: $critical-20;
-            color: $white;
-          }
-        }
-        &.critical-1 {
-          .total {
-            background-color: $critical-1;
-            border-color: $critical-1;
-            color: $white;
-          }
-        }
-      }
-    }
-    .toggle-fullscreen {
-      position: fixed;
-      bottom: -150px;
-      right: 20px;
-      transition: all $transition-ease-medium;
-      display: block;
-      .expand {
-        display: inline-block;
-      }
-      .collapse {
-        display: none;
-      }
-      &.active {
-        .expand {
-          display: none;
-        }
-        .collapse {
-          display: inline-block;
-        }
-      }
-    }
-  }
   &.active {
     background-color: $gray-01;
     bottom: 0;
-    .wrapper {
-      .toggle-fullscreen {
-        bottom: 20px;
-      }
-    }
   }
   &.fullsize {
     height: 100%;
     bottom: 0;
-    .wrapper {
-      padding: 40px 0 60px 0;
-    }
   }
 }
 
+// .results {
+//   background-color: $background-color;
+//   position: fixed;
+//   bottom: -150px;
+//   height: 150px;
+//   width: 100%;
+//   z-index: 3;
+//   overflow-y: auto;
+//   box-shadow: $shadow-medium-inset;
+//   transition: all $transition-ease-medium;
+//   box-sizing: border-box;
+//   .wrapper {
+//     padding: 10px 0;
+//     transition: all $transition-ease-medium;
+//     .list {
+//       transition: all $transition-ease-medium;
+//       p {
+//         margin: 0;
+//         padding: 10px 30px;
+//         border-bottom: 1px solid $gray-02;
+//         color: $gray-06;
+//         width: 100%;
+//         box-sizing: border-box;
+//         transition: background-color $transition-ease-medium;
+//         .total {
+//           margin: 0;
+//           border: 1px solid $gray-01;
+//           border-radius: $border-radius-small;
+//           color: $gray-10;
+//           display: inline-block;
+//           text-align: center;
+//           line-height: 2rem;
+//           box-sizing: border-box;
+//           width: 22%;
+//           float: left;
+//         }
+//         .breakdown {
+//           margin: 3px 0 0 0;
+//           line-height: 2rem;
+//           width: 72%;
+//           float: right;
+//           .strike {
+//             text-decoration: line-through;
+//             color: $gray-03;
+//           }
+//         }
+//         .dice {
+//           font-size: 2rem;
+//           vertical-align: middle;
+//           .icon {
+//             line-height: 2rem;
+//           }
+//         }
+//         &:first-child {
+//           animation: flash-dark ease-out 0.5s;
+//           animation-iteration-count: 1;
+//           .total {
+//             border-color: $primary-color;
+//             border-width: 2px;
+//             color: $white;
+//           }
+//           .breakdown {
+//             color: $gray-10;
+//             .strike {
+//               color: $primary-color;
+//             }
+//           }
+//         }
+//         &:last-child {
+//           border: 0;
+//         }
+//         &.critical-20 {
+//           .total {
+//             background-color: $critical-20;
+//             border-color: $critical-20;
+//             color: $white;
+//           }
+//         }
+//         &.critical-1 {
+//           .total {
+//             background-color: $critical-1;
+//             border-color: $critical-1;
+//             color: $white;
+//           }
+//         }
+//       }
+//     }
+//     .toggle-fullscreen {
+//       position: fixed;
+//       bottom: -150px;
+//       right: 20px;
+//       transition: all $transition-ease-medium;
+//       display: block;
+//       .expand {
+//         display: inline-block;
+//       }
+//       .collapse {
+//         display: none;
+//       }
+//       &.active {
+//         .expand {
+//           display: none;
+//         }
+//         .collapse {
+//           display: inline-block;
+//         }
+//       }
+//     }
+//   }
+//   &.active {
+//     background-color: $gray-01;
+//     bottom: 0;
+//     .wrapper {
+//       .toggle-fullscreen {
+//         bottom: 20px;
+//       }
+//     }
+//   }
+//   &.fullsize {
+//     height: 100%;
+//     bottom: 0;
+//     .wrapper {
+//       padding: 40px 0 60px 0;
+//     }
+//   }
+// }
 .snacks {
   position: fixed;
   left: 0;
