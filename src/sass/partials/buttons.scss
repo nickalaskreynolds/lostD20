@@ -83,12 +83,12 @@ button {
   &.button-secondary {
     &:link,
     &:visited {
-      color: $gray-03;
+      color: $gray-10;
       background-color: transparent;
       border-color: $gray-12;
     }
     &:focus {
-      background-color: transparent;
+      background-color: $secondary-color-dark;
       border-color: $secondary-color-light;
       outline: 0;
       text-decoration: none;
