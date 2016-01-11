@@ -120,7 +120,17 @@ body {
         cursor: pointer;
       }
       .label-text {
-        border-top: 5px solid transparent;
+        &:before {
+          background-color: transparent;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          transition: all $transition-ease-medium;
+        }
+        position: relative;
         line-height: 50px;
         display: block;
         color: $gray-10;
@@ -144,7 +154,9 @@ body {
         z-index: 2;
         .label-text {
           color: $white;
-          border-color: $primary-color;
+          &:before {
+            background-color: $primary-color;
+          }
         }
       }
     }
@@ -154,7 +166,7 @@ body {
     border: 0;
     height: 50px;
     line-height: 50px;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-family: $open-sans-bold;
     text-transform: uppercase;
   }
@@ -242,6 +254,51 @@ body {
   box-shadow: $shadow-medium-inset;
   transition: all $transition-ease-medium;
   box-sizing: border-box;
+  .list {
+    .row {
+      &:first-child {
+        .total {
+          border: 3px solid $primary-color;
+          &.critical-20 {
+            border-color: $gray-alpha-08;
+          }
+          &.critical-1 {
+            border-color: $gray-alpha-08;
+          }
+        }
+      }
+    }
+  }
+  .total,
+  .breakdown {
+    margin: 0;
+    padding: 10px 0;
+    display: block;
+    border-bottom: 1px solid $gray-02;
+  }
+  .breakdown {
+    text-align: left;
+    color: $gray-08;
+  }
+  .total {
+    text-align: center;
+    border: 3px solid transparent;
+    border-radius: $border-radius-medium;
+    font-family: $open-sans-condensed-light;
+    color: $gray-12;
+    line-height: 1.2rem;
+    font-size: 1.6rem;
+    &.critical-20 {
+      background-color: $critical-20;
+      border-color: $gray-alpha-08;
+      color: $white;
+    }
+    &.critical-1 {
+      background-color: $critical-1;
+      border-color: $gray-alpha-08;
+      color: $white;
+    }
+  }
   &.active {
     background-color: $gray-01;
     bottom: 0;

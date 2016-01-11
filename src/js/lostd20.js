@@ -224,7 +224,7 @@ function diceRollerama() {
     if (bonusModifier == 0) {
       bonusOrNoBonus = "";
     } else {
-      bonusOrNoBonus = " (" + plusOrMinus + bonusModifier + " Bonus)";
+      bonusOrNoBonus = plusOrMinus + bonusModifier + " Bonus";
     };
     // if there is a name with the roll
     var savedRollName;
@@ -250,7 +250,22 @@ function diceRollerama() {
     };
     // print results to history
     element_results_list.innerHTML =
-      '<p class="cf' + critical20Or1 + '">' + '<span class="total">' + finalResult + '</span> ' + '<span class="breakdown">' + savedRollName + numberOfDice + ' <span class="dice">D' + whichDice + '</span>' + ' <span class="multiple-dice-results">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' + bonusOrNoBonus + '</span>' + '</p>' + element_results_list.innerHTML;
+      '<div class="row">' +
+        '<div class="col-xs-8">' +
+          '<p class="breakdown">' +
+            ' <span class="save-roll-name">' + savedRollName + '</span>' +
+            ' <span class="number-of-dice">' + numberOfDice + '</span>' +
+            ' <span class="dice">D' + whichDice + '</span>' +
+            ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
+            ' <span class="number-of-bonus">' + bonusOrNoBonus + '</span>' +
+          '</p>' +
+        '</div>' +
+        '<div class="col-xs-4">' +
+          '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
+        '</div>' +
+      '</div>' + element_results_list.innerHTML;
+
+      // '<p class="cf' + critical20Or1 + '">' + '<span class="total">' + finalResult + '</span> ' + '<span class="breakdown">' + savedRollName + numberOfDice + ' <span class="dice">D' + whichDice + '</span>' + ' <span class="multiple-dice-results">' + '(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' + bonusOrNoBonus + '</span>' + '</p>' + element_results_list.innerHTML;
     checkListColumnState();
     // console.log("---------------------------------------------------");
     // console.log("roll \t \t dice selected is d  \t \t " + whichDice);
