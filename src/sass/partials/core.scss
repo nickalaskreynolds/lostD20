@@ -6,51 +6,68 @@ body {
   padding: 0 0 500px 0;
 }
 
-.main-column {
-  box-sizing: border-box;
-  .wrapper {
-    position: relative;
-  }
-}
-
 .controls {
-  background-color: $secondary-color;
-  margin: 60px 0;
+  margin: 40px 0 0 0;
   padding: 0;
   z-index: 1;
-  border-radius: $border-radius-medium;
   overflow: hidden;
-  .number-of-dice,
-  .number-of-bonus {
-    position: relative;
-    width: 35%;
-    float: left;
-    input {
-      background-color: $gray-alpha-12;
-      margin: 0;
-      font-size: 3rem;
-      line-height: 90px;
-      height: 90px;
-      display: block;
-      color: $white;
-      font-family: $open-sans-condensed-light;
-      &::-webkit-input-placeholder {
+  .current-formula {
+    background-color: $secondary-color;
+    .number-of-dice,
+    .current-dice,
+    .number-of-bonus {
+      float: left;
+    }
+    .current-dice {
+      width: 20%;
+      p {
+        background-color: $gray-alpha-12;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
         color: $white;
-      }
-      &:-moz-placeholder {
-        color: $white;
-      }
-      &::-moz-placeholder {
-        color: $white;
-      }
-      &:hover {
-        background-color: $secondary-color-dark;
-      }
-      &:focus {
-        background-color: $secondary-color-light;
+        font-family: $open-sans-condensed-light;
       }
     }
-    .input-controls {
+    .number-of-dice,
+    .number-of-bonus {
+      width: 40%;
+      position: relative;
+      input {
+        background-color: $gray-alpha-12;
+        margin: 0;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
+        display: block;
+        color: $white;
+        font-family: $open-sans-condensed-light;
+        &::-webkit-input-placeholder {
+          color: $white;
+        }
+        &:-moz-placeholder {
+          color: $white;
+        }
+        &::-moz-placeholder {
+          color: $white;
+        }
+        &:hover {
+          background-color: $secondary-color-dark;
+        }
+        &:focus {
+          background-color: $secondary-color-light;
+        }
+      }
+    }
+  }
+  .input-controls {
+    background-color: $secondary-color;
+    .input-controls-dice,
+    .input-controls-bonus {
+      width: 40%;
       .button {
         border: 0;
         padding: 0;
@@ -69,6 +86,12 @@ body {
         }
       }
     }
+    .input-controls-dice {
+      float: left;
+    }
+    .input-controls-bonus {
+      float: right;
+    }
   }
   .number-of-dice {
     input {
@@ -82,18 +105,9 @@ body {
       padding: 0 0 0 30px;
     }
   }
-  .current-dice {
-    background-color: $gray-alpha-12;
-    float: left;
-    width: 30%;
-    text-align: center;
-    font-size: 3rem;
-    line-height: 90px;
-    height: 90px;
-    color: $white;
-    font-family: $open-sans-condensed-light;
-  }
   .dice-form {
+    border-radius: $border-radius-medium $border-radius-medium 0 0;
+    background-color: $secondary-color;
     position: relative;
     z-index: 1;
     label {
@@ -120,8 +134,15 @@ body {
         cursor: pointer;
       }
       .label-text {
+        position: relative;
+        line-height: 50px;
+        display: block;
+        color: $gray-10;
+        transition: all $transition-ease-medium;
+        overflow: hidden;
         &:before {
           background-color: transparent;
+          border-top: 1px solid transparent;
           content: "";
           position: absolute;
           top: 0;
@@ -130,11 +151,16 @@ body {
           height: 5px;
           transition: all $transition-ease-medium;
         }
-        position: relative;
-        line-height: 50px;
-        display: block;
-        color: $gray-10;
-        transition: all $transition-ease-medium;
+      }
+      &:first-child {
+        .label-text {
+          border-radius: $border-radius-medium 0 0 0;
+        }
+      }
+      &:last-child {
+        .label-text {
+          border-radius: 0 $border-radius-medium 0 0;
+        }
       }
       &:hover {
         .label-text {
@@ -156,14 +182,14 @@ body {
           color: $white;
           &:before {
             background-color: $primary-color;
+            border-color: $primary-color-dark;
           }
         }
       }
     }
   }
   .go-roll {
-    border-radius: 0;
-    border: 0;
+    border-radius: 0 0 $border-radius-medium $border-radius-medium;
     height: 50px;
     line-height: 50px;
     font-size: 1rem;
@@ -173,134 +199,142 @@ body {
 }
 
 .formulas {
-  background-color: $background-color;
+  background-color: $gray-12;
+  margin: 40px 0 0 0;
+  padding: 15px 20px;
+  border-radius: $border-radius-medium;
   z-index: 2;
   transition: all $transition-ease-medium;
-  .list {
-    .saved-formula {
-      background-color: transparent;
-      position: relative;
-      padding: 10px 30px;
-      width: 100%;
-      box-sizing: border-box;
-      opacity: 1;
-      overflow: hidden;
-      transform: scale(1);
-      transition: height $transition-ease-medium, padding $transition-ease-medium;
-      .name {
-        position: relative;
-        z-index: 1;
-        input {
-          margin: 0;
-          width: 100%;
-          height: inherit;
-        }
-      }
-      .formula-controls {
-        line-height: 2rem;
-        margin: 5px 0 0 0;
-        text-align: right;
-        .button {
-          margin: 0 10px 0 0;
-          &:last-child {
-            margin: 0;
-          }
-        }
-      }
-      .formula-record {
-        line-height: 2rem;
-        margin: 5px 0 0 0;
-        color: $gray-08;
-      }
-      &.moving-up {
-        transform: translateY(-100%);
-        transition: transform $transition-ease-medium;
-      }
-      &.moving-down {
-        transform: translateY(100%);
-        transition: transform $transition-ease-medium;
-      }
-      &:first-child {
-        // animation: flash-light ease-out 0.5s;
-        // animation-iteration-count: 1;
-        .formula-controls {
-          .move-up {
-            transform: scale(0);
-          }
-        }
-      }
-      &:last-child {
-        .formula-controls {
-          .move-down {
-            transform: scale(0);
-          }
-        }
-      }
-    }
-  }
-  &.active {
-    background-color: $secondary-color-dark;
-  }
 }
 
+// .formulas {
+//   background-color: $secondary-color;
+//   margin: 60px 0 0 0;
+//   z-index: 2;
+//   transition: all $transition-ease-medium;
+//   .list {
+//     .saved-formula {
+//       background-color: transparent;
+//       position: relative;
+//       padding: 10px 30px;
+//       width: 100%;
+//       box-sizing: border-box;
+//       opacity: 1;
+//       overflow: hidden;
+//       transform: scale(1);
+//       transition: height $transition-ease-medium, padding $transition-ease-medium;
+//       .name {
+//         position: relative;
+//         z-index: 1;
+//         input {
+//           margin: 0;
+//           width: 100%;
+//           height: inherit;
+//         }
+//       }
+//       .formula-controls {
+//         line-height: 2rem;
+//         margin: 5px 0 0 0;
+//         text-align: right;
+//         .button {
+//           margin: 0 10px 0 0;
+//           &:last-child {
+//             margin: 0;
+//           }
+//         }
+//       }
+//       .formula-record {
+//         line-height: 2rem;
+//         margin: 5px 0 0 0;
+//         color: $gray-08;
+//       }
+//       &.moving-up {
+//         transform: translateY(-100%);
+//         transition: transform $transition-ease-medium;
+//       }
+//       &.moving-down {
+//         transform: translateY(100%);
+//         transition: transform $transition-ease-medium;
+//       }
+//       &:first-child {
+//         // animation: flash-light ease-out 0.5s;
+//         // animation-iteration-count: 1;
+//         .formula-controls {
+//           .move-up {
+//             transform: scale(0);
+//           }
+//         }
+//       }
+//       &:last-child {
+//         .formula-controls {
+//           .move-down {
+//             transform: scale(0);
+//           }
+//         }
+//       }
+//     }
+//   }
+//   &.active {
+//     background-color: $secondary-color-dark;
+//   }
+// }
 .results {
-  background-color: $background-color;
+  background-color: $gray-01;
   position: fixed;
-  bottom: -200px;
-  height: 200px;
+  bottom: -100px;
+  height: 100px;
   width: 100%;
   z-index: 3;
   overflow-y: auto;
   box-shadow: $shadow-medium-inset;
-  transition: all $transition-ease-medium;
+  transition: all $transition-bounce-slow;
   box-sizing: border-box;
-  .list {
-    .row {
-      &:first-child {
-        .total {
-          border: 3px solid $primary-color;
-          &.critical-20 {
-            border-color: $gray-alpha-08;
-          }
-          &.critical-1 {
-            border-color: $gray-alpha-08;
-          }
+  .result-item {
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid $gray-02;
+    &:first-child {
+      .total {
+        border: 3px solid $primary-color;
+        &.critical-20 {
+          border-color: $gray-alpha-08;
+        }
+        &.critical-1 {
+          border-color: $gray-alpha-08;
         }
       }
     }
-  }
-  .total,
-  .breakdown {
-    margin: 0;
-    padding: 10px 0;
-    display: block;
-    border-bottom: 1px solid $gray-02;
-  }
-  .breakdown {
-    text-align: left;
-    color: $gray-08;
-  }
-  .total {
-    text-align: center;
-    border: 3px solid transparent;
-    border-radius: $border-radius-medium;
-    font-family: $open-sans-condensed-light;
-    color: $gray-12;
-    line-height: 1.2rem;
-    font-size: 1.6rem;
-    &.critical-20 {
-      background-color: $critical-20;
-      border-color: $gray-alpha-08;
-      color: $white;
+    .total,
+    .breakdown {
+      margin: 0;
+      padding: 10px 0;
+      display: block;
     }
-    &.critical-1 {
-      background-color: $critical-1;
-      border-color: $gray-alpha-08;
-      color: $white;
+    .breakdown {
+      text-align: left;
+      color: $gray-08;
+    }
+    .total {
+      text-align: center;
+      border: 3px solid transparent;
+      border-radius: $border-radius-medium;
+      font-family: $open-sans-condensed-light;
+      color: $gray-12;
+      line-height: 1.2rem;
+      font-size: 1.6rem;
+      &.critical-20 {
+        background-color: $critical-20;
+        border-color: $gray-alpha-08;
+        color: $white;
+      }
+      &.critical-1 {
+        background-color: $critical-1;
+        border-color: $gray-alpha-08;
+        color: $white;
+      }
     }
   }
   &.active {
-    background-color: $gray-01;
     bottom: 0;
   }
   &.fullsize {

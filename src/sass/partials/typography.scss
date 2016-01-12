@@ -124,10 +124,10 @@ input {
   &[type="tel"],
   &[type="password"] {
     background-color: $secondary-color-light-alpha;
-    font-family: $open-sans-bold;
+    font-family: $open-sans-regular;
     font-size: 1.2rem;
-    height: 40px;
-    line-height: 38px;
+    height: 30px;
+    line-height: 28px;
     padding: 0 10px;
     margin: 0;
     border: 0;

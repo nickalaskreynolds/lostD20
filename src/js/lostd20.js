@@ -1,9 +1,9 @@
 function diceRollerama() {
 
   // elements
-  var element_columnControls = e(".main-column.controls");
-  var element_columnResults = e(".main-column.results");
-  var element_columnFormulas = e(".main-column.formulas");
+  var element_columnControls = e(".controls");
+  var element_columnResults = e(".results");
+  var element_columnFormulas = e(".formulas");
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
   var element_goRoll = e(".go-roll");
@@ -19,18 +19,17 @@ function diceRollerama() {
   var controls_numberOfBonus = e(".controls .number-of-bonus");
   var controls_numberOfBonus_input = e(".controls .number-of-bonus input");
   var controls_numberOfBonus_input_value
-  var controls_numberOfBonus_clear = e(".controls .number-of-bonus .clear");
+  var controls_numberOfBonus_clear = e(".controls .input-controls-bonus .clear");
+  var controls_numberOfBonus_plusOne = e(".controls .input-controls-bonus .plus-one");
+  var controls_numberOfBonus_minusOne = e(".controls .input-controls-bonus .minus-one");
 
   var controls_numberOfDice = e(".controls .number-of-dice");
   var controls_numberOfDice_input = e(".controls .number-of-dice input");
   var controls_numberOfDice_input_value
-  var controls_numberOfDice_clear = e(".controls .number-of-dice .clear");
-  // bonus
-  var controls_numberOfBonus_plusOne = e(".controls .number-of-bonus .plus-one");
-  var controls_numberOfBonus_minusOne = e(".controls .number-of-bonus .minus-one");
-  // number of dice
-  var controls_numberOfDice_plusOne = e(".controls .number-of-dice .plus-one");
-  var controls_numberOfDice_minusOne = e(".controls .number-of-dice .minus-one");
+  var controls_numberOfDice_clear = e(".controls .input-controls-dice .clear");
+  var controls_numberOfDice_plusOne = e(".controls .input-controls-dice .plus-one");
+  var controls_numberOfDice_minusOne = e(".controls .input-controls-dice .minus-one");
+
   // utilities
   var nav_toggleDropLowest = e("nav .toggle-drop-lowest");
   var nav_toggleDropLowest_icon = e("nav .toggle-drop-lowest span");
@@ -250,18 +249,20 @@ function diceRollerama() {
     };
     // print results to history
     element_results_list.innerHTML =
-      '<div class="row">' +
-        '<div class="col-xs-8">' +
-          '<p class="breakdown">' +
-            ' <span class="save-roll-name">' + savedRollName + '</span>' +
-            ' <span class="number-of-dice">' + numberOfDice + '</span>' +
-            ' <span class="dice">D' + whichDice + '</span>' +
-            ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
-            ' <span class="number-of-bonus">' + bonusOrNoBonus + '</span>' +
-          '</p>' +
-        '</div>' +
-        '<div class="col-xs-4">' +
-          '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
+      '<div class="result-item">' +
+        '<div class="row">' +
+          '<div class="col-xs-8">' +
+            '<p class="breakdown">' +
+              ' <span class="save-roll-name">' + savedRollName + '</span>' +
+              ' <span class="number-of-dice">' + numberOfDice + '</span>' +
+              ' <span class="dice">D' + whichDice + '</span>' +
+              ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
+              ' <span class="number-of-bonus">' + bonusOrNoBonus + '</span>' +
+            '</p>' +
+          '</div>' +
+          '<div class="col-xs-4">' +
+            '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
+          '</div>' +
         '</div>' +
       '</div>' + element_results_list.innerHTML;
 
@@ -453,12 +454,9 @@ function diceRollerama() {
   // read bonus input field
   function modifiers_readAmountOfBonus() {
     controls_numberOfBonus_input_value = parseInt(controls_numberOfBonus_input.value, 10) || 0;
-    // if input or var value is less than 0 
-    if (controls_numberOfBonus_input_value > 0) {
-      controls_numberOfBonus_input.value = "+" + controls_numberOfBonus_input_value;
-    };
+    // if input or var value is less than 0
     if (controls_numberOfBonus_input_value >= 999) {
-      controls_numberOfBonus_input.value = "+999";
+      controls_numberOfBonus_input.value = "999";
     };
     // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + controls_numberOfBonus_input_value);
     return controls_numberOfBonus_input_value;
@@ -468,6 +466,9 @@ function diceRollerama() {
     controls_numberOfBonus_input_value = parseInt(controls_numberOfBonus_input.value, 10) || 0;
     if (controls_numberOfBonus_input_value == 0) {
       controls_numberOfBonus_input.value = "+0";
+    };
+    if (controls_numberOfBonus_input_value > 0) {
+      controls_numberOfBonus_input.value = "+" + controls_numberOfBonus_input_value;
     };
   };
 
@@ -500,11 +501,6 @@ function diceRollerama() {
 
   // make list active when it has content
   function checkListColumnState() {
-    if (element_formulas_list.firstChild) {
-      element_columnFormulas.classList.add("active");
-    } else {
-      element_columnFormulas.classList.remove("active");
-    };
     if (element_results_list.firstChild) {
       element_columnResults.classList.add("active");
     } else {
