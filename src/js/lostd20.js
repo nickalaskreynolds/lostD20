@@ -37,6 +37,7 @@ function diceRollerama() {
   var nav_toggleFullscreen = e("nav .toggle-fullscreen");
   var nav_toggleFullscreen_icon = e("nav .toggle-fullscreen span");
   var nav_clearAll = e("nav .clear-all");
+
   // snack bar
   var element_snacks = e(".snacks");
 
@@ -293,7 +294,7 @@ function diceRollerama() {
     // is the bonus more than or less than 0
     var plusOrMinus = function() {
       if (controls_numberOfBonus_input_value > 0) {
-        plusOrMinus = controls_numberOfBonus_input_value;
+        plusOrMinus = "+" + controls_numberOfBonus_input_value;
       } else if (controls_numberOfBonus_input_value < 0) {
         plusOrMinus = controls_numberOfBonus_input_value;
       } else {
@@ -313,7 +314,21 @@ function diceRollerama() {
       oneDiceOrMore();
       saveName();
       element_formulas_list.innerHTML =
-        '<div class="saved-formula" data-roll-name="' + saveName + '" data-ammount-of-dice="' + controls_numberOfDice_input_value + '" data-dice="' + controls_numberOfDiceSides_value + '" data-ammount-of-bonus="' + controls_numberOfBonus_input_value + '">' + '<div class="row">' + '<div class="col-12">' + '<div class="name">' + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">' + '</div>' + '<div class="row">' + '<div class="col-4">' + '<div class="formula-record">' + '<span class="amount-of-dice' + oneDiceOrMore + '">' + controls_numberOfDice_input_value + '</span> ' + '<span class="which-dice">d' + controls_numberOfDiceSides_value + '</span> ' + '<span class="amount-of-bonus">' + plusOrMinus + '</span>' + '</div>' + '</div>' + '<div class="col-8">' + '<div class="formula-controls">' + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small roll" tabindex="1">Roll</a>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + element_formulas_list.innerHTML;
+        '<div class="saved-formula-item" data-roll-name="' + saveName + '" data-ammount-of-dice="' + controls_numberOfDice_input_value + '" data-dice="' + controls_numberOfDiceSides_value + '" data-ammount-of-bonus="' + controls_numberOfBonus_input_value + '">' +
+          '<div class="row no-gutter">' +
+            '<div class="col-xs-6">' +
+              '<input type="text" placeholder="Who am I?" vale="' + saveName + '" class="saved-formula-name" tabindex="4">' +
+            '</div>' +
+            '<div class="col-xs-3">' +
+              '<p class="formula"><span class="number-of-dice' + oneDiceOrMore + '">' + controls_numberOfDice_input_value + '</span> <span class="dice">d' + controls_numberOfDiceSides_value + '</span> <span class="number-of-bonus">' + plusOrMinus + '</span></p>' +
+            '</div>' +
+            '<div class="col-xs-3">' +
+              '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="4">Roll</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>' + element_formulas_list.innerHTML
+
+        // '<div class="saved-formula" data-roll-name="' + saveName + '" data-ammount-of-dice="' + controls_numberOfDice_input_value + '" data-dice="' + controls_numberOfDiceSides_value + '" data-ammount-of-bonus="' + controls_numberOfBonus_input_value + '">' + '<div class="row">' + '<div class="col-12">' + '<div class="name">' + '<input class="dark" type="text" placeholder="Who am I?" value="' + saveName + '" tabindex="1">' + '</div>' + '<div class="row">' + '<div class="col-4">' + '<div class="formula-record">' + '<span class="amount-of-dice' + oneDiceOrMore + '">' + controls_numberOfDice_input_value + '</span> ' + '<span class="which-dice">d' + controls_numberOfDiceSides_value + '</span> ' + '<span class="amount-of-bonus">' + plusOrMinus + '</span>' + '</div>' + '</div>' + '<div class="col-8">' + '<div class="formula-controls">' + '<a href="javascript:void(0)" class="button button-dark button-small move-up" tabindex="1"><span class="icon-expand-less"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small move-down" tabindex="1"><span class="icon-expand-more"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small clear" tabindex="1"><span class="icon-close"></span></a>' + '<a href="javascript:void(0)" class="button button-dark button-small roll" tabindex="1">Roll</a>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + element_formulas_list.innerHTML;
     };
     writeSavedRoll();
     addListenerTo_savedFormulas();

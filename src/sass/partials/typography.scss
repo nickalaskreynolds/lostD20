@@ -123,20 +123,21 @@ input {
   &[type="text"],
   &[type="tel"],
   &[type="password"] {
-    background-color: $secondary-color-light-alpha;
+    background-color: $gray-alpha-12;
     font-family: $open-sans-regular;
     font-size: 1.2rem;
-    height: 30px;
-    line-height: 28px;
+    height: 40px;
+    line-height: 40px;
     padding: 0 10px;
     margin: 0;
     border: 0;
     width: 100%;
     box-shadow: none;
     box-sizing: border-box;
+    color: $white;
     transition: all $transition-ease-medium;
     &:hover {
-      background-color: $secondary-color-light;
+      background-color: $secondary-color-dark;
     }
     &:focus {
       background-color: $secondary-color-light;
