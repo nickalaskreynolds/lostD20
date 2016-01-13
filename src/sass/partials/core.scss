@@ -190,116 +190,69 @@ body {
 }
 
 .formulas {
-  background-color: $secondary-color;
-  margin: 40px 0 0 0;
-  padding: 20px 0;
-  border-radius: $border-radius-medium;
-  z-index: 2;
-  transition: all $transition-ease-medium;
-  .saved-formula-item {
-    padding: 0 0 5px 0;
-    margin: 0;
-    .saved-formula-name {
-      height: 40px;
-      line-height: 40px;
+  .list {
+    background-color: $secondary-color;
+    margin: 40px 0 0 0;
+    padding: 10px 0;
+    border-radius: $border-radius-medium;
+    z-index: 2;
+    transition: all $transition-ease-medium;
+    opacity: 0;
+    &.active {
+      opacity: 1;
     }
-    .roll {
-      text-transform: uppercase;
-      border-radius: 0;
-      height: 40px;
-      line-height: 40px;
-    }
-    .formula {
-      background-color: $gray-alpha-12;
-      height: 40px;
-      line-height: 40px;
-      padding: 0 10px;
-      margin: 0;
-      text-align: right;
-      .number-of-dice {
-        color: $gray-10;
+    .saved-formula {
+      padding: 0;
+      margin: 0 0 5px 0;
+      &:only-child {
+        margin: 0;
       }
-      .dice {
-        color: $gray-13;
+      &:last-child {
+        margin: 0;
       }
-      .number-of-bonus {
-        color: $gray-10;
+      .name {
+        height: 30px;
+        line-height: 30px;
+        font-size: 1rem;
+      }
+      .roll {
+        text-transform: uppercase;
+        border-radius: 0;
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.8rem;
+      }
+      .clear {
+        border-radius: 0;
+        height: 30px;
+        line-height: 30px;
+        [class^="icon-"],
+        [class*=" icon-"] {
+          height: 28px;
+          line-height: 28px;
+        }
+      }
+      .formula {
+        background-color: $gray-alpha-12;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        margin: 0;
+        text-align: right;
+        .number-of-dice {
+          color: $gray-10;
+        }
+        .dice {
+          color: $gray-13;
+        }
+        .number-of-bonus {
+          color: $gray-10;
+        }
       }
     }
   }
 }
 
-// .formulas {
-//   background-color: $secondary-color;
-//   margin: 60px 0 0 0;
-//   z-index: 2;
-//   transition: all $transition-ease-medium; 
-//   .list {
-//     .saved-formula {
-//       background-color: transparent;
-//       position: relative;
-//       padding: 10px 30px;
-//       width: 100%;
-//       box-sizing: border-box;
-//       opacity: 1;
-//       overflow: hidden;
-//       transform: scale(1);
-//       transition: height $transition-ease-medium, padding $transition-ease-medium;
-//       .name {
-//         position: relative;
-//         z-index: 1;
-//         input {
-//           margin: 0;
-//           width: 100%;
-//           height: inherit;
-//         }
-//       }
-//       .formula-controls {
-//         line-height: 2rem;
-//         margin: 5px 0 0 0;
-//         text-align: right;
-//         .button {
-//           margin: 0 10px 0 0;
-//           &:last-child {
-//             margin: 0;
-//           }
-//         }
-//       }
-//       .formula-record {
-//         line-height: 2rem;
-//         margin: 5px 0 0 0;
-//         color: $gray-08;
-//       }
-//       &.moving-up {
-//         transform: translateY(-100%);
-//         transition: transform $transition-ease-medium;
-//       }
-//       &.moving-down {
-//         transform: translateY(100%);
-//         transition: transform $transition-ease-medium;
-//       }
-//       &:first-child {
-//         // animation: flash-light ease-out 0.5s;
-//         // animation-iteration-count: 1;
-//         .formula-controls {
-//           .move-up {
-//             transform: scale(0);
-//           }
-//         }
-//       }
-//       &:last-child {
-//         .formula-controls {
-//           .move-down {
-//             transform: scale(0);
-//           }
-//         }
-//       }
-//     }
-//   }
-//   &.active {
-//     background-color: $secondary-color-dark;
-//   }
-// }
 .results {
   background-color: $gray-01;
   position: fixed;
@@ -347,6 +300,10 @@ body {
       }
       .multiple-dice-results {
         color: $gray-06;
+        .strike {
+          text-decoration: line-through;
+          color: $primary-color-light;
+        }
       }
       .number-of-bonus {
         color: $gray-12;
