@@ -557,7 +557,7 @@ input[type="password"] {
   font-size: 1.2rem;
   height: 40px;
   line-height: 40px;
-  padding: 0 10px;
+  padding: 0 20px;
   margin: 0;
   border: 0;
   width: 100%;
@@ -1340,26 +1340,34 @@ body {
       width: 40%; }
       .controls .input-controls .input-controls-dice .button,
       .controls .input-controls .input-controls-bonus .button {
-        border: 0;
-        padding: 0;
-        margin: 0 auto;
-        height: 50px;
-        line-height: 50px;
         width: 33.3333333333%;
-        float: left;
-        border-radius: 0; }
-        .controls .input-controls .input-controls-dice .button [class^="icon-"],
-        .controls .input-controls .input-controls-dice .button [class*=" icon-"],
-        .controls .input-controls .input-controls-bonus .button [class^="icon-"],
-        .controls .input-controls .input-controls-bonus .button [class*=" icon-"] {
-          font-size: 1.3rem;
-          height: 50px;
-          line-height: 50px;
-          display: block; }
+        float: left; }
     .controls .input-controls .input-controls-dice {
       float: left; }
     .controls .input-controls .input-controls-bonus {
       float: right; }
+    .controls .input-controls .save {
+      width: 20%;
+      float: left; }
+    .controls .input-controls .input-controls-dice .button,
+    .controls .input-controls .input-controls-bonus .button,
+    .controls .input-controls .save .button {
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+      height: 50px;
+      line-height: 50px; }
+      .controls .input-controls .input-controls-dice .button [class^="icon-"],
+      .controls .input-controls .input-controls-dice .button [class*=" icon-"],
+      .controls .input-controls .input-controls-bonus .button [class^="icon-"],
+      .controls .input-controls .input-controls-bonus .button [class*=" icon-"],
+      .controls .input-controls .save .button [class^="icon-"],
+      .controls .input-controls .save .button [class*=" icon-"] {
+        font-size: 1.3rem;
+        height: 50px;
+        line-height: 50px;
+        display: block; }
   .controls .number-of-dice input {
     text-align: right;
     padding: 0 30px 0 0; }
@@ -1439,47 +1447,72 @@ body {
     text-transform: uppercase; }
 
 .formulas .list {
-  background-color: #003c4f;
-  margin: 40px 0 0 0;
-  padding: 10px 0;
-  border-radius: 4px;
-  z-index: 2;
+  margin: 20px 0 0 0;
   transition: all 0.3s ease-in-out;
   opacity: 0; }
   .formulas .list.active {
     opacity: 1; }
   .formulas .list .saved-formula {
+    background-color: #003c4f;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 0 5px 0;
     padding: 0;
-    margin: 0 0 5px 0; }
+    z-index: 2; }
     .formulas .list .saved-formula:only-child {
       margin: 0; }
     .formulas .list .saved-formula:last-child {
       margin: 0; }
+    .formulas .list .saved-formula:first-child .move-up {
+      -webkit-transform: scale(0);
+          -ms-transform: scale(0);
+              transform: scale(0); }
+    .formulas .list .saved-formula:last-child .move-down {
+      -webkit-transform: scale(0);
+          -ms-transform: scale(0);
+              transform: scale(0); }
+    .formulas .list .saved-formula.moving-up {
+      -webkit-transform: translateY(-85px);
+          -ms-transform: translateY(-85px);
+              transform: translateY(-85px);
+      transition: -webkit-transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out; }
+    .formulas .list .saved-formula.moving-down {
+      -webkit-transform: translateY(85px);
+          -ms-transform: translateY(85px);
+              transform: translateY(85px);
+      transition: -webkit-transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out; }
     .formulas .list .saved-formula .name {
-      height: 30px;
-      line-height: 30px;
+      height: 40px;
+      line-height: 40px;
       font-size: 1rem; }
     .formulas .list .saved-formula .roll {
       text-transform: uppercase;
-      border-radius: 0;
-      height: 30px;
-      line-height: 30px;
+      border-radius: 0 0 4px 0;
+      height: 40px;
+      line-height: 40px;
       font-size: 0.8rem; }
+    .formulas .list .saved-formula .move-up {
+      border: 0;
+      border-radius: 0; }
+    .formulas .list .saved-formula .move-down {
+      border: 0;
+      border-radius: 0; }
     .formulas .list .saved-formula .clear {
+      border: 0;
       border-radius: 0;
-      height: 30px;
-      line-height: 30px; }
+      height: 40px;
+      line-height: 40px; }
       .formulas .list .saved-formula .clear [class^="icon-"],
       .formulas .list .saved-formula .clear [class*=" icon-"] {
-        height: 28px;
-        line-height: 28px; }
+        height: 38px;
+        line-height: 38px; }
     .formulas .list .saved-formula .formula {
-      background-color: rgba(0, 0, 0, 0.09);
-      height: 30px;
-      line-height: 30px;
-      padding: 0 10px;
-      margin: 0;
-      text-align: right; }
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+      margin: 0; }
       .formulas .list .saved-formula .formula .number-of-dice {
         color: #c4c4c4; }
       .formulas .list .saved-formula .formula .dice {
