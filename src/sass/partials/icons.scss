@@ -165,11 +165,11 @@
   content: "\e213";
 }
 
-.icon-check-box:before {
+.icon-check-box-checked:before {
   content: "\e25c";
 }
 
-.icon-check-box-outline-blank:before {
+.icon-check-box-unchecked:before {
   content: "\e25d";
 }
 
@@ -187,4 +187,16 @@
 
 .icon-bookmark-outline:before {
   content: "\e27c";
+}
+
+.icon-refresh:before {
+  content: "\e900";
+}
+
+.icon-delete:before {
+  content: "\e901";
+}
+
+.icon-play-arrow:before {
+  content: "\e902";
 }

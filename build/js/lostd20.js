@@ -38,6 +38,7 @@ function diceRollerama() {
   var nav_toggleDropLowest_icon = e("nav .toggle-drop-lowest span");
   var nav_toggleFullscreen = e("nav .toggle-fullscreen");
   var nav_toggleFullscreen_icon = e("nav .toggle-fullscreen span");
+  var nav_clearResults = e("nav .clear-results");
   var nav_clearAll = e("nav .clear-all");
 
   // snack bar
@@ -692,6 +693,17 @@ function diceRollerama() {
   };
 
   // --------------------------------------------------------------------------
+  // results
+  // --------------------------------------------------------------------------
+
+  element_results_toggleFullscreen.addEventListener("click", function() {
+    toggleClass(element_columnResults, "fullsize");
+    toggleClass(element_results_toggleFullscreen, "active");
+    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-more");
+    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-less");
+  }, false);
+
+  // --------------------------------------------------------------------------
   // snack bar
   // --------------------------------------------------------------------------
 
@@ -753,29 +765,6 @@ function diceRollerama() {
       }, false);
     };
 
-  };
-
-  // --------------------------------------------------------------------------
-  // fullscreen
-  // --------------------------------------------------------------------------
-
-  // toggle fullscreen
-  function toggleFullScreen() {
-    var root = window.document;
-    var rootElement = root.documentElement;
-    var requestFullScreen = rootElement.requestFullscreen || rootElement.mozRequestFullScreen || rootElement.webkitRequestFullScreen || rootElement.msRequestFullscreen;
-    var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
-    if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
-      requestFullScreen.call(rootElement);
-      toggleClass(nav_toggleFullscreen, "active");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
-    } else {
-      cancelFullScreen.call(root);
-      toggleClass(nav_toggleFullscreen, "active");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
-    }
   };
 
   // --------------------------------------------------------------------------
@@ -841,7 +830,7 @@ function diceRollerama() {
     toggleDropLowest();
   }, false);
 
-  nav_clearAll.addEventListener("click", function() {
+  nav_clearResults.addEventListener("click", function() {
     clearAllFields();
     localStoreAdd("saved-history", element_results_list);
   }, false);
@@ -856,13 +845,99 @@ function diceRollerama() {
     toggleFullScreen();
   }, false);
 
+  // toggle fullscreen
+  function toggleFullScreen() {
+    var root = window.document;
+    var rootElement = root.documentElement;
+    var requestFullScreen = rootElement.requestFullscreen || rootElement.mozRequestFullScreen || rootElement.webkitRequestFullScreen || rootElement.msRequestFullscreen;
+    var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
+    if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
+      requestFullScreen.call(rootElement);
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
+    } else {
+      cancelFullScreen.call(root);
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
+      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
+    }
+  };
 
-  element_results_toggleFullscreen.addEventListener("click", function() {
-    toggleClass(element_columnResults, "fullsize");
-    toggleClass(element_results_toggleFullscreen, "active");
-    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-more");
-    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-less");
+  nav_clearAll.addEventListener("click", function() {
+    clearLostD20();
   }, false);
+
+  function clearLostD20() {
+    var promptClearLostD20 = document.createElement("div");
+    promptClearLostD20.setAttribute("class", "prompt prompt-clear-awesome-sheet");
+    var promptShade = document.createElement("div");
+    promptShade.setAttribute("class", "prompt prompt-shade");
+    var body = e("body");
+    var promptContents =
+      '<div class="container">' +
+      '<div class="row">' +
+      '<div class="col-xs-12">' +
+      '<h1>Are you sure?</h1>' +
+      '<p>This can not be undone.</p>' +
+      '</div>' +
+      '</div>' +
+      '<div class="row">' +
+      '<div class="col-xs-6 col-md-5">' +
+      '<a href="javascript:void(0)" class="clear-sheet-cancel button button-secondary button-block">Cancel</a>' +
+      '</div>' +
+      '<div class="col-xs-6 col-md-5 col-md-offset-2">' +
+      '<a href="javascript:void(0)" class="clear-sheet-confirm button button-primary button-block">Clear Sheet</a>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+    promptClearLostD20.innerHTML = promptContents;
+    if (!body.querySelector(".prompt-clear-awesome-sheet")) {
+      body.appendChild(promptShade);
+      body.appendChild(promptClearLostD20);
+
+      function fadeIn() {
+        promptClearLostD20.style.opacity = 1;
+        promptShade.style.opacity = 1;
+      }
+      delayFunction(fadeIn, 100);
+    };
+    var clearSheetCancel = promptClearLostD20.querySelector(".clear-sheet-cancel");
+    var clearSheetConfirm = promptClearLostD20.querySelector(".clear-sheet-confirm");
+    clearSheetConfirm.addEventListener("click", function() {
+      localStorage.clear();
+      document.location.reload(true);
+    }, false);
+    clearSheetCancel.addEventListener("click", function() {
+      promptShade.style.opacity = 0;
+      promptClearLostD20.style.opacity = 0;
+
+      function removePrompt() {
+        promptShade.remove();
+        promptClearLostD20.remove();
+      }
+      delayFunction(removePrompt, 500);
+    }, false);
+    addListenerTo_promptClearLostD20();
+    removeClass(nav, "open");
+  };
+
+  function addListenerTo_promptClearLostD20() {
+    var promptShade = e(".prompt-shade");
+    var promptClearLostD20 = e(".prompt-clear-awesome-sheet");
+    promptShade.addEventListener('click', function(event) {
+      if (promptShade && promptClearLostD20) {
+        promptShade.style.opacity = 0;
+        promptClearLostD20.style.opacity = 0;
+
+        function removePrompt() {
+          promptShade.remove();
+          promptClearLostD20.remove();
+        }
+        delayFunction(removePrompt, 500);
+      };
+    });
+  };
 
   // --------------------------------------------------------------------------
   // run on page load

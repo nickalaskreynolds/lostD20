@@ -373,132 +373,48 @@ body {
   }
 }
 
-// .results {
-//   background-color: $background-color;
-//   position: fixed;
-//   bottom: -150px;
-//   height: 150px;
-//   width: 100%;
-//   z-index: 3;
-//   overflow-y: auto;
-//   box-shadow: $shadow-medium-inset;
-//   transition: all $transition-ease-medium;
-//   box-sizing: border-box;
-//   .wrapper {
-//     padding: 10px 0;
-//     transition: all $transition-ease-medium;
-//     .list {
-//       transition: all $transition-ease-medium;
-//       p {
-//         margin: 0;
-//         padding: 10px 30px;
-//         border-bottom: 1px solid $gray-02;
-//         color: $gray-06;
-//         width: 100%;
-//         box-sizing: border-box;
-//         transition: background-color $transition-ease-medium;
-//         .total {
-//           margin: 0;
-//           border: 1px solid $gray-01;
-//           border-radius: $border-radius-small;
-//           color: $gray-10;
-//           display: inline-block;
-//           text-align: center;
-//           line-height: 2rem;
-//           box-sizing: border-box;
-//           width: 22%;
-//           float: left;
-//         }
-//         .breakdown {
-//           margin: 3px 0 0 0;
-//           line-height: 2rem;
-//           width: 72%;
-//           float: right;
-//           .strike {
-//             text-decoration: line-through;
-//             color: $gray-03;
-//           }
-//         }
-//         .dice {
-//           font-size: 2rem;
-//           vertical-align: middle;
-//           .icon {
-//             line-height: 2rem;
-//           }
-//         }
-//         &:first-child {
-//           animation: flash-dark ease-out 0.5s;
-//           animation-iteration-count: 1;
-//           .total {
-//             border-color: $primary-color;
-//             border-width: 2px;
-//             color: $white;
-//           }
-//           .breakdown {
-//             color: $gray-10;
-//             .strike {
-//               color: $primary-color;
-//             }
-//           }
-//         }
-//         &:last-child {
-//           border: 0;
-//         }
-//         &.critical-20 {
-//           .total {
-//             background-color: $critical-20;
-//             border-color: $critical-20;
-//             color: $white;
-//           }
-//         }
-//         &.critical-1 {
-//           .total {
-//             background-color: $critical-1;
-//             border-color: $critical-1;
-//             color: $white;
-//           }
-//         }
-//       }
-//     }
-//     .toggle-fullscreen {
-//       position: fixed;
-//       bottom: -150px;
-//       right: 20px;
-//       transition: all $transition-ease-medium;
-//       display: block;
-//       .expand {
-//         display: inline-block;
-//       }
-//       .collapse {
-//         display: none;
-//       }
-//       &.active {
-//         .expand {
-//           display: none;
-//         }
-//         .collapse {
-//           display: inline-block;
-//         }
-//       }
-//     }
-//   }
-//   &.active {
-//     background-color: $gray-01;
-//     bottom: 0;
-//     .wrapper {
-//       .toggle-fullscreen {
-//         bottom: 20px;
-//       }
-//     }
-//   }
-//   &.fullsize {
-//     height: 100%;
-//     bottom: 0;
-//     .wrapper {
-//       padding: 40px 0 60px 0;
-//     }
-//   }
-// }
+.prompt {
+  .container {
+    max-width: 100%;
+  }
+  h1 {
+    margin: 1rem 0;
+  }
+  &.prompt-shade {
+    background-color: $gray-alpha-02;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $prompt;
+    opacity: 0;
+    transition: all $transition-bounce-medium;
+  }
+  &.prompt-clear-awesome-sheet {
+    border-left: 10px solid $primary-color;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: $prompt;
+    background: $white;
+    width: 90%;
+    padding: 20px 15px 20px 25px;
+    box-sizing: border-box;
+    border-radius: $border-radius-small;
+    transform: translate(-50%, -50%);
+    box-shadow: $shadow-large;
+    opacity: 0;
+    transition: all $transition-bounce-medium;
+  }
+  .button {
+    margin: 0 5px 5px 0;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 .snacks {
   position: fixed;
   left: 0;
