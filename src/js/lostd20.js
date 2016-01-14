@@ -215,37 +215,36 @@ function diceRollerama() {
   // read multiple dice input field
   function modifiers_readAmountOfDice() {
     controls_numberOfDice_input_value = parseInt(controls_numberOfDice_input.value, 10) || 0;
-    // if input or var value is less than 0 
-    if (controls_numberOfDice_input.value <= 0 || controls_numberOfDice_input.value == "") {
-      controls_numberOfDice_input.value = "";
-    } else if (controls_numberOfDice_input.value >= 999) {
-      controls_numberOfDice_input.value = "999";
+    if (controls_numberOfDice_input_value >= 999) {
+      controls_numberOfDice_input.value = 999;
+      controls_numberOfDice_input_value = 999;
     };
     return controls_numberOfDice_input_value;
   };
 
   function modifiers_readAmountOfDice_blur() {
     controls_numberOfDice_input_value = parseInt(controls_numberOfDice_input.value, 10) || 0;
-    if (controls_numberOfDice_input_value == 0) {
-      controls_numberOfDice_input.value = "1";
+    if (controls_numberOfDice_input_value <= 0 || controls_numberOfDice_input_value == "") {
+      controls_numberOfDice_input.value = 1;
+      controls_numberOfDice_input_value = 1;
     };
   };
 
   // read bonus input field
   function modifiers_readAmountOfBonus() {
     controls_numberOfBonus_input_value = parseInt(controls_numberOfBonus_input.value, 10) || 0;
-    // if input or var value is less than 0
     if (controls_numberOfBonus_input_value >= 999) {
-      controls_numberOfBonus_input.value = "999";
+      controls_numberOfBonus_input.value = 999;
+      controls_numberOfBonus_input_value = 999;
     };
-    // console.log("modifiers_readAmountOfBonus \t \t \t input bonus is " + controls_numberOfBonus_input_value);
     return controls_numberOfBonus_input_value;
   };
 
   function modifiers_readAmountOfBonus_blur() {
     controls_numberOfBonus_input_value = parseInt(controls_numberOfBonus_input.value, 10) || 0;
     if (controls_numberOfBonus_input_value == 0) {
-      controls_numberOfBonus_input.value = "+0";
+      controls_numberOfBonus_input.value = "+" + 0;
+      controls_numberOfBonus_input_value = 0;
     };
     if (controls_numberOfBonus_input_value > 0) {
       controls_numberOfBonus_input.value = "+" + controls_numberOfBonus_input_value;
@@ -501,22 +500,22 @@ function diceRollerama() {
       element_formulas_list.innerHTML =
         '<div class="saved-formula" data-roll-name="' + saveName + '" data-ammount-of-dice="' + controls_numberOfDice_input_value + '" data-dice="' + controls_numberOfDiceSides_value + '" data-ammount-of-bonus="' + controls_numberOfBonus_input_value + '">' +
         '<div class="row no-gutter">' +
-        '<div class="col-xs-12">' +
+        '<div class="col-xs-8 col-sm-5">' +
         '<input type="text" placeholder="Who am I?" value="' + saveName + '" class="name" tabindex="4">' +
         '</div>' +
-        '<div class="col-xs-4">' +
+        '<div class="col-xs-4 col-sm-3">' +
         '<p class="formula"><span class="number-of-dice' + oneDiceOrMore + '">' + controls_numberOfDice_input_value + '</span> <span class="dice">d' + controls_numberOfDiceSides_value + '</span> <span class="number-of-bonus">' + plusOrMinus + '</span></p>' +
         '</div>' +
-        '<div class="col-xs-2">' +
+        '<div class="col-xs-2 col-sm-1">' +
         '<a href="javascript:void(0)" class="button button-secondary button-block clear" tabindex="4"><span class="icon-close"></span></a>' +
         '</div>' +
-        '<div class="col-xs-2">' +
+        '<div class="col-xs-2 col-sm-1">' +
         '<a href="javascript:void(0)" class="button button-secondary button-block move-up" tabindex="4"><span class="icon-expand-less"></span></a>' +
         '</div>' +
-        '<div class="col-xs-2">' +
+        '<div class="col-xs-2 col-sm-1">' +
         '<a href="javascript:void(0)" class="button button-secondary button-block move-down" tabindex="4"><span class="icon-expand-more"></span></a>' +
         '</div>' +
-        '<div class="col-xs-2">' +
+        '<div class="col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0">' +
         '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="4"><span class="icon-chevron-right"></span></a>' +
         '</div>' +
         '</div>' +
