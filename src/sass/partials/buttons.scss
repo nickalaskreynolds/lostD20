@@ -3,11 +3,11 @@
 
 .button,
 button {
-  padding: 0 14px;
+  padding: 0 10px;
   color: $gray-02;
   text-align: center;
   font-size: 1rem;
-  font-family: $open-sans-bold;
+  font-family: $open-sans-semi-bold;
   height: 40px;
   line-height: 38px;
   text-decoration: none;
@@ -35,7 +35,7 @@ button {
     display: inline-block;
   }
   &.button-small {
-    padding: 0 10px 0 5px;
+    padding: 0 10px;
     line-height: 18px;
     height: 20px;
     font-size: $small-text;
@@ -86,9 +86,9 @@ button {
   &.button-secondary {
     &:link,
     &:visited {
-      color: $gray-10;
+      color: $gray-01;
       background-color: transparent;
-      border-color: $gray-alpha-12;
+      border-color: $gray-alpha-10;
     }
     &:focus {
       background-color: $secondary-color-dark;
@@ -136,26 +136,26 @@ button {
   &.button-dark {
     &:link,
     &:visited {
-      color: $white;
+      color: $gray-10;
       background-color: transparent;
-      border-color: transparent;
+      border-color: $gray-alpha-10;
     }
     &:focus {
-      color: $white;
-      background-color: $gray-alpha-04;
+      color: $gray-10;
+      background-color: $gray-alpha-08;
       outline: 0;
       text-decoration: none;
     }
     &:hover {
-      color: $white;
-      background-color: $gray-alpha-03;
+      color: $gray-10;
+      background-color: $gray-alpha-10;
       outline: 0;
       text-decoration: none;
     }
     &:active,
     &.active {
       color: $white;
-      background-color: $secondary-color-dark-alpha;
+      background-color: $gray-alpha-06;
     }
   }
 }

@@ -7,7 +7,7 @@ body {
 }
 
 .controls {
-  margin: 40px 0 0 0;
+  margin: 60px 0 0 0;
   padding: 0;
   z-index: 1;
   overflow: hidden;
@@ -126,6 +126,7 @@ body {
       display: block;
       float: left;
       z-index: 3;
+      transition: all $transition-ease-fast;
       input {
         opacity: 0;
         position: absolute;
@@ -140,52 +141,47 @@ body {
         line-height: 50px;
         display: block;
         color: $gray-10;
-        transition: all $transition-ease-medium;
         overflow: hidden;
-        &:before {
-          background-color: transparent;
-          border: 1px solid transparent;
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 5px;
-          transition: all $transition-ease-medium;
-        }
+        border-top: 5px solid transparent;
+        transition: all $transition-ease-fast;
       }
       &:first-child {
+        border-radius: $border-radius-medium 0 0 0;
         .label-text {
           border-radius: $border-radius-medium 0 0 0;
         }
       }
       &:last-child {
+        border-radius: 0 $border-radius-medium 0 0;
         .label-text {
           border-radius: 0 $border-radius-medium 0 0;
         }
       }
+      &:link,
+      &:visited {
+        color: $gray-10;
+        background-color: transparent;
+        border-color: $gray-alpha-12;
+      }
+      &:focus {
+        color: $gray-10;
+        background-color: $gray-alpha-10;
+        outline: 0;
+        text-decoration: none;
+      }
       &:hover {
-        .label-text {
-          color: $white;
-          background-color: $secondary-color-dark;
-          outline: 0;
-          text-decoration: none;
-        }
+        color: $gray-10;
+        background-color: $gray-alpha-11;
+        outline: 0;
+        text-decoration: none;
       }
-      &:active {
-        .label-text {
-          color: $white;
-          background-color: $secondary-color-light;
-        }
-      }
+      &:active,
       &.active {
         z-index: 2;
+        color: $white;
+        background-color: $gray-alpha-09;
         .label-text {
-          color: $white;
-          &:before {
-            background-color: $primary-color;
-            border-color: $primary-color-dark;
-          }
+          border-color: $primary-color;
         }
       }
     }
@@ -244,35 +240,16 @@ body {
         font-size: 1rem;
       }
       .roll {
-        text-transform: uppercase;
         border-radius: 0 0 $border-radius-medium 0;
-        height: 40px;
-        line-height: 40px;
-        font-size: 0.8rem;
       }
-      .move-up {
-        border: 0;
-        border-radius: 0;
-      }
-      .move-down {
-        border: 0;
-        border-radius: 0;
-      }
-      .clear {
-        border: 0;
-        border-radius: 0;
-        height: 40px;
-        line-height: 40px;
-        [class^="icon-"],
-        [class*=" icon-"] {
-          height: 38px;
-          line-height: 38px;
-        }
-      }
+      .move-up {}
+      .move-down {}
+      .clear {}
       .formula {
         background-color: $gray-alpha-12;
         height: 40px;
         line-height: 40px;
+        font-size: 1rem;
         padding: 0 15px;
         margin: 0;
         text-align: right;
@@ -283,9 +260,15 @@ body {
         }
       }
       .button {
+        border: 0;
+        border-radius: 0;
+        height: 40px;
+        line-height: 40px;
         [class^="icon-"],
         [class*=" icon-"] {
           font-size: 1.2rem;
+          height: 38px;
+          line-height: 38px;
         }
       }
     }
@@ -295,76 +278,79 @@ body {
 .results {
   background-color: $gray-01;
   position: fixed;
-  bottom: -100px;
-  height: 100px;
+  bottom: -140px;
+  height: 140px;
   width: 100%;
   z-index: 3;
   overflow-y: auto;
-  box-shadow: $shadow-medium-inset;
   transition: all $transition-ease-medium;
-  box-sizing: border-box;
-  .result-item {
-    padding: 0 0 10px 0;
-    margin: 0 0 10px 0;
-    border-bottom: 1px solid $gray-02;
-    &:first-child {
-      .total {
-        border: 3px solid $primary-color;
-        &.critical-20 {
-          border-color: $gray-alpha-08;
+  .result-history {
+    padding: 10px 0 100px 0;
+    position: relative;
+    z-index: 1;
+    .result-item {
+      padding: 0 0 10px 0;
+      margin: 0 0 10px 0;
+      border-bottom: 1px solid $gray-02;
+      &:first-child {
+        .total {
+          border: 3px solid $primary-color;
+          &.critical-20 {
+            border-color: $gray-alpha-08;
+          }
+          &.critical-1 {
+            border-color: $gray-alpha-08;
+          }
         }
-        &.critical-1 {
-          border-color: $gray-alpha-08;
-        }
       }
-    }
-    .total,
-    .breakdown {
-      margin: 0;
-      padding: 10px 0;
-      display: block;
-    }
-    .breakdown {
-      text-align: left;
-      color: $gray-08;
-      font-size: 0.9rem;
-      .save-roll-name {
-        color: $primary-color-light;
+      .total,
+      .breakdown {
+        margin: 0;
+        padding: 10px 0;
+        display: block;
       }
-      .number-of-dice {
-        color: $gray-12;
-      }
-      .dice {
-        color: $gray-12;
-      }
-      .multiple-dice-results {
-        color: $gray-06;
-        .strike {
-          text-decoration: line-through;
+      .breakdown {
+        text-align: left;
+        color: $gray-08;
+        font-size: 0.9rem;
+        .save-roll-name {
           color: $primary-color-light;
         }
+        .number-of-dice {
+          color: $gray-12;
+        }
+        .dice {
+          color: $gray-12;
+        }
+        .multiple-dice-results {
+          color: $gray-06;
+          .strike {
+            text-decoration: line-through;
+            color: $primary-color-light;
+          }
+        }
+        .number-of-bonus {
+          color: $gray-12;
+        }
       }
-      .number-of-bonus {
+      .total {
+        text-align: center;
+        border: 3px solid transparent;
+        border-radius: $border-radius-medium;
+        font-family: $open-sans-condensed-light;
         color: $gray-12;
-      }
-    }
-    .total {
-      text-align: center;
-      border: 3px solid transparent;
-      border-radius: $border-radius-medium;
-      font-family: $open-sans-condensed-light;
-      color: $gray-12;
-      line-height: 1.2rem;
-      font-size: 1.6rem;
-      &.critical-20 {
-        background-color: $critical-20;
-        border-color: $gray-alpha-08;
-        color: $white;
-      }
-      &.critical-1 {
-        background-color: $critical-1;
-        border-color: $gray-alpha-08;
-        color: $white;
+        line-height: 1.2rem;
+        font-size: 1.6rem;
+        &.critical-20 {
+          background-color: $critical-20;
+          border-color: $gray-alpha-08;
+          color: $white;
+        }
+        &.critical-1 {
+          background-color: $critical-1;
+          border-color: $gray-alpha-08;
+          color: $white;
+        }
       }
     }
   }
@@ -374,6 +360,13 @@ body {
   &.fullsize {
     height: 100%;
     bottom: 0;
+  }
+  .result-controls {
+    background-color: $gray-01;
+    padding: 10px 0;
+    position: relative;
+    z-index: 2;
+    box-shadow: $shadow-medium;
   }
 }
 
@@ -435,35 +428,38 @@ body {
     position: relative;
     height: 0;
     overflow: hidden;
-    box-shadow: $shadow-medium;
+    box-sizing: content-box;
+    // box-shadow: $shadow-medium;
     transition: all $transition-ease-medium;
     p {
       color: $white;
-      line-height: 1rem;
-      margin: 5px 0;
-      font-size: 0.9rem;
+      line-height: 20px;
+      margin: 0;
+      font-size: 0.8rem;
+      font-family: $open-sans-semi-bold;
     }
     .button {
-      padding: 5px 0;
-      height: 1rem;
-      line-height: 1rem;
-      font-size: 0.9rem;
+      padding: 0;
+      height: 20px;
+      line-height: 20px;
+      font-size: 0.8rem;
       box-sizing: content-box;
       [class^="icon-"],
       [class*=" icon-"] {
         margin: 0;
-        line-height: 1rem;
-        font-size: 1rem;
+        height: 20px;
+        line-height: 20px;
+        font-size: 0.8rem;
       }
     }
     .clear {
-      padding: 5px 10px;
+      padding: 0 10px;
       margin: 0 10px 0 0;
       float: left;
     }
     &.reveal {
       padding: 10px 0;
-      height: 46px;
+      height: 20px;
     }
   }
 }

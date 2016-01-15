@@ -50,7 +50,7 @@ nav {
     box-shadow: $shadow-medium;
     border-radius: $border-radius-small;
     margin: 0;
-    padding: 10px 0;
+    padding: 8px 0;
     width: 240px;
     position: absolute;
     top: 60px;
@@ -62,8 +62,8 @@ nav {
       padding: 0;
       list-style-type: none;
       &.divide {
-        margin: 5px 0;
-        background-color: $gray-alpha-13;
+        margin: 8px 0;
+        background-color: $gray-alpha-12;
         height: 1px;
       }
       a {

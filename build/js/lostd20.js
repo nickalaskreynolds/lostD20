@@ -13,7 +13,7 @@ function diceRollerama() {
   var element_results_list = e(".results .list");
   var element_savedFormulas_list = e(".saved-formulas .list");
   var element_results_toggleFullscreen = e(".results .toggle-fullscreen");
-  var element_results_toggleFullscreen_icon = e(".results .toggle-fullscreen span");
+  var element_results_clearResults = e(".results .clear-results");
   // controls
   var controls_numberOfDiceSides_value;
 
@@ -38,7 +38,6 @@ function diceRollerama() {
   var nav_toggleDropLowest_icon = e("nav .toggle-drop-lowest span");
   var nav_toggleFullscreen = e("nav .toggle-fullscreen");
   var nav_toggleFullscreen_icon = e("nav .toggle-fullscreen span");
-  var nav_clearResults = e("nav .clear-results");
   var nav_clearAll = e("nav .clear-all");
 
   // --------------------------------------------------------------------------
@@ -195,18 +194,6 @@ function diceRollerama() {
     element.setAttribute("value", element.value);
     var savedFormula = getClosest(element, ".saved-formula");
     savedFormula.dataset.rollName = element.value;
-  };
-
-  // clear all
-  function clearAllFields() {
-    element_results_list.innerHTML = "";
-    // modifiers_plusMinus(0, controls_numberOfBonus_input);
-    // modifiers_readAmountOfBonus();
-    // modifiers_plusMinus(0, controls_numberOfDice_input);
-    // modifiers_readAmountOfDice();
-    checkListListState();
-    removeClass(element_columnResults, "active");
-    removeClass(element_columnResults, "fullsize");
   };
 
   // read multiple dice input field
@@ -396,7 +383,7 @@ function diceRollerama() {
     };
     // if 20 or 1 is rolled on a d20 add class names to dice clicker and history <p>
     var critical20Or1;
-    if (whichDice == 20 && numberOfDice == 1) {
+    if (whichDice == 20 && numberOfDice <= 1) {
       if (naturalMultipleRolls == 20) {
         // if natural 20
         critical20Or1 = " critical-20";
@@ -484,13 +471,13 @@ function diceRollerama() {
         '<p class="formula"><span class="number-of-dice">' + numberOfDice + '</span> <span class="dice">d' + whichDice + '</span> <span class="number-of-bonus">' + bonusModifier + '</span></p>' +
         '</div>' +
         '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-secondary button-block clear" tabindex="4"><span class="icon-close"></span></a>' +
+        '<a href="javascript:void(0)" class="button button-dark button-block clear" tabindex="4"><span class="icon-close"></span></a>' +
         '</div>' +
         '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-secondary button-block move-up" tabindex="4"><span class="icon-expand-less"></span></a>' +
+        '<a href="javascript:void(0)" class="button button-dark button-block move-up" tabindex="4"><span class="icon-expand-less"></span></a>' +
         '</div>' +
         '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-secondary button-block move-down" tabindex="4"><span class="icon-expand-more"></span></a>' +
+        '<a href="javascript:void(0)" class="button button-dark button-block move-down" tabindex="4"><span class="icon-expand-more"></span></a>' +
         '</div>' +
         '<div class="col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0">' +
         '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="4"><span class="icon-chevron-right"></span></a>' +
@@ -592,7 +579,7 @@ function diceRollerama() {
     localStoreAdd("saved-formulas", element_formulas_list);
     var timestamp = Date.now();
     // make snack bar with deleted formula
-    createSnackBar(readSaved_name + " removed.", true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
+    createSnackBar(readSaved_name + " removed.", false, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
   // move saved formula up or down
@@ -639,11 +626,33 @@ function diceRollerama() {
   // results
   // --------------------------------------------------------------------------
 
-  element_results_toggleFullscreen.addEventListener("click", function() {
+  function results_toggleFullScreen(element) {
+    var text = element.querySelector(".text");
+    var icon = element.querySelector("span");
+    if (text.textContent == "Expand") {
+      text.textContent = "Collapse";
+    } else {
+      text.textContent = "Expand";
+    };
+    toggleClass(icon, "icon-unfold-more");
+    toggleClass(icon, "icon-unfold-less");
     toggleClass(element_columnResults, "fullsize");
-    toggleClass(element_results_toggleFullscreen, "active");
-    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-more");
-    toggleClass(element_results_toggleFullscreen_icon, "icon-unfold-less");
+    toggleClass(element, "active");
+  };
+
+  function clearResults() {
+    removeClass(element_columnResults, "active");
+    removeClass(element_columnResults, "fullsize");
+    element_results_list.innerHTML = "";
+    localStoreAdd("saved-history", element_results_list);
+  };
+
+  element_results_toggleFullscreen.addEventListener("click", function() {
+    results_toggleFullScreen(this);
+  }, false);
+
+  element_results_clearResults.addEventListener("click", function() {
+    clearResults();
   }, false);
 
   // --------------------------------------------------------------------------
@@ -663,7 +672,7 @@ function diceRollerama() {
     delayFunction(deleteSnackBar, 500);
   };
 
-  function createSnackBar(message, undo, numberOfDice, whichDice, bonusModifier, rollName) {
+  function createSnackBar(message, close, undo, numberOfDice, whichDice, bonusModifier, rollName) {
     var element_snacks = e(".snacks");
     // make snack bar elements
     var snackBar = document.createElement("div");
@@ -694,7 +703,9 @@ function diceRollerama() {
     snackMessage.textContent = message;
     snackClose.appendChild(iconClose);
     // connect elements
-    col1.appendChild(snackClose);
+    if (close) {
+      col1.appendChild(snackClose);
+    };
     col1.appendChild(snackMessage);
     if (undo) {
       col2.appendChild(snackUndo);
@@ -742,15 +753,19 @@ function diceRollerama() {
     var formula_savedFormula_clear = formula_savedFormula.querySelector(".clear");
     var formula_savedFormula_undo = formula_savedFormula.querySelector(".undo");
     // add listner to clear
-    formula_savedFormula_clear.addEventListener("click", function() {
-      clearSnackBar(this);
-    }, false);
+    if (formula_savedFormula_clear) {
+      formula_savedFormula_clear.addEventListener("click", function() {
+        clearSnackBar(this);
+      }, false);
+    };
     // add listner to undo
-    formula_savedFormula_undo.addEventListener("click", function() {
-      undoSnackBar(this);
-      localStoreAdd("saved-formulas", element_formulas_list);
-      checkListListState();
-    }, false);
+    if (formula_savedFormula_undo) {
+      formula_savedFormula_undo.addEventListener("click", function() {
+        undoSnackBar(this);
+        localStoreAdd("saved-formulas", element_formulas_list);
+        checkListListState();
+      }, false);
+    };
   };
 
   // --------------------------------------------------------------------------
@@ -801,8 +816,8 @@ function diceRollerama() {
   // toggle drop lowest
   function toggleDropLowest() {
     toggleClass(nav_toggleDropLowest, "active");
-    toggleClass(nav_toggleDropLowest_icon, "icon-check-box");
-    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-outline-blank");
+    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-checked");
+    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-unchecked");
     var readDataSet = nav_toggleDropLowest.dataset.active;
     if (readDataSet == "false") {
       nav_toggleDropLowest.dataset.active = "true";
@@ -814,11 +829,6 @@ function diceRollerama() {
   // utilities
   nav_toggleDropLowest.addEventListener("click", function() {
     toggleDropLowest();
-  }, false);
-
-  nav_clearResults.addEventListener("click", function() {
-    clearAllFields();
-    localStoreAdd("saved-history", element_results_list);
   }, false);
 
   nav_toggleFullscreen.addEventListener("click", function() {
