@@ -3,7 +3,7 @@
 
 body {
   background: $white;
-  padding: 0 0 500px 0;
+  padding: 0 0 300px 0;
 }
 
 .controls {
@@ -276,14 +276,10 @@ body {
         padding: 0 15px;
         margin: 0;
         text-align: right;
-        .number-of-dice {
-          color: $gray-10;
-        }
-        .dice {
-          color: $gray-13;
-        }
+        .number-of-dice,
+        .dice,
         .number-of-bonus {
-          color: $gray-10;
+          color: $gray-13;
         }
       }
       .button {
@@ -432,7 +428,7 @@ body {
   .snack-bar {
     background-color: $gray-02;
     border-bottom: 1px solid $gray-01;
-    padding: 0 10px;
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
@@ -440,30 +436,34 @@ body {
     height: 0;
     overflow: hidden;
     box-shadow: $shadow-medium;
-    transition: height $transition-ease-medium, margin $transition-ease-medium, padding $transition-ease-medium;
+    transition: all $transition-ease-medium;
     p {
       color: $white;
-      line-height: 1.5rem;
-      margin: 0 10px;
-      font-size: 0.8rem;
+      line-height: 1rem;
+      margin: 5px 0;
+      font-size: 0.9rem;
     }
     .button {
-      margin: 0 0 0 5px;
-      float: right;
+      padding: 5px 0;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: 0.9rem;
+      box-sizing: content-box;
       [class^="icon-"],
       [class*=" icon-"] {
-        font-size: 0.8rem;
+        margin: 0;
+        line-height: 1rem;
+        font-size: 1rem;
       }
     }
-    &:first-child {
-      margin: 0;
-    }
-    &:last-child {
-      border: 0;
+    .clear {
+      padding: 5px 10px;
+      margin: 0 10px 0 0;
+      float: left;
     }
     &.reveal {
-      padding: 10px;
-      height: 43px;
+      padding: 10px 0;
+      height: 46px;
     }
   }
 }
