@@ -81,8 +81,13 @@ nav {
           font-size: 1.5rem;
           margin: 0 10px 0 0;
           position: relative;
-          top: 2px;
+          top: 3px;
           transition: background-color $transition-ease-medium, color $transition-ease-medium;
+        }
+        &:link,
+        &:visited {
+          color: $primary-color;
+          background-color: transparent;
         }
         &:hover {
           color: $primary-color-light;
@@ -104,6 +109,11 @@ nav {
           [class*=" icon-"] {
             color: $white;
             transition: background-color $transition-ease-fast, color $transition-ease-fast;
+          }
+        }
+        &.active {
+          &:hover {
+            color: $white;
           }
         }
       }

@@ -1242,8 +1242,12 @@ nav {
           font-size: 1.5rem;
           margin: 0 10px 0 0;
           position: relative;
-          top: 2px;
+          top: 3px;
           transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; }
+        nav .nav-list li a:link,
+        nav .nav-list li a:visited {
+          color: #ff0055;
+          background-color: transparent; }
         nav .nav-list li a:hover {
           color: #ff3276;
           background-color: rgba(0, 0, 0, 0.02);
@@ -1264,6 +1268,8 @@ nav {
           nav .nav-list li a:active [class*=" icon-"] {
             color: #ffffff;
             transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
+        nav .nav-list li a.active:hover {
+          color: #ffffff; }
   nav.open .nav-toggle .line.top {
     top: 50%;
     -webkit-transform: translate(-12px, -1px) rotate(135deg);
