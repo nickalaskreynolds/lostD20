@@ -659,19 +659,6 @@ function diceRollerama() {
   // snack bar
   // --------------------------------------------------------------------------
 
-  // snack bar clear
-  function clearSnackBar(element) {
-    var snackBar = getClosest(element, ".snack-bar");
-    var removeReveal = function() {
-      removeClass(snackBar, "reveal");
-    };
-    delayFunction(removeReveal, 10);
-    var deleteSnackBar = function() {
-      snackBar.remove();
-    };
-    delayFunction(deleteSnackBar, 500);
-  };
-
   function createSnackBar(message, close, undo, numberOfDice, whichDice, bonusModifier, rollName) {
     var element_snacks = e(".snacks");
     // make snack bar elements
@@ -745,6 +732,19 @@ function diceRollerama() {
     var readSaved_amountOfBonus = parseInt(snackBar.dataset.ammountOfBonus, 10);
     saveCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
     clearSnackBar(element);
+  };
+
+  // snack bar clear
+  function clearSnackBar(element) {
+    var snackBar = getClosest(element, ".snack-bar");
+    var removeReveal = function() {
+      removeClass(snackBar, "reveal");
+    };
+    delayFunction(removeReveal, 10);
+    var deleteSnackBar = function() {
+      snackBar.remove();
+    };
+    delayFunction(deleteSnackBar, 500);
   };
 
   // add listeners to snack bar buttons

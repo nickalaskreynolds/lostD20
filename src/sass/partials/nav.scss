@@ -25,7 +25,7 @@ nav {
       position: absolute;
       background-color: $primary-color;
       border-radius: $border-radius-small;
-      transform: translate(-12px, -1px);
+      transform: translate(-50%, -50%);
       opacity: 1;
       transition: all $transition-ease-medium;
       &.top {
