@@ -1,0 +1,83 @@
+<section class="controls">
+  <div class="row">
+    <div class="col-xs-12">
+      <form class="dice-form clearfix">
+        <label for="d2">
+          <span class="label-text">d2</span>
+          <input type="radio" name="dice-select" id="d2" class="dice-select" value="2" tabindex="1">
+        </label>
+        <label for="d3">
+          <span class="label-text">d3</span>
+          <input type="radio" name="dice-select" id="d3" class="dice-select" value="3" tabindex="1">
+        </label>
+        <label for="d4">
+          <span class="label-text">d4</span>
+          <input type="radio" name="dice-select" id="d4" class="dice-select" value="4" tabindex="1">
+        </label>
+        <label for="d6">
+          <span class="label-text">d6</span>
+          <input type="radio" name="dice-select" id="d6" class="dice-select" value="6" tabindex="1">
+        </label>
+        <label for="d8">
+          <span class="label-text">d8</span>
+          <input type="radio" name="dice-select" id="d8" class="dice-select" value="8" tabindex="1">
+        </label>
+        <label for="d10">
+          <span class="label-text">d10</span>
+          <input type="radio" name="dice-select" id="d10" class="dice-select" value="10" tabindex="1">
+        </label>
+        <label for="d12">
+          <span class="label-text">d12</span>
+          <input type="radio" name="dice-select" id="d12" class="dice-select" value="12" tabindex="1">
+        </label>
+        <label for="d20" class="active">
+          <span class="label-text">d20</span>
+          <input type="radio" name="dice-select" id="d20" class="dice-select" value="20" checked tabindex="1">
+        </label>
+        <label for="d100">
+          <span class="label-text">d100</span>
+          <input type="radio" name="dice-select" id="d100" class="dice-select" value="100" tabindex="1">
+        </label>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="current-formula clearfix">
+        <div class="number-of-dice">
+          <input type="text" value="1" maxlength="3" tabindex="1">
+        </div>
+        <div class="current-dice" data-dice="20">
+          <p>d<span>20</span></p>
+        </div>
+        <div class="number-of-bonus">
+          <input type="text" value="+0" maxlength="3" tabindex="1">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="input-controls clearfix">
+        <div class="input-controls-dice">
+          <a href="javascript:void(0)" class="button button-dark plus-one" tabindex="2"><span class="icon-add"></span></a>
+          <a href="javascript:void(0)" class="button button-dark minus-one" tabindex="2"><span class="icon-remove"></span></a>
+          <a href="javascript:void(0)" class="button button-dark clear" tabindex="2"><span class="icon-close"></span></a>
+        </div>
+        <div class="save">
+          <a href="javascript:void(0)" class="button button-dark button-block save-current-formula" tabindex="2"><span class="icon-playlist-add"></span></a>
+        </div>
+        <div class="input-controls-bonus">
+          <a href="javascript:void(0)" class="button button-dark clear" tabindex="2"><span class="icon-close"></span></a>
+          <a href="javascript:void(0)" class="button button-dark minus-one" tabindex="2"><span class="icon-remove"></span></a>
+          <a href="javascript:void(0)" class="button button-dark plus-one" tabindex="2"><span class="icon-add"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="javascript:void(0)" class="button button-primary button-block go-roll" tabindex="3">Roll The Dice</a>
+    </div>
+  </div>
+</section>

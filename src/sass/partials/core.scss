@@ -1,382 +1,438 @@
 /* core
 ------------------------------------------------- */
 
-html {
-  font-size: 88%;
-}
-
-html,
 body {
-  height: 100%;
+  background: $white;
+  padding: 0 0 300px 0;
 }
 
-::-webkit-full-screen {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  overflow: auto;
-}
-
-::selection {
-  color: $white;
-  background: $primary-color;
-}
-
-body {
-  background-color: $background-color;
-  font-family: $open-sans-regular;
-  user-select: none;
-  font-size: 1rem;
-  line-height: 1rem;
-  color: $gray-02;
-}
-
-.container {
-  position: static;
-  top: auto;
-  left: auto;
-  width: 100%;
-  height: inherit;
-  box-sizing: border-box;
-  .main-column {
-    box-sizing: border-box;
-    .wrapper {
-      position: relative;
+.controls {
+  margin: 60px 0 0 0;
+  padding: 0;
+  z-index: 1;
+  overflow: hidden;
+  .current-formula {
+    background-color: $secondary-color;
+    .number-of-dice,
+    .current-dice,
+    .number-of-bonus {
+      float: left;
     }
-    &.controls {
-      background-color: $background-color;
-      z-index: 1;
-      .wrapper {
-        padding: 60px 7% 30px 7%;
-        .number {
-          position: relative;
-          text-align: center;
-          &.of-dice,
-          &.of-bonus {
-            input {
-              padding: 0;
-              margin: 0 auto;
-              width: 40%;
-              text-align: center;
-              font-size: 1.5rem;
-              line-height: 2.5rem;
-              height: 2.5rem;
-              font-family: $open-sans-condensed-light;
-            }
-            .clear {
-              position: absolute;
-              right: 30%;
-              bottom: 7px;
-            }
-          }
-          &.of-dice {
-            margin: 0 0 20px 0;
-          }
-          &.of-bonus {
-            margin: 20px 0 0 0;
-          }
-          .modifiers {
-            .button {
-              position: absolute;
-              bottom: 7px;
-              &.minus-one {
-                left: 18%;
-              }
-              &.plus-one {
-                right: 18%;
-              }
-            }
-          }
-        }
-        .go-roll {
-          margin: 20px auto;
-          line-height: 3rem;
-          padding: 0;
-          width: 55%;
-          display: block;
-        }
-        .dice-form {
-          width: 100%;
-          margin: 10px 0;
-          text-align: center;
-          label {
-            display: inline-block;
-            width: 52px;
-            padding: 0;
-            margin: 2px 0;
-            line-height: 0;
-            cursor: pointer;
-            text-align: center;
-            border: 0;
-            outline: none;
-            position: relative;
-            input {
-              opacity: 0;
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              z-index: 1;
-            }
-            .label-text {
-              display: none;
-            }
-            .diceRing {
-              background-color: transparent;
-              position: relative;
-              display: block;
-              width: 40px;
-              height: 40px;
-              margin: 0 auto;
-              box-sizing: border-box;
-              transition: all $transition-ease-fast;
-              transform: scale(1);
-              border: 2px solid $secondary-color-dark;
-              border-radius: 50%;
-              z-index: 2;
-              [class^="diceIcon-"],
-              [class*=" diceIcon-"] {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 36px;
-                height: 36px;
-                font-size: 2.1em;
-                line-height: 36px;
-                color: $secondary-color-dark;
-                transition: all $transition-ease-fast;
-                text-align: center;
-              }
-            }
-            &:hover {
-              .diceRing {
-                border-color: $gray-10;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  color: $gray-10;
-                }
-              }
-            }
-            &:focus,
-            &.active {
-              .diceRing {
-                border-color: $primary-color;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  color: $primary-color;
-                }
-              }
-            }
-            &.active {
-              .diceRing {
-                transform: scale(1.3);
-              }
-            }
-          }
-        }
-      }
-    }
-    &.formulas {
-      background-color: $background-color;
-      z-index: 2;
-      transition: all $transition-ease-medium;
-      .wrapper {
+    .current-dice {
+      width: 20%;
+      p {
+        background-color: $gray-alpha-12;
         padding: 0;
-        .list {
-          .saved-formula {
-            background-color: transparent;
-            position: relative;
-            padding: 10px 30px;
-            width: 100%;
-            box-sizing: border-box;
-            opacity: 1;
-            overflow: hidden;
-            transform: scale(1);
-            transition: height $transition-ease-medium, padding $transition-ease-medium;
-            .name {
-              position: relative;
-              z-index: 1;
-              input {
-                margin: 0;
-                width: 100%;
-                height: inherit;
-              }
-            }
-            .formula-controls {
-              line-height: 2rem;
-              margin: 5px 0 0 0;
-              text-align: right;
-              .button {
-                margin: 0 10px 0 0;
-                &:last-child {
-                  margin: 0;
-                }
-              }
-            }
-            .formula-record {
-              line-height: 2rem;
-              margin: 5px 0 0 0;
-              color: $gray-08;
-            }
-            &.moving-up {
-              transform: translateY(-100%);
-              transition: transform $transition-ease-medium;
-            }
-            &.moving-down {
-              transform: translateY(100%);
-              transition: transform $transition-ease-medium;
-            }
-            &:first-child {
-              // animation: flash-light ease-out 0.5s;
-              // animation-iteration-count: 1;
-              .formula-controls {
-                .move-up {
-                  transform: scale(0);
-                }
-              }
-            }
-            &:last-child {
-              .formula-controls {
-                .move-down {
-                  transform: scale(0);
-                }
-              }
-            }
-          }
-        }
+        margin: 0;
+        text-align: center;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
+        color: $white;
+        font-family: $open-sans-condensed-light;
       }
-      &.active {
-        background-color: $secondary-color-dark;
-        .wrapper {
-          padding: 30px 0 300px 0;
+    }
+    .number-of-dice,
+    .number-of-bonus {
+      width: 40%;
+      position: relative;
+      input {
+        margin: 0;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
+        display: block;
+        font-family: $open-sans-condensed-light;
+        &::-webkit-input-placeholder {
+          color: $white;
+        }
+        &:-moz-placeholder {
+          color: $white;
+        }
+        &::-moz-placeholder {
+          color: $white;
         }
       }
     }
-    &.results {
-      background-color: $background-color;
-      position: fixed;
-      bottom: -150px;
-      height: 150px;
-      width: 100%;
-      z-index: 3;
-      overflow-y: auto;
-      box-shadow: $shadow-medium-inset;
-      transition: all $transition-ease-medium;
-      box-sizing: border-box;
-      .wrapper {
-        padding: 10px 0;
-        transition: all $transition-ease-medium;
-        .list {
-          transition: all $transition-ease-medium;
-          p {
-            margin: 0;
-            padding: 10px 30px;
-            border-bottom: 1px solid $gray-02;
-            color: $gray-06;
-            width: 100%;
-            box-sizing: border-box;
-            transition: background-color $transition-ease-medium;
-            .total {
-              margin: 0;
-              border: 1px solid $gray-01;
-              border-radius: $border-radius-small;
-              color: $gray-10;
-              display: inline-block;
-              text-align: center;
-              line-height: 2rem;
-              box-sizing: border-box;
-              width: 22%;
-              float: left;
-            }
-            .breakdown {
-              margin: 3px 0 0 0;
-              line-height: 2rem;
-              width: 72%;
-              float: right;
-              .strike {
-                text-decoration: line-through;
-                color: $gray-03;
-              }
-            }
-            .dice {
-              font-size: 2rem;
-              vertical-align: middle;
-              .icon {
-                line-height: 2rem;
-              }
-            }
-            &:first-child {
-              animation: flash-dark ease-out 0.5s;
-              animation-iteration-count: 1;
-              .total {
-                border-color: $primary-color;
-                border-width: 2px;
-                color: $white;
-              }
-              .breakdown {
-                color: $gray-10;
-                .strike {
-                  color: $primary-color;
-                }
-              }
-            }
-            &:last-child {
-              border: 0;
-            }
-            &.critical-20 {
-              .total {
-                background-color: $critical-20;
-                border-color: $critical-20;
-                color: $white;
-              }
-            }
-            &.critical-1 {
-              .total {
-                background-color: $critical-1;
-                border-color: $critical-1;
-                color: $white;
-              }
-            }
-          }
-        }
-        .toggle-fullscreen {
-          position: fixed;
-          bottom: -150px;
-          right: 20px;
-          transition: all $transition-ease-medium;
+  }
+  .input-controls {
+    background-color: $secondary-color;
+    .input-controls-dice,
+    .input-controls-bonus {
+      width: 40%;
+      .button {
+        width: 33.3333333333%;
+        float: left;
+      }
+    }
+    .input-controls-dice {
+      float: left;
+    }
+    .input-controls-bonus {
+      float: right;
+    }
+    .save {
+      width: 20%;
+      float: left;
+    }
+    .input-controls-dice,
+    .input-controls-bonus,
+    .save {
+      .button {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        line-height: 50px;
+        [class^="icon-"],
+        [class*=" icon-"] {
+          font-size: 1.3rem;
+          height: 50px;
+          line-height: 50px;
           display: block;
-          .expand {
-            display: inline-block;
-          }
-          .collapse {
-            display: none;
-          }
-          &.active {
-            .expand {
-              display: none;
-            }
-            .collapse {
-              display: inline-block;
-            }
-          }
         }
       }
+    }
+  }
+  .number-of-dice {
+    input {
+      text-align: right;
+      padding: 0 30px 0 0;
+    }
+  }
+  .number-of-bonus {
+    input {
+      text-align: left;
+      padding: 0 0 0 30px;
+    }
+  }
+  .dice-form {
+    border-radius: $border-radius-medium $border-radius-medium 0 0;
+    background-color: $secondary-color;
+    position: relative;
+    z-index: 1;
+    label {
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      text-align: center;
+      border: 0;
+      outline: none;
+      position: relative;
+      font-size: 1rem;
+      font-family: $open-sans-semi-bold;
+      width: 11.1111111111%;
+      display: block;
+      float: left;
+      z-index: 3;
+      transition: all $transition-ease-fast;
+      input {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        cursor: pointer;
+      }
+      .label-text {
+        position: relative;
+        line-height: 50px;
+        display: block;
+        color: $gray-10;
+        overflow: hidden;
+        border-top: 5px solid transparent;
+        transition: all $transition-ease-fast;
+      }
+      &:first-child {
+        border-radius: $border-radius-medium 0 0 0;
+        .label-text {
+          border-radius: $border-radius-medium 0 0 0;
+        }
+      }
+      &:last-child {
+        border-radius: 0 $border-radius-medium 0 0;
+        .label-text {
+          border-radius: 0 $border-radius-medium 0 0;
+        }
+      }
+      &:link,
+      &:visited {
+        color: $gray-10;
+        background-color: transparent;
+        border-color: $gray-alpha-12;
+      }
+      &:focus {
+        color: $gray-10;
+        background-color: $gray-alpha-10;
+        outline: 0;
+        text-decoration: none;
+      }
+      &:hover {
+        color: $gray-10;
+        background-color: $gray-alpha-11;
+        outline: 0;
+        text-decoration: none;
+      }
+      &:active,
       &.active {
-        background-color: $gray-01;
-        bottom: 0;
-        .wrapper {
-          .toggle-fullscreen {
-            bottom: 20px;
+        z-index: 2;
+        color: $white;
+        background-color: $gray-alpha-09;
+        .label-text {
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  .go-roll {
+    border-radius: 0 0 $border-radius-medium $border-radius-medium;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
+
+.formulas {
+  .list {
+    margin: 20px 0 0 0;
+    transition: all $transition-ease-medium;
+    opacity: 0;
+    &.active {
+      opacity: 1;
+    }
+    .saved-formula {
+      background-color: $secondary-color;
+      border-radius: $border-radius-medium;
+      overflow: hidden;
+      margin: 0 0 5px 0;
+      padding: 0;
+      z-index: 2;
+      &:only-child {
+        margin: 0;
+      }
+      &:last-child {
+        margin: 0;
+      }
+      &:first-child {
+        .move-up {
+          transform: scale(0);
+        }
+      }
+      &:last-child {
+        .move-down {
+          transform: scale(0);
+        }
+      }
+      &.moving-up {
+        transform: translateY(-85px);
+        transition: transform $transition-ease-medium;
+      }
+      &.moving-down {
+        transform: translateY(85px);
+        transition: transform $transition-ease-medium;
+      }
+      .name {
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+      }
+      .roll {
+        border-radius: 0 0 $border-radius-medium 0;
+      }
+      .move-up {}
+      .move-down {}
+      .clear {}
+      .formula {
+        background-color: $gray-alpha-12;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
+        padding: 0 15px;
+        margin: 0;
+        text-align: right;
+        .number-of-dice,
+        .dice,
+        .number-of-bonus {
+          color: $gray-13;
+        }
+      }
+      .button {
+        border: 0;
+        border-radius: 0;
+        height: 40px;
+        line-height: 40px;
+        [class^="icon-"],
+        [class*=" icon-"] {
+          font-size: 1.3rem;
+          height: 38px;
+          line-height: 38px;
+        }
+      }
+    }
+  }
+}
+
+.results {
+  background-color: $gray-01;
+  position: fixed;
+  bottom: -200px;
+  height: 200px;
+  width: 100%;
+  z-index: $results;
+  overflow-y: auto;
+  transition: all $transition-ease-medium;
+  .result-history {
+    padding: 10px 0 100px 0;
+    position: relative;
+    z-index: 1;
+    transition: all $transition-ease-medium;
+    .result-item {
+      padding: 10px 0;
+      border-bottom: 1px solid $gray-02;
+      position: relative;
+      &:first-child {
+        &:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          padding: 0 10px;
+          animation: flash-light ease-out 0.5s;
+          animation-iteration-count: 1;
+          transform: translate(-50%, -50%);
+          border-radius: $border-radius-medium;
+          z-index: 0;
+        }
+        .total {
+          border: 3px solid $primary-color;
+          &.critical-20 {
+            border-color: $gray-alpha-08;
+          }
+          &.critical-1 {
+            border-color: $gray-alpha-08;
           }
         }
       }
-      &.fullsize {
-        height: 100%;
-        bottom: 0;
-        .wrapper {
-          padding: 40px 0 60px 0;
+      &:last-child {
+        border: 0;
+      }
+      .total,
+      .breakdown {
+        margin: 0;
+        padding: 10px 0;
+        display: block;
+      }
+      .breakdown {
+        text-align: left;
+        color: $gray-08;
+        font-size: 0.9rem;
+        .save-roll-name {
+          color: $primary-color-light;
+        }
+        .number-of-dice {
+          color: $gray-12;
+        }
+        .dice {
+          color: $gray-12;
+        }
+        .multiple-dice-results {
+          color: $gray-06;
+          .strike {
+            text-decoration: line-through;
+            color: $primary-color-light;
+          }
+        }
+        .number-of-bonus {
+          color: $gray-12;
         }
       }
+      .total {
+        text-align: center;
+        border: 3px solid transparent;
+        border-radius: $border-radius-medium;
+        font-family: $open-sans-condensed-light;
+        color: $gray-12;
+        line-height: 1.2rem;
+        font-size: 1.6rem;
+        &.critical-20 {
+          background-color: $critical-20;
+          border-color: $gray-alpha-08;
+          color: $white;
+        }
+        &.critical-1 {
+          background-color: $critical-1;
+          border-color: $gray-alpha-08;
+          color: $white;
+        }
+      }
+    }
+  }
+  .result-controls {
+    background-color: $gray-01;
+    padding: 10px 0;
+    position: relative;
+    z-index: 2;
+    box-shadow: $shadow-medium;
+    transition: all $transition-ease-medium;
+    .button {
+      transition: all $transition-ease-medium;
+    }
+  }
+  &.active {
+    bottom: 0;
+  }
+  &.fullsize {
+    height: 100%;
+    bottom: 0;
+    .result-history {
+      padding: 30px 0 100px 0;
+    }
+  }
+}
+
+.prompt {
+  .container {
+    max-width: 100%;
+  }
+  h1 {
+    margin: 1rem 0;
+  }
+  &.prompt-shade {
+    background-color: $gray-alpha-02;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $prompt;
+    opacity: 0;
+    transition: all $transition-bounce-medium;
+  }
+  &.prompt-clear-awesome-sheet {
+    border-left: 10px solid $primary-color;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: $prompt;
+    background: $white;
+    width: 90%;
+    padding: 20px 15px 20px 25px;
+    box-sizing: border-box;
+    border-radius: $border-radius-small;
+    transform: translate(-50%, -50%);
+    box-shadow: $shadow-large;
+    opacity: 0;
+    transition: all $transition-bounce-medium;
+  }
+  .button {
+    margin: 0 5px 5px 0;
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
@@ -386,63 +442,48 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  z-index: 4;
+  z-index: $snacks;
   .snack-bar {
     background-color: $gray-02;
-    border-bottom: 1px solid $gray-01;
-    padding: 0 10px;
+    border-bottom: 2px solid $gray-01;
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
     position: relative;
     height: 0;
     overflow: hidden;
-    box-shadow: $shadow-medium;
-    transition: height $transition-ease-medium, margin $transition-ease-medium, padding $transition-ease-medium;
+    box-sizing: content-box;
+    transition: all $transition-ease-medium;
     p {
       color: $white;
-      line-height: 1.5rem;
-      margin: 0 10px;
+      line-height: 20px;
+      margin: 0;
       font-size: 0.8rem;
+      font-family: $open-sans-semi-bold;
     }
     .button {
-      margin: 0 0 0 5px;
-      float: right;
+      padding: 0;
+      height: 20px;
+      line-height: 20px;
+      font-size: 0.8rem;
+      box-sizing: content-box;
       [class^="icon-"],
       [class*=" icon-"] {
+        margin: 0;
+        height: 20px;
+        line-height: 20px;
         font-size: 0.8rem;
       }
     }
-    &:first-child {
-      margin: 0;
-    }
-    &:last-child {
-      border: 0;
+    .clear {
+      padding: 0 10px;
+      margin: 0 10px 0 0;
+      float: left;
     }
     &.reveal {
-      padding: 10px;
-      height: 43px;
-    }
-  }
-}
-
-.utilities {
-  background-color: $secondary-color;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: $shadow-small;
-  z-index: 4;
-  text-align: center;
-  .button {
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 0;
-    display: inline-block;
-    font-size: 0.8rem;
-    .utility-name {
-      display: none;
+      padding: 10px 0;
+      height: 20px;
     }
   }
 }
@@ -451,313 +492,31 @@ body {
 /* media queries
 ------------------------------------------------- */
 
-@media (min-width: 550px) {
-  .container {
-    .main-column {
-      &.controls {
-        .wrapper {
-          padding: 60px 21% 30px 21%;
+@media (min-width: $screen-sm) {
+  .formulas {
+    .list {
+      .saved-formula {
+        &.moving-up {
+          transform: translateY(-45px);
+          transition: transform $transition-ease-medium;
         }
-      }
-      &.formulas {
-        .wrapper {
-          padding: 30px 0 300px 0;
-          .list {
-            .saved-formula {
-              padding: 10px 21%;
-            }
-          }
+        &.moving-down {
+          transform: translateY(45px);
+          transition: transform $transition-ease-medium;
         }
-        &.active {
-          .wrapper {
-            padding: 30px 0 300px 0;
-          }
-        }
-      }
-      &.results {
-        .wrapper {
-          padding: 20px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 10px 21%;
-              }
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 10px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 21%;
-                }
-              }
-            }
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 21%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .snacks {
-    width: 70%;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    .snack-bar {
-      border: 0;
-      border-radius: $border-radius-small;
-      &.reveal {
-        margin: 5px 0 0 0;
-      }
-    }
-  }
-  .utilities {
-    .button {
-      font-size: 1rem;
-      .utility-name {
-        display: inline-block;
-      }
-    }
-  }
-}
-
-@media (min-width: 750px) {
-  html {
-    font-size: 95%;
-  }
-  body {
-    margin: 0;
-  }
-  .container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    .main-column {
-      position: relative;
-      height: 100%;
-      width: 50%;
-      float: left;
-      overflow-x: hidden;
-      overflow-y: auto;
-      &.controls {
-        box-shadow: $shadow-medium;
-        z-index: 2;
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-        }
-      }
-      &.formulas {
-        z-index: 1;
-        .wrapper {
-          padding: 60px 0 300px 0;
-          .list {
-            .saved-formula {
-              padding: 10px 40px;
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 60px 0 300px 0;
-          }
-        }
-      }
-      &.results {
-        position: fixed;
-        bottom: -180px;
-        right: 0;
-        height: 180px;
-        width: 50%;
-        z-index: 3;
-        .wrapper {
-          padding: 20px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 10px 40px;
-              }
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 10px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 40px;
-                }
-              }
-            }
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 30px 0;
-            .result-history {
-              .list {
-                p {
-                  padding: 10px 40px;
-                }
-              }
-            }
-          }
+        .roll {
+          border-radius: 0 $border-radius-medium $border-radius-medium 0;
         }
       }
     }
   }
 }
 
-@media (min-width: 900px) {
-  html {
-    font-size: 100%;
-  }
-  .container {
-    .main-column {
-      &.controls {
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-        }
-      }
-      &.formulas {
-        .wrapper {
-          padding: 60px 0 40px 0;
-        }
-      }
-      &.results {
-        .wrapper {
-          padding: 60px 0 40px 0;
-        }
-        &.active {
-          .wrapper {
-            padding: 20px 0;
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 60px 0 40px 0;
-          }
-          &.active {
-            .wrapper {
-              padding: 60px 0 40px 0;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+@media (min-width: $screen-md) {}
 
-@media (min-width: 1000px) {
-  body {
-    background-color: $secondary-color-dark;
-    margin: 0;
-  }
-  .container {
-    .main-column {
-      width: 33.3333333333%;
-      &.controls {
-        box-shadow: $shadow-medium;
-        z-index: 3;
-        .wrapper {
-          padding: 80px 40px 40px 40px;
-          .dice-form {
-            label {
-              margin: 5px 0;
-              width: 80px;
-              .diceRing {
-                width: 52px;
-                height: 52px;
-                [class^="diceIcon-"],
-                [class*=" diceIcon-"] {
-                  width: 48px;
-                  height: 48px;
-                  font-size: 2.5em;
-                  line-height: 48px;
-                }
-              }
-            }
-          }
-        }
-      }
-      &.formulas {
-        box-shadow: $shadow-medium;
-        z-index: 2;
-        .wrapper {
-          padding: 60px 0 40px 0;
-          .list {
-            .saved-formula {
-              padding: 20px 40px;
-            }
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 60px 0 40px 0;
-          }
-        }
-      }
-      &.results {
-        position: static;
-        height: inherit;
-        z-index: 1;
-        bottom: auto;
-        box-shadow: none;
-        bottom: auto;
-        right: auto;
-        height: 100%;
-        width: 33.3333333333%;
-        .wrapper {
-          padding: 70px 0 40px 0;
-          .result-history {
-            .list {
-              p {
-                padding: 20px 40px;
-              }
-            }
-          }
-          .toggle-fullscreen {
-            display: none;
-          }
-        }
-        &.active {
-          .wrapper {
-            padding: 70px 0 40px 0;
-          }
-        }
-        &.fullsize {
-          .wrapper {
-            padding: 70px 0 40px 0;
-          }
-        }
-      }
-    }
-  }
-  .utilities {
-    box-shadow: $shadow-medium;
-  }
-  .snacks {
-    width: 50%;
-    left: 20px;
-    transform: none;
-  }
-}
+@media (min-width: $screen-lg) {}
+
+@media (min-width: $screen-xl) {}
 
 
 /* animations
@@ -765,7 +524,7 @@ body {
 
 @keyframes flash-light {
   0% {
-    background-color: $gray-alpha-04;
+    background-color: $primary-color-dark;
   }
   100% {
     background-color: transparent;
