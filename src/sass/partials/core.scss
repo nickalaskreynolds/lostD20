@@ -36,6 +36,26 @@ body {
     .number-of-bonus {
       width: 40%;
       position: relative;
+      .button {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        line-height: 50px;
+        width: 30%;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        [class^="icon-"],
+        [class*=" icon-"] {
+          margin: 0;
+          font-size: 1.3rem;
+          height: 50px;
+          line-height: 50px;
+          display: block;
+        }
+      }
       input {
         margin: 0;
         font-size: 3rem;
@@ -54,6 +74,24 @@ body {
         }
       }
     }
+    .number-of-dice {
+      .button {
+        left: 0;
+      }
+      input {
+        text-align: right;
+        padding: 0 30px 0 0;
+      }
+    }
+    .number-of-bonus {
+      .button {
+        right: 0;
+      }
+      input {
+        text-align: left;
+        padding: 0 0 0 30px;
+      }
+    }
   }
   .input-controls {
     background-color: $secondary-color;
@@ -61,15 +99,21 @@ body {
     .input-controls-bonus {
       width: 40%;
       .button {
-        width: 33.3333333333%;
+        width: 30%;
         float: left;
       }
     }
     .input-controls-dice {
       float: left;
+      .button {
+        float: left;
+      }
     }
     .input-controls-bonus {
       float: right;
+      .button {
+        float: right;
+      }
     }
     .save {
       width: 20%;
@@ -87,24 +131,13 @@ body {
         line-height: 50px;
         [class^="icon-"],
         [class*=" icon-"] {
+          margin: 0;
           font-size: 1.3rem;
           height: 50px;
           line-height: 50px;
           display: block;
         }
       }
-    }
-  }
-  .number-of-dice {
-    input {
-      text-align: right;
-      padding: 0 30px 0 0;
-    }
-  }
-  .number-of-bonus {
-    input {
-      text-align: left;
-      padding: 0 0 0 30px;
     }
   }
   .dice-form {
@@ -266,6 +299,7 @@ body {
         line-height: 40px;
         [class^="icon-"],
         [class*=" icon-"] {
+          margin: 0;
           font-size: 1.3rem;
           height: 38px;
           line-height: 38px;
@@ -278,8 +312,8 @@ body {
 .results {
   background-color: $gray-01;
   position: fixed;
-  bottom: -240px;
-  height: 240px;
+  bottom: -30%;
+  height: 30%;
   width: 100%;
   z-index: $results;
   overflow-y: auto;
@@ -303,11 +337,9 @@ body {
             left: 50%;
             width: 100%;
             height: 100%;
-            border: 10px solid transparent;
             animation: total-flash ease-out 0.8s;
             animation-iteration-count: 1;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 0 10px (255, 255, 255, 0.1);
           }
           &.critical-20 {
             border-color: $gray-alpha-08;
@@ -397,105 +429,6 @@ body {
   }
 }
 
-.prompt {
-  .container {
-    max-width: 100%;
-  }
-  .prompt-heading {
-    margin: 1rem 0;
-  }
-  &.prompt-shade {
-    background-color: $gray-alpha-02;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: $prompt;
-    opacity: 0;
-    transition: all $transition-bounce-medium;
-  }
-  &.prompt-modal {
-    border-left: 10px solid $primary-color;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: $prompt;
-    background: $white;
-    width: 70%;
-    max-width: 40%;
-    min-width: 300px;
-    padding: 20px 15px 20px 25px;
-    box-sizing: border-box;
-    border-radius: $border-radius-small;
-    transform: translate(-50%, -50%);
-    box-shadow: $shadow-large;
-    opacity: 0;
-    transition: all $transition-bounce-medium;
-  }
-  .button {
-    margin: 0 5px 5px 0;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  &.reveal {
-    opacity: 1;
-  }
-}
-
-.snacks {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: $snacks;
-  .snack-bar {
-    background-color: $gray-02;
-    border-bottom: 0 solid $gray-01;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    width: 100%;
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    box-sizing: content-box;
-    transition: all $transition-ease-medium;
-    .snack-message {
-      color: $white;
-      line-height: 20px;
-      margin: 0;
-      font-size: 0.8rem;
-      font-family: $open-sans-semi-bold;
-    }
-    .button {
-      padding: 0;
-      height: 20px;
-      line-height: 20px;
-      font-size: 0.8rem;
-      box-sizing: content-box;
-      [class^="icon-"],
-      [class*=" icon-"] {
-        margin: 0;
-        height: 20px;
-        line-height: 20px;
-        font-size: 0.8rem;
-      }
-    }
-    .snack-clear {
-      padding: 0 10px;
-      margin: 0 10px 0 0;
-      float: left;
-    }
-    &.reveal {
-      border-bottom-width: 2px;
-      padding: 10px 0;
-      height: 20px;
-    }
-  }
-}
-
 
 /* media queries
 ------------------------------------------------- */
@@ -532,44 +465,39 @@ body {
 
 @keyframes total-flash {
   0% {
-    background-color: $light-alpha-06;
-    border-color: $primary-color-light;
-    border-radius: 10px;
-    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
+    background-color: $primary-color-light;
+    border: 3px solid $primary-color-light;
+    border-radius: $border-radius-medium;
   }
   100% {
     background-color: transparent;
-    border-color: transparent;
-    border-radius: $border-radius-medium;
-    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+    border: 30px solid transparent;
+    border-radius: 15px;
   }
 }
 
 @keyframes total-flash-critical-20 {
   0% {
-    border-color: $critical-20;
-    border-radius: 10px;
-    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
+    background-color: $critical-20;
+    border: 3px solid $critical-20;
+    border-radius: $border-radius-medium;
   }
   100% {
     background-color: transparent;
-    border-color: transparent;
-    border-radius: $border-radius-medium;
-    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+    border: 30px solid transparent;
+    border-radius: 15px;
   }
 }
 
 @keyframes total-flash-critical-1 {
   0% {
-    background-color: $light-alpha-06;
-    border-color: $critical-1;
-    border-radius: 10px;
-    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
+    background-color: $critical-1;
+    border: 3px solid $critical-1;
+    border-radius: $border-radius-medium;
   }
   100% {
     background-color: transparent;
-    border-color: transparent;
-    border-radius: $border-radius-medium;
-    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+    border: 30px solid transparent;
+    border-radius: 15px;
   }
 }

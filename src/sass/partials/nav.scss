@@ -6,7 +6,7 @@ nav {
   top: 10px;
   right: 10px;
   z-index: $nav;
-  .nav-toggle {
+  .toggle-nav {
     cursor: pointer;
     display: block;
     width: 50px;
@@ -68,13 +68,14 @@ nav {
       }
       a {
         padding: 0 16px;
-        line-height: 3rem;
+        line-height: 2.5rem;
         font-size: 1rem;
         border-left: 5px solid transparent;
         display: block;
         font-family: $open-sans-bold;
         text-transform: uppercase;
         transition: background-color $transition-ease-medium, color $transition-ease-medium;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         [class^="icon-"],
         [class*=" icon-"] {
           color: $secondary-color;
@@ -120,7 +121,7 @@ nav {
     }
   }
   &.open {
-    .nav-toggle {
+    .toggle-nav {
       .line {
         &.top {
           top: 50%;
@@ -145,13 +146,3 @@ nav {
     }
   }
 }
-
-
-/* media queries
-------------------------------------------------- */
-
-@media (min-width: $screen-sm) {}
-
-@media (min-width: $screen-md) {}
-
-@media (min-width: $screen-lg) {}

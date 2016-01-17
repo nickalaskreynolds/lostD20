@@ -9,36 +9,25 @@ function diceRollerama() {
   var element_goRoll = e(".go-roll");
   var element_formulas_list = e(".formulas .list");
   var element_currentDice = e(".current-dice span");
-  // var element_results = e(".results");
   var element_results_list = e(".results .list");
   var element_savedFormulas_list = e(".saved-formulas .list");
   var element_results_toggleFullscreen = e(".results .toggle-fullscreen");
   var element_results_clearResults = e(".results .clear-results");
-  // controls
-  var controls_numberOfDiceSides_value;
 
+  var controls_numberOfDiceSides_value;
   var controls_numberOfBonus = e(".controls .number-of-bonus");
   var controls_numberOfBonus_input = e(".controls .number-of-bonus input");
   var controls_numberOfBonus_input_value
-  var controls_numberOfBonus_clear = e(".controls .input-controls-bonus .clear");
+  var controls_numberOfBonus_clear = e(".controls .number-of-bonus .clear");
   var controls_numberOfBonus_plusOne = e(".controls .input-controls-bonus .plus-one");
   var controls_numberOfBonus_minusOne = e(".controls .input-controls-bonus .minus-one");
-
   var controls_numberOfDice = e(".controls .number-of-dice");
   var controls_numberOfDice_input = e(".controls .number-of-dice input");
   var controls_numberOfDice_input_value
-  var controls_numberOfDice_clear = e(".controls .input-controls-dice .clear");
+  var controls_numberOfDice_clear = e(".controls .number-of-dice .clear");
   var controls_numberOfDice_plusOne = e(".controls .input-controls-dice .plus-one");
   var controls_numberOfDice_minusOne = e(".controls .input-controls-dice .minus-one");
-
   var controls_saveCurrentFormula = e(".controls .save-current-formula");
-
-  // utilities
-  var nav_toggleDropLowest = e("nav .toggle-drop-lowest");
-  var nav_toggleDropLowest_icon = e("nav .toggle-drop-lowest span");
-  var nav_toggleFullscreen = e("nav .toggle-fullscreen");
-  var nav_toggleFullscreen_icon = e("nav .toggle-fullscreen span");
-  var nav_clearAll = e("nav .clear-all");
 
   // --------------------------------------------------------------------------
   // helper functions
@@ -106,15 +95,89 @@ function diceRollerama() {
   };
 
   // --------------------------------------------------------------------------
+  // local store
+  // --------------------------------------------------------------------------
+
+  // local storage add
+  function localStoreAdd(key, data) {
+    if (localStorage.getItem) {
+      localStorage.setItem(key, data.innerHTML);
+    };
+  };
+
+  // local storage remove
+  function localStoreRemove(key) {
+    if (localStorage.getItem) {
+      localStorage.removeItem(key);
+    };
+  };
+
+  // local storage read
+  function localStoreRead(key, data) {
+    if (localStorage.getItem(key) == "") {
+      localStorage.removeItem(key);
+    } else if (localStorage.getItem(key)) {
+      data.innerHTML = localStorage.getItem(key);
+    };
+  };
+
+  // --------------------------------------------------------------------------
   // nav
   // --------------------------------------------------------------------------
 
   var nav = e("nav");
-  var navList = e(".nav-list");
-  var navToggle = e(".nav-toggle");
+  var nav_toggle = e("nav .toggle-nav");
+  var nav_clearAll = e("nav .clear-all");
+  var nav_toggleDropLowest = e("nav .toggle-drop-lowest");
+  var nav_toggleFullscreen = e("nav .toggle-fullscreen");
 
-  navToggle.addEventListener("click", function() {
+  function toggleFullScreen() {
+    var icon = nav_toggleFullscreen.querySelector("span");
+    var root = window.document;
+    var rootElement = root.documentElement;
+    var requestFullScreen = rootElement.requestFullscreen || rootElement.mozRequestFullScreen || rootElement.webkitRequestFullScreen || rootElement.msRequestFullscreen;
+    var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
+    if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
+      requestFullScreen.call(rootElement);
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(icon, "icon-fullscreen-exit");
+      toggleClass(icon, "icon-fullscreen");
+    } else {
+      cancelFullScreen.call(root);
+      toggleClass(nav_toggleFullscreen, "active");
+      toggleClass(icon, "icon-fullscreen-exit");
+      toggleClass(icon, "icon-fullscreen");
+    }
+  };
+
+  nav_toggle.addEventListener("click", function() {
     toggleClass(nav, "open");
+  }, false);
+
+  function toggleDropLowest() {
+    var icon = nav_toggleDropLowest.querySelector("span");
+    toggleClass(nav_toggleDropLowest, "active");
+    toggleClass(icon, "icon-check-box-checked");
+    toggleClass(icon, "icon-check-box-unchecked");
+    var readDataSet = nav_toggleDropLowest.dataset.active;
+    if (readDataSet == "false") {
+      nav_toggleDropLowest.dataset.active = "true";
+    } else if (readDataSet == "true") {
+      nav_toggleDropLowest.dataset.active = "false";
+    };
+  };
+
+  nav_clearAll.addEventListener("click", function() {
+    createPrompt("Are you sure?", "Roll history and saved formuals will be removed. This can not be undone.", "clear all");
+    removeClass(nav, "open");
+  }, false);
+
+  nav_toggleDropLowest.addEventListener("click", function() {
+    toggleDropLowest();
+  }, false);
+
+  nav_toggleFullscreen.addEventListener("click", function() {
+    toggleFullScreen();
   }, false);
 
   window.addEventListener('click', function(event) {
@@ -203,6 +266,12 @@ function diceRollerama() {
       controls_numberOfDice_input.value = 999;
       controls_numberOfDice_input_value = 999;
     };
+    if (controls_numberOfDice_input_value >= 2) {
+      removeClass(controls_numberOfDice_clear, "hidden")
+    };
+    if (controls_numberOfDice_input_value == 1 || controls_numberOfDice_input_value == 0) {
+      addClass(controls_numberOfDice_clear, "hidden")
+    };
     return controls_numberOfDice_input_value;
   };
 
@@ -221,6 +290,15 @@ function diceRollerama() {
     if (controls_numberOfBonus_input_value >= 999) {
       controls_numberOfBonus_input.value = 999;
       controls_numberOfBonus_input_value = 999;
+    };
+    if (controls_numberOfBonus_input_value >= 1) {
+      removeClass(controls_numberOfBonus_clear, "hidden")
+    };
+    if (controls_numberOfBonus_input_value <= -1) {
+      removeClass(controls_numberOfBonus_clear, "hidden")
+    };
+    if (controls_numberOfBonus_input_value == 0) {
+      addClass(controls_numberOfBonus_clear, "hidden")
     };
     return controls_numberOfBonus_input_value;
   };
@@ -250,6 +328,7 @@ function diceRollerama() {
     };
   };
 
+  // clear
   controls_numberOfBonus_clear.addEventListener("click", function() {
     modifiers_plusMinus(0, controls_numberOfBonus_input);
     modifiers_readAmountOfBonus();
@@ -674,78 +753,6 @@ function diceRollerama() {
   };
 
   // --------------------------------------------------------------------------
-  // local store
-  // --------------------------------------------------------------------------
-
-  // local storage add
-  function localStoreAdd(key, data) {
-    if (localStorage.getItem) {
-      localStorage.setItem(key, data.innerHTML);
-      // console.log("added " + key + " + " + data);
-    };
-  };
-
-  // local storage read
-  function localStoreRead(key, data) {
-    if (localStorage.getItem(key) == "") {
-      localStorage.removeItem(key);
-      // console.log(key + " was deleted");
-    } else if (localStorage.getItem(key)) {
-      data.innerHTML = localStorage.getItem(key);
-      // console.log("read and displayed " + key + " + " + data);
-    };
-  };
-
-  // --------------------------------------------------------------------------
-  // nav
-  // --------------------------------------------------------------------------
-
-  // toggle drop lowest
-  function toggleDropLowest() {
-    toggleClass(nav_toggleDropLowest, "active");
-    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-checked");
-    toggleClass(nav_toggleDropLowest_icon, "icon-check-box-unchecked");
-    var readDataSet = nav_toggleDropLowest.dataset.active;
-    if (readDataSet == "false") {
-      nav_toggleDropLowest.dataset.active = "true";
-    } else if (readDataSet == "true") {
-      nav_toggleDropLowest.dataset.active = "false";
-    };
-  };
-
-  // utilities
-  nav_toggleDropLowest.addEventListener("click", function() {
-    toggleDropLowest();
-  }, false);
-
-  nav_toggleFullscreen.addEventListener("click", function() {
-    toggleFullScreen();
-  }, false);
-
-  // toggle fullscreen
-  function toggleFullScreen() {
-    var root = window.document;
-    var rootElement = root.documentElement;
-    var requestFullScreen = rootElement.requestFullscreen || rootElement.mozRequestFullScreen || rootElement.webkitRequestFullScreen || rootElement.msRequestFullscreen;
-    var cancelFullScreen = root.exitFullscreen || root.mozCancelFullScreen || root.webkitExitFullscreen || root.msExitFullscreen;
-    if (!root.fullscreenElement && !root.mozFullScreenElement && !root.webkitFullscreenElement && !root.msFullscreenElement) {
-      requestFullScreen.call(rootElement);
-      toggleClass(nav_toggleFullscreen, "active");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
-    } else {
-      cancelFullScreen.call(root);
-      toggleClass(nav_toggleFullscreen, "active");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen-exit");
-      toggleClass(nav_toggleFullscreen_icon, "icon-fullscreen");
-    }
-  };
-
-  nav_clearAll.addEventListener("click", function() {
-    createPrompt("Are you sure?", "Roll history and saved formuals will be removed. This can not be undone.", "clear all");
-  }, false);
-
-  // --------------------------------------------------------------------------
   // snack bar
   // --------------------------------------------------------------------------
 
@@ -910,6 +917,7 @@ function diceRollerama() {
     if (!body.querySelector(".prompt.prompt-shade") && !body.querySelector(".prompt.prompt-modal")) {
       body.appendChild(promptShade);
       body.appendChild(prompt);
+
       function revealPrompt() {
         addClass(prompt, "reveal");
         addClass(promptShade, "reveal");
@@ -944,6 +952,7 @@ function diceRollerama() {
     if (promptShade && promptModal) {
       promptShade.style.opacity = 0;
       promptModal.style.opacity = 0;
+
       function fadeRemovePrompt() {
         promptShade.remove();
         promptModal.remove();
@@ -952,7 +961,7 @@ function diceRollerama() {
     };
   };
 
-  function clearAwesomeSheet() {    
+  function clearAwesomeSheet() {
     localStorage.clear();
     document.location.reload(true);
   };
