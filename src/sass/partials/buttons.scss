@@ -3,7 +3,7 @@
 
 .button,
 button {
-  padding: 0 10px;
+  padding: 0 15px;
   color: $gray-02;
   text-align: center;
   font-size: 1rem;
@@ -93,6 +93,7 @@ button {
     &:focus {
       background-color: $secondary-color-dark;
       border-color: $secondary-color-light;
+      color: $white;
       outline: 0;
       text-decoration: none;
     }

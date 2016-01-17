@@ -303,17 +303,23 @@ body {
             left: 50%;
             width: 100%;
             height: 100%;
-            border: 8px solid transparent;
+            border: 10px solid transparent;
             animation: total-flash ease-out 0.8s;
             animation-iteration-count: 1;
             transform: translate(-50%, -50%);
-            border-radius: $border-radius-medium;
+            box-shadow: 0 0 0 10px (255, 255, 255, 0.1);
           }
           &.critical-20 {
             border-color: $gray-alpha-08;
+            &:before {
+              animation: total-flash-critical-20 ease-out 0.8s;
+            }
           }
           &.critical-1 {
             border-color: $gray-alpha-08;
+            &:before {
+              animation: total-flash-critical-1 ease-out 0.8s;
+            }
           }
         }
       }
@@ -395,7 +401,7 @@ body {
   .container {
     max-width: 100%;
   }
-  h1 {
+  .prompt-heading {
     margin: 1rem 0;
   }
   &.prompt-shade {
@@ -409,14 +415,16 @@ body {
     opacity: 0;
     transition: all $transition-bounce-medium;
   }
-  &.prompt-clear-awesome-sheet {
+  &.prompt-modal {
     border-left: 10px solid $primary-color;
     position: fixed;
     top: 50%;
     left: 50%;
     z-index: $prompt;
     background: $white;
-    width: 90%;
+    width: 70%;
+    max-width: 40%;
+    min-width: 300px;
     padding: 20px 15px 20px 25px;
     box-sizing: border-box;
     border-radius: $border-radius-small;
@@ -431,6 +439,9 @@ body {
       margin-right: 0;
     }
   }
+  &.reveal {
+    opacity: 1;
+  }
 }
 
 .snacks {
@@ -441,7 +452,7 @@ body {
   z-index: $snacks;
   .snack-bar {
     background-color: $gray-02;
-    border-bottom: 2px solid $gray-01;
+    border-bottom: 0 solid $gray-01;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -451,7 +462,7 @@ body {
     overflow: hidden;
     box-sizing: content-box;
     transition: all $transition-ease-medium;
-    p {
+    .snack-message {
       color: $white;
       line-height: 20px;
       margin: 0;
@@ -472,12 +483,13 @@ body {
         font-size: 0.8rem;
       }
     }
-    .clear {
+    .snack-clear {
       padding: 0 10px;
       margin: 0 10px 0 0;
       float: left;
     }
     &.reveal {
+      border-bottom-width: 2px;
       padding: 10px 0;
       height: 20px;
     }
@@ -522,9 +534,42 @@ body {
   0% {
     background-color: $light-alpha-06;
     border-color: $primary-color-light;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
   }
   100% {
     background-color: transparent;
     border-color: transparent;
+    border-radius: $border-radius-medium;
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+  }
+}
+
+@keyframes total-flash-critical-20 {
+  0% {
+    border-color: $critical-20;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
+  }
+  100% {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: $border-radius-medium;
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+  }
+}
+
+@keyframes total-flash-critical-1 {
+  0% {
+    background-color: $light-alpha-06;
+    border-color: $critical-1;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) scaleX(1.1) scaleY(1.5);
+  }
+  100% {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: $border-radius-medium;
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
   }
 }

@@ -656,119 +656,6 @@ function diceRollerama() {
   }, false);
 
   // --------------------------------------------------------------------------
-  // snack bar
-  // --------------------------------------------------------------------------
-
-  function createSnackBar(message, close, undo, numberOfDice, whichDice, bonusModifier, rollName) {
-    var element_snacks = e(".snacks");
-    // make snack bar elements
-    var snackBar = document.createElement("div");
-    snackBar.setAttribute("class", "snack-bar");
-    snackBar.setAttribute("data-roll-name", rollName);
-    snackBar.setAttribute("data-ammount-of-dice", numberOfDice);
-    snackBar.setAttribute("data-dice", whichDice);
-    snackBar.setAttribute("data-ammount-of-bonus", bonusModifier);
-    var container = document.createElement("div");
-    container.setAttribute("class", "container");
-    var row = document.createElement("div");
-    row.setAttribute("class", "row");
-    var col1 = document.createElement("div");
-    col1.setAttribute("class", "col-xs-10");
-    var col2 = document.createElement("div");
-    col2.setAttribute("class", "col-xs-2");
-    var snackClose = document.createElement("a");
-    snackClose.setAttribute("href", "javascript:void(0)");
-    snackClose.setAttribute("class", "button button-dark button-small clear");
-    var snackUndo = document.createElement("a");
-    snackUndo.setAttribute("href", "javascript:void(0)");
-    snackUndo.setAttribute("class", "button button-dark button-block button-small undo");
-    snackUndo.textContent = "Undo";
-    var iconClose = document.createElement("span");
-    iconClose.setAttribute("class", "icon-close");
-    var snackMessage = document.createElement("p");
-    snackMessage.setAttribute("class", "message");
-    snackMessage.textContent = message;
-    snackClose.appendChild(iconClose);
-    // connect elements
-    if (close) {
-      col1.appendChild(snackClose);
-    };
-    col1.appendChild(snackMessage);
-    if (undo) {
-      col2.appendChild(snackUndo);
-    };
-    row.appendChild(col1);
-    row.appendChild(col2);
-    row.appendChild(col2);
-    container.appendChild(row);
-    snackBar.appendChild(container);
-    // append snack bar
-    element_snacks.appendChild(snackBar);
-    addListenerTo_snackBar(snackBar);
-    // newSnackBar.addEventListener("mouseover", function() {
-    //   clearTimeout(delayFunction);
-    // }, false);
-    // reveal snack bar
-    var revealSnackBar = function() {
-      addClass(snackBar, "reveal");
-    };
-    delayFunction(revealSnackBar, 10);
-    // auto clear snack bar
-    var autoClearSnackBar = function() {
-      // if the snack bar hasn't been dismised or undone
-      if (snackBar) {
-        clearSnackBar(snackBar);
-      };
-    };
-    delayFunction(autoClearSnackBar, 4000);
-  };
-
-  // snack bar undo
-  function undoSnackBar(element) {
-    var snackBar = getClosest(element, ".snack-bar");
-    var readSaved_name = snackBar.dataset.rollName;
-    var readSaved_amountOfDice = parseInt(snackBar.dataset.ammountOfDice, 10);
-    var readSaved_diceSides = parseInt(snackBar.dataset.dice, 10);
-    var readSaved_amountOfBonus = parseInt(snackBar.dataset.ammountOfBonus, 10);
-    saveCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
-    clearSnackBar(element);
-  };
-
-  // snack bar clear
-  function clearSnackBar(element) {
-    var snackBar = getClosest(element, ".snack-bar");
-    var removeReveal = function() {
-      removeClass(snackBar, "reveal");
-    };
-    delayFunction(removeReveal, 10);
-    var deleteSnackBar = function() {
-      snackBar.remove();
-    };
-    delayFunction(deleteSnackBar, 500);
-  };
-
-  // add listeners to snack bar buttons
-  function addListenerTo_snackBar(element) {
-    var formula_savedFormula = getClosest(element, ".snack-bar");
-    var formula_savedFormula_clear = formula_savedFormula.querySelector(".clear");
-    var formula_savedFormula_undo = formula_savedFormula.querySelector(".undo");
-    // add listner to clear
-    if (formula_savedFormula_clear) {
-      formula_savedFormula_clear.addEventListener("click", function() {
-        clearSnackBar(this);
-      }, false);
-    };
-    // add listner to undo
-    if (formula_savedFormula_undo) {
-      formula_savedFormula_undo.addEventListener("click", function() {
-        undoSnackBar(this);
-        localStoreAdd("saved-formulas", element_formulas_list);
-        checkListListState();
-      }, false);
-    };
-  };
-
-  // --------------------------------------------------------------------------
   // results
   // --------------------------------------------------------------------------
 
@@ -855,78 +742,219 @@ function diceRollerama() {
   };
 
   nav_clearAll.addEventListener("click", function() {
-    clearLostD20();
+    createPrompt("Are you sure?", "Roll history and saved formuals will be removed. This can not be undone.", "clear all");
   }, false);
 
-  function clearLostD20() {
-    var promptClearLostD20 = document.createElement("div");
-    promptClearLostD20.setAttribute("class", "prompt prompt-clear-awesome-sheet");
-    var promptShade = document.createElement("div");
-    promptShade.setAttribute("class", "prompt prompt-shade");
-    var body = e("body");
-    var promptContents =
-      '<div class="container">' +
-      '<div class="row">' +
-      '<div class="col-xs-12">' +
-      '<h1>Are you sure?</h1>' +
-      '<p>This can not be undone.</p>' +
-      '</div>' +
-      '</div>' +
-      '<div class="row">' +
-      '<div class="col-xs-6 col-md-5">' +
-      '<a href="javascript:void(0)" class="clear-sheet-cancel button button-secondary button-block">Cancel</a>' +
-      '</div>' +
-      '<div class="col-xs-6 col-md-5 col-md-offset-2">' +
-      '<a href="javascript:void(0)" class="clear-sheet-confirm button button-primary button-block">Clear Sheet</a>' +
-      '</div>' +
-      '</div>' +
-      '</div>';
-    promptClearLostD20.innerHTML = promptContents;
-    if (!body.querySelector(".prompt-clear-awesome-sheet")) {
-      body.appendChild(promptShade);
-      body.appendChild(promptClearLostD20);
+  // --------------------------------------------------------------------------
+  // snack bar
+  // --------------------------------------------------------------------------
 
-      function fadeIn() {
-        promptClearLostD20.style.opacity = 1;
-        promptShade.style.opacity = 1;
-      }
-      delayFunction(fadeIn, 100);
+  function createSnackBar(message, close, undo, numberOfDice, whichDice, bonusModifier, rollName) {
+    var element_snacks = e(".snacks");
+    // make snack bar elements
+    var snackBar = document.createElement("div");
+    snackBar.setAttribute("class", "snack-bar");
+    snackBar.setAttribute("data-roll-name", rollName);
+    snackBar.setAttribute("data-ammount-of-dice", numberOfDice);
+    snackBar.setAttribute("data-dice", whichDice);
+    snackBar.setAttribute("data-ammount-of-bonus", bonusModifier);
+    var container = document.createElement("div");
+    container.setAttribute("class", "container");
+    var row = document.createElement("div");
+    row.setAttribute("class", "row");
+    var col1 = document.createElement("div");
+    col1.setAttribute("class", "col-xs-10");
+    var col2 = document.createElement("div");
+    col2.setAttribute("class", "col-xs-2");
+    var snackClose = document.createElement("a");
+    snackClose.setAttribute("href", "javascript:void(0)");
+    snackClose.setAttribute("class", "button button-dark button-small snack-clear");
+    var snackUndo = document.createElement("a");
+    snackUndo.setAttribute("href", "javascript:void(0)");
+    snackUndo.setAttribute("class", "button button-dark button-block button-small snack-undo");
+    snackUndo.textContent = "Undo";
+    var iconClose = document.createElement("span");
+    iconClose.setAttribute("class", "icon-close");
+    var snackMessage = document.createElement("p");
+    snackMessage.setAttribute("class", "snack-message");
+    snackMessage.textContent = message;
+    snackClose.appendChild(iconClose);
+    // connect elements
+    if (undo) {
+      col2.appendChild(snackUndo);
     };
-    var clearSheetCancel = promptClearLostD20.querySelector(".clear-sheet-cancel");
-    var clearSheetConfirm = promptClearLostD20.querySelector(".clear-sheet-confirm");
-    clearSheetConfirm.addEventListener("click", function() {
-      localStorage.clear();
-      document.location.reload(true);
-    }, false);
-    clearSheetCancel.addEventListener("click", function() {
-      promptShade.style.opacity = 0;
-      promptClearLostD20.style.opacity = 0;
-
-      function removePrompt() {
-        promptShade.remove();
-        promptClearLostD20.remove();
-      }
-      delayFunction(removePrompt, 500);
-    }, false);
-    addListenerTo_promptClearLostD20();
-    removeClass(nav, "open");
+    if (close) {
+      col1.appendChild(snackClose);
+    };
+    col1.appendChild(snackMessage);
+    row.appendChild(col1);
+    row.appendChild(col2);
+    row.appendChild(col2);
+    container.appendChild(row);
+    snackBar.appendChild(container);
+    // append snack bar
+    element_snacks.appendChild(snackBar);
+    addListenerTo_snackBar(snackBar);
+    // newSnackBar.addEventListener("mouseover", function() {
+    //   clearTimeout(delayFunction);
+    // }, false);
+    // reveal snack bar
+    var revealSnackBar = function() {
+      addClass(snackBar, "reveal");
+    };
+    delayFunction(revealSnackBar, 10);
+    // auto clear snack bar
+    var autoClearSnackBar = function() {
+      // if the snack bar hasn't been dismised or undone
+      if (snackBar) {
+        clearSnackBar(snackBar);
+      };
+    };
+    delayFunction(autoClearSnackBar, 4000);
   };
 
-  function addListenerTo_promptClearLostD20() {
-    var promptShade = e(".prompt-shade");
-    var promptClearLostD20 = e(".prompt-clear-awesome-sheet");
-    promptShade.addEventListener('click', function(event) {
-      if (promptShade && promptClearLostD20) {
-        promptShade.style.opacity = 0;
-        promptClearLostD20.style.opacity = 0;
+  // add listeners to snack bar buttons
+  function addListenerTo_snackBar(element) {
+    var formula_savedFormula = getClosest(element, ".snack-bar");
+    var formula_savedFormula_clear = formula_savedFormula.querySelector(".snack-clear");
+    var formula_savedFormula_undo = formula_savedFormula.querySelector(".snack-undo");
+    // add listner to clear
+    if (formula_savedFormula_clear) {
+      formula_savedFormula_clear.addEventListener("click", function() {
+        clearSnackBar(this);
+      }, false);
+    };
+    // add listner to undo
+    if (formula_savedFormula_undo) {
+      formula_savedFormula_undo.addEventListener("click", function() {
+        undoSnackBar(this);
+        localStoreAdd("saved-formulas", element_formulas_list);
+        checkListListState();
+      }, false);
+    };
+  };
 
-        function removePrompt() {
-          promptShade.remove();
-          promptClearLostD20.remove();
-        }
-        delayFunction(removePrompt, 500);
+  // snack bar undo
+  function undoSnackBar(element) {
+    var snackBar = getClosest(element, ".snack-bar");
+    var readSaved_name = snackBar.dataset.rollName;
+    var readSaved_amountOfDice = parseInt(snackBar.dataset.ammountOfDice, 10);
+    var readSaved_diceSides = parseInt(snackBar.dataset.dice, 10);
+    var readSaved_amountOfBonus = parseInt(snackBar.dataset.ammountOfBonus, 10);
+    saveCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
+    clearSnackBar(element);
+  };
+
+  // snack bar clear
+  function clearSnackBar(element) {
+    var snackBar = getClosest(element, ".snack-bar");
+    var removeReveal = function() {
+      removeClass(snackBar, "reveal");
+    };
+    delayFunction(removeReveal, 10);
+    var deleteSnackBar = function() {
+      snackBar.remove();
+    };
+    delayFunction(deleteSnackBar, 500);
+  };
+
+  // --------------------------------------------------------------------------
+  // prompt
+  // --------------------------------------------------------------------------
+
+  function createPrompt(heading, message, confirmAction) {
+    var body = e("body");
+    // make prmpt elements
+    var promptShade = document.createElement("div");
+    promptShade.setAttribute("class", "prompt prompt-shade");
+    var prompt = document.createElement("div");
+    prompt.setAttribute("class", "prompt prompt-modal");
+    var container = document.createElement("div");
+    container.setAttribute("class", "container");
+    var row1 = document.createElement("div");
+    row1.setAttribute("class", "row");
+    var row2 = document.createElement("div");
+    row2.setAttribute("class", "row");
+    var col1 = document.createElement("div");
+    col1.setAttribute("class", "col-xs-12");
+    var col2 = document.createElement("div");
+    col2.setAttribute("class", "col-xs-6 col-lg-5");
+    var col3 = document.createElement("div");
+    col3.setAttribute("class", "col-xs-6 col-lg-5 col-lg-offset-2");
+    var promptHeading = document.createElement("h1");
+    promptHeading.setAttribute("class", "prompt-heading");
+    promptHeading.textContent = heading;
+    var promptMessage = document.createElement("p");
+    promptMessage.setAttribute("class", "prompt-message");
+    promptMessage.textContent = message;
+    var promptAction = document.createElement("a");
+    promptAction.setAttribute("href", "javascript:void(0)");
+    promptAction.setAttribute("class", "button button-primary button-block prompt-action");
+    promptAction.textContent = "Confirm";
+    var promptCencel = document.createElement("a");
+    promptCencel.setAttribute("href", "javascript:void(0)");
+    promptCencel.setAttribute("class", "button button-secondary button-block prompt-cancel");
+    promptCencel.textContent = "Cancel";
+    // connect elements
+    col1.appendChild(promptHeading);
+    col1.appendChild(promptMessage);
+    col2.appendChild(promptCencel);
+    col3.appendChild(promptAction);
+    row1.appendChild(col1);
+    row2.appendChild(col2);
+    row2.appendChild(col3);
+    container.appendChild(row1);
+    container.appendChild(row2);
+    prompt.appendChild(container);
+    // append prompt and shade
+    if (!body.querySelector(".prompt.prompt-shade") && !body.querySelector(".prompt.prompt-modal")) {
+      body.appendChild(promptShade);
+      body.appendChild(prompt);
+      function revealPrompt() {
+        addClass(prompt, "reveal");
+        addClass(promptShade, "reveal");
+      };
+      delayFunction(revealPrompt, 10);
+      addListenerTo_prompt(confirmAction);
+    };
+  };
+
+  function addListenerTo_prompt(confirmAction) {
+    var promptShade = e(".prompt-shade");
+    var promptModal = e(".prompt-modal");
+    var promptAction = e(".prompt-modal .prompt-action");
+    var promptCancel = e(".prompt-modal .prompt-cancel");
+    promptShade.addEventListener('click', function() {
+      removePrompt();
+    });
+    promptCancel.addEventListener('click', function() {
+      removePrompt();
+    });
+    promptAction.addEventListener('click', function() {
+      if (confirmAction == "clear all") {
+        clearAwesomeSheet();
       };
     });
+  };
+
+  function removePrompt() {
+    var promptShade = e(".prompt-shade");
+    var promptModal = e(".prompt-modal");
+    var promptCancel = e(".prompt-modal .prompt-cancel");
+    if (promptShade && promptModal) {
+      promptShade.style.opacity = 0;
+      promptModal.style.opacity = 0;
+      function fadeRemovePrompt() {
+        promptShade.remove();
+        promptModal.remove();
+      }
+      delayFunction(fadeRemovePrompt, 500);
+    };
+  };
+
+  function clearAwesomeSheet() {    
+    localStorage.clear();
+    document.location.reload(true);
   };
 
   // --------------------------------------------------------------------------
