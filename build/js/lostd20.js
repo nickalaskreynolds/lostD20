@@ -713,6 +713,7 @@ function diceRollerama() {
     } else {
       text.textContent = "Expand";
     };
+    toggleClass(nav, "bright");
     toggleClass(icon, "icon-unfold-more");
     toggleClass(icon, "icon-unfold-less");
     toggleClass(element_columnResults, "fullsize");
