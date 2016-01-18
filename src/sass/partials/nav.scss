@@ -150,7 +150,7 @@ nav {
     .toggle-nav {
       background-color: $primary-color;
       box-shadow: $shadow-medium;
-      animation: spin ease-in-out 0.8s;
+      animation: spin $transition-ease-medium;
       animation-iteration-count: 1;
       &:hover {
         background-color: $primary-color;
