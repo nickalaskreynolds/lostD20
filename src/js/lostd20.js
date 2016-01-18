@@ -478,23 +478,70 @@ function diceRollerama() {
     // print results to history
     element_results_list.innerHTML =
       '<div class="result-item">' +
-      '<div class="row">' +
-      '<div class="col-xs-8">' +
-      '<p class="breakdown">' +
-      '<span class="save-roll-name">' + rollName + '</span>' +
-      ' <span class="number-of-dice">' + numberOfDice + '</span>' +
-      ' <span class="dice">d' + whichDice + '</span>' +
-      ' <span class="number-of-bonus">' + bonusModifier + '</span>' +
-      ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
-      '</p>' +
-      '</div>' +
-      '<div class="col-xs-4">' +
-      '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
-      '</div>' +
-      '</div>' +
+        '<div class="row">' +
+          '<div class="col-xs-8">' +
+            '<p class="breakdown">' +
+              '<span class="save-roll-name">' + rollName + '</span>' +
+              ' <span class="number-of-dice">' + numberOfDice + '</span>' +
+              ' <span class="dice">d' + whichDice + '</span>' +
+              ' <span class="number-of-bonus">' + bonusModifier + '</span>' +
+              ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
+            '</p>' +
+          '</div>' +
+          '<div class="col-xs-4">' +
+            '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
+          '</div>' +
+        '</div>' +
       '</div>' + element_results_list.innerHTML;
 
     checkListListState();
+  };
+
+  function createRollResult(argument) {
+
+    // make snack bar elements
+    var resultItem = document.createElement("div");
+    resultItem.setAttribute("class", "result-item");
+
+    var row = document.createElement("div");
+    row.setAttribute("class", "row");
+
+    var col1 = document.createElement("div");
+    col1.setAttribute("class", "col-xs-8");
+    
+    var col2 = document.createElement("div");
+    col2.setAttribute("class", "col-xs-4");
+
+    var p1 = document.createElement("p");
+    p1.setAttribute("class", "result-item-breakdown");
+
+    var p2 = document.createElement("p");
+    p2.setAttribute("class", "result-item-total");
+
+    var span1 = document.createElement("span");
+    span1.setAttribute("class", "save-roll-name");
+
+    var span2 = document.createElement("span");
+    span2.setAttribute("class", "number-of-dice");
+
+    var span3 = document.createElement("span");
+    span3.setAttribute("class", "dice");
+
+    var span4 = document.createElement("span");
+    span4.setAttribute("class", "number-of-bonus");
+
+    var span5 = document.createElement("span");
+    span5.setAttribute("class", "multiple-dice-results");
+
+    snackClose.appendChild(iconClose);
+
+
+
+
+
+
+
+
   };
 
   // go roll
@@ -658,7 +705,7 @@ function diceRollerama() {
     localStoreAdd("saved-formulas", element_formulas_list);
     var timestamp = Date.now();
     // make snack bar with deleted formula
-    createSnackBar(readSaved_name + " removed.", false, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
+    createSnackBar("Removed " + readSaved_name + ".", true, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
   // move saved formula up or down
@@ -718,6 +765,8 @@ function diceRollerama() {
     toggleClass(icon, "icon-unfold-less");
     toggleClass(element_columnResults, "fullsize");
     toggleClass(element, "active");
+    toggleClass(element, "button-primary");
+    toggleClass(element, "button-dark");
   };
 
   function clearResults() {
@@ -732,7 +781,7 @@ function diceRollerama() {
   }, false);
 
   element_results_clearResults.addEventListener("click", function() {
-    clearResults();
+    createPrompt("Are you sure?", "Roll history will be removed. This can not be undone.", "clear history");
   }, false);
 
   // --------------------------------------------------------------------------
@@ -758,7 +807,7 @@ function diceRollerama() {
   // --------------------------------------------------------------------------
 
   function createSnackBar(message, close, undo, numberOfDice, whichDice, bonusModifier, rollName) {
-    var element_snacks = e(".snacks");
+    var element_snackBars = e(".snacks .snack-bars");
     // make snack bar elements
     var snackBar = document.createElement("div");
     snackBar.setAttribute("class", "snack-bar");
@@ -766,20 +815,18 @@ function diceRollerama() {
     snackBar.setAttribute("data-ammount-of-dice", numberOfDice);
     snackBar.setAttribute("data-dice", whichDice);
     snackBar.setAttribute("data-ammount-of-bonus", bonusModifier);
-    var container = document.createElement("div");
-    container.setAttribute("class", "container");
     var row = document.createElement("div");
     row.setAttribute("class", "row");
     var col1 = document.createElement("div");
-    col1.setAttribute("class", "col-xs-10");
+    col1.setAttribute("class", "col-xs-8 col-md-7");
     var col2 = document.createElement("div");
-    col2.setAttribute("class", "col-xs-2");
+    col2.setAttribute("class", "col-xs-4 col-md-5");
     var snackClose = document.createElement("a");
     snackClose.setAttribute("href", "javascript:void(0)");
     snackClose.setAttribute("class", "button button-dark button-small snack-clear");
     var snackUndo = document.createElement("a");
     snackUndo.setAttribute("href", "javascript:void(0)");
-    snackUndo.setAttribute("class", "button button-dark button-block button-small snack-undo");
+    snackUndo.setAttribute("class", "button button-dark button-small snack-undo");
     snackUndo.textContent = "Undo";
     var iconClose = document.createElement("span");
     iconClose.setAttribute("class", "icon-close");
@@ -788,20 +835,25 @@ function diceRollerama() {
     snackMessage.textContent = message;
     snackClose.appendChild(iconClose);
     // connect elements
+    if (close) {
+      col2.appendChild(snackClose);
+    };
     if (undo) {
       col2.appendChild(snackUndo);
-    };
-    if (close) {
-      col1.appendChild(snackClose);
     };
     col1.appendChild(snackMessage);
     row.appendChild(col1);
     row.appendChild(col2);
-    row.appendChild(col2);
-    container.appendChild(row);
-    snackBar.appendChild(container);
+    // container.appendChild(row);
+    snackBar.appendChild(row);
     // append snack bar
-    element_snacks.appendChild(snackBar);
+    element_snackBars.appendChild(snackBar);
+    // if too many snack bars
+    if (element_snackBars.childNodes.length > 5) {
+      var snackBarToRemove = element_snackBars.childNodes[0];
+      clearSnackBar(snackBarToRemove);
+    };
+    // add listners
     addListenerTo_snackBar(snackBar);
     // newSnackBar.addEventListener("mouseover", function() {
     //   clearTimeout(delayFunction);
@@ -818,7 +870,7 @@ function diceRollerama() {
         clearSnackBar(snackBar);
       };
     };
-    delayFunction(autoClearSnackBar, 4000);
+    delayFunction(autoClearSnackBar, 5000);
   };
 
   // add listeners to snack bar buttons
@@ -942,6 +994,10 @@ function diceRollerama() {
     promptAction.addEventListener('click', function() {
       if (confirmAction == "clear all") {
         clearAwesomeSheet();
+      };
+      if (confirmAction == "clear history") {
+        clearResults();
+        removePrompt();
       };
     });
   };

@@ -1,0 +1,67 @@
+/* structure
+------------------------------------------------- */
+
+body {
+  background: $white;
+}
+
+.controls {
+  margin: 70px 0 0 0;
+  padding: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.formulas {
+  margin: 20px 0 150px 0;
+}
+
+.results {
+  background-color: $gray-01;
+  position: fixed;
+  bottom: -30%;
+  height: 30%;
+  width: 100%;
+  z-index: $results;
+  overflow-y: auto;
+  transition: all $transition-ease-medium;
+}
+
+
+/* media queries
+------------------------------------------------- */
+
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-md) {}
+
+@media (min-width: $screen-lg) {
+  .controls {
+    margin: 70px 40% 0 0;
+    width: 60%;
+  }
+  .formulas {
+    margin: 70px 40% 0 0;
+    width: 60%;
+  }
+  .results {
+    top: 0;
+    right: 0;
+    bottom: inherit;
+    height: 100%;
+    width: 40%;
+    .result-controls {
+      .toggle-fullscreen {
+        display: none;
+      }
+    }
+    &.active {
+      bottom: inherit;
+    }
+  }
+  .formulas {
+    margin: 20px 0 300px 0;
+  }
+}
+
+@media (min-width: $screen-xl) {}

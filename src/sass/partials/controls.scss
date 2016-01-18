@@ -1,0 +1,232 @@
+/* controls
+------------------------------------------------- */
+
+.controls {
+  .current-formula {
+    background-color: $secondary-color;
+    .number-of-dice,
+    .current-dice,
+    .number-of-bonus {
+      float: left;
+    }
+    .current-dice {
+      width: 20%;
+      p {
+        background-color: $gray-alpha-12;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
+        color: $white;
+        font-family: $open-sans-condensed-light;
+      }
+    }
+    .number-of-dice,
+    .number-of-bonus {
+      width: 40%;
+      position: relative;
+      .button {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        line-height: 50px;
+        width: 40%;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        [class^="icon-"],
+        [class*=" icon-"] {
+          margin: 0;
+          font-size: 1.3rem;
+          height: 50px;
+          line-height: 50px;
+          display: block;
+        }
+      }
+      input {
+        margin: 0;
+        font-size: 3rem;
+        line-height: 90px;
+        height: 90px;
+        display: block;
+        font-family: $open-sans-condensed-light;
+        &::-webkit-input-placeholder {
+          color: $white;
+        }
+        &:-moz-placeholder {
+          color: $white;
+        }
+        &::-moz-placeholder {
+          color: $white;
+        }
+      }
+    }
+    .number-of-dice {
+      .button {
+        left: 0;
+      }
+      input {
+        text-align: right;
+        padding: 0 30px 0 0;
+      }
+    }
+    .number-of-bonus {
+      .button {
+        right: 0;
+      }
+      input {
+        text-align: left;
+        padding: 0 0 0 30px;
+      }
+    }
+  }
+  .input-controls {
+    background-color: $secondary-color;
+    .input-controls-dice,
+    .input-controls-bonus {
+      width: 40%;
+      .button {
+        width: 40%;
+        float: left;
+      }
+    }
+    .input-controls-dice {
+      float: left;
+      .button {
+        float: left;
+      }
+    }
+    .input-controls-bonus {
+      float: right;
+      .button {
+        float: right;
+      }
+    }
+    .save {
+      width: 20%;
+      float: left;
+    }
+    .input-controls-dice,
+    .input-controls-bonus,
+    .save {
+      .button {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        line-height: 50px;
+        [class^="icon-"],
+        [class*=" icon-"] {
+          margin: 0;
+          font-size: 1.3rem;
+          height: 50px;
+          line-height: 50px;
+          display: block;
+        }
+      }
+    }
+  }
+  .dice-form {
+    border-radius: $border-radius-medium $border-radius-medium 0 0;
+    background-color: $secondary-color;
+    position: relative;
+    z-index: 1;
+    label {
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      text-align: center;
+      border: 0;
+      outline: none;
+      position: relative;
+      font-size: 1rem;
+      font-family: $open-sans-semi-bold;
+      width: 11.1111111111%;
+      display: block;
+      float: left;
+      z-index: 3;
+      transition: all $transition-ease-fast;
+      input {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        cursor: pointer;
+      }
+      .label-text {
+        position: relative;
+        line-height: 50px;
+        display: block;
+        color: $gray-10;
+        overflow: hidden;
+        border-top: 5px solid transparent;
+        transition: all $transition-ease-fast;
+      }
+      &:first-child {
+        border-radius: $border-radius-medium 0 0 0;
+        .label-text {
+          border-radius: $border-radius-medium 0 0 0;
+        }
+      }
+      &:last-child {
+        border-radius: 0 $border-radius-medium 0 0;
+        .label-text {
+          border-radius: 0 $border-radius-medium 0 0;
+        }
+      }
+      &:link,
+      &:visited {
+        color: $gray-10;
+        background-color: transparent;
+        border-color: $gray-alpha-12;
+      }
+      &:focus {
+        color: $gray-10;
+        background-color: $gray-alpha-10;
+        outline: 0;
+        text-decoration: none;
+      }
+      &:hover {
+        color: $gray-10;
+        background-color: $gray-alpha-11;
+        outline: 0;
+        text-decoration: none;
+      }
+      &:active,
+      &.active {
+        z-index: 2;
+        color: $white;
+        background-color: $gray-alpha-09;
+        .label-text {
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  .go-roll {
+    border-radius: 0 0 $border-radius-medium $border-radius-medium;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
+
+
+/* media queries
+------------------------------------------------- */
+
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-md) {}
+
+@media (min-width: $screen-lg) {}
+
+@media (min-width: $screen-xl) {}
