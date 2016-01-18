@@ -25,6 +25,9 @@ body {
   z-index: $results;
   overflow-y: auto;
   transition: all $transition-ease-medium;
+  &.active {
+    bottom: 0;
+  }
 }
 
 
@@ -46,7 +49,7 @@ body {
   }
   .results {
     top: 0;
-    right: 0;
+    right: -40%;
     bottom: inherit;
     height: 100%;
     width: 40%;
@@ -57,6 +60,7 @@ body {
     }
     &.active {
       bottom: inherit;
+      right: 0;
     }
   }
   .formulas {

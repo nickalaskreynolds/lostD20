@@ -55,7 +55,7 @@
         text-align: left;
         color: $gray-08;
         font-size: 1rem;
-        .save-roll-name {
+        .roll-name {
           color: $primary-color-light;
         }
         .number-of-dice {
@@ -103,9 +103,6 @@
     position: relative;
     z-index: 2;
     box-shadow: $shadow-medium;
-  }
-  &.active {
-    bottom: 0;
   }
   &.fullsize {
     height: 100%;

@@ -1273,26 +1273,21 @@ nav {
             transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; }
         nav .nav-list li a.active:hover {
           color: #ffffff; }
-  nav.open .toggle-nav {
-    -webkit-animation: spin 0.3s ease-in-out;
-            animation: spin 0.3s ease-in-out;
-    -webkit-animation-iteration-count: 1;
-            animation-iteration-count: 1; }
-    nav.open .toggle-nav .line.top {
-      top: 50%;
-      -webkit-transform: translate(-12px, -1px) rotate(135deg);
-          -ms-transform: translate(-12px, -1px) rotate(135deg);
-              transform: translate(-12px, -1px) rotate(135deg);
-      transition-delay: 0.3s; }
-    nav.open .toggle-nav .line.middle {
-      opacity: 0;
-      transition-delay: 0s; }
-    nav.open .toggle-nav .line.bottom {
-      top: 50%;
-      -webkit-transform: translate(-12px, -1px) rotate(-135deg);
-          -ms-transform: translate(-12px, -1px) rotate(-135deg);
-              transform: translate(-12px, -1px) rotate(-135deg);
-      transition-delay: 0.3s; }
+  nav.open .toggle-nav .line.top {
+    top: 50%;
+    -webkit-transform: translate(-12px, -1px) rotate(135deg);
+        -ms-transform: translate(-12px, -1px) rotate(135deg);
+            transform: translate(-12px, -1px) rotate(135deg);
+    transition-delay: 0.3s; }
+  nav.open .toggle-nav .line.middle {
+    opacity: 0;
+    transition-delay: 0s; }
+  nav.open .toggle-nav .line.bottom {
+    top: 50%;
+    -webkit-transform: translate(-12px, -1px) rotate(-135deg);
+        -ms-transform: translate(-12px, -1px) rotate(-135deg);
+            transform: translate(-12px, -1px) rotate(-135deg);
+    transition-delay: 0.3s; }
   nav.open .nav-list {
     opacity: 1;
     right: 0;
@@ -1326,23 +1321,6 @@ nav {
     nav.open .nav-list {
       left: inherit;
       left: 0; } }
-
-/* animations
-------------------------------------------------- */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(-180deg);
-            transform: rotate(-180deg); } }
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(-180deg);
-            transform: rotate(-180deg); } }
 
 /* prompt
 ------------------------------------------------- */
@@ -1815,7 +1793,7 @@ nav {
       text-align: left;
       color: #a0a0a0;
       font-size: 1rem; }
-      .results .result-history .result-item .breakdown .save-roll-name {
+      .results .result-history .result-item .breakdown .roll-name {
         color: #ff3276; }
       .results .result-history .result-item .breakdown .number-of-dice {
         color: #e8e8e8; }
@@ -1852,9 +1830,6 @@ nav {
   position: relative;
   z-index: 2;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 20px rgba(0, 0, 0, 0.2); }
-
-.results.active {
-  bottom: 0; }
 
 .results.fullsize {
   height: 100%;
@@ -1952,6 +1927,8 @@ body {
   z-index: 2000;
   overflow-y: auto;
   transition: all 0.3s ease-in-out; }
+  .results.active {
+    bottom: 0; }
 
 /* media queries
 ------------------------------------------------- */
@@ -1964,13 +1941,14 @@ body {
     width: 60%; }
   .results {
     top: 0;
-    right: 0;
+    right: -40%;
     bottom: inherit;
     height: 100%;
     width: 40%; }
     .results .result-controls .toggle-fullscreen {
       display: none; }
     .results.active {
-      bottom: inherit; }
+      bottom: inherit;
+      right: 0; }
   .formulas {
     margin: 20px 0 300px 0; } }
