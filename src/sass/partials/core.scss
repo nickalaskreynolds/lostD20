@@ -330,6 +330,8 @@ body {
       &:first-child {
         .total {
           border: 3px solid $primary-color;
+          position: relative;
+          z-index: 1;
           &:before {
             content: "";
             position: absolute;
@@ -337,6 +339,7 @@ body {
             left: 50%;
             width: 100%;
             height: 100%;
+            z-index: -1;
             animation: total-flash ease-out 0.8s;
             animation-iteration-count: 1;
             transform: translate(-50%, -50%);
@@ -465,8 +468,8 @@ body {
 
 @keyframes total-flash {
   0% {
-    background-color: $primary-color-light;
-    border: 3px solid $primary-color-light;
+    background-color: $light-alpha-01;
+    border: 3px solid $light-alpha-01;
     border-radius: $border-radius-medium;
   }
   100% {
