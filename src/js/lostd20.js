@@ -180,12 +180,12 @@ function diceRollerama() {
     toggleFullScreen();
   }, false);
 
-  window.addEventListener('click', function(event) {
-    if (nav.classList.contains("open")) {
-      if (event.target != nav && event.target.parentNode != nav && event.target.parentNode.parentNode != nav && event.target.parentNode.parentNode.parentNode != nav) {
-        removeClass(nav, "open");
-      };
-    };
+  window.addEventListener('click', function() {
+    removeClass(nav, "open");
+  });
+
+  nav.addEventListener('click', function(event) {
+    event.stopPropagation();
   });
 
   // --------------------------------------------------------------------------
@@ -408,10 +408,10 @@ function diceRollerama() {
   // roll current settings/formula
   function rollCurrentFormula(numberOfDice, whichDice, bonusModifier, rollName) {
     // make array
-    var multipleDiceResults = [];
+    var randomDiceResults = [];
     // populate array with natural rolls
     for (var i = 0; i < numberOfDice; i++) {
-      multipleDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
+      randomDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
     // make lowest index var
     var lowestRollIndex;
@@ -426,122 +426,103 @@ function diceRollerama() {
       return lowestRollIndex;
     };
     // run find the lowest value function passing in the array of rolls
-    indexOfSmallestValue(multipleDiceResults);
+    indexOfSmallestValue(randomDiceResults);
     // sum all array numbers
-    var naturalMultipleRolls = multipleDiceResults.reduce(function(a, b) {
+    var naturalMultipleRolls = randomDiceResults.reduce(function(a, b) {
       return a + b;
     });
     // check if drop lowest toggle is true or false
     var toggleDropLowestState = nav_toggleDropLowest.dataset.active;
-    // make a subtract var
+    // make a lowest subtract var
     var lowestToSubtract;
     if (toggleDropLowestState == "true" && numberOfDice > 1) {
-      // ser var lowestToSubtract value to the index in multipleDiceResults with the lowest value
-      lowestToSubtract = multipleDiceResults[lowestRollIndex];
+      // ser var lowestToSubtract value to the index in randomDiceResults with the lowest value
+      lowestToSubtract = randomDiceResults[lowestRollIndex];
       // wrap the content in the lowest value index with a span
-      multipleDiceResults[lowestRollIndex] = '<span class="strike">' + multipleDiceResults[lowestRollIndex] + '</span>';
+      randomDiceResults[lowestRollIndex] = '<span class="strike">' + randomDiceResults[lowestRollIndex] + '</span>';
     } else {
       lowestToSubtract = 0;
     };
     // add bonus to final total
     var finalResult = naturalMultipleRolls + bonusModifier - lowestToSubtract;
     // make array with spaces for history
-    var multipleDiceResultsWithSpaces = multipleDiceResults.join(", ");
-    // filter arguments
-    if (numberOfDice <= 1) {
-      numberOfDice = "";
-    };
-    if (bonusModifier == 0) {
-      bonusModifier = "";
-    };
-    if (bonusModifier > 0) {
-      bonusModifier = "+" + bonusModifier;
-    };
-    if (!rollName) {
-      rollName = "";
-    };
-    // if 20 or 1 is rolled on a d20 add class names to dice clicker and history <p>
-    var critical20Or1;
-    if (whichDice == 20 && numberOfDice <= 1) {
-      if (naturalMultipleRolls == 20) {
-        // if natural 20
-        critical20Or1 = " critical-20";
-      } else if (naturalMultipleRolls == 1) {
-        // if natural 1
-        critical20Or1 = " critical-1";
-      } else {
-        critical20Or1 = "";
-      }
-    } else {
-      critical20Or1 = "";
-    };
-    // print results to history
-    element_results_list.innerHTML =
-      '<div class="result-item">' +
-        '<div class="row">' +
-          '<div class="col-xs-8">' +
-            '<p class="breakdown">' +
-              '<span class="save-roll-name">' + rollName + '</span>' +
-              ' <span class="number-of-dice">' + numberOfDice + '</span>' +
-              ' <span class="dice">d' + whichDice + '</span>' +
-              ' <span class="number-of-bonus">' + bonusModifier + '</span>' +
-              ' <span class="multiple-dice-results">(Rolled: ' + multipleDiceResultsWithSpaces + ')</span>' +
-            '</p>' +
-          '</div>' +
-          '<div class="col-xs-4">' +
-            '<p class="total' + critical20Or1 + '">' + finalResult + '</p>' +
-          '</div>' +
-        '</div>' +
-      '</div>' + element_results_list.innerHTML;
-
+    var randomDiceResultsWithSpaces = randomDiceResults.join(", ");
+    // pass arguments to roll function
+    createRollResult(numberOfDice, whichDice, bonusModifier, rollName, randomDiceResultsWithSpaces, lowestRollIndex, finalResult);
     checkListListState();
   };
 
-  function createRollResult(argument) {
-
+  function createRollResult(numberOfDice, whichDice, bonusModifier, rollName, randomDiceResultsWithSpaces, lowestRollIndex, finalResult) {
     // make snack bar elements
     var resultItem = document.createElement("div");
     resultItem.setAttribute("class", "result-item");
-
     var row = document.createElement("div");
     row.setAttribute("class", "row");
-
     var col1 = document.createElement("div");
     col1.setAttribute("class", "col-xs-8");
-    
     var col2 = document.createElement("div");
     col2.setAttribute("class", "col-xs-4");
-
     var p1 = document.createElement("p");
-    p1.setAttribute("class", "result-item-breakdown");
-
+    p1.setAttribute("class", "breakdown");
     var p2 = document.createElement("p");
-    p2.setAttribute("class", "result-item-total");
-
+    p2.setAttribute("class", "total");
+    p2.textContent = finalResult;
+    //  if natural 1 or 20 on a single d20 roll
+    if (whichDice == 20 && numberOfDice <= 1) {
+      if (randomDiceResultsWithSpaces == 20) {
+        p2.setAttribute("class", "total critical-20");
+      } else if (randomDiceResultsWithSpaces == 1) {
+        p2.setAttribute("class", "total critical-1");
+      }
+    };
     var span1 = document.createElement("span");
-    span1.setAttribute("class", "save-roll-name");
-
+    span1.setAttribute("class", "roll-name");
+    // if name is passed to function
+    if (rollName) {
+      span1.textContent = rollName + " ";
+    };
     var span2 = document.createElement("span");
     span2.setAttribute("class", "number-of-dice");
-
+    span2.textContent = numberOfDice + " ";
     var span3 = document.createElement("span");
     span3.setAttribute("class", "dice");
-
+    span3.textContent = "d" + whichDice + " ";
     var span4 = document.createElement("span");
     span4.setAttribute("class", "number-of-bonus");
-
+    // if modifier is more than 0 add a + symbol or not
+    if (bonusModifier > 0) {
+      span4.textContent = "+" + bonusModifier + " ";
+    } else {
+      span4.textContent = bonusModifier + " ";
+    };
     var span5 = document.createElement("span");
     span5.setAttribute("class", "multiple-dice-results");
-
-    snackClose.appendChild(iconClose);
-
-
-
-
-
-
-
-
+    span5.innerHTML = "(Rolled: " + randomDiceResultsWithSpaces + ")";
+    // if name append it
+    if (rollName) {
+      p1.appendChild(span1);
+    };
+    // if number of dice is more than 1 append it
+    if (numberOfDice > 1) {
+      p1.appendChild(span2);
+    };
+    p1.appendChild(span3);
+    // if bonus is not 0 append it
+    if (bonusModifier != 0) {
+      p1.appendChild(span4);
+    };
+    // if multiple dice rolls append it
+    if (numberOfDice > 1) {
+      p1.appendChild(span5);
+    };
+    col1.appendChild(p1);
+    col2.appendChild(p2);
+    row.appendChild(col1);
+    row.appendChild(col2);
+    resultItem.appendChild(row);
+    // append result item to history
+    element_results_list.insertBefore(resultItem, element_results_list.firstChild);
+    checkListListState();
   };
 
   // go roll
@@ -851,13 +832,19 @@ function diceRollerama() {
     // if too many snack bars
     if (element_snackBars.childNodes.length > 5) {
       var snackBarToRemove = element_snackBars.childNodes[0];
-      clearSnackBar(snackBarToRemove);
+
+      function removeReveal() {
+        removeClass(snackBarToRemove, "reveal");
+      };
+      delayFunction(removeReveal, 1);
+
+      function deleteSnackBar() {
+        snackBarToRemove.remove();
+      };
+      delayFunction(deleteSnackBar, 10);
     };
     // add listners
     addListenerTo_snackBar(snackBar);
-    // newSnackBar.addEventListener("mouseover", function() {
-    //   clearTimeout(delayFunction);
-    // }, false);
     // reveal snack bar
     var revealSnackBar = function() {
       addClass(snackBar, "reveal");
@@ -908,11 +895,13 @@ function diceRollerama() {
   // snack bar clear
   function clearSnackBar(element) {
     var snackBar = getClosest(element, ".snack-bar");
-    var removeReveal = function() {
+
+    function removeReveal() {
       removeClass(snackBar, "reveal");
     };
     delayFunction(removeReveal, 10);
-    var deleteSnackBar = function() {
+
+    function deleteSnackBar() {
       snackBar.remove();
     };
     delayFunction(deleteSnackBar, 500);
