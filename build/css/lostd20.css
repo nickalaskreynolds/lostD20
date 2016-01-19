@@ -1339,26 +1339,26 @@ nav {
   height: 100%;
   z-index: 5000;
   opacity: 0;
-  transition: all 0.3s cubic-bezier(0.7, -0.6, 0.3, 1.6); }
+  transition: all 0.3s ease-in-out; }
 
 .prompt.prompt-modal {
-  border-left: 10px solid #ff0055;
+  border-top: 10px solid #ff0055;
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 5000;
   background: #ffffff;
   width: 80%;
-  min-width: 300px;
+  min-width: 250px;
   padding: 20px 15px 20px 25px;
   box-sizing: border-box;
-  border-radius: 2px;
+  border-radius: 4px;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 30px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transition: all 0.3s cubic-bezier(0.7, -0.6, 0.3, 1.6); }
+  transition: all 0.3s ease-in-out; }
 
 .prompt .button {
   margin: 0 5px 5px 0; }
@@ -1372,7 +1372,7 @@ nav {
 ------------------------------------------------- */
 @media (min-width: 700px) {
   .prompt.prompt-modal {
-    width: 70%; } }
+    width: 80%; } }
 
 @media (min-width: 900px) {
   .prompt.prompt-modal {
@@ -1421,7 +1421,8 @@ nav {
       height: 30px;
       line-height: 30px;
       font-size: 1rem;
-      float: right; }
+      float: right;
+      color: #ffffff; }
       .snacks .snack-bar .button [class^="icon-"],
       .snacks .snack-bar .button [class*=" icon-"] {
         margin: 0;
@@ -1494,22 +1495,19 @@ nav {
       border-radius: 0;
       padding: 0;
       margin: 0;
-      height: 50px;
-      line-height: 50px;
-      width: 40%;
+      height: 90px;
+      line-height: 90px;
+      width: 50%;
       position: absolute;
-      top: 50%;
-      -webkit-transform: translate(0, -50%);
-          -ms-transform: translate(0, -50%);
-              transform: translate(0, -50%); }
+      top: 0; }
       .controls .current-formula .number-of-dice .button [class^="icon-"],
       .controls .current-formula .number-of-dice .button [class*=" icon-"],
       .controls .current-formula .number-of-bonus .button [class^="icon-"],
       .controls .current-formula .number-of-bonus .button [class*=" icon-"] {
         margin: 0;
         font-size: 1.3rem;
-        height: 50px;
-        line-height: 50px;
+        height: 90px;
+        line-height: 90px;
         display: block; }
     .controls .current-formula .number-of-dice input,
     .controls .current-formula .number-of-bonus input {
@@ -1532,33 +1530,28 @@ nav {
     left: 0; }
   .controls .current-formula .number-of-dice input {
     text-align: right;
-    padding: 0 30px 0 0; }
+    padding: 0 10px 0 0; }
   .controls .current-formula .number-of-bonus .button {
     right: 0; }
   .controls .current-formula .number-of-bonus input {
     text-align: left;
-    padding: 0 0 0 30px; }
+    padding: 0 0 0 10px; }
 
 .controls .input-controls {
   background-color: #003c4f; }
+  .controls .input-controls .input-controls-dice,
+  .controls .input-controls .input-controls-bonus,
+  .controls .input-controls .save {
+    float: left; }
   .controls .input-controls .input-controls-dice,
   .controls .input-controls .input-controls-bonus {
     width: 40%; }
     .controls .input-controls .input-controls-dice .button,
     .controls .input-controls .input-controls-bonus .button {
-      width: 40%;
+      width: 50%;
       float: left; }
-  .controls .input-controls .input-controls-dice {
-    float: left; }
-    .controls .input-controls .input-controls-dice .button {
-      float: left; }
-  .controls .input-controls .input-controls-bonus {
-    float: right; }
-    .controls .input-controls .input-controls-bonus .button {
-      float: right; }
   .controls .input-controls .save {
-    width: 20%;
-    float: left; }
+    width: 20%; }
   .controls .input-controls .input-controls-dice .button,
   .controls .input-controls .input-controls-bonus .button,
   .controls .input-controls .save .button {
@@ -1659,6 +1652,21 @@ nav {
 
 /* media queries
 ------------------------------------------------- */
+@media (min-width: 700px) {
+  .controls .current-formula .number-of-dice input {
+    padding: 0 20px 0 0; }
+  .controls .current-formula .number-of-bonus input {
+    padding: 0 0 0 20px; } }
+
+@media (min-width: 900px) {
+  .controls .current-formula .number-of-dice .button,
+  .controls .current-formula .number-of-bonus .button {
+    width: 60px; }
+  .controls .current-formula .number-of-dice input {
+    padding: 0 30px 0 0; }
+  .controls .current-formula .number-of-bonus input {
+    padding: 0 0 0 30px; } }
+
 /* formulas
 ------------------------------------------------- */
 .formulas .list .saved-formula {
@@ -1827,8 +1835,8 @@ nav {
     background-color: #222222;
     padding: 10px 0;
     z-index: 2;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out; }
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 20px rgba(0, 0, 0, 0.2); }
   .results.fullsize {
     height: 100%;
     bottom: 0; }
@@ -1847,7 +1855,10 @@ nav {
     top: 0;
     right: 0;
     width: 40%;
-    text-align: right; } }
+    text-align: right;
+    box-shadow: none; }
+  .results.active .result-controls {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 20px rgba(0, 0, 0, 0.2); } }
 
 /* animations
 ------------------------------------------------- */
