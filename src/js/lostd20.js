@@ -3,13 +3,13 @@ function diceRollerama() {
   // elements
   var element_columnControls = e(".controls");
   var element_columnResults = e(".results");
+  var element_results_list = e(".results .list");
   var element_columnFormulas = e(".formulas");
+  var element_formulas_list = e(".formulas .list");
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
   var element_goRoll = e(".go-roll");
-  var element_formulas_list = e(".formulas .list");
   var element_currentDice = e(".current-dice span");
-  var element_results_list = e(".results .list");
   var element_savedFormulas_list = e(".saved-formulas .list");
   var element_results_toggleFullscreen = e(".results .toggle-fullscreen");
   var element_results_clearResults = e(".results .clear-results");
@@ -512,7 +512,7 @@ function diceRollerama() {
       p1.appendChild(span4);
     };
     // if multiple dice rolls append it
-    if (numberOfDice > 1) {
+    if (numberOfDice > 1 || bonusModifier != 0) {
       p1.appendChild(span5);
     };
     col1.appendChild(p1);
@@ -670,6 +670,9 @@ function diceRollerama() {
     e("#d" + readSaved_diceSides).checked = true;
     controls_numberOfDice_input.value = readSaved_amountOfDice;
     controls_numberOfBonus_input.value = readSaved_amountOfBonus;
+    modifiers_readAmountOfDice();
+    modifiers_readAmountOfDice_blur();
+    modifiers_readAmountOfBonus();
     modifiers_readAmountOfBonus_blur();
     makeSelectedRadioActive(element_diceForm, "dice-select");
     rollCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
@@ -777,9 +780,9 @@ function diceRollerama() {
       element_columnResults.classList.remove("active");
     };
     if (element_savedFormulas_list.firstChild) {
-      element_savedFormulas_list.classList.add("active");
+      element_columnFormulas.classList.add("active");
     } else {
-      element_savedFormulas_list.classList.remove("active");
+      element_columnFormulas.classList.remove("active");
     };
   };
 
@@ -799,9 +802,9 @@ function diceRollerama() {
     var row = document.createElement("div");
     row.setAttribute("class", "row");
     var col1 = document.createElement("div");
-    col1.setAttribute("class", "col-xs-8 col-md-7");
+    col1.setAttribute("class", "col-xs-7");
     var col2 = document.createElement("div");
-    col2.setAttribute("class", "col-xs-4 col-md-5");
+    col2.setAttribute("class", "col-xs-5");
     var snackClose = document.createElement("a");
     snackClose.setAttribute("href", "javascript:void(0)");
     snackClose.setAttribute("class", "button button-dark button-small snack-clear");

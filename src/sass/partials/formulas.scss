@@ -3,9 +3,6 @@
 
 .formulas {
   .list {
-    &.active {
-      opacity: 1;
-    }
     .saved-formula {
       background-color: $secondary-color;
       border-radius: $border-radius-medium;

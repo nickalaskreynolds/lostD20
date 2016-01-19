@@ -13,7 +13,12 @@ body {
 }
 
 .formulas {
-  margin: 20px 0 150px 0;
+  margin: 20px 0 0 0;
+  &.active {
+    .list {
+      margin-bottom: 300px;
+    }
+  }
 }
 
 .results {
@@ -46,6 +51,11 @@ body {
   .formulas {
     margin: 70px 40% 0 0;
     width: 60%;
+    &.active {
+      .list {
+        margin: 0 0 30px 0;
+      }
+    }
   }
   .results {
     top: 0;
@@ -54,6 +64,7 @@ body {
     height: 100%;
     width: 40%;
     .result-controls {
+      right: -40%;
       .toggle-fullscreen {
         display: none;
       }
@@ -61,6 +72,9 @@ body {
     &.active {
       bottom: inherit;
       right: 0;
+      .result-controls {
+        right: 0;
+      }
     }
   }
   .formulas {

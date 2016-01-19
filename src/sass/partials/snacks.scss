@@ -26,6 +26,7 @@
     box-sizing: border-box;
     transition: all $transition-ease-medium;
     .snack-message {
+      margin: 0;
       color: $white;
       height: 30px;
       line-height: 30px;

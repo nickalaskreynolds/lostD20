@@ -2,6 +2,7 @@
 ------------------------------------------------- */
 
 .results {
+  transition: all $transition-ease-medium;
   .result-history {
     padding: 10px 0 100px 0;
     position: relative;
@@ -100,15 +101,18 @@
   .result-controls {
     background-color: $gray-01;
     padding: 10px 0;
-    position: relative;
     z-index: 2;
     box-shadow: $shadow-medium;
+    transition: all $transition-ease-medium;
   }
   &.fullsize {
     height: 100%;
     bottom: 0;
     .result-history {
       padding: 30px 0 100px 0;
+    }
+    .result-controls {
+      right: 0;
     }
   }
 }
@@ -123,7 +127,14 @@
 
 @media (min-width: $screen-lg) {
   .results {
+    .result-history {
+      padding: 60px 0 100px 0;
+    }
     .result-controls {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40%;
       text-align: right;
     }
   }
