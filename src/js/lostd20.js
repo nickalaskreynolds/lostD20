@@ -572,7 +572,7 @@ function diceRollerama() {
         '<div class="saved-formula" data-roll-name="' + rollName + '" data-ammount-of-dice="' + data_numberOfDice + '" data-dice="' + data_whichDice + '" data-ammount-of-bonus="' + data_bonusModifier + '">' +
         '<div class="row no-gutter">' +
         '<div class="col-xs-8 col-sm-5">' +
-        '<input type="text" placeholder="Who am I?" value="' + rollName + '" class="name" tabindex="4">' +
+        '<input type="text" placeholder="Name" value="' + rollName + '" class="name" tabindex="4">' +
         '</div>' +
         '<div class="col-xs-4 col-sm-3">' +
         '<p class="formula"><span class="number-of-dice">' + numberOfDice + '</span> <span class="dice">d' + whichDice + '</span> <span class="number-of-bonus">' + bonusModifier + '</span></p>' +
@@ -606,6 +606,7 @@ function diceRollerama() {
     saveCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-formulas", element_formulas_list);
     checkListListState();
+    createSnackBar("Formula saved.", true, false);
   }, false);
 
   // add listeners to saved formula buttons and inputs
@@ -689,6 +690,9 @@ function diceRollerama() {
     localStoreAdd("saved-formulas", element_formulas_list);
     var timestamp = Date.now();
     // make snack bar with deleted formula
+    if (!readSaved_name) {
+      readSaved_name = "nameless formula";
+    };
     createSnackBar("Removed " + readSaved_name + ".", true, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
@@ -696,16 +700,6 @@ function diceRollerama() {
   function savedFormula_moveUpDown(element) {
     var node = getClosest(element, ".saved-formula");
     var nodesParent = getClosest(element, ".list");
-    // var nodesPreviousSibling = node.previousSibling;
-    // var nodesNextSibling = node.nextSibling;
-    // console.log("node = ");
-    // console.log(node);
-    // console.log("nodesParent = ");
-    // console.log(nodesParent);
-    // console.log("nodesPreviousSibling = ");
-    // console.log(nodesPreviousSibling);
-    // console.log("nodesNextSibling = ");
-    // console.log(nodesNextSibling);
     // if element has move up class
     if (element.classList.contains("move-up")) {
       var nodesPreviousSibling = node.previousSibling;
@@ -844,7 +838,7 @@ function diceRollerama() {
       function deleteSnackBar() {
         snackBarToRemove.remove();
       };
-      delayFunction(deleteSnackBar, 10);
+      delayFunction(deleteSnackBar, 200);
     };
     // add listners
     addListenerTo_snackBar(snackBar);
@@ -985,11 +979,13 @@ function diceRollerama() {
     });
     promptAction.addEventListener('click', function() {
       if (confirmAction == "clear all") {
-        clearAwesomeSheet();
+        clearLostD20();
+        createSnackBar("All cleared.", true, false);
       };
       if (confirmAction == "clear history") {
         clearResults();
         removePrompt();
+        createSnackBar("Roll history removed.", true, false);
       };
     });
   };
@@ -1010,9 +1006,20 @@ function diceRollerama() {
     };
   };
 
-  function clearAwesomeSheet() {
+  function clearLostD20() {
     localStorage.clear();
-    document.location.reload(true);
+    element_results_list.innerHTML = "";
+    element_formulas_list.innerHTML = "";
+    removeClass(element_columnResults, "active");
+    removeClass(element_columnResults, "fullsize");
+    e("#d20").checked = true;
+    controls_numberOfDice_input.value = 1;
+    controls_numberOfBonus_input.value = 0;
+    modifiers_readAmountOfDice();
+    modifiers_readAmountOfDice_blur();
+    modifiers_readAmountOfBonus();
+    modifiers_readAmountOfBonus_blur();
+    removePrompt();
   };
 
   // --------------------------------------------------------------------------

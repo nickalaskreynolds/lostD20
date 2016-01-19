@@ -32,18 +32,17 @@
         border-radius: 0;
         padding: 0;
         margin: 0;
-        height: 50px;
-        line-height: 50px;
-        width: 40%;
+        height: 90px;
+        line-height: 90px;
+        width: 50%;
         position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
+        top: 0;
         [class^="icon-"],
         [class*=" icon-"] {
           margin: 0;
           font-size: 1.3rem;
-          height: 50px;
-          line-height: 50px;
+          height: 90px;
+          line-height: 90px;
           display: block;
         }
       }
@@ -71,7 +70,7 @@
       }
       input {
         text-align: right;
-        padding: 0 30px 0 0;
+        padding: 0 10px 0 0;
       }
     }
     .number-of-bonus {
@@ -80,35 +79,27 @@
       }
       input {
         text-align: left;
-        padding: 0 0 0 30px;
+        padding: 0 0 0 10px;
       }
     }
   }
   .input-controls {
     background-color: $secondary-color;
     .input-controls-dice,
+    .input-controls-bonus,
+    .save {
+      float: left;
+    }
+    .input-controls-dice,
     .input-controls-bonus {
       width: 40%;
       .button {
-        width: 40%;
+        width: 50%;
         float: left;
-      }
-    }
-    .input-controls-dice {
-      float: left;
-      .button {
-        float: left;
-      }
-    }
-    .input-controls-bonus {
-      float: right;
-      .button {
-        float: right;
       }
     }
     .save {
       width: 20%;
-      float: left;
     }
     .input-controls-dice,
     .input-controls-bonus,
@@ -225,8 +216,44 @@
 
 @media (min-width: $screen-sm) {}
 
-@media (min-width: $screen-md) {}
+@media (min-width: $screen-md) {
+  .controls {
+    .current-formula {
+      .number-of-dice {
+        input {
+          padding: 0 20px 0 0;
+        }
+      }
+      .number-of-bonus {
+        input {
+          padding: 0 0 0 20px;
+        }
+      }
+    }
+  }
+}
 
-@media (min-width: $screen-lg) {}
+@media (min-width: $screen-lg) {
+  .controls {
+    .current-formula {
+      .number-of-dice,
+      .number-of-bonus {
+        .button {
+          width: 60px;
+        }
+      }
+      .number-of-dice {
+        input {
+          padding: 0 30px 0 0;
+        }
+      }
+      .number-of-bonus {
+        input {
+          padding: 0 0 0 30px;
+        }
+      }
+    }
+  }
+}
 
 @media (min-width: $screen-xl) {}
