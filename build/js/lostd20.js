@@ -648,9 +648,9 @@ function diceRollerama() {
     };
 
     for (var i = 0; i < formula_savedFormula.length; i++) {
-      formula_savedFormula_name[i].addEventListener("click", function() {
-        this.select();
-      });
+      // formula_savedFormula_name[i].addEventListener("click", function() {
+      //   this.select();
+      // });
       formula_savedFormula_name[i].addEventListener("input", function() {
         // take input value and add it to the input node value attribute
         storeInputName(this);
@@ -711,7 +711,7 @@ function diceRollerama() {
         nodesParent.insertBefore(node, nodesPreviousSibling);
         localStoreAdd("saved-formulas", element_formulas_list);
       };
-      delayFunction(moveSavedFormulas, 500);
+      delayFunction(moveSavedFormulas, 300);
     } else if (element.classList.contains("move-down")) {
       var nodesNextSibling = node.nextSibling.nextSibling;
       addClass(node.nextSibling, "moving-up");
@@ -722,7 +722,7 @@ function diceRollerama() {
         nodesParent.insertBefore(node, nodesNextSibling);
         localStoreAdd("saved-formulas", element_formulas_list);
       };
-      delayFunction(moveSavedFormulas, 500);
+      delayFunction(moveSavedFormulas, 300);
     };
   };
 
