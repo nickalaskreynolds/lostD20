@@ -668,14 +668,14 @@ function diceRollerama() {
     var readSaved_amountOfDice = parseInt(savedFormula.dataset.ammountOfDice, 10);
     var readSaved_diceSides = parseInt(savedFormula.dataset.dice, 10);
     var readSaved_amountOfBonus = parseInt(savedFormula.dataset.ammountOfBonus, 10);
-    e("#d" + readSaved_diceSides).checked = true;
-    controls_numberOfDice_input.value = readSaved_amountOfDice;
-    controls_numberOfBonus_input.value = readSaved_amountOfBonus;
-    modifiers_readAmountOfDice();
-    modifiers_readAmountOfDice_blur();
-    modifiers_readAmountOfBonus();
-    modifiers_readAmountOfBonus_blur();
-    makeSelectedRadioActive(element_diceForm, "dice-select");
+    // e("#d" + readSaved_diceSides).checked = true;
+    // controls_numberOfDice_input.value = readSaved_amountOfDice;
+    // controls_numberOfBonus_input.value = readSaved_amountOfBonus;
+    // modifiers_readAmountOfDice();
+    // modifiers_readAmountOfDice_blur();
+    // modifiers_readAmountOfBonus();
+    // modifiers_readAmountOfBonus_blur();
+    // makeSelectedRadioActive(element_diceForm, "dice-select");
     rollCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
@@ -827,7 +827,7 @@ function diceRollerama() {
     // append snack bar
     element_snackBars.appendChild(snackBar);
     // if too many snack bars
-    if (element_snackBars.childNodes.length > 5) {
+    if (element_snackBars.childNodes.length > 2) {
       var snackBarToRemove = element_snackBars.childNodes[0];
 
       function removeReveal() {
