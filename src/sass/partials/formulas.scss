@@ -34,6 +34,15 @@
         transform: translateY(85px);
         transition: transform $transition-ease-medium;
       }
+      input {
+        background-color: $secondary-color;
+        &:hover {
+          background-color: $secondary-color-dark;
+        }
+        &:focus {
+          background-color: $secondary-color-light;
+        }
+      }
       .name {
         height: 40px;
         line-height: 40px;

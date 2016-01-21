@@ -1414,6 +1414,7 @@ nav {
       white-space: nowrap;
       overflow: hidden; }
     .snacks .snack-bar .button {
+      border: 0;
       margin: 0 0 0 5px;
       height: 30px;
       line-height: 30px;
@@ -1425,7 +1426,7 @@ nav {
         margin: 0;
         height: 30px;
         line-height: 30px;
-        font-size: 1rem; }
+        font-size: 1.4rem; }
     .snacks .snack-bar.reveal {
       background-color: #343434;
       padding: 10px 20px;
@@ -1697,6 +1698,12 @@ nav {
             transform: translateY(85px);
     transition: -webkit-transform 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out; }
+  .formulas .list .saved-formula input {
+    background-color: #003c4f; }
+    .formulas .list .saved-formula input:hover {
+      background-color: #003242; }
+    .formulas .list .saved-formula input:focus {
+      background-color: #086482; }
   .formulas .list .saved-formula .name {
     height: 40px;
     line-height: 40px;

@@ -832,12 +832,12 @@ function diceRollerama() {
       function removeReveal() {
         removeClass(snackBarToRemove, "reveal");
       };
-      delayFunction(removeReveal, 200);
+      delayFunction(removeReveal, 300);
 
       function deleteSnackBar() {
         snackBarToRemove.remove();
       };
-      delayFunction(deleteSnackBar, 500);
+      delayFunction(deleteSnackBar, 600);
     };
     // append snack bar
     element_snackBars.appendChild(snackBar);
@@ -855,7 +855,7 @@ function diceRollerama() {
         clearSnackBar(snackBar);
       };
     };
-    delayFunction(autoClearSnackBar, 4000);
+    delayFunction(autoClearSnackBar, 5000);
   };
 
   // add listeners to snack bar buttons
