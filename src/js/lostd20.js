@@ -168,7 +168,7 @@ function diceRollerama() {
   };
 
   nav_clearAll.addEventListener("click", function() {
-    createPrompt("Are you sure?", "Roll history and saved formuals will be removed. This can not be undone.", "clear all");
+    createPrompt("Are you sure?", "Roll history and saved formuals will be cleared. This can not be undone.", "clear all");
     removeClass(nav, "open");
   }, false);
 
@@ -693,7 +693,7 @@ function diceRollerama() {
     if (!readSaved_name) {
       readSaved_name = "nameless formula";
     };
-    createSnackBar("Removed " + readSaved_name + ".", true, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
+    createSnackBar("Cleared " + readSaved_name + ".", true, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
   // move saved formula up or down
@@ -759,7 +759,7 @@ function diceRollerama() {
   }, false);
 
   element_results_clearResults.addEventListener("click", function() {
-    createPrompt("Are you sure?", "Roll history will be removed. This can not be undone.", "clear history");
+    createPrompt("Are you sure?", "Roll history will be cleared. This can not be undone.", "clear roll history");
   }, false);
 
   // --------------------------------------------------------------------------
@@ -824,22 +824,23 @@ function diceRollerama() {
     row.appendChild(col2);
     // container.appendChild(row);
     snackBar.appendChild(row);
-    // append snack bar
-    element_snackBars.appendChild(snackBar);
-    // if too many snack bars
-    if (element_snackBars.childNodes.length > 2) {
-      var snackBarToRemove = element_snackBars.childNodes[0];
+    // mark current snack bars for removal
+    var allSnackBars = element_snackBars.querySelectorAll(".snack-bar");
+    for (var i = 0; i < allSnackBars.length; i++) {
+      var snackBarToRemove = allSnackBars[i];
 
       function removeReveal() {
         removeClass(snackBarToRemove, "reveal");
       };
-      delayFunction(removeReveal, 1);
+      delayFunction(removeReveal, 200);
 
       function deleteSnackBar() {
         snackBarToRemove.remove();
       };
-      delayFunction(deleteSnackBar, 200);
+      delayFunction(deleteSnackBar, 500);
     };
+    // append snack bar
+    element_snackBars.appendChild(snackBar);
     // add listners
     addListenerTo_snackBar(snackBar);
     // reveal snack bar
@@ -854,7 +855,7 @@ function diceRollerama() {
         clearSnackBar(snackBar);
       };
     };
-    delayFunction(autoClearSnackBar, 5000);
+    delayFunction(autoClearSnackBar, 4000);
   };
 
   // add listeners to snack bar buttons
@@ -936,7 +937,7 @@ function diceRollerama() {
     var promptAction = document.createElement("a");
     promptAction.setAttribute("href", "javascript:void(0)");
     promptAction.setAttribute("class", "button button-primary button-block prompt-action");
-    promptAction.textContent = "Confirm";
+    promptAction.textContent = "OK";
     var promptCencel = document.createElement("a");
     promptCencel.setAttribute("href", "javascript:void(0)");
     promptCencel.setAttribute("class", "button button-secondary button-block prompt-cancel");
@@ -982,10 +983,10 @@ function diceRollerama() {
         clearLostD20();
         createSnackBar("All cleared.", true, false);
       };
-      if (confirmAction == "clear history") {
+      if (confirmAction == "clear roll history") {
         clearResults();
         removePrompt();
-        createSnackBar("Roll history removed.", true, false);
+        createSnackBar("Roll history cleared.", true, false);
       };
     });
   };

@@ -14,8 +14,7 @@
     padding: 0;
   }
   .snack-bar {
-    background-color: $gray-02;
-    border-bottom: 0 solid $gray-01;
+    background-color: $gray-01;
     padding: 0 20px;
     margin: 0;
     width: 100%;
@@ -51,9 +50,9 @@
       }
     }
     &.reveal {
+      background-color: $gray-02;
       padding: 10px 20px;
-      border-bottom-width: 2px;
-      height: 48px;
+      height: 50px;
     }
   }
 }

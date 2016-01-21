@@ -1394,8 +1394,7 @@ nav {
     max-width: 100%;
     padding: 0; }
   .snacks .snack-bar {
-    background-color: #343434;
-    border-bottom: 0 solid #222222;
+    background-color: #222222;
     padding: 0 20px;
     margin: 0;
     width: 100%;
@@ -1428,9 +1427,9 @@ nav {
         line-height: 30px;
         font-size: 1rem; }
     .snacks .snack-bar.reveal {
+      background-color: #343434;
       padding: 10px 20px;
-      border-bottom-width: 2px;
-      height: 48px; }
+      height: 50px; }
 
 /* media queries
 ------------------------------------------------- */
@@ -1705,7 +1704,6 @@ nav {
   .formulas .list .saved-formula .roll {
     border-radius: 0 0 4px 0; }
   .formulas .list .saved-formula .formula {
-    background-color: rgba(0, 0, 0, 0.09);
     height: 40px;
     line-height: 40px;
     font-size: 1rem;
