@@ -235,10 +235,10 @@ function diceRollerama() {
   // --------------------------------------------------------------------------
 
   // loose focus when enter is pressed
-  function dropFocusOnEnter() {
+  function dropFocusOnEnter(element) {
     var keystroke = event.keyCode || event.which;
     if (keystroke == 13) {
-      this.blur();
+      element.blur();
     };
   };
 
@@ -354,7 +354,9 @@ function diceRollerama() {
     modifiers_readAmountOfBonus_focus();
   }, false);
 
-  controls_numberOfBonus_input.addEventListener("keypress", dropFocusOnEnter, false);
+  controls_numberOfBonus_input.addEventListener("keypress", function() {
+    dropFocusOnEnter(this);
+  }, false);
 
   controls_numberOfBonus_input.addEventListener("keydown", function() {
     keystroke_modifiers_plusMinus(controls_numberOfBonus_input);
@@ -382,7 +384,9 @@ function diceRollerama() {
     modifiers_readAmountOfDice_blur();
   }, false);
 
-  controls_numberOfDice_input.addEventListener("keypress", dropFocusOnEnter, false);
+  controls_numberOfDice_input.addEventListener("keypress", function() {
+    dropFocusOnEnter(this);
+  }, false);
 
   controls_numberOfDice_input.addEventListener("keydown", function() {
     keystroke_modifiers_plusMinus(controls_numberOfDice_input);
@@ -553,9 +557,10 @@ function diceRollerama() {
       rollName = formulaNamesOfJoy[Math.floor(Math.random() * formulaNamesOfJoy.length)];
     };
     // define data attributes
+    var data_rollName = rollName;
     var data_numberOfDice = numberOfDice;
     var data_whichDice = whichDice;
-    var data_bonusModifier = bonusModifier;
+    var data_numberOfBonus = bonusModifier;
     // filter arguments
     if (numberOfDice <= 1) {
       numberOfDice = "";
@@ -566,40 +571,88 @@ function diceRollerama() {
     if (bonusModifier > 0) {
       bonusModifier = "+" + bonusModifier;
     };
-    // write saved roll
-    var writeSavedRoll = function() {
-      element_formulas_list.innerHTML =
-        '<div class="saved-formula" data-roll-name="' + rollName + '" data-ammount-of-dice="' + data_numberOfDice + '" data-dice="' + data_whichDice + '" data-ammount-of-bonus="' + data_bonusModifier + '">' +
-        '<div class="row no-gutter">' +
-        '<div class="col-xs-8 col-sm-5">' +
-        '<input type="text" placeholder="Name" value="' + rollName + '" class="name" tabindex="4">' +
-        '</div>' +
-        '<div class="col-xs-4 col-sm-3">' +
-        '<p class="formula"><span class="number-of-dice">' + numberOfDice + '</span> <span class="dice">d' + whichDice + '</span> <span class="number-of-bonus">' + bonusModifier + '</span></p>' +
-        '</div>' +
-        '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-dark button-block clear" tabindex="4"><span class="icon-close"></span></a>' +
-        '</div>' +
-        '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-dark button-block move-up" tabindex="4"><span class="icon-expand-less"></span></a>' +
-        '</div>' +
-        '<div class="col-xs-2 col-sm-1">' +
-        '<a href="javascript:void(0)" class="button button-dark button-block move-down" tabindex="4"><span class="icon-expand-more"></span></a>' +
-        '</div>' +
-        '<div class="col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0">' +
-        '<a href="javascript:void(0)" class="button button-primary button-block roll" tabindex="4"><span class="icon-chevron-right"></span></a>' +
-        '</div>' +
-        '</div>' +
-        '</div>' + element_formulas_list.innerHTML
-
-    };
-    writeSavedRoll();
+    // make saved formula
+    var savedFormula = document.createElement("div");
+    savedFormula.setAttribute("class", "saved-formula");
+    savedFormula.dataset.rollName = data_rollName;
+    savedFormula.dataset.dice = data_whichDice;
+    savedFormula.dataset.ammountOfDice = data_numberOfDice;
+    savedFormula.dataset.ammountOfBonus = data_numberOfBonus;
+    savedFormula.dataset.eventListener = false;
+    var row = document.createElement("div");
+    row.setAttribute("class", "row no-gutter");
+    var col1 = document.createElement("div");
+    col1.setAttribute("class", "col-xs-8 col-sm-5");
+    var col2 = document.createElement("div");
+    col2.setAttribute("class", "col-xs-4 col-sm-3");
+    var col3 = document.createElement("div");
+    col3.setAttribute("class", "col-xs-2 col-sm-1");
+    var col4 = document.createElement("div");
+    col4.setAttribute("class", "col-xs-2 col-sm-1");
+    var col5 = document.createElement("div");
+    col5.setAttribute("class", "col-xs-2 col-sm-1");
+    var col6 = document.createElement("div");
+    col6.setAttribute("class", "col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0");
+    var inputName = document.createElement("input");
+    inputName.setAttribute("class", "name");
+    inputName.setAttribute("tabindex", "4");
+    inputName.setAttribute("placeholder", "Name?");
+    inputName.setAttribute("type", "text");
+    inputName.setAttribute("value", rollName);
+    var p1 = document.createElement("p");
+    p1.setAttribute("class", "formula");
+    var span1 = document.createElement("span");
+    span1.setAttribute("class", "number-of-dice");
+    span1.textContent = numberOfDice + " ";
+    var span2 = document.createElement("span");
+    span2.setAttribute("class", "dice");
+    span2.textContent = "d" + whichDice + " ";
+    var span3 = document.createElement("span");
+    span3.setAttribute("class", "number-of-bonus");
+    span3.textContent = bonusModifier;
+    var a1 = document.createElement("a");
+    a1.setAttribute("href", "javascript:void(0)");
+    a1.setAttribute("class", "button button-dark button-block clear");
+    var a2 = document.createElement("a");
+    a2.setAttribute("href", "javascript:void(0)");
+    a2.setAttribute("class", "button button-dark button-block move-up");
+    var a3 = document.createElement("a");
+    a3.setAttribute("href", "javascript:void(0)");
+    a3.setAttribute("class", "button button-dark button-block move-down");
+    var a4 = document.createElement("a");
+    a4.setAttribute("href", "javascript:void(0)");
+    a4.setAttribute("class", "button button-primary button-block roll");
+    var span4 = document.createElement("span");
+    span4.setAttribute("class", "icon-close");
+    var span5 = document.createElement("span");
+    span5.setAttribute("class", "icon-expand-less");
+    var span6 = document.createElement("span");
+    span6.setAttribute("class", "icon-expand-more");
+    var span7 = document.createElement("span");
+    span7.setAttribute("class", "icon-chevron-right");
+    a1.appendChild(span4);
+    a2.appendChild(span5);
+    a3.appendChild(span6);
+    a4.appendChild(span7);
+    p1.appendChild(span1);
+    p1.appendChild(span2);
+    p1.appendChild(span3);
+    col1.appendChild(inputName);
+    col2.appendChild(p1);
+    col3.appendChild(a1);
+    col4.appendChild(a2);
+    col5.appendChild(a3);
+    col6.appendChild(a4);
+    row.appendChild(col1);
+    row.appendChild(col2);
+    row.appendChild(col3);
+    row.appendChild(col4);
+    row.appendChild(col5);
+    row.appendChild(col6);
+    savedFormula.appendChild(row);
+    // append saved formula to formula list
+    element_formulas_list.insertBefore(savedFormula, element_formulas_list.firstChild);
     addListenerTo_savedFormulas();
-    // addClass(document.querySelector(".saved-formula"), "flash-dark");
-    // var removeFlash = function() {
-    //   removeClass(document.querySelector(".saved-formula"), "flash-dark");
-    // };
-    // delayFunction(removeFlash, 1000);
   };
 
   controls_saveCurrentFormula.addEventListener("click", function() {
@@ -617,48 +670,44 @@ function diceRollerama() {
     var formula_savedFormula_moveDown = eA(".saved-formula .move-down");
     var formula_savedFormula_clear = eA(".saved-formula .clear");
     var formula_savedFormula_name = eA(".saved-formula .name");
-
     for (var i = 0; i < formula_savedFormula.length; i++) {
-      formula_savedFormula_roll[i].addEventListener("click", function() {
-        rollSavedFormula(this);
-        localStoreAdd("saved-history", element_results_list);
-      }, false);
+      if (formula_savedFormula[i].dataset.eventListener == "false") {
+        formula_savedFormula_roll[i].addEventListener("click", function() {
+          rollSavedFormula(this);
+          localStoreAdd("saved-history", element_results_list);
+        }, false);
+        formula_savedFormula_moveUp[i].addEventListener("click", function() {
+          savedFormula_moveUpDown(this);
+          localStoreAdd("saved-formulas", element_formulas_list);
+        }, false);
+        formula_savedFormula_moveDown[i].addEventListener("click", function() {
+          savedFormula_moveUpDown(this);
+          localStoreAdd("saved-formulas", element_formulas_list);
+        }, false);
+        formula_savedFormula_clear[i].addEventListener("click", function() {
+          clearSavedFormula(this);
+          localStoreAdd("saved-formulas", element_formulas_list);
+          checkListListState();
+        }, false);
+        formula_savedFormula_name[i].addEventListener("input", function() {
+          storeInputName(this);
+          localStoreAdd("saved-formulas", element_formulas_list);
+        }, false);
+        formula_savedFormula_name[i].addEventListener("keypress", function() {
+          dropFocusOnEnter(this);
+        }, false);
+        formula_savedFormula[i].dataset.eventListener = "true";
+      };
     };
+  };
 
+  // reset data attributes on page reload
+  // this is needed after saved formulas are populated from local storage 
+  function update_formula_savedFormula() {
+    var formula_savedFormula = eA(".saved-formula");
     for (var i = 0; i < formula_savedFormula.length; i++) {
-      formula_savedFormula_moveUp[i].addEventListener("click", function() {
-        savedFormula_moveUpDown(this);
-        localStoreAdd("saved-formulas", element_formulas_list);
-      }, false);
+      formula_savedFormula[i].dataset.eventListener = "false";
     };
-
-    for (var i = 0; i < formula_savedFormula.length; i++) {
-      formula_savedFormula_moveDown[i].addEventListener("click", function() {
-        savedFormula_moveUpDown(this);
-        localStoreAdd("saved-formulas", element_formulas_list);
-      }, false);
-    };
-
-    for (var i = 0; i < formula_savedFormula.length; i++) {
-      formula_savedFormula_clear[i].addEventListener("click", function() {
-        clearSavedFormula(this);
-        localStoreAdd("saved-formulas", element_formulas_list);
-        checkListListState();
-      }, false);
-    };
-
-    for (var i = 0; i < formula_savedFormula.length; i++) {
-      // formula_savedFormula_name[i].addEventListener("click", function() {
-      //   this.select();
-      // });
-      formula_savedFormula_name[i].addEventListener("input", function() {
-        // take input value and add it to the input node value attribute
-        storeInputName(this);
-        localStoreAdd("saved-formulas", element_formulas_list);
-      }, false);
-      formula_savedFormula_name[i].addEventListener("keypress", dropFocusOnEnter, false);
-    };
-
   };
 
   // roll saved formula
@@ -832,12 +881,12 @@ function diceRollerama() {
       function removeReveal() {
         removeClass(snackBarToRemove, "reveal");
       };
-      delayFunction(removeReveal, 300);
+      delayFunction(removeReveal, 100);
 
       function deleteSnackBar() {
         snackBarToRemove.remove();
       };
-      delayFunction(deleteSnackBar, 600);
+      delayFunction(deleteSnackBar, 400);
     };
     // append snack bar
     element_snackBars.appendChild(snackBar);
@@ -1034,6 +1083,7 @@ function diceRollerama() {
   makeSelectedRadioActive(element_diceForm, "dice-select");
   localStoreRead("saved-formulas", element_formulas_list);
   localStoreRead("saved-history", element_results_list);
+  update_formula_savedFormula();
   addListenerTo_savedFormulas();
   checkListListState();
   modifiers_readAmountOfBonus_blur();

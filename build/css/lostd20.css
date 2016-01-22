@@ -1403,6 +1403,10 @@ nav {
     height: 0;
     overflow: hidden;
     box-sizing: border-box;
+    -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: 0;
     transition: all 0.3s ease-in-out; }
     .snacks .snack-bar .snack-message {
       margin: 0;
@@ -1430,7 +1434,11 @@ nav {
     .snacks .snack-bar.reveal {
       background-color: #343434;
       padding: 10px 20px;
-      height: 50px; }
+      height: 50px;
+      -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+              transform: scale(1);
+      opacity: 1; }
 
 /* media queries
 ------------------------------------------------- */
@@ -1458,7 +1466,7 @@ nav {
           height: 2rem;
           line-height: 2rem; }
       .snacks .snack-bar.reveal {
-        margin: 5px 0 0 0;
+        margin: 2px 0 0 0;
         padding: 10px 20px;
         border-bottom-width: 0;
         height: 50px; } }
@@ -1730,8 +1738,8 @@ nav {
     .formulas .list .saved-formula .button [class*=" icon-"] {
       margin: 0;
       font-size: 1.3rem;
-      height: 38px;
-      line-height: 38px; }
+      height: 40px;
+      line-height: 40px; }
 
 /* media queries
 ------------------------------------------------- */
