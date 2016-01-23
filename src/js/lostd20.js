@@ -582,15 +582,11 @@ function diceRollerama() {
     var row = document.createElement("div");
     row.setAttribute("class", "row no-gutter");
     var col1 = document.createElement("div");
-    col1.setAttribute("class", "col-xs-4 col-sm-5");
+    col1.setAttribute("class", "col-xs-6");
     var col2 = document.createElement("div");
-    col2.setAttribute("class", "col-xs-4 col-sm-3");
+    col2.setAttribute("class", "col-xs-4");
     var col3 = document.createElement("div");
     col3.setAttribute("class", "col-xs-1");
-    var col4 = document.createElement("div");
-    col4.setAttribute("class", "col-xs-1 arrows");
-    var col5 = document.createElement("div");
-    col5.setAttribute("class", "col-xs-1 arrows");
     var col6 = document.createElement("div");
     col6.setAttribute("class", "col-xs-1");
     var inputName = document.createElement("input");
@@ -613,26 +609,14 @@ function diceRollerama() {
     var a1 = document.createElement("a");
     a1.setAttribute("href", "javascript:void(0)");
     a1.setAttribute("class", "button button-dark button-block clear");
-    var a2 = document.createElement("a");
-    a2.setAttribute("href", "javascript:void(0)");
-    a2.setAttribute("class", "button button-dark button-block move-up");
-    var a3 = document.createElement("a");
-    a3.setAttribute("href", "javascript:void(0)");
-    a3.setAttribute("class", "button button-dark button-block move-down");
     var a4 = document.createElement("a");
     a4.setAttribute("href", "javascript:void(0)");
     a4.setAttribute("class", "button button-primary button-block roll");
     var span4 = document.createElement("span");
     span4.setAttribute("class", "icon-close");
-    var span5 = document.createElement("span");
-    span5.setAttribute("class", "icon-expand-less");
-    var span6 = document.createElement("span");
-    span6.setAttribute("class", "icon-expand-more");
     var span7 = document.createElement("span");
     span7.setAttribute("class", "icon-chevron-right");
     a1.appendChild(span4);
-    a2.appendChild(span5);
-    a3.appendChild(span6);
     a4.appendChild(span7);
     p1.appendChild(span1);
     p1.appendChild(span2);
@@ -640,14 +624,10 @@ function diceRollerama() {
     col1.appendChild(inputName);
     col2.appendChild(p1);
     col3.appendChild(a1);
-    col4.appendChild(a2);
-    col5.appendChild(a3);
     col6.appendChild(a4);
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);
-    row.appendChild(col4);
-    row.appendChild(col5);
     row.appendChild(col6);
     savedFormula.appendChild(row);
     // append saved formula to formula list
@@ -675,14 +655,6 @@ function diceRollerama() {
         formula_savedFormula_roll[i].addEventListener("click", function() {
           rollSavedFormula(this);
           localStoreAdd("saved-history", element_results_list);
-        }, false);
-        formula_savedFormula_moveUp[i].addEventListener("click", function() {
-          savedFormula_moveUpDown(this);
-          localStoreAdd("saved-formulas", element_formulas_list);
-        }, false);
-        formula_savedFormula_moveDown[i].addEventListener("click", function() {
-          savedFormula_moveUpDown(this);
-          localStoreAdd("saved-formulas", element_formulas_list);
         }, false);
         formula_savedFormula_clear[i].addEventListener("click", function() {
           clearSavedFormula(this);

@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       },
       build: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*'],
+        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js'],
         dest: '<%= folders.build %>/',
         expand: true
       },
@@ -37,7 +37,8 @@ module.exports = function(grunt) {
         '<%= folders.build %>/*',
         '.tmp/*',
         '.sass-cache/*'
-      ]
+      ],
+      postBuild: '<%= folders.build %>/bower_components/'
     },
 
     useminPrepare: {
@@ -51,6 +52,12 @@ module.exports = function(grunt) {
       scripts: {
         src: '<%= folders.build %>/js/**/*.js',
         dest: '<%= folders.build %>/js/lostd20.min.js'
+      },
+      vendor: {
+        src: [
+          '<%= folders.build %>/bower_components/Sortable/Sortable.min.js'
+        ],
+        dest: '<%= folders.build %>/js/vendor.js'
       }
     },
 
@@ -242,7 +249,8 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'clean:postBuild'
   ]);
 
 };
