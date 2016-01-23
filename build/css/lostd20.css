@@ -1698,66 +1698,48 @@ nav {
   overflow: hidden;
   margin: 0 0 1px 0;
   padding: 0;
-  z-index: 2; }
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.3s ease-in-out; }
+  .formulas .list .saved-formula.sortable-chosen {
+    opacity: 1; }
+  .formulas .list .saved-formula.sortable-ghost {
+    opacity: 0.2; }
   .formulas .list .saved-formula:only-child {
     margin: 0; }
   .formulas .list .saved-formula:last-child {
     margin: 0; }
-  .formulas .list .saved-formula:first-child .move-up {
-    -webkit-transform: scale(0);
-        -ms-transform: scale(0);
-            transform: scale(0); }
-  .formulas .list .saved-formula:last-child .move-down {
-    -webkit-transform: scale(0);
-        -ms-transform: scale(0);
-            transform: scale(0); }
-  .formulas .list .saved-formula.moving-up {
-    -webkit-transform: translateY(-41px);
-        -ms-transform: translateY(-41px);
-            transform: translateY(-41px);
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out; }
-  .formulas .list .saved-formula.moving-down {
-    -webkit-transform: translateY(41px);
-        -ms-transform: translateY(41px);
-            transform: translateY(41px);
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out; }
-  .formulas .list .saved-formula input {
-    background-color: #003c4f;
-    padding-right: 0; }
-    .formulas .list .saved-formula input:hover {
-      background-color: #003242; }
-    .formulas .list .saved-formula input:focus {
-      background-color: #086482; }
   .formulas .list .saved-formula .name {
+    background-color: #003c4f;
     height: 40px;
     line-height: 40px;
     font-size: 1rem; }
-  .formulas .list .saved-formula .roll {
+    .formulas .list .saved-formula .name:hover {
+      background-color: #003242; }
+    .formulas .list .saved-formula .name:focus {
+      background-color: #086482; }
+  .formulas .list .saved-formula .roll .button {
     border-radius: 0 4px 4px 0; }
-  .formulas .list .saved-formula .arrows {
-    background-color: #003c4f; }
-  .formulas .list .saved-formula .move-up,
-  .formulas .list .saved-formula .move-down,
   .formulas .list .saved-formula .clear {
-    border: 0;
-    border-radius: 0; }
-  .formulas .list .saved-formula .move-up,
-  .formulas .list .saved-formula .move-down,
-  .formulas .list .saved-formula .clear,
+    background-color: #003c4f; }
+    .formulas .list .saved-formula .clear .button {
+      border-left: 0;
+      border-top: 0;
+      border-bottom: 0;
+      border-radius: 4px 0 0 4px; }
   .formulas .list .saved-formula .formula {
     background-color: #003c4f; }
-  .formulas .list .saved-formula .formula {
-    height: 40px;
-    line-height: 40px;
-    font-size: 1rem;
-    padding: 0 10px;
-    margin: 0;
-    text-align: right; }
+    .formulas .list .saved-formula .formula p {
+      height: 40px;
+      line-height: 40px;
+      font-size: 1rem;
+      padding: 0 10px 0 0;
+      margin: 0;
+      text-align: right; }
     .formulas .list .saved-formula .formula .number-of-dice,
-    .formulas .list .saved-formula .formula .dice,
     .formulas .list .saved-formula .formula .number-of-bonus {
+      color: #c4c4c4; }
+    .formulas .list .saved-formula .formula .dice {
       color: #fafafa; }
   .formulas .list .saved-formula .button {
     height: 40px;
@@ -1765,16 +1747,12 @@ nav {
     .formulas .list .saved-formula .button [class^="icon-"],
     .formulas .list .saved-formula .button [class*=" icon-"] {
       margin: 0;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       height: 40px;
       line-height: 40px; }
 
 /* media queries
 ------------------------------------------------- */
-@media (min-width: 550px) {
-  .formulas .list .saved-formula .formula {
-    padding: 0 15px; } }
-
 /* results
 ------------------------------------------------- */
 .results {

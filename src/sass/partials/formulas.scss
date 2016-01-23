@@ -9,33 +9,25 @@
       margin: 0 0 1px 0;
       padding: 0;
       z-index: 2;
+      opacity: 1;
+      transition: all $transition-ease-medium;
+      &.sortable-chosen {
+        opacity: 1;
+      }
+      &.sortable-ghost {
+        opacity: 0.2;
+      }
       &:only-child {
         margin: 0;
       }
       &:last-child {
         margin: 0;
       }
-      &:first-child {
-        .move-up {
-          transform: scale(0);
-        }
-      }
-      &:last-child {
-        .move-down {
-          transform: scale(0);
-        }
-      }
-      &.moving-up {
-        transform: translateY(-41px);
-        transition: transform $transition-ease-medium;
-      }
-      &.moving-down {
-        transform: translateY(41px);
-        transition: transform $transition-ease-medium;
-      }
-      input {
+      .name {
         background-color: $secondary-color;
-        padding-right: 0;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1rem;
         &:hover {
           background-color: $secondary-color-dark;
         }
@@ -43,39 +35,35 @@
           background-color: $secondary-color-light;
         }
       }
-      .name {
-        height: 40px;
-        line-height: 40px;
-        font-size: 1rem;
-      }
       .roll {
-        border-radius: 0 $border-radius-medium $border-radius-medium 0;
+        .button {
+          border-radius: 0 $border-radius-medium $border-radius-medium 0;
+        }
       }
-      .arrows {
-        background-color: $secondary-color;
-      }
-      .move-up,
-      .move-down,
       .clear {
-        border: 0;
-        border-radius: 0;
+        background-color: $secondary-color;
+        .button {
+          border-left: 0;
+          border-top: 0;
+          border-bottom: 0;
+          border-radius: $border-radius-medium 0 0 $border-radius-medium;
+        }
       }
-      .move-up,
-      .move-down,
-      .clear,
       .formula {
         background-color: $secondary-color;
-      }
-      .formula {
-        height: 40px;
-        line-height: 40px;
-        font-size: 1rem;
-        padding: 0 10px;
-        margin: 0;
-        text-align: right;
+        p {
+          height: 40px;
+          line-height: 40px;
+          font-size: 1rem;
+          padding: 0 10px 0 0;
+          margin: 0;
+          text-align: right;
+        }
         .number-of-dice,
-        .dice,
         .number-of-bonus {
+          color: $gray-10;
+        }
+        .dice {
           color: $gray-13;
         }
       }
@@ -85,7 +73,7 @@
         [class^="icon-"],
         [class*=" icon-"] {
           margin: 0;
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           height: 40px;
           line-height: 40px;
         }
@@ -98,17 +86,7 @@
 /* media queries
 ------------------------------------------------- */
 
-@media (min-width: $screen-sm) {
-  .formulas {
-    .list {
-      .saved-formula {
-        .formula {
-          padding: 0 15px;
-        }
-      }
-    }
-  }
-}
+@media (min-width: $screen-sm) {}
 
 @media (min-width: $screen-md) {}
 
