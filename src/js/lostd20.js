@@ -571,8 +571,8 @@ function diceRollerama() {
     if (bonusModifier > 0) {
       bonusModifier = "+" + bonusModifier;
     };
-    // make saved formula
 
+    // make saved formula
     var savedFormula = document.createElement("div");
     savedFormula.setAttribute("class", "saved-formula");
     savedFormula.dataset.rollName = data_rollName;
@@ -657,6 +657,7 @@ function diceRollerama() {
     row.appendChild(col3);
     row.appendChild(col4);
     savedFormula.appendChild(row);
+    
     // append saved formula to formula list
     element_formulas_list.insertBefore(savedFormula, element_formulas_list.firstChild);
     addListenerTo_savedFormulas();
@@ -678,15 +679,8 @@ function diceRollerama() {
     var formula_savedFormula_formula = eA(".saved-formula .formula");
     for (var i = 0; i < formula_savedFormula.length; i++) {
       if (formula_savedFormula[i].dataset.eventListener == "false") {
-        formula_savedFormula_formula[i].addEventListener("mouseup", function() {
-          localStoreAdd("saved-formulas", element_formulas_list);
-        }, false);
-        formula_savedFormula_roll[i].addEventListener("mouseup", function() {
-          localStoreAdd("saved-formulas", element_formulas_list);
-        }, false);
         formula_savedFormula_roll[i].addEventListener("click", function() {
           rollSavedFormula(this);
-          localStoreAdd("saved-formulas", element_formulas_list);
           localStoreAdd("saved-history", element_results_list);
         }, false);
         formula_savedFormula_clear[i].addEventListener("click", function() {
@@ -694,18 +688,12 @@ function diceRollerama() {
           localStoreAdd("saved-formulas", element_formulas_list);
           checkListListState();
         }, false);
-        formula_savedFormula_clear[i].addEventListener("mouseup", function() {
-          localStoreAdd("saved-formulas", element_formulas_list);
-        }, false);
         formula_savedFormula_name[i].addEventListener("input", function() {
           storeInputName(this);
           localStoreAdd("saved-formulas", element_formulas_list);
         }, false);
         formula_savedFormula_name[i].addEventListener("keypress", function() {
           dropFocusOnEnter(this);
-        }, false);
-        formula_savedFormula_name[i].addEventListener("mouseup", function() {
-          localStoreAdd("saved-formulas", element_formulas_list);
         }, false);
         formula_savedFormula[i].dataset.eventListener = "true";
       };
