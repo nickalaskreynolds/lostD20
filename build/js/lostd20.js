@@ -603,55 +603,53 @@ function diceRollerama() {
     inputName.setAttribute("type", "text");
     inputName.setAttribute("value", rollName);
 
-    var div_formula = document.createElement("div");
-    div_formula.setAttribute("class", "formula");
+    var savedFormulaRecord = document.createElement("div");
+    savedFormulaRecord.setAttribute("class", "formula");
 
-    var div_clear = document.createElement("div");
-    div_clear.setAttribute("class", "clear");
+    var savedFormulaClear = document.createElement("div");
+    savedFormulaClear.setAttribute("class", "clear");
 
-    var div_roll = document.createElement("div");
-    div_roll.setAttribute("class", "roll");
+    var savedFormulaRoll = document.createElement("div");
+    savedFormulaRoll.setAttribute("class", "roll");
 
-    var p_formula = document.createElement("p");
+    var savedFormulaRecordPara = document.createElement("p");
 
-    var span_numberOfDice = document.createElement("span");
-    span_numberOfDice.setAttribute("class", "number-of-dice");
-    span_numberOfDice.textContent = numberOfDice + " ";
+    var savedFormulaNumberOfDice = document.createElement("span");
+    savedFormulaNumberOfDice.setAttribute("class", "number-of-dice");
+    savedFormulaNumberOfDice.textContent = numberOfDice + " ";
 
-    var span_dice = document.createElement("span");
-    span_dice.setAttribute("class", "dice");
-    span_dice.textContent = "d" + whichDice + " ";
+    var savedFormulaDice = document.createElement("span");
+    savedFormulaDice.setAttribute("class", "dice");
+    savedFormulaDice.textContent = "d" + whichDice + " ";
 
-    var span_numberOfBonus = document.createElement("span");
-    span_numberOfBonus.setAttribute("class", "number-of-bonus");
-    span_numberOfBonus.textContent = bonusModifier;
+    var savedFormulaNumberOfBonus = document.createElement("span");
+    savedFormulaNumberOfBonus.setAttribute("class", "number-of-bonus");
+    savedFormulaNumberOfBonus.textContent = bonusModifier;
 
-    var a_clear = document.createElement("a");
-    a_clear.setAttribute("href", "javascript:void(0)");
-    a_clear.setAttribute("class", "button button-dark button-block");
+    var savedFormulaClearButton = document.createElement("button");
+    savedFormulaClearButton.setAttribute("class", "button button-dark button-block");
 
-    var a_roll = document.createElement("a");
-    a_roll.setAttribute("href", "javascript:void(0)");
-    a_roll.setAttribute("class", "button button-primary button-block");
+    var savedFormulaRollButton = document.createElement("button");
+    savedFormulaRollButton.setAttribute("class", "button button-primary button-block");
 
-    var icon_clear = document.createElement("span");
-    icon_clear.setAttribute("class", "icon-close");
+    var savedFormulaIconClear = document.createElement("span");
+    savedFormulaIconClear.setAttribute("class", "icon-close");
 
-    var icon_roll = document.createElement("span");
-    icon_roll.setAttribute("class", "icon-chevron-right");
+    var savedFormulaIconRoll = document.createElement("span");
+    savedFormulaIconRoll.setAttribute("class", "icon-chevron-right");
 
-    a_clear.appendChild(icon_clear);
-    a_roll.appendChild(icon_roll);
-    p_formula.appendChild(span_numberOfDice);
-    p_formula.appendChild(span_dice);
-    p_formula.appendChild(span_numberOfBonus);
-    div_formula.appendChild(p_formula);
-    div_roll.appendChild(a_roll);
-    div_clear.appendChild(a_clear);
-    col1.appendChild(div_clear);
+    savedFormulaClearButton.appendChild(savedFormulaIconClear);
+    savedFormulaRollButton.appendChild(savedFormulaIconRoll);
+    savedFormulaRecordPara.appendChild(savedFormulaNumberOfDice);
+    savedFormulaRecordPara.appendChild(savedFormulaDice);
+    savedFormulaRecordPara.appendChild(savedFormulaNumberOfBonus);
+    savedFormulaRecord.appendChild(savedFormulaRecordPara);
+    savedFormulaRoll.appendChild(savedFormulaRollButton);
+    savedFormulaClear.appendChild(savedFormulaClearButton);
+    col1.appendChild(savedFormulaClear);
     col2.appendChild(inputName);
-    col3.appendChild(div_formula);
-    col4.appendChild(div_roll);
+    col3.appendChild(savedFormulaRecord);
+    col4.appendChild(savedFormulaRoll);
     row.appendChild(col1);
     row.appendChild(col2);
     row.appendChild(col3);
@@ -839,11 +837,9 @@ function diceRollerama() {
     col1.setAttribute("class", "col-xs-7");
     var col2 = document.createElement("div");
     col2.setAttribute("class", "col-xs-5");
-    var snackClose = document.createElement("a");
-    snackClose.setAttribute("href", "javascript:void(0)");
+    var snackClose = document.createElement("button");
     snackClose.setAttribute("class", "button button-dark button-small snack-clear");
-    var snackUndo = document.createElement("a");
-    snackUndo.setAttribute("href", "javascript:void(0)");
+    var snackUndo = document.createElement("button");
     snackUndo.setAttribute("class", "button button-dark button-small snack-undo");
     snackUndo.textContent = "Undo";
     var iconClose = document.createElement("span");
@@ -974,12 +970,10 @@ function diceRollerama() {
     var promptMessage = document.createElement("p");
     promptMessage.setAttribute("class", "prompt-message");
     promptMessage.textContent = message;
-    var promptAction = document.createElement("a");
-    promptAction.setAttribute("href", "javascript:void(0)");
+    var promptAction = document.createElement("button");
     promptAction.setAttribute("class", "button button-primary button-block prompt-action");
     promptAction.textContent = "OK";
-    var promptCencel = document.createElement("a");
-    promptCencel.setAttribute("href", "javascript:void(0)");
+    var promptCencel = document.createElement("button");
     promptCencel.setAttribute("class", "button button-secondary button-block prompt-cancel");
     promptCencel.textContent = "Cancel";
     // connect elements
