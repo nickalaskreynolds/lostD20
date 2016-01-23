@@ -1487,10 +1487,11 @@ nav {
       margin: 0;
       text-align: center;
       font-size: 3rem;
-      line-height: 90px;
-      height: 90px;
+      line-height: 60px;
+      height: 60px;
       color: #ffffff;
-      font-family: "Open Sans Condensed Light", Helvetica, Arial, sans-serif; }
+      font-family: "Open Sans Condensed Light", Helvetica, Arial, sans-serif;
+      transition: all 0.3s ease-in-out; }
   .controls .current-formula .number-of-dice,
   .controls .current-formula .number-of-bonus {
     width: 40%;
@@ -1501,8 +1502,8 @@ nav {
       border-radius: 0;
       padding: 0;
       margin: 0;
-      height: 90px;
-      line-height: 90px;
+      height: 60px;
+      line-height: 60px;
       width: 50%;
       position: absolute;
       top: 0; }
@@ -1512,15 +1513,15 @@ nav {
       .controls .current-formula .number-of-bonus .button [class*=" icon-"] {
         margin: 0;
         font-size: 1.3rem;
-        height: 90px;
-        line-height: 90px;
+        height: 60px;
+        line-height: 60px;
         display: block; }
     .controls .current-formula .number-of-dice input,
     .controls .current-formula .number-of-bonus input {
       margin: 0;
       font-size: 3rem;
-      line-height: 90px;
-      height: 90px;
+      line-height: 60px;
+      height: 60px;
       display: block;
       font-family: "Open Sans Condensed Light", Helvetica, Arial, sans-serif; }
       .controls .current-formula .number-of-dice input::-webkit-input-placeholder,
@@ -1659,6 +1660,23 @@ nav {
 /* media queries
 ------------------------------------------------- */
 @media (min-width: 700px) {
+  .controls .current-formula .current-dice p {
+    line-height: 90px;
+    height: 90px; }
+  .controls .current-formula .number-of-dice .button,
+  .controls .current-formula .number-of-bonus .button {
+    height: 90px;
+    line-height: 90px; }
+    .controls .current-formula .number-of-dice .button [class^="icon-"],
+    .controls .current-formula .number-of-dice .button [class*=" icon-"],
+    .controls .current-formula .number-of-bonus .button [class^="icon-"],
+    .controls .current-formula .number-of-bonus .button [class*=" icon-"] {
+      height: 90px;
+      line-height: 90px; }
+  .controls .current-formula .number-of-dice input,
+  .controls .current-formula .number-of-bonus input {
+    line-height: 90px;
+    height: 90px; }
   .controls .current-formula .number-of-dice input {
     padding: 0 20px 0 0; }
   .controls .current-formula .number-of-bonus input {
@@ -1676,7 +1694,6 @@ nav {
 /* formulas
 ------------------------------------------------- */
 .formulas .list .saved-formula {
-  background-color: #003c4f;
   border-radius: 4px;
   overflow: hidden;
   margin: 0 0 1px 0;
@@ -1695,19 +1712,20 @@ nav {
         -ms-transform: scale(0);
             transform: scale(0); }
   .formulas .list .saved-formula.moving-up {
-    -webkit-transform: translateY(-85px);
-        -ms-transform: translateY(-85px);
-            transform: translateY(-85px);
+    -webkit-transform: translateY(-41px);
+        -ms-transform: translateY(-41px);
+            transform: translateY(-41px);
     transition: -webkit-transform 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out; }
   .formulas .list .saved-formula.moving-down {
-    -webkit-transform: translateY(85px);
-        -ms-transform: translateY(85px);
-            transform: translateY(85px);
+    -webkit-transform: translateY(41px);
+        -ms-transform: translateY(41px);
+            transform: translateY(41px);
     transition: -webkit-transform 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out; }
   .formulas .list .saved-formula input {
-    background-color: #003c4f; }
+    background-color: #003c4f;
+    padding-right: 0; }
     .formulas .list .saved-formula input:hover {
       background-color: #003242; }
     .formulas .list .saved-formula input:focus {
@@ -1717,12 +1735,24 @@ nav {
     line-height: 40px;
     font-size: 1rem; }
   .formulas .list .saved-formula .roll {
-    border-radius: 0 0 4px 0; }
+    border-radius: 0 4px 4px 0; }
+  .formulas .list .saved-formula .arrows {
+    background-color: #003c4f; }
+  .formulas .list .saved-formula .move-up,
+  .formulas .list .saved-formula .move-down,
+  .formulas .list .saved-formula .clear {
+    border: 0;
+    border-radius: 0; }
+  .formulas .list .saved-formula .move-up,
+  .formulas .list .saved-formula .move-down,
+  .formulas .list .saved-formula .clear,
+  .formulas .list .saved-formula .formula {
+    background-color: #003c4f; }
   .formulas .list .saved-formula .formula {
     height: 40px;
     line-height: 40px;
     font-size: 1rem;
-    padding: 0 15px;
+    padding: 0 10px;
     margin: 0;
     text-align: right; }
     .formulas .list .saved-formula .formula .number-of-dice,
@@ -1730,8 +1760,6 @@ nav {
     .formulas .list .saved-formula .formula .number-of-bonus {
       color: #fafafa; }
   .formulas .list .saved-formula .button {
-    border: 0;
-    border-radius: 0;
     height: 40px;
     line-height: 40px; }
     .formulas .list .saved-formula .button [class^="icon-"],
@@ -1744,20 +1772,8 @@ nav {
 /* media queries
 ------------------------------------------------- */
 @media (min-width: 550px) {
-  .formulas .list .saved-formula.moving-up {
-    -webkit-transform: translateY(-41px);
-        -ms-transform: translateY(-41px);
-            transform: translateY(-41px);
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out; }
-  .formulas .list .saved-formula.moving-down {
-    -webkit-transform: translateY(41px);
-        -ms-transform: translateY(41px);
-            transform: translateY(41px);
-    transition: -webkit-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out; }
-  .formulas .list .saved-formula .roll {
-    border-radius: 0 4px 4px 0; } }
+  .formulas .list .saved-formula .formula {
+    padding: 0 15px; } }
 
 /* results
 ------------------------------------------------- */
