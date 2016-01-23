@@ -4,7 +4,6 @@
 .formulas {
   .list {
     .saved-formula {
-      background-color: $secondary-color;
       border-radius: $border-radius-medium;
       overflow: hidden;
       margin: 0 0 1px 0;
@@ -27,15 +26,16 @@
         }
       }
       &.moving-up {
-        transform: translateY(-85px);
+        transform: translateY(-41px);
         transition: transform $transition-ease-medium;
       }
       &.moving-down {
-        transform: translateY(85px);
+        transform: translateY(41px);
         transition: transform $transition-ease-medium;
       }
       input {
         background-color: $secondary-color;
+        padding-right: 0;
         &:hover {
           background-color: $secondary-color-dark;
         }
@@ -49,16 +49,28 @@
         font-size: 1rem;
       }
       .roll {
-        border-radius: 0 0 $border-radius-medium 0;
+        border-radius: 0 $border-radius-medium $border-radius-medium 0;
       }
-      .move-up {}
-      .move-down {}
-      .clear {}
+      .arrows {
+        background-color: $secondary-color;
+      }
+      .move-up,
+      .move-down,
+      .clear {
+        border: 0;
+        border-radius: 0;
+      }
+      .move-up,
+      .move-down,
+      .clear,
+      .formula {
+        background-color: $secondary-color;
+      }
       .formula {
         height: 40px;
         line-height: 40px;
         font-size: 1rem;
-        padding: 0 15px;
+        padding: 0 10px;
         margin: 0;
         text-align: right;
         .number-of-dice,
@@ -68,8 +80,6 @@
         }
       }
       .button {
-        border: 0;
-        border-radius: 0;
         height: 40px;
         line-height: 40px;
         [class^="icon-"],
@@ -92,16 +102,8 @@
   .formulas {
     .list {
       .saved-formula {
-        &.moving-up {
-          transform: translateY(-41px);
-          transition: transform $transition-ease-medium;
-        }
-        &.moving-down {
-          transform: translateY(41px);
-          transition: transform $transition-ease-medium;
-        }
-        .roll {
-          border-radius: 0 $border-radius-medium $border-radius-medium 0;
+        .formula {
+          padding: 0 15px;
         }
       }
     }

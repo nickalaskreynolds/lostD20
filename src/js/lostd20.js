@@ -1,7 +1,6 @@
 function diceRollerama() {
 
   // elements
-  var element_columnControls = e(".controls");
   var element_columnResults = e(".results");
   var element_results_list = e(".results .list");
   var element_columnFormulas = e(".formulas");
@@ -9,12 +8,9 @@ function diceRollerama() {
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
   var element_goRoll = e(".go-roll");
-  var element_currentDice = e(".current-dice span");
-  var element_savedFormulas_list = e(".saved-formulas .list");
   var element_results_toggleFullscreen = e(".results .toggle-fullscreen");
   var element_results_clearResults = e(".results .clear-results");
 
-  var controls_numberOfDiceSides_value;
   var controls_numberOfBonus = e(".controls .number-of-bonus");
   var controls_numberOfBonus_input = e(".controls .number-of-bonus input");
   var controls_numberOfBonus_input_value
@@ -194,19 +190,23 @@ function diceRollerama() {
 
   // get checked radio val 
   function getRadioValue(form, radioGroupName) {
+    var selectedDice;
     // get list of radio buttons with specified name
     var radios = form[radioGroupName];
+    // radios can also be expressed with
+    // console.log(e(".dice-form")["dice-select"]);
     // loop through list of radio buttons
     for (var i = 0; i < radios.length; i++) {
       if (radios[i].checked) { // radio checked?
-        controls_numberOfDiceSides_value = radios[i].value; // if so, hold its value in controls_numberOfDiceSides_value
+        selectedDice = radios[i].value; // if so, hold its value in selectedDice
       };
     };
-    return controls_numberOfDiceSides_value;
+    return selectedDice;
   };
 
   // dice active state 
   function makeSelectedRadioActive(form, radioGroupName) {
+    var element_currentDice = e(".current-dice span");
     // get list of radio buttons with specified name
     var radios = form[radioGroupName];
     // loop through list of radio buttons
@@ -582,17 +582,17 @@ function diceRollerama() {
     var row = document.createElement("div");
     row.setAttribute("class", "row no-gutter");
     var col1 = document.createElement("div");
-    col1.setAttribute("class", "col-xs-8 col-sm-5");
+    col1.setAttribute("class", "col-xs-4 col-sm-5");
     var col2 = document.createElement("div");
     col2.setAttribute("class", "col-xs-4 col-sm-3");
     var col3 = document.createElement("div");
-    col3.setAttribute("class", "col-xs-2 col-sm-1");
+    col3.setAttribute("class", "col-xs-1");
     var col4 = document.createElement("div");
-    col4.setAttribute("class", "col-xs-2 col-sm-1");
+    col4.setAttribute("class", "col-xs-1 arrows");
     var col5 = document.createElement("div");
-    col5.setAttribute("class", "col-xs-2 col-sm-1");
+    col5.setAttribute("class", "col-xs-1 arrows");
     var col6 = document.createElement("div");
-    col6.setAttribute("class", "col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-0");
+    col6.setAttribute("class", "col-xs-1");
     var inputName = document.createElement("input");
     inputName.setAttribute("class", "name");
     inputName.setAttribute("tabindex", "4");
@@ -717,14 +717,6 @@ function diceRollerama() {
     var readSaved_amountOfDice = parseInt(savedFormula.dataset.ammountOfDice, 10);
     var readSaved_diceSides = parseInt(savedFormula.dataset.dice, 10);
     var readSaved_amountOfBonus = parseInt(savedFormula.dataset.ammountOfBonus, 10);
-    // e("#d" + readSaved_diceSides).checked = true;
-    // controls_numberOfDice_input.value = readSaved_amountOfDice;
-    // controls_numberOfBonus_input.value = readSaved_amountOfBonus;
-    // modifiers_readAmountOfDice();
-    // modifiers_readAmountOfDice_blur();
-    // modifiers_readAmountOfBonus();
-    // modifiers_readAmountOfBonus_blur();
-    // makeSelectedRadioActive(element_diceForm, "dice-select");
     rollCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
@@ -822,7 +814,7 @@ function diceRollerama() {
     } else {
       element_columnResults.classList.remove("active");
     };
-    if (element_savedFormulas_list.firstChild) {
+    if (element_formulas_list.firstChild) {
       element_columnFormulas.classList.add("active");
     } else {
       element_columnFormulas.classList.remove("active");
