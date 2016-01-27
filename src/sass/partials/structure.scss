@@ -16,13 +16,13 @@ body {
   margin: 20px 0 0 0;
   &.active {
     .list {
-      margin-bottom: 400px;
+      margin: 0 0 400px 0;
     }
   }
 }
 
 .results {
-  background-color: $gray-01;
+  background-color: $gray-03;
   position: fixed;
   bottom: -30%;
   height: 30%;
@@ -76,9 +76,6 @@ body {
         right: 0;
       }
     }
-  }
-  .formulas {
-    margin: 20px 0 300px 0;
   }
 }
 

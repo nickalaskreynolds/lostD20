@@ -4,13 +4,13 @@
 .results {
   transition: all $transition-ease-medium;
   .result-history {
-    padding: 10px 0 100px 0;
+    padding: 60px 0 100px 0;
     position: relative;
     z-index: 1;
     transition: all $transition-ease-medium;
     .result-item {
       padding: 10px 0;
-      border-bottom: 1px solid $gray-02;
+      border-bottom: 1px solid $gray-01;
       position: relative;
       &:first-child {
         .total {
@@ -66,7 +66,7 @@
           color: $gray-12;
         }
         .multiple-dice-results {
-          color: $gray-07;
+          color: $gray-08;
           .strike {
             text-decoration: line-through;
             color: $primary-color-light;
@@ -99,11 +99,13 @@
     }
   }
   .result-controls {
-    background-color: $gray-01;
+    background-color: $gray-02;
     padding: 10px 0;
     z-index: 2;
+    position: fixed;
+    width: 100%;
     transition: all $transition-ease-medium;
-    box-shadow: $shadow-medium;
+    // box-shadow: $shadow-medium;
     .button {
       margin: 0 10px 0 0;
       &:last-child {
@@ -114,9 +116,6 @@
   &.fullsize {
     height: 100%;
     bottom: 0;
-    .result-history {
-      padding: 30px 0 100px 0;
-    }
     .result-controls {
       right: 0;
     }
@@ -138,19 +137,18 @@
     }
     .result-controls {
       position: fixed;
-      top: 0;
       right: 0;
       width: 40%;
-      box-shadow: none;
+      // box-shadow: none;
       .expand-results {
         display: none;
       }
     }
-    &.active {
-      .result-controls {
-        box-shadow: $shadow-medium;
-      }
-    }
+    // &.active {
+    //   .result-controls {
+    //     box-shadow: $shadow-medium;
+    //   }
+    // }
   }
 }
 
@@ -162,8 +160,8 @@
 
 @keyframes total-flash {
   0% {
-    background-color: $light-alpha-01;
-    border: 3px solid $light-alpha-01;
+    background-color: $white;
+    border: 3px solid $white;
     border-radius: $border-radius-medium;
   }
   100% {
