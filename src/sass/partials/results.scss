@@ -104,6 +104,12 @@
     z-index: 2;
     transition: all $transition-ease-medium;
     box-shadow: $shadow-medium;
+    .button {
+      margin: 0 10px 0 0;
+      &:last-child {
+        margin: 0;
+      }
+    }
   }
   &.fullsize {
     height: 100%;
@@ -135,8 +141,10 @@
       top: 0;
       right: 0;
       width: 40%;
-      text-align: right;
       box-shadow: none;
+      .expand-results {
+        display: none;
+      }
     }
     &.active {
       .result-controls {

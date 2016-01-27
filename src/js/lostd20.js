@@ -1,15 +1,18 @@
-function diceRollerama() {
+(function() {
 
   // elements
-  var element_columnResults = e(".results");
+  var element_results = e(".results");
   var element_results_list = e(".results .list");
-  var element_columnFormulas = e(".formulas");
+  var element_results_expandResults = e(".results .expand-results");
+  var element_results_clearResults = e(".results .clear-results");
+
+  var element_formulas = e(".formulas");
   var element_formulas_list = e(".formulas .list");
+
   var element_diceForm = e(".dice-form");
   var element_diceForm_label = eA(".dice-form label");
+
   var element_goRoll = e(".go-roll");
-  var element_results_toggleFullscreen = e(".results .toggle-fullscreen");
-  var element_results_clearResults = e(".results .clear-results");
 
   var controls_numberOfBonus = e(".controls .number-of-bonus");
   var controls_numberOfBonus_input = e(".controls .number-of-bonus input");
@@ -17,12 +20,14 @@ function diceRollerama() {
   var controls_numberOfBonus_clear = e(".controls .number-of-bonus .clear");
   var controls_numberOfBonus_plusOne = e(".controls .input-controls-bonus .plus-one");
   var controls_numberOfBonus_minusOne = e(".controls .input-controls-bonus .minus-one");
+
   var controls_numberOfDice = e(".controls .number-of-dice");
   var controls_numberOfDice_input = e(".controls .number-of-dice input");
   var controls_numberOfDice_input_value
   var controls_numberOfDice_clear = e(".controls .number-of-dice .clear");
   var controls_numberOfDice_plusOne = e(".controls .input-controls-dice .plus-one");
   var controls_numberOfDice_minusOne = e(".controls .input-controls-dice .minus-one");
+
   var controls_saveCurrentFormula = e(".controls .save-current-formula");
 
   // --------------------------------------------------------------------------
@@ -655,7 +660,7 @@ function diceRollerama() {
     row.appendChild(col3);
     row.appendChild(col4);
     savedFormula.appendChild(row);
-    
+
     // append saved formula to formula list
     element_formulas_list.insertBefore(savedFormula, element_formulas_list.firstChild);
     addListenerTo_savedFormulas();
@@ -768,32 +773,49 @@ function diceRollerama() {
   // results
   // --------------------------------------------------------------------------
 
-  function results_toggleFullScreen(element) {
-    var text = element.querySelector(".text");
-    var icon = element.querySelector("span");
-    if (text.textContent == "Expand") {
-      text.textContent = "Collapse";
-    } else {
-      text.textContent = "Expand";
+  function expandCollapseResults() {
+    var element_results_expandResults_icon = element_results_expandResults.querySelector("span");
+    var element_results_expandResults_text = element_results_expandResults.querySelector(".text");
+    if (element_results_list.firstChild) {
+      if (element_results.classList.contains("fullsize")) {
+        removeClass(element_results, "fullsize");
+        removeClass(element_results_expandResults, "active");
+        element_results_expandResults_text.textContent = "Expand";
+        addClass(element_results_expandResults_icon, "icon-unfold-more");
+        removeClass(element_results_expandResults_icon, "icon-unfold-less");
+        removeClass(nav, "bright");
+      } else {
+        addClass(element_results, "fullsize");
+        addClass(element_results_expandResults, "active");
+        element_results_expandResults_text.textContent = "Collapse";
+        removeClass(element_results_expandResults_icon, "icon-unfold-more");
+        addClass(element_results_expandResults_icon, "icon-unfold-less");
+        addClass(nav, "bright");
+      };
     };
-    toggleClass(nav, "bright");
-    toggleClass(icon, "icon-unfold-more");
-    toggleClass(icon, "icon-unfold-less");
-    toggleClass(element_columnResults, "fullsize");
-    toggleClass(element, "active");
-    toggleClass(element, "button-primary");
-    toggleClass(element, "button-dark");
   };
 
   function clearResults() {
-    removeClass(element_columnResults, "active");
-    removeClass(element_columnResults, "fullsize");
+    var element_results_expandResults_icon = element_results_expandResults.querySelector("span");
+    var element_results_expandResults_text = element_results_expandResults.querySelector(".text");
+    removeClass(element_results, "fullsize");
+    if (element_results_expandResults.classList.contains("active")) {
+      removeClass(element_results_expandResults, "active");
+      element_results_expandResults_text.textContent = "Expand";
+      addClass(element_results_expandResults_icon, "icon-unfold-more");
+      removeClass(element_results_expandResults_icon, "icon-unfold-less");
+    };
+    if (nav.classList.contains("bright")) {
+      removeClass(nav, "bright");
+    };
     element_results_list.innerHTML = "";
+    expandCollapseResults();
+    checkListListState();
     localStoreAdd("saved-history", element_results_list);
   };
 
-  element_results_toggleFullscreen.addEventListener("click", function() {
-    results_toggleFullScreen(this);
+  element_results_expandResults.addEventListener("click", function() {
+    expandCollapseResults();
   }, false);
 
   element_results_clearResults.addEventListener("click", function() {
@@ -807,14 +829,14 @@ function diceRollerama() {
   // make list active when it has content
   function checkListListState() {
     if (element_results_list.firstChild) {
-      element_columnResults.classList.add("active");
+      element_results.classList.add("active");
     } else {
-      element_columnResults.classList.remove("active");
+      element_results.classList.remove("active");
     };
     if (element_formulas_list.firstChild) {
-      element_columnFormulas.classList.add("active");
+      element_formulas.classList.add("active");
     } else {
-      element_columnFormulas.classList.remove("active");
+      element_formulas.classList.remove("active");
     };
   };
 
@@ -1043,10 +1065,7 @@ function diceRollerama() {
 
   function clearLostD20() {
     localStorage.clear();
-    element_results_list.innerHTML = "";
     element_formulas_list.innerHTML = "";
-    removeClass(element_columnResults, "active");
-    removeClass(element_columnResults, "fullsize");
     e("#d20").checked = true;
     controls_numberOfDice_input.value = 1;
     controls_numberOfBonus_input.value = 0;
@@ -1054,6 +1073,9 @@ function diceRollerama() {
     modifiers_readAmountOfDice_blur();
     modifiers_readAmountOfBonus();
     modifiers_readAmountOfBonus_blur();
+    clearResults();
+    expandCollapseResults();
+    checkListListState();
     removePrompt();
   };
 
@@ -1073,6 +1095,4 @@ function diceRollerama() {
   checkListListState();
   modifiers_readAmountOfBonus_blur();
 
-};
-
-diceRollerama();
+})();
