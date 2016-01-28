@@ -1381,7 +1381,6 @@ nav {
     height: 0;
     overflow: hidden;
     box-sizing: border-box;
-    opacity: 0;
     transition: all 0.3s ease-in-out; }
     .snacks .snack-bar .snack-message {
       margin: 0;
@@ -1409,8 +1408,7 @@ nav {
     .snacks .snack-bar.reveal {
       background-color: #222222;
       padding: 10px 20px;
-      height: 50px;
-      opacity: 1; }
+      height: 50px; }
 
 /* media queries
 ------------------------------------------------- */
@@ -1902,7 +1900,7 @@ body {
   overflow: hidden; }
 
 .formulas {
-  margin: 20px 0 0 0; }
+  margin: 30px 0 0 0; }
   .formulas.active .list {
     margin: 0 0 400px 0; }
 
@@ -1925,10 +1923,10 @@ body {
     margin: 70px 40% 0 0;
     width: 60%; }
   .formulas {
-    margin: 70px 40% 0 0;
+    margin: 30px 40% 0 0;
     width: 60%; }
     .formulas.active .list {
-      margin: 0 0 30px 0; }
+      margin: 0 0 100px 0; }
   .results {
     top: 0;
     right: -40%;

@@ -912,6 +912,7 @@
     var autoClearSnackBar = function() {
       // if the snack bar hasn't been dismised or undone
       if (snackBar) {
+        // console.log("clearing");
         clearSnackBar(snackBar);
       };
     };
@@ -926,7 +927,7 @@
     // add listner to clear
     if (formula_savedFormula_clear) {
       formula_savedFormula_clear.addEventListener("click", function() {
-
+        clearSnackBar(this);
       }, false);
     };
     // add listner to undo
@@ -946,15 +947,21 @@
     var readSaved_amountOfDice = parseInt(snackBar.dataset.ammountOfDice, 10);
     var readSaved_diceSides = parseInt(snackBar.dataset.dice, 10);
     var readSaved_amountOfBonus = parseInt(snackBar.dataset.ammountOfBonus, 10);
+    if (readSaved_name == "nameless formula") {
+      readSaved_name = "";
+    };
     saveCurrentFormula(readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
     clearSnackBar(element);
   };
 
   // snack bar clear
-  function clearSnackBar() {
-    if (e(".snack-bar")) {
+  function clearSnackBar(element) {
+    if (element) {
+      var snackBar = getClosest(element, ".snack-bar");
+    } else {
       var snackBar = e(".snack-bar");
-
+    };
+    if (snackBar) {
       function removeReveal() {
         removeClass(snackBar, "reveal");
       };
@@ -1032,12 +1039,15 @@
     var promptModal = e(".prompt-modal");
     var promptAction = e(".prompt-modal .prompt-action");
     var promptCancel = e(".prompt-modal .prompt-cancel");
+
     promptShade.addEventListener('click', function() {
       removePrompt();
-    });
+    }, false);
+
     promptCancel.addEventListener('click', function() {
       removePrompt();
-    });
+    }, false);
+
     promptAction.addEventListener('click', function() {
       if (confirmAction == "clear all") {
         clearLostD20();
@@ -1048,8 +1058,32 @@
         removePrompt();
         createSnackBar("Roll history cleared.", true, false);
       };
-    });
+    }, false);
+
+  //   window.addEventListener("keydown", function(event) {
+  //     promptEnter(event, confirmAction);
+  //     removeEventListener('click', promptEnter, false);
+  //   }, false);
+
   };
+
+  // var promptEnter = function(event, confirmAction) {
+  //   var promptShade = e(".prompt-shade");
+  //   var promptModal = e(".prompt-modal");
+  //   if (promptShade && promptModal) {
+  //     if (event.keyCode == 13) {
+  //       if (confirmAction == "clear all") {
+  //         clearLostD20();
+  //         createSnackBar("All cleared.", true, false);
+  //       };
+  //       if (confirmAction == "clear roll history") {
+  //         clearResults();
+  //         removePrompt();
+  //         createSnackBar("Roll history cleared.", true, false);
+  //       };
+  //     };
+  //   };
+  // };
 
   function removePrompt() {
     var promptShade = e(".prompt-shade");
@@ -1083,21 +1117,15 @@
     removePrompt();
   };
 
-  window.addEventListener("keydown", function(event) {
-    if (event.keyCode == 27) {
-      console.log("esc hit");
-      removePrompt();
-      clearSnackBar();
-    }
-  }, false);
+  // --------------------------------------------------------------------------
+  // escape
+  // --------------------------------------------------------------------------
 
   window.addEventListener("keydown", function(event) {
-    // if (controls_numberOfBonus_input.focus() || controls_numberOfDice_input.focus()) {
-      if (event.keyCode == 13) {
-        console.log("enter hit");
-        
-      };
-    // };
+    if (event.keyCode == 27) {
+      removePrompt();
+      clearSnackBar();
+    };
   }, false);
 
   // --------------------------------------------------------------------------
