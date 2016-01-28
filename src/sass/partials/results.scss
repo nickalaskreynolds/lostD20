@@ -2,12 +2,10 @@
 ------------------------------------------------- */
 
 .results {
-  transition: all $transition-ease-medium;
   .result-history {
     padding: 60px 0 100px 0;
     position: relative;
     z-index: 1;
-    transition: all $transition-ease-medium;
     .result-item {
       padding: 10px 0;
       border-bottom: 1px solid $gray-01;
@@ -51,6 +49,7 @@
         margin: 0;
         padding: 10px 0;
         display: block;
+        font-family: "Open Sans Semi Bold";
       }
       .breakdown {
         text-align: left;
@@ -99,13 +98,11 @@
     }
   }
   .result-controls {
-    background-color: $gray-02;
+    background-color: $gray-01;
     padding: 10px 0;
     z-index: 2;
     position: fixed;
     width: 100%;
-    transition: all $transition-ease-medium;
-    // box-shadow: $shadow-medium;
     .button {
       margin: 0 10px 0 0;
       &:last-child {
@@ -139,16 +136,11 @@
       position: fixed;
       right: 0;
       width: 40%;
-      // box-shadow: none;
+      transition: right $transition-ease-medium;
       .expand-results {
         display: none;
       }
     }
-    // &.active {
-    //   .result-controls {
-    //     box-shadow: $shadow-medium;
-    //   }
-    // }
   }
 }
 

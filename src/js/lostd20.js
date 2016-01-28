@@ -360,7 +360,8 @@
   }, false);
 
   controls_numberOfBonus_input.addEventListener("keypress", function() {
-    dropFocusOnEnter(this);
+    // dropFocusOnEnter(this);
+    rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
   }, false);
 
   controls_numberOfBonus_input.addEventListener("keydown", function() {
@@ -390,7 +391,8 @@
   }, false);
 
   controls_numberOfDice_input.addEventListener("keypress", function() {
-    dropFocusOnEnter(this);
+    // dropFocusOnEnter(this);
+    rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
   }, false);
 
   controls_numberOfDice_input.addEventListener("keydown", function() {
@@ -924,7 +926,7 @@
     // add listner to clear
     if (formula_savedFormula_clear) {
       formula_savedFormula_clear.addEventListener("click", function() {
-        clearSnackBar(this);
+
       }, false);
     };
     // add listner to undo
@@ -949,18 +951,20 @@
   };
 
   // snack bar clear
-  function clearSnackBar(element) {
-    var snackBar = getClosest(element, ".snack-bar");
+  function clearSnackBar() {
+    if (e(".snack-bar")) {
+      var snackBar = e(".snack-bar");
 
-    function removeReveal() {
-      removeClass(snackBar, "reveal");
-    };
-    delayFunction(removeReveal, 10);
+      function removeReveal() {
+        removeClass(snackBar, "reveal");
+      };
+      delayFunction(removeReveal, 10);
 
-    function deleteSnackBar() {
-      snackBar.remove();
+      function deleteSnackBar() {
+        snackBar.remove();
+      };
+      delayFunction(deleteSnackBar, 500);
     };
-    delayFunction(deleteSnackBar, 500);
   };
 
   // --------------------------------------------------------------------------
@@ -1078,6 +1082,23 @@
     checkListListState();
     removePrompt();
   };
+
+  window.addEventListener("keydown", function(event) {
+    if (event.keyCode == 27) {
+      console.log("esc hit");
+      removePrompt();
+      clearSnackBar();
+    }
+  }, false);
+
+  window.addEventListener("keydown", function(event) {
+    // if (controls_numberOfBonus_input.focus() || controls_numberOfDice_input.focus()) {
+      if (event.keyCode == 13) {
+        console.log("enter hit");
+        
+      };
+    // };
+  }, false);
 
   // --------------------------------------------------------------------------
   // run on page load

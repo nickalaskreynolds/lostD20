@@ -22,14 +22,14 @@ body {
 }
 
 .results {
-  background-color: $gray-03;
+  background-color: $gray-02;
   position: fixed;
   bottom: -30%;
   height: 30%;
   width: 100%;
   z-index: $results;
   overflow-y: auto;
-  transition: all $transition-ease-medium;
+  transition: height $transition-ease-medium, bottom $transition-ease-medium, right $transition-ease-medium;
   &.active {
     bottom: 0;
   }
