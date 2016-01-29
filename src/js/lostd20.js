@@ -247,6 +247,14 @@
     };
   };
 
+  // press enter to roll
+  function rollOnEnter(element) {
+    var keystroke = event.keyCode || event.which;
+    if (keystroke == 13) {
+      rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
+    };
+  };
+
   // arrow key input change 
   function keystroke_modifiers_plusMinus(whichInputField) {
     var keystroke = event.keyCode || event.which;
@@ -361,7 +369,7 @@
 
   controls_numberOfBonus_input.addEventListener("keypress", function() {
     // dropFocusOnEnter(this);
-    rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
+    rollOnEnter(this);
   }, false);
 
   controls_numberOfBonus_input.addEventListener("keydown", function() {
@@ -392,7 +400,7 @@
 
   controls_numberOfDice_input.addEventListener("keypress", function() {
     // dropFocusOnEnter(this);
-    rollCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
+    rollOnEnter(this);
   }, false);
 
   controls_numberOfDice_input.addEventListener("keydown", function() {
