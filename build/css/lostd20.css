@@ -1336,7 +1336,7 @@ nav {
   margin: 0 0 20px 0; }
 
 .prompt .prompt-message :last-child {
-  margin: 0 0 60px 0; }
+  margin: 0 0 40px 0; }
 
 .prompt.prompt-shade {
   background-color: rgba(0, 0, 0, 0.8);
@@ -1377,6 +1377,8 @@ nav {
 /* media queries
 ------------------------------------------------- */
 @media (min-width: 700px) {
+  .prompt .prompt-message :last-child {
+    margin: 0 0 60px 0; }
   .prompt.prompt-modal {
     width: 80%; } }
 
