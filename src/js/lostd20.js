@@ -1002,15 +1002,15 @@
     var col1 = document.createElement("div");
     col1.setAttribute("class", "col-xs-12");
     var col2 = document.createElement("div");
-    col2.setAttribute("class", "col-xs-6 col-lg-5");
+    col2.setAttribute("class", "col-xs-6");
     var col3 = document.createElement("div");
-    col3.setAttribute("class", "col-xs-6 col-lg-5 col-lg-offset-2");
-    var promptHeading = document.createElement("h1");
-    promptHeading.setAttribute("class", "prompt-heading");
-    promptHeading.textContent = heading;
-    var promptMessage = document.createElement("p");
+    col3.setAttribute("class", "col-xs-6");
+    var promptMessage = document.createElement("div");
     promptMessage.setAttribute("class", "prompt-message");
-    promptMessage.textContent = message;
+    var promptHeading = document.createElement("h1");
+    promptHeading.textContent = heading;
+    var promptPara = document.createElement("p");
+    promptPara.textContent = message;
     var promptAction = document.createElement("button");
     promptAction.setAttribute("class", "button button-primary button-block prompt-action");
     promptAction.textContent = "OK";
@@ -1018,7 +1018,8 @@
     promptCencel.setAttribute("class", "button button-secondary button-block prompt-cancel");
     promptCencel.textContent = "Cancel";
     // connect elements
-    col1.appendChild(promptHeading);
+    promptMessage.appendChild(promptHeading);
+    promptMessage.appendChild(promptPara);
     col1.appendChild(promptMessage);
     col2.appendChild(promptCencel);
     col3.appendChild(promptAction);

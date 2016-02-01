@@ -783,7 +783,8 @@ button {
     .button.button-dark:hover,
     button.button-dark:hover {
       color: #c4c4c4;
-      background-color: rgba(0, 0, 0, 0.23);
+      background-color: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.16);
       outline: 0;
       text-decoration: none; }
     .button.button-dark:active,
@@ -1065,19 +1066,6 @@ table {
   border-bottom: 2px solid transparent;
   border-color: #fafafa; }
 
-/* vendor
-------------------------------------------------- */
-::-webkit-input-placeholder {
-  color: #a0a0a0; }
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #a0a0a0; }
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #a0a0a0; }
-
 ::-moz-selection {
   background-color: #ff3276;
   color: #ffffff; }
@@ -1085,12 +1073,6 @@ table {
 ::selection {
   background-color: #ff3276;
   color: #ffffff; }
-
-::-webkit-full-screen {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  overflow: auto; }
 
 /* media queries
 ------------------------------------------------- */
@@ -1350,8 +1332,11 @@ nav {
 .prompt .container {
   max-width: 100%; }
 
-.prompt .prompt-heading {
-  margin: 1rem 0; }
+.prompt .prompt-message h1 {
+  margin: 0 0 20px 0; }
+
+.prompt .prompt-message :last-child {
+  margin: 0 0 60px 0; }
 
 .prompt.prompt-shade {
   background-color: rgba(0, 0, 0, 0.8);
@@ -1373,7 +1358,7 @@ nav {
   background: #ffffff;
   width: 80%;
   min-width: 250px;
-  padding: 20px 15px 20px 25px;
+  padding: 30px 20px;
   box-sizing: border-box;
   border-radius: 4px;
   -webkit-transform: translate(-50%, -50%);
@@ -1383,10 +1368,8 @@ nav {
   opacity: 0;
   transition: all 0.3s ease-in-out; }
 
-.prompt .button {
-  margin: 0 5px 5px 0; }
-  .prompt .button:last-child {
-    margin-right: 0; }
+.prompt .button:last-child {
+  margin-right: 0; }
 
 .prompt.reveal {
   opacity: 1; }
@@ -1767,6 +1750,9 @@ nav {
 ------------------------------------------------- */
 /* results
 ------------------------------------------------- */
+.results::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.65); }
+
 .results .result-history {
   padding: 60px 0 100px 0;
   position: relative;
@@ -1992,3 +1978,39 @@ body {
       right: 0; }
       .results.active .result-controls {
         right: 0; } }
+
+/* vendor
+------------------------------------------------- */
+::-webkit-input-placeholder {
+  color: #a0a0a0; }
+
+/* Firefox 18- */
+:-moz-placeholder {
+  color: #a0a0a0; }
+
+/* Firefox 19+ */
+::-moz-placeholder {
+  color: #a0a0a0; }
+
+::-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.23);
+  border: 0; }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cc0044; }
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.09);
+  border: 0; }
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+  border-radius: 0; }
