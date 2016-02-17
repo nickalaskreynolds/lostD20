@@ -26,24 +26,24 @@
   overflow: auto;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+// ::-webkit-scrollbar {
+//   width: 10px;
+// }
 
-::-webkit-scrollbar-thumb {
-  background: $gray-alpha-10;
-  border: 0;
-  &:hover {
-    background: $primary-color-dark;
-  }
-}
+// ::-webkit-scrollbar-thumb {
+//   background: $gray-alpha-10;
+//   border: 0;
+//   &:hover {
+//     background: $primary-color-dark;
+//   }
+// }
 
-::-webkit-scrollbar-track {
-  background: $gray-alpha-12;
-  border: 0;
-}
+// ::-webkit-scrollbar-track {
+//   background: $gray-alpha-12;
+//   border: 0;
+// }
 
-::-webkit-scrollbar-corner {
-  background: transparent;
-  border-radius: 0;
-}
+// ::-webkit-scrollbar-corner {
+//   background: transparent;
+//   border-radius: 0;
+// }

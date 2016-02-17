@@ -680,7 +680,7 @@
     saveCurrentFormula(modifiers_readAmountOfDice(), getRadioValue(element_diceForm, "dice-select"), modifiers_readAmountOfBonus());
     localStoreAdd("saved-formulas", element_formulas_list);
     checkListListState();
-    createSnackBar("Formula saved.", true, false);
+    createSnackBar("Formula saved.", false, false);
   }, false);
 
   // add listeners to saved formula buttons and inputs
@@ -746,7 +746,7 @@
     if (!readSaved_name) {
       readSaved_name = "nameless formula";
     };
-    createSnackBar("Cleared " + readSaved_name + ".", true, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
+    createSnackBar("Cleared " + readSaved_name + ".", false, true, readSaved_amountOfDice, readSaved_diceSides, readSaved_amountOfBonus, readSaved_name);
   };
 
   // move saved formula up or down
@@ -1060,12 +1060,12 @@
     promptAction.addEventListener('click', function() {
       if (confirmAction == "clear all") {
         clearLostD20();
-        createSnackBar("All cleared.", true, false);
+        createSnackBar("All cleared.", false, false);
       };
       if (confirmAction == "clear roll history") {
         clearResults();
         removePrompt();
-        createSnackBar("Roll history cleared.", true, false);
+        createSnackBar("Roll history cleared.", false, false);
       };
     }, false);
 

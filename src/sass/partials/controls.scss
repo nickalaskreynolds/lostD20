@@ -86,8 +86,7 @@
   .input-controls {
     background-color: $secondary-color;
     .input-controls-dice,
-    .input-controls-bonus,
-    .save {
+    .input-controls-bonus {
       float: left;
     }
     .input-controls-dice,
@@ -98,12 +97,11 @@
         float: left;
       }
     }
-    .save {
-      width: 20%;
+    .input-controls-bonus {
+      margin: 0 0 0 20%;
     }
     .input-controls-dice,
-    .input-controls-bonus,
-    .save {
+    .input-controls-bonus {
       .button {
         border: 0;
         border-radius: 0;
@@ -201,12 +199,22 @@
       }
     }
   }
+  .save-current-formula {
+    border-radius: 0 0 0 $border-radius-medium;
+  }
   .go-roll {
-    border-radius: 0 0 $border-radius-medium $border-radius-medium;
+    border-radius: 0 0 $border-radius-medium 0;
+  }
+  .save-current-formula,
+  .go-roll {
     height: 50px;
     line-height: 50px;
     font-size: 1rem;
     text-transform: uppercase;
+    [class^="icon-"],
+    [class*=" icon-"] {
+      margin: 0 3px 0 0;
+    }
   }
 }
 
