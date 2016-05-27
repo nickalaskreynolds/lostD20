@@ -1,0 +1,140 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: normal;
+  line-height: $line-height-160;
+}
+
+h1 {
+  font-size: $font-size-250;
+  font-family: $open-sans-light;
+}
+
+h2 {
+  font-size: $font-size-225;
+  font-family: $open-sans-light;
+}
+
+h3 {
+  font-size: $font-size-200;
+  font-family: $open-sans-light;
+}
+
+h4 {
+  font-size: $font-size-175;
+  font-family: $open-sans-semi-bold;
+}
+
+h5 {
+  font-size: $font-size-150;
+  font-family: $open-sans-semi-bold;
+}
+
+h6 {
+  font-size: $font-size-125;
+  font-family: $open-sans-semi-bold;
+}
+
+p {
+  color: $gray-03;
+  margin: 0 0 $font-size-100 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $secondary-color-alpha-18;
+  margin: 0 0 $font-size-200 0;
+  clear: both;
+}
+
+b,
+strong {
+  font-family: $open-sans-semi-bold;
+}
+
+a {
+  color: $primary-color-10;
+  text-decoration: none;
+  &:link,
+  &:visited {
+    color: $primary-color-10;
+  }
+  &:focus {
+    background-color: $secondary-color-alpha-18;
+    text-decoration: none;
+    outline: 0;
+  }
+  &:hover {
+    background-color: transparent;
+    color: $primary-color-08;
+    text-decoration: underline;
+  }
+  &:active {
+    color: $primary-color-06;
+  }
+}
+
+ul,
+ol {
+  margin: 0 0 $font-size-100 0;
+  padding: 0 0 0 $font-size-300;
+}
+
+li {
+  margin: 0 0 $font-size-050 0;
+  > ul,
+  > ol {
+    margin: 0 0 $font-size-050 0;
+  }
+}
+
+table {
+  border: 0;
+  margin: 0 0 $font-size-100 0;
+  padding: 0;
+  width: 100%;
+  border-spacing: 0;
+  thead {
+    tr {
+      td {
+        padding: $font-size-050;
+        margin: 0;
+        border: 0;
+        text-align: left;
+        border-bottom: $border;
+        border-color: $gray-18;
+        font-family: $open-sans-semi-bold;
+      }
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: $gray-20;
+      }
+      td {
+        padding: $font-size-050;
+        margin: 0;
+        border: 0;
+        text-align: left;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// media queries
+// --------------------------------------------------
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-md) {}
+
+@media (min-width: $screen-lg) {}
+
+@media (min-width: $screen-xl) {}

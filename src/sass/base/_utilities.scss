@@ -1,0 +1,77 @@
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-no-margin {
+  margin: 0;
+  &[type="email"],
+  &[type="number"],
+  &[type="search"],
+  &[type="text"],
+  &[type="tel"],
+  &[type="password"] {
+    margin: 0;
+  }
+}
+
+.u-inline-with-input {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: $line-height-root-250;
+  line-height: $line-height-root-250;
+  box-sizing: border-box;
+}
+
+.u-margin-with-input {
+  margin: 0 0 1.5rem 0;
+}
+
+.u-underline-with-input {
+  border-bottom: $border;
+  border-color: $secondary-color-alpha-20;
+}
+
+.u-small-text {
+  color: $gray-12;
+  font-size: $font-size-075;
+}
+
+.u-list-unstyled {
+  padding-left: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
+.u-list-inline {
+  li {
+    display: inline-block;
+  }
+}
+
+.u-clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// --------------------------------------------------
+// media queries
+// --------------------------------------------------
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-md) {}
+
+@media (min-width: $screen-lg) {}
+
+@media (min-width: $screen-xl) {}

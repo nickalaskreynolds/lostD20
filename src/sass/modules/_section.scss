@@ -1,0 +1,76 @@
+.m-section-controls {
+  position: relative;
+  .button-group,
+  .button-group-strech {
+    position: absolute;
+    right: 0;
+    .button {
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: 0;
+      border-radius: 0;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+  .button-group-strech {
+    width: 100%;
+  }
+}
+
+.m-section-heading {
+  background-color: $secondary-color-08;
+  padding: 0;
+  text-transform: uppercase;
+  position: relative;
+  z-index: $section-heading;
+  transition: background-color $transition-ease-extra-fast;
+  h1 {
+    color: $white;
+    margin: 0;
+    font-family: $open-sans-semi-bold;
+    font-size: $font-size-100;
+    line-height: 40px;
+  }
+  &.is-pinned {
+    margin: 0;
+    position: fixed;
+    top: $font-size-450;
+    width: 100%;
+  }
+  &.is-faded {
+    background-color: $secondary-color-05;
+  }
+}
+
+.m-section-heading-sub {
+  font-family: $open-sans-semi-bold;
+  font-size: $font-size-100;
+}
+
+.m-section-wrapper {
+  padding: $font-size-200 0;
+}
+
+// --------------------------------------------------
+// media queries
+// --------------------------------------------------
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-sm) {}
+
+@media (min-width: $screen-md) {
+  .m-section-controls {
+    .button-group-strech {
+      width: inherit;
+    }
+  }
+  .m-section-wrapper {
+    padding: $font-size-300 0;
+  }
+}
+
+@media (min-width: $screen-lg) {}
+
+@media (min-width: $screen-xl) {}

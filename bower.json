@@ -2,9 +2,9 @@
   "name": "lost D20",
   "version": "1.0.0",
   "authors": [
-    "Kuldeep <crudetoaster@gmail.com>"
+    "Kuldeep Matharu <crudetoaster@gmail.com>"
   ],
-  "description": "Dice Roller",
+  "description": "RPG Dice Roller",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -14,8 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "normalize-scss": "~3.0.3",
     "Skeleton-Sass": "skeleton-scss#*",
+    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#~7.1.1",
     "Sortable": "~1.4.2"
   },
   "devDependencies": {}
