@@ -1,7 +1,12 @@
 var controls = (function() {
 
   function bind() {
-    console.log("controls bind");
+    var all_diceSetDie = helper.eA('.js-dice-set-die');
+    for (var i = 0; i < all_diceSetDie.length; i++) {
+      all_diceSetDie[i].addEventListener('change', function() {
+        currentFormula.render();
+      }, false);
+    };
   };
 
   // exposed methods
