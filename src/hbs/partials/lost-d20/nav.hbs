@@ -1,30 +1,62 @@
 <nav class="m-nav js-nav">
   <ul class="m-nav-list">
     <li>
-      <p class="m-nav-title">Characters</p>
+      <p class="m-nav-title js-nav-title" tabindex="10">Characters</p>
     </li>
     <li>
-      <a href="javascript:void(0)" class="m-nav-link js-character-add u-clearfix" tabindex="10"><span class="icon icon-add"></span><span class="m-nav-link-name">Add</span></a>
-    </li>
-    <li>
-      <a href="javascript:void(0)" class="m-nav-link js-character-remove u-clearfix" tabindex="10"><span class="icon icon-remove"></span><span class="m-nav-link-name">Remove</span></a>
-    </li>
-    <li>
-      <a href="javascript:void(0)" class="m-nav-link js-character-export u-clearfix" tabindex="10"><span class="icon icon-file-download"></span><span class="m-nav-link-name">Export</span></a>
+      <ul class="m-nav-characters js-nav-characters"></ul>
     </li>
     <li class="m-nav-divide"></li>
     <li>
-      <ul class="m-nav-characters js-nav-characters"></ul>
+      <a href="javascript:void(0)" class="m-nav-link js-character-add u-clearfix" tabindex="10">
+        <span class="icon-add"></span>
+        <span class="m-nav-link-name">Add</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="m-nav-link js-character-remove u-clearfix" tabindex="10">
+        <span class="icon-remove"></span>
+        <span class="m-nav-link-name">Remove</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="m-nav-link js-character-import u-clearfix" tabindex="10">
+        <span class="icon-file-upload"></span>
+        <span class="m-nav-link-name">Import <span class="m-nav-link-shortcut hidden-xs hidden-sm u-small-text">ctrl + alt + i</span></span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="m-nav-link js-character-export u-clearfix" tabindex="10">
+        <span class="icon-file-download"></span><span class="m-nav-link-name">Export <span class="m-nav-link-shortcut hidden-xs hidden-sm u-small-text">ctrl + alt + e</span></span>
+      </a>
     </li>
     <li class="m-nav-divide"></li>
     <li>
       <p class="m-nav-title">Tools</p>
     </li>
     <li>
-      <a href="javascript:void(0)" class="m-nav-link js-fullscreen u-clearfix" tabindex="10"><span class="icon icon-fullscreen"></span><span class="m-nav-link-name">Fullscreen</span></a>
+      <a href="javascript:void(0)" class="m-nav-link js-night-mode u-clearfix" tabindex="10">
+        <span class="icon-moon"></span>
+        <span class="m-nav-link-name">Night Mode <span class="m-nav-link-shortcut hidden-xs hidden-sm u-small-text">ctrl + alt + n</span></span>
+      </a>
     </li>
     <li>
-      <a href="javascript:void(0)" class="m-nav-link js-clear-all u-clearfix" tabindex="10"><span class="icon icon-delete"></span><span class="m-nav-link-name">Clear All</span></a>
+      <a href="javascript:void(0)" class="m-nav-link js-fullscreen-mode u-clearfix" tabindex="10">
+        <span class="icon-fullscreen js-icon-fullscreen"></span>
+        <span class="m-nav-link-name">Fullscreen</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="m-nav-link js-clear-all u-clearfix" tabindex="10">
+        <span class="icon-delete"></span>
+        <span class="m-nav-link-name">Clear All <span class="m-nav-link-shortcut hidden-xs hidden-sm u-small-text">ctrl + alt + del</span></span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="m-nav-link js-restore-demo-pcs u-clearfix" tabindex="10">
+        <span class="icon-renew"></span>
+        <span class="m-nav-link-name">Restore Demo PCs</span>
+      </a>
     </li>
   </ul>
 </nav>

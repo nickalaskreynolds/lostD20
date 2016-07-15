@@ -9,7 +9,7 @@
   overflow-y: auto;
   box-sizing: border-box;
   z-index: $nav;
-  transition: top $transition-ease-medium;
+  transition: top $transition-ease-medium, background-color $transition-ease-medium;
   .m-nav-list {
     padding: $font-size-100 0;
     margin: 0;
@@ -23,13 +23,26 @@
         margin: $font-size-100 0;
         background-color: $gray-19;
         height: 1px;
+        transition: background-color $transition-ease-medium;
       }
     }
   }
   &.is-open {
     top: 0;
-    transition: top $transition-ease-medium;
+    transition: top $transition-ease-medium, background-color $transition-ease-medium;
   }
+}
+
+.m-nav-shade {
+  background-color: $dark-alpha-10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: $nav;
+  transition: opacity $transition-ease-medium, transform $transition-ease-medium;
 }
 
 .m-nav-title {
@@ -41,14 +54,24 @@
   display: block;
   text-transform: uppercase;
   text-align: left;
+  transition: color $transition-ease-medium;
+  &:focus {
+    outline: 0;
+  }
 }
 
 .m-nav-link {
   font-family: $open-sans-semi-bold;
   line-height: $line-height-300;
   display: block;
+  cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   .m-nav-link-name {}
+  .m-nav-link-shortcut {
+    margin-right: 20px;
+    float: right;
+    font-family: $open-sans-light;
+  }
   [class^="icon-"],
   [class*=" icon-"] {
     width: 20%;
@@ -57,6 +80,7 @@
     text-align: center;
     display: block;
     float: left;
+    transition: color $transition-ease-medium;
   }
   &:focus,
   &:hover {
@@ -70,6 +94,12 @@
     [class^="icon-"],
     [class*=" icon-"] {
       color: $white;
+    }
+  }
+  &.is-active {
+    &:focus,
+    &:hover {
+      background-color: $primary-color-08;
     }
   }
 }
@@ -95,13 +125,15 @@
         height: $line-height-400;
         line-height: $line-height-400;
         transition: none;
+        transition: color $transition-ease-medium;
         &:before {
           color: $secondary-color-03;
           width: 20%;
           margin: 0;
           text-align: center;
-          transition: none;
           float: left;
+          // transition: none;
+          transition: color $transition-ease-medium;
         }
         .m-nav-characters-name,
         .m-nav-characters-class,
@@ -112,10 +144,10 @@
         }
         .m-nav-characters-class,
         .m-nav-characters-level {
-          color: $secondary-color-03;
+          color: $primary-color-10;
         }
         .m-nav-characters-name {
-          color: $primary-color-10;
+          color: $secondary-color-03;
           font-family: $open-sans-semi-bold;
           width: 80%;
           margin-top: 5px;
@@ -197,23 +229,89 @@
   }
 }
 
+.is-night-mode {
+  .m-nav-shade {
+    background-color: $dark-alpha-08;
+  }
+  .m-nav {
+    background-color: $secondary-color-03;
+    .m-nav-list {
+      > li {
+        &.m-nav-divide {
+          background-color: $secondary-color-05;
+        }
+      }
+    }
+  }
+  .m-nav-link {
+    [class^="icon-"],
+    [class*=" icon-"] {
+      color: $white;
+    }
+    &:focus,
+    &:hover {
+      background-color: $secondary-color-04;
+    }
+    &.is-active {
+      &:focus,
+      &:hover {
+        background-color: $primary-color-08;
+      }
+    }
+  }
+  .m-nav-character {
+    input {
+      &[type="radio"],
+      &[type="checkbox"] {
+        & + label {
+          &:before {
+            color: $white;
+          }
+          .m-nav-characters-name {
+            color: $white;
+          }
+        }
+        &:hover {
+          & + label {
+            background-color: $secondary-color-04;
+          }
+        }
+        &:checked {
+          & + label {
+            .m-nav-characters-name,
+            .m-nav-characters-class,
+            .m-nav-characters-level {
+              color: $white;
+            }
+          }
+          &:focus,
+          &:hover {
+            & + label {
+              background-color: $primary-color-08;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
 @media (min-width: $screen-sm) {
   .m-nav {
     border: 0;
-    border-left: 2px solid $gray-20;
     padding: $font-size-450 0;
     top: 0;
     left: inherit;
     right: -400px;
     width: 360px;
-    transition: right $transition-ease-fast;
+    transition: right $transition-ease-fast, background-color $transition-ease-medium;
     &.is-open {
       top: 0;
       right: 0;
-      transition: right $transition-ease-fast;
+      transition: right $transition-ease-fast, background-color $transition-ease-medium;
     }
   }
 }
@@ -223,3 +321,9 @@
 @media (min-width: $screen-lg) {}
 
 @media (min-width: $screen-xl) {}
+
+@media print {
+  .m-nav {
+    display: none;
+  }
+}

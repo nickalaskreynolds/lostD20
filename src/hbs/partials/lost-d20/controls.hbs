@@ -1,105 +1,83 @@
 <section class="l-section l-section-dark l-nav-padding js-section">
   <div class="m-section-wrapper">
     <div class="container">
-
-
-
-<div class="row">
-  <div class="col-xs-12 col-md-4">
-    
-
-      <div class="m-number-of-dice">
-        <input type="text" value="1" maxlength="3" tabindex="1">
-        <button class="button button-medium button-tertiary js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
-        <button class="button button-medium button-tertiary js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
-        <button class="button button-medium button-tertiary js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div class="m-number-of-dice">
+            <input class="m-number-of-dice-input m-input-block-field-dark js-number-of-dice-input" type="text" value="1" maxlength="3" tabindex="1">
+            <button class="button button-medium button-tertiary js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
+            <button class="button button-medium button-tertiary js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
+            <button class="button button-medium button-tertiary js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+          </div>
+          <div class="m-current-formula js-current-formula" data-number-of-dice="1" data-dice="20" data-number-of-bonus="0">
+            <p>
+              <span class="js-current-formula-number-of-dice">1</span>
+              <span class="js-current-formula-dice">d20</span>
+              <span class="js-current-formula-number-of-bonus">0</span>
+            </p>
+          </div>
+          <div class="m-number-of-bonus js-number-of-bonus">
+            <input class="m-number-of-bonus-input m-input-block-field-dark js-number-of-bonus-input" type="text" value="+0" maxlength="3" tabindex="1">
+            <button class="button button-medium button-tertiary js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
+            <button class="button button-medium button-tertiary js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
+            <button class="button button-medium button-tertiary js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <form class="m-dice-set clearfix js-dice-set">
+            <ul class="u-list-unstyled">
+              <li>
+                <input id="d2" class="m-dice-set-die js-dice-set-die" data-dice="2" name="dice-set-group" type="radio">
+                <label for="d2" class="label-left u-full-width">d2</label>
+              </li>
+              <li>
+                <input id="d3" class="m-dice-set-die js-dice-set-die" data-dice="3" name="dice-set-group" type="radio">
+                <label for="d3" class="label-left u-full-width">d3</label>
+              </li>
+              <li>
+                <input id="d4" class="m-dice-set-die js-dice-set-die" data-dice="4" name="dice-set-group" type="radio">
+                <label for="d4" class="label-left u-full-width">d4</label>
+              </li>
+              <li>
+                <input id="d6" class="m-dice-set-die js-dice-set-die" data-dice="6" name="dice-set-group" type="radio">
+                <label for="d6" class="label-left u-full-width">d6</label>
+              </li>
+              <li>
+                <input id="d8" class="m-dice-set-die js-dice-set-die" data-dice="8" name="dice-set-group" type="radio">
+                <label for="d8" class="label-left u-full-width">d8</label>
+              </li>
+              <li>
+                <input id="d10" class="m-dice-set-die js-dice-set-die" data-dice="10" name="dice-set-group" type="radio">
+                <label for="d10" class="label-left u-full-width">d10</label>
+              </li>
+              <li>
+                <input id="d12" class="m-dice-set-die js-dice-set-die" data-dice="12" name="dice-set-group" type="radio">
+                <label for="d12" class="label-left u-full-width">d12</label>
+              </li>
+              <li>
+                <input id="d20" class="m-dice-set-die js-dice-set-die" data-dice="20" name="dice-set-group" type="radio" checked>
+                <label for="d20" class="label-left u-full-width">d20</label>
+              </li>
+              <li>
+                <input id="d100" class="m-dice-set-die js-dice-set-die" data-dice="100" name="dice-set-group" type="radio">
+                <label for="d100" class="label-left u-full-width">d100</label>
+              </li>
+            </ul>
+          </form>
+        </div>
+        <div class="col-xs-12 col-md-6">
+        </div>
       </div>
-      <div class="m-current-formula">
-        <p>
-          <span class="js-current-formula-number-of-dice">1</span>
-          <span class="js-current-formula-dice">d20</span>
-          <span class="js-current-formula-number-of-bonus">0</span>
-        </p>
+      <div class="row">
+        <div class="col-xs-3">
+          <button class="button button-primary button-block save-current-formula" tabindex="3"><span class="icon-playlist-add"></span> Save</button>
+        </div>
+        <div class="col-xs-9">
+          <button class="button button-primary button-block m-roll-formula js-roll-formula" tabindex="3">Roll The Dice</button>
+        </div>
       </div>
-      <div class="m-number-of-bonus js-number-of-bonus">
-        <input type="text" value="+0" maxlength="3" tabindex="1">
-        <button class="button button-medium button-tertiary js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
-        <button class="button button-medium button-tertiary js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
-        <button class="button button-medium button-tertiary js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
-      </div>
-
-  </div>
-  <div class="col-xs-12 col-md-4">
-    
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <form class="m-dice-set clearfix js-dice-set">
-      <ul class="u-list-unstyled">
-        <li>
-          <input id="d2" class="m-dice-set-die js-dice-set-die" data-dice="2" name="dice-set-group" type="radio">
-          <label for="d2" class="u-full-width">d2</label>
-        </li>
-        <li>
-          <input id="d3" class="m-dice-set-die js-dice-set-die" data-dice="3" name="dice-set-group" type="radio">
-          <label for="d3" class="u-full-width">d3</label>
-        </li>
-        <li>
-          <input id="d4" class="m-dice-set-die js-dice-set-die" data-dice="4" name="dice-set-group" type="radio">
-          <label for="d4" class="u-full-width">d4</label>
-        </li>
-        <li>
-          <input id="d6" class="m-dice-set-die js-dice-set-die" data-dice="6" name="dice-set-group" type="radio">
-          <label for="d6" class="u-full-width">d6</label>
-        </li>
-        <li>
-          <input id="d8" class="m-dice-set-die js-dice-set-die" data-dice="8" name="dice-set-group" type="radio">
-          <label for="d8" class="u-full-width">d8</label>
-        </li>
-        <li>
-          <input id="d10" class="m-dice-set-die js-dice-set-die" data-dice="10" name="dice-set-group" type="radio">
-          <label for="d10" class="u-full-width">d10</label>
-        </li>
-        <li>
-          <input id="d12" class="m-dice-set-die js-dice-set-die" data-dice="12" name="dice-set-group" type="radio">
-          <label for="d12" class="u-full-width">d12</label>
-        </li>
-        <li>
-          <input id="d20" class="m-dice-set-die js-dice-set-die" data-dice="20" name="dice-set-group" type="radio" checked>
-          <label for="d20" class="u-full-width">d20</label>
-        </li>
-        <li>
-          <input id="d100" class="m-dice-set-die js-dice-set-die" data-dice="100" name="dice-set-group" type="radio">
-          <label for="d100" class="u-full-width">d100</label>
-        </li>
-      </ul>
-    </form>
-  </div>
-  <div class="col-xs-12 col-md-6">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="input-controls clearfix">
-      <div class="input-controls-dice">
-      </div>
-      <div class="input-controls-bonus">
-        <button class="button button-dark minus-one" tabindex="3"><span class="icon-remove"></span></button>
-        <button class="button button-dark plus-one" tabindex="3"><span class="icon-add"></span></button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row no-gutter">
-  <div class="col-xs-3">
-    <button class="button button-primary button-block save-current-formula" tabindex="3"><span class="icon-playlist-add"></span> Save</button>
-  </div>
-  <div class="col-xs-9">
-    <button class="button button-primary button-block go-roll" tabindex="3">Roll The Dice</button>
-  </div>
-</div>
-
-
-
     </div>
   </div>
 </section>
