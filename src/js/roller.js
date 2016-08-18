@@ -2,10 +2,9 @@ var roller = (function() {
 
   function render(numberOfDice, whichDice, bonusModifier, rollName) {
 
-
-    console.log('numberOfDice', numberOfDice)
-    console.log('whichDice', whichDice)
-    console.log('bonusModifier', bonusModifier)
+    console.log('numberOfDice', numberOfDice);
+    console.log('whichDice', whichDice);
+    console.log('bonusModifier', bonusModifier);
 
     // make array
     var randomDiceResults = [];
@@ -13,7 +12,7 @@ var roller = (function() {
     for (var i = 0; i < numberOfDice; i++) {
       randomDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
-    console.log(randomDiceResults)
+    console.log(randomDiceResults);
     // make lowest index var
     var lowestRollIndex;
     // find lowest number index in array

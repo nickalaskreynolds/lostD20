@@ -1,5 +1,20 @@
 var currentFormula = (function() {
 
+  function get(value) {
+    var currentFormula = helper.e('.js-current-formula');
+    var currentValue;
+    if (value == "numberOfDice") {
+      currentValue = parseInt(currentFormula.dataset.numberOfDice, 10 || 0);
+    };
+    if (value == "dice") {
+      currentValue = parseInt(currentFormula.dataset.dice, 10 || 0);
+    };
+    if (value == "numberOfBonus") {
+      currentValue = parseInt(currentFormula.dataset.numberOfBonus, 10 || 0);
+    };
+    return currentValue;
+  }
+
   function render() {
     var diceSet = helper.e('.js-dice-set');
     var currentFormula = helper.e('.js-current-formula');
@@ -18,6 +33,7 @@ var currentFormula = (function() {
 
   // exposed methods
   return {
+    get: get,
     render: render
   };
 

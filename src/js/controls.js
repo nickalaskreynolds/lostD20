@@ -46,8 +46,11 @@ var controls = (function() {
   };
 
   function _roll() {
-    var currentFormula = helper.e('.js-current-formula');
-    roller.render(parseInt(currentFormula.dataset.numberOfDice, 10), parseInt(currentFormula.dataset.dice, 10), parseInt(currentFormula.dataset.numberOfBonus, 10));
+    roller.render(
+      currentFormula.get("numberOfDice"),
+      currentFormula.get("dice"),
+      currentFormula.get("numberOfBonus")
+    );
   };
 
   // plus or minus modifier or clear
