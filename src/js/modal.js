@@ -29,12 +29,11 @@ var modal = (function() {
     };
   };
 
-  function render(heading, modalBodyContent, actionText) {
+  function render(heading, modalBodyContent, actionText, action) {
 
     prompt.destroy();
     var body = helper.e("body");
 
-    // make new shade
     var modalShade = document.createElement("div");
     modalShade.setAttribute("class", "m-modal-shade js-modal-shade");
     modalShade.destroy = function() {
@@ -97,8 +96,19 @@ var modal = (function() {
       };
     }.bind(modalShade), false);
 
-    actionButton.addEventListener("click", destroy, false);
     modalShade.addEventListener("click", destroy, false);
+    actionButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        destroy();
+      }, false);
+    if (action) {
+      actionButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        action();
+      }, false);
+    };
 
     if (previousModal) {
       previousModal.destroy();
@@ -126,6 +136,7 @@ var modal = (function() {
 
   };
 
+  // exposed methods
   return {
     bind: bind,
     destroy: destroy,
@@ -133,3 +144,39 @@ var modal = (function() {
   };
 
 })();
+
+
+// (function() {
+
+//   // Define our constructor
+//   this.Modal = function() {
+
+//     // Define option defaults
+//     var defaults = {
+//       className: 'fade-and-drop',
+//       closeButton: true,
+//       content: "",
+//       maxWidth: 600,
+//       minWidth: 280,
+//       overlay: true
+//     }
+
+//     // Create options by extending defaults with the passed in arugments
+//     if (arguments[0] && typeof arguments[0] === "object") {
+//       this.options = extendDefaults(defaults, arguments[0]);
+//     }
+
+//   }
+
+//   // Utility method to extend defaults with user options
+//   function extendDefaults(source, properties) {
+//     var property;
+//     for (property in properties) {
+//       if (properties.hasOwnProperty(property)) {
+//         source[property] = properties[property];
+//       }
+//     }
+//     return source;
+//   }
+
+// }());

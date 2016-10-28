@@ -25,6 +25,15 @@ var helper = (function() {
     window.setTimeout(functionToDelay, time);
   };
 
+  function isJsonString(string) {
+    try {
+      JSON.parse(string);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  };
+
   function selectText(element) {
     var node = helper.e(element);
     if (document.selection) {
@@ -52,20 +61,38 @@ var helper = (function() {
     return string;
   };
 
-  function updateObject(object, path, newValue) {
-    var address = path.split('.');
+  function setObject(object, path, newValue) {
+    var address = path.split(".");
     while (address.length > 1) {
-      object = object[address.shift()];
+      var currentKey = address.shift();
+      var parentObject = object;
+      object = object[currentKey];
+      if (!object) {
+        object = parentObject;
+        object = object[currentKey] = {};
+      };
     };
     object[address.shift()] = newValue;
   };
 
   function getObject(object, path) {
-    var address = path.split('.');
+    var address = path.split(".");
     while (address.length > 1) {
-      object = object[address.shift()];
+      var currentKey = address.shift();
+      var parentObject = object;
+      object = object[currentKey];
+      if (!object) {
+        object = parentObject;
+        object = object[currentKey] = {};
+      };
     };
-    return object[address.shift()];
+    var finalKey = address.shift();
+    if (finalKey in object) {
+      return object[finalKey];
+    } else {
+      object[finalKey] = "";
+      return object[finalKey];
+    };
   };
 
   function getClosest(element, selector) {
@@ -73,19 +100,19 @@ var helper = (function() {
     // Get closest match
     for (; element && element !== document; element = element.parentNode) {
       // If selector is a class
-      if (firstChar === '.') {
+      if (firstChar === ".") {
         if (element.classList.contains(selector.substr(1))) {
           return element;
         };
       };
       // If selector is an ID
-      if (firstChar === '#') {
+      if (firstChar === "#") {
         if (element.id === selector.substr(1)) {
           return element;
         };
       };
       // If selector is a data attribute
-      if (firstChar === '[') {
+      if (firstChar === "[") {
         if (element.hasAttribute(selector.substr(1, selector.length - 2))) {
           return element;
         };
@@ -106,7 +133,26 @@ var helper = (function() {
     return text;
   };
 
-  // get checked radio val 
+  function store(key, data) {
+    if (localStorage.getItem) {
+      localStorage.setItem(key, data);
+    };
+  };
+
+  function remove(key) {
+    if (localStorage.getItem) {
+      localStorage.removeItem(key);
+    };
+  };
+
+  function read(key) {
+    if (localStorage.getItem(key) == "") {
+      localStorage.removeItem(key);
+    } else if (localStorage.getItem(key)) {
+      return localStorage.getItem(key);
+    };
+  };
+
   function getRadioValue(form, radioGroupName) {
     var selectedDice;
     // get list of radio buttons with specified name
@@ -124,15 +170,19 @@ var helper = (function() {
 
   // exposed methods
   return {
+    store: store,
+    remove: remove,
+    read: read,
     e: e,
     eA: eA,
     toggleClass: toggleClass,
     addClass: addClass,
     removeClass: removeClass,
+    isJsonString: isJsonString,
     getClosest: getClosest,
     selectText: selectText,
     delayFunction: delayFunction,
-    updateObject: updateObject,
+    setObject: setObject,
     getObject: getObject,
     truncate: truncateString,
     randomId: randomId,

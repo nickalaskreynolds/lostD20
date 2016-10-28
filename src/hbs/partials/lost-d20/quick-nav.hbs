@@ -1,37 +1,61 @@
 <div class="m-quick-nav js-quick-nav">
   <div class="container">
-    <ul class="m-quick-nav-list u-clearfix">
-      <li>
-        <a href="#basics" class="m-quick-nav-link js-quick-nav-link is-active" data-scroll tabindex="1"><span class="icon-account-circle"></span></a>
-      </li>
-      <li>
-        <a href="#statistics" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-apps"></span></a>
-      </li>
-      <li>
-        <a href="#equipment" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-bottle"></span></a>
-      </li>
-      <li>
-        <a href="#defense" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-shield"></span></a>
-      </li>
-      <li>
-        <a href="#offense" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-combat"></span></a>
-      </li>
-      <li>
-        <a href="#skills" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-list"></span></a>
-      </li>
-      <li>
-        <a href="#spells" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-whatshot"></span></a>
-      </li>
-      <li>
-        <a href="#notes" class="m-quick-nav-link js-quick-nav-link" data-scroll tabindex="1"><span class="icon-file"></span></a>
-      </li>
-      <li>
-        <a href="javascript:void(0)" class="m-quick-nav-link m-nav-toggle js-nav-toggle" tabindex="1">
-          <div class="m-hamburger js-hamburger">
-            <div class="m-hamburger-inner"></div>
-          </div>
-        </a>
-      </li>
-    </ul>
+    <div class="m-quick-nav-dice">
+      <form class="m-dice-set clearfix js-dice-set">
+
+        <div class="m-dice-set-die">
+          <input id="d2" class="m-dice-set-input js-dice-set-die" data-dice="2" name="dice-set-group" type="radio">
+          <label for="d2" class="m-dice-set-label label-left u-full-width">d2</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d3" class="m-dice-set-input js-dice-set-die" data-dice="3" name="dice-set-group" type="radio">
+          <label for="d3" class="m-dice-set-label label-left u-full-width">d3</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d4" class="m-dice-set-input js-dice-set-die" data-dice="4" name="dice-set-group" type="radio">
+          <label for="d4" class="m-dice-set-label label-left u-full-width">d4</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d6" class="m-dice-set-input js-dice-set-die" data-dice="6" name="dice-set-group" type="radio">
+          <label for="d6" class="m-dice-set-label label-left u-full-width">d6</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d8" class="m-dice-set-input js-dice-set-die" data-dice="8" name="dice-set-group" type="radio">
+          <label for="d8" class="m-dice-set-label label-left u-full-width">d8</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d10" class="m-dice-set-input js-dice-set-die" data-dice="10" name="dice-set-group" type="radio">
+          <label for="d10" class="m-dice-set-label label-left u-full-width">d10</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d12" class="m-dice-set-input js-dice-set-die" data-dice="12" name="dice-set-group" type="radio">
+          <label for="d12" class="m-dice-set-label label-left u-full-width">d12</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d20" class="m-dice-set-input js-dice-set-die" data-dice="20" name="dice-set-group" type="radio" checked>
+          <label for="d20" class="m-dice-set-label label-left u-full-width">d20</label>
+        </div>
+
+        <div class="m-dice-set-die">
+          <input id="d100" class="m-dice-set-input js-dice-set-die" data-dice="100" name="dice-set-group" type="radio">
+          <label for="d100" class="m-dice-set-label label-left u-full-width">d100</label>
+        </div>
+
+      </form>
+    </div>
+    <div class="m-quick-nav-menu">
+      <a href="javascript:void(0)" class="m-quick-nav-link m-nav-toggle js-nav-toggle" tabindex="1">
+        <div class="m-hamburger js-hamburger">
+          <div class="m-hamburger-inner"></div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>

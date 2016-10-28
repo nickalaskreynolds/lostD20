@@ -14,7 +14,7 @@
     border-radius: $border-radius-medium;
     transform: translatey(-50%) rotate(0deg);
     display: block;
-    transition: background-color $transition-ease-fast 0s, transform $transition-ease-fast 0s;
+    transition: background-color $transition-ease-extra-fast 0s, transform $transition-ease-extra-fast 0s;
     &:before,
     &:after {
       background-color: $white;
@@ -23,7 +23,7 @@
       position: absolute;
       width: 100%;
       height: 2px;
-      transition: background-color $transition-ease-fast 0s, top $transition-ease-fast 0.2s, transform $transition-ease-fast;
+      transition: background-color $transition-ease-extra-fast 0s, top $transition-ease-extra-fast 0.2s, transform $transition-ease-extra-fast 0s;
       border-radius: $border-radius-medium;
       display: block;
     }
@@ -37,10 +37,10 @@
   }
   &:hover {
     .m-hamburger-inner {
-      background-color: $primary-color-10;
+      background-color: $secondary-color-12;
       &:before,
       &:after {
-        background-color: $primary-color-10;
+        background-color: $secondary-color-12;
       }
     }
   }
@@ -48,11 +48,11 @@
     .m-hamburger-inner {
       background-color: $white;
       transform: translatey(-50%) rotate(135deg);
-      transition: background-color $transition-ease-fast 0s, transform $transition-ease-fast 0.2s;
+      transition: background-color $transition-ease-extra-fast 0s, transform $transition-ease-extra-fast 0.2s;
       &:before,
       &:after {
         background-color: $white;
-        transition: background-color $transition-ease-fast 0s, top $transition-ease-fast 0s, transform $transition-ease-fast 0.2s;
+        transition: background-color $transition-ease-extra-fast 0s, top $transition-ease-extra-fast 0s, transform $transition-ease-extra-fast 0.2s;
       }
       &:before {
         top: 0;
@@ -65,20 +65,61 @@
   }
 }
 
-.m-hamburger-dark {
-  .m-hamburger-inner {
-    background-color: $base-color;
-    &:before,
-    &:after {
-      background-color: $base-color;
-    }
-  }
-  &.is-open {
+.is-display-mode {
+  .m-hamburger {
     .m-hamburger-inner {
-      background-color: $primary-color-10;
+      background-color: $gray-06;
       &:before,
       &:after {
+        background-color: $gray-06;
+      }
+    }
+    &:hover {
+      .m-hamburger-inner {
+        background-color: $primary-color-12;
+        &:before,
+        &:after {
+          background-color: $primary-color-12;
+        }
+      }
+    }
+    &.is-open {
+      .m-hamburger-inner {
         background-color: $primary-color-10;
+        &:before,
+        &:after {
+          background-color: $primary-color-10;
+        }
+      }
+    }
+  }
+}
+
+.is-night-mode {
+  .m-hamburger {
+    .m-hamburger-inner {
+      background-color: $white;
+      &:before,
+      &:after {
+        background-color: $white;
+      }
+    }
+    &:hover {
+      .m-hamburger-inner {
+        background-color: $primary-color-12;
+        &:before,
+        &:after {
+          background-color: $primary-color-12;
+        }
+      }
+    }
+    &.is-open {
+      .m-hamburger-inner {
+        background-color: $primary-color-10;
+        &:before,
+        &:after {
+          background-color: $primary-color-10;
+        }
       }
     }
   }

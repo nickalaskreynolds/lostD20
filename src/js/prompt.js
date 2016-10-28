@@ -1,7 +1,7 @@
 var prompt = (function() {
 
   var previousPrompt = null;
-  var previouspromptShade = null;
+  var previousPromptShade = null;
 
   function bind() {
     window.addEventListener("keydown", function(event) {
@@ -29,12 +29,11 @@ var prompt = (function() {
     };
   };
 
-  function render(heading, message, actionText, action) {
+  function render(heading, message, actionText, action, actionUrl, actionAttributeKey, actionAttributeValue) {
 
     modal.destroy();
     var body = helper.e("body");
 
-    // make new shade
     var promptShade = document.createElement("div");
     promptShade.setAttribute("class", "m-prompt-shade js-prompt-shade");
     promptShade.destroy = function() {
@@ -91,16 +90,8 @@ var prompt = (function() {
     };
     promptWrapper.appendChild(promptbody);
     promptWrapper.appendChild(promptControls);
-    
-    prompt.appendChild(promptWrapper);
 
-    if (action == "download") {
-      // actionButton.addEventListener("click", action, false);
-      actionButton.setAttribute("download", sheet.getCharacter().basics.name + ".json");
-      actionButton.href = "data:" + "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(sheet.getCharacter()), null, " ");
-    } else {
-      actionButton.addEventListener("click", action, false);
-    };
+    prompt.appendChild(promptWrapper);
 
     prompt.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && getComputedStyle(this).opacity == 0) {
@@ -114,20 +105,37 @@ var prompt = (function() {
       };
     }.bind(promptShade), false);
 
+    if (action) {
+      actionButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        action();
+      }, false);
+    };
+    if (actionUrl) {
+      actionButton.href = actionUrl;
+    };
+    if (actionAttributeKey && actionAttributeValue) {
+      actionButton.setAttribute(actionAttributeKey, actionAttributeValue);
+    };
     actionButton.addEventListener("click", destroy, false);
-    cancelButton.addEventListener("click", destroy, false);
+    cancelButton.addEventListener("click", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      destroy();
+    }, false);
     promptShade.addEventListener("click", destroy, false);
 
     if (previousPrompt) {
       previousPrompt.destroy();
     };
 
-    if (previouspromptShade) {
-      previouspromptShade.destroy();
+    if (previousPromptShade) {
+      previousPromptShade.destroy();
     };
 
     previousPrompt = prompt;
-    previouspromptShade = promptShade;
+    previousPromptShade = promptShade;
 
     body.appendChild(promptShade);
     body.appendChild(prompt);
