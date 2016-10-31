@@ -1,27 +1,60 @@
 .m-dice-set {
   width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
+  // display: flex;
+  // flex-flow: row nowrap;
 }
 
 .m-dice-set-die {
   position: relative;
-  flex: 1 0 auto;
+  // flex: 1 0 auto;
   line-height: $font-size-450;
+  width: 11.1111111111%;
+  float: left;
+  font-family: $open-sans-semi-bold;
   .m-dice-set-input {
     height: $font-size-450;
     line-height: $font-size-450;
+    & + label {
+      color: $secondary-color-16;
+      border-bottom: 5px solid transparent;
+      transition: all $transition-ease-fast;
+    }
     &:checked {
+      outline: 0;
       & + label {
         border-color: $primary-color-10;
+        color: $white;
       }
-      z-index: 2;
-      color: $white;
-      background-color: $secondary-color-10;
+      &:focus {
+        outline: 0;
+        & + label {
+          border-color: $primary-color-10;
+          color: $white;
+        }
+      }
+    }
+    &:focus {
+      outline: 0;
+      & + label {
+        background-color: $secondary-color-08;
+        border-color: $secondary-color-10;
+        color: $white;
+      }
+    }
+    &:hover {
+      & + label {
+        border-color: $secondary-color-10;
+        color: $white;
+      }
+      &:checked {
+        & + label {
+          color: $white;
+          border-color: $primary-color-10;
+        }
+      }
     }
   }
   .m-dice-set-label {
-    border-top: 5px solid $secondary-color-08;
     color: $white;
     height: $font-size-450;
     line-height: $font-size-450;
@@ -29,8 +62,40 @@
     &:before {
       display: none;
     }
-    &:active,
-    &.active {}
+  }
+}
+
+.m-quick-nav-link {
+  width: 100%;
+  height: $font-size-450;
+  line-height: $font-size-450;
+  text-decoration: none;
+  color: $secondary-color-04;
+  display: block;
+  transition: color $transition-ease-fast;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  [class^="icon-"],
+  [class*=" icon-"] {
+    font-size: $font-size-200;
+  }
+  &:link,
+  &:visited {
+    color: $secondary-color-04;
+  }
+  &:focus {
+    background-color: transparent;
+    color: $secondary-color-12;
+  }
+  &:hover {
+    color: $secondary-color-12;
+    text-decoration: none;
+    outline: 0;
+  }
+  &:active {
+    color: $secondary-color-16;
+  }
+  &.is-active {
+    color: $white;
   }
 }
 
