@@ -154,7 +154,7 @@ var helper = (function() {
   };
 
   function getRadioValue(form, radioGroupName) {
-    var selectedDice;
+    var selection;
     // get list of radio buttons with specified name
     var radios = form[radioGroupName];
     // radios can also be expressed with
@@ -162,10 +162,10 @@ var helper = (function() {
     // loop through list of radio buttons
     for (var i = 0; i < radios.length; i++) {
       if (radios[i].checked) { // radio checked?
-        selectedDice = radios[i]; // if so, hold its value in selectedDice
+        selection = radios[i]; // if so, hold its value in selection
       };
     };
-    return selectedDice;
+    return selection;
   };
 
   // exposed methods

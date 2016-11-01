@@ -3,7 +3,7 @@ var roller = (function() {
   function render(numberOfDice, whichDice, bonusModifier, rollName) {
 
     console.log('numberOfDice', numberOfDice);
-    console.log('whichDice', whichDice);
+    console.log('dice', whichDice);
     console.log('bonusModifier', bonusModifier);
 
     // make array

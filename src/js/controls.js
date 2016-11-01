@@ -8,63 +8,72 @@ var controls = (function() {
     var numberOfBonusClear = helper.e('.js-number-of-bonus-clear');
     var numberOfBonusPlusOne = helper.e('.js-number-of-bonus-plus-one');
     var numberOfBonusMinusOne = helper.e('.js-number-of-bonus-minus-one');
-    var numberOfDiceInput = helper.e('.js-number-of-dice-input');
-    var numberOfBonusInput = helper.e('.js-number-of-bonus-input');
     var fabButton = helper.e('.js-fab-button');
+    var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
+    var currentFormulaNumberOfBonusInput = helper.e('.js-current-formula-number-of-bonus-input');
+
     for (var i = 0; i < all_diceSetDie.length; i++) {
       all_diceSetDie[i].addEventListener('change', function() {
+        _getDiceSelection();
         currentFormula.render();
       }, false);
     };
+
     numberOfDiceClear.addEventListener('click', function() {
-      _changeInputValue(numberOfDiceInput, 0, true);
+      _changeDiceOrBonusNumber("numberOfDice", 0, true);
       currentFormula.render();
     }, false);
+
     numberOfDicePlusOne.addEventListener('click', function() {
-      _changeInputValue(numberOfDiceInput, 1, true);
+      _changeDiceOrBonusNumber("numberOfDice", 1, true);
       currentFormula.render();
     }, false);
+
     numberOfDiceMinusOne.addEventListener('click', function() {
-      _changeInputValue(numberOfDiceInput, -1, true);
+      _changeDiceOrBonusNumber("numberOfDice", -1, true);
       currentFormula.render();
     }, false);
+
     numberOfBonusClear.addEventListener('click', function() {
-      _changeInputValue(numberOfBonusInput, 0);
+      _changeDiceOrBonusNumber("numberOfBonus", 0);
       currentFormula.render();
     }, false);
+
     numberOfBonusPlusOne.addEventListener('click', function() {
-      _changeInputValue(numberOfBonusInput, 1);
+      _changeDiceOrBonusNumber("numberOfBonus", 1);
       currentFormula.render();
     }, false);
+
     numberOfBonusMinusOne.addEventListener('click', function() {
-      _changeInputValue(numberOfBonusInput, -1);
+      _changeDiceOrBonusNumber("numberOfBonus", -1);
       currentFormula.render();
     }, false);
+
     fabButton.addEventListener('click', function() {
-      _roll();
+      roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
     }, false);
+
   };
 
-  function _roll() {
-    roller.render(
-      currentFormula.get("numberOfDice"),
-      currentFormula.get("dice"),
-      currentFormula.get("numberOfBonus")
-    );
+  function _getDiceSelection() {
+    currentFormula.set("dice", helper.getRadioValue(helper.e('.js-dice-set'), "dice-set-group").dataset.dice);
   };
 
-  // plus or minus modifier or clear
-  function _changeInputValue(input, ammount, minimum) {
-    var newValue = (parseInt(input.value, 10) || 0) + ammount;
-    if (minimum) {
-      if (newValue < 1) {
+  function _changeDiceOrBonusNumber(type, changeAmmount, minimum) {
+    var newValue;
+    if (changeAmmount == 0) {
+      if (minimum) {
+        newValue = 1;
+      } else {
+        newValue = 0;
+      };
+    } else {
+      newValue = currentFormula.get(type) + changeAmmount;
+      if (minimum && newValue < 1) {
         newValue = 1;
       };
     };
-    input.value = newValue;
-    if (ammount == 0) {
-      input.value = "0";
-    };
+    currentFormula.set(type, newValue);
   };
 
   // exposed methods

@@ -15,32 +15,29 @@ var currentFormula = (function() {
   };
 
   function set(key, value) {
-    if (key == "dice") {
-      var diceCheck = parseInt(value, 10 || 0);
-      if (diceCheck != 2 || diceCheck != 3 || diceCheck != 4 || diceCheck != 6 || diceCheck != 8 || diceCheck != 10 || diceCheck != 12 || diceCheck != 20 || diceCheck != 100) {
-        lostD20Formula[key] = 20;
+    if (key == "numberOfDice" || key == "dice" || key == "numberOfBonus") {
+      if (key == "dice") {
+        var validDice = [2, 3, 4, 6, 8, 10, 12, 20, 100];
+        var diceCheck = parseInt(value, 10 || 0);
+        if (validDice.includes(diceCheck)) {
+          lostD20Formula[key] = diceCheck;
+        } else {
+          lostD20Formula.dice = 20;
+        };
       } else {
         lostD20Formula[key] = parseInt(value, 10 || 0);
       };
-    } else {
-      lostD20Formula[key] = parseInt(value, 10 || 0);
     };
+    console.log("lostD20Formula = ", lostD20Formula);
   };
 
   function render() {
-    var diceSet = helper.e('.js-dice-set');
-    var currentFormula = helper.e('.js-current-formula');
-    // var currentFormulaNumberOfDice = helper.e('.js-current-formula-number-of-dice');
     var currentFormulaDice = helper.e('.js-current-formula-dice');
-    // var currentFormulaNumberOfBonus = helper.e('.js-current-formula-number-of-bonus');
-    var numberOfDiceInput = helper.e('.js-number-of-dice-input');
-    var numberOfBonusInput = helper.e('.js-number-of-bonus-input');
-    // currentFormulaNumberOfDice.textContent = numberOfDiceInput.value;
-    currentFormulaDice.textContent = 'd' + helper.getRadioValue(diceSet, 'dice-set-group').dataset.dice;
-    // currentFormulaNumberOfBonus.textContent = numberOfBonusInput.value;
-    currentFormula.dataset.numberOfDice = parseInt(numberOfDiceInput.value, 10 || 0);
-    currentFormula.dataset.dice = parseInt(helper.getRadioValue(diceSet, 'dice-set-group').dataset.dice, 10 || 0);
-    currentFormula.dataset.numberOfBonus = parseInt(numberOfBonusInput.value, 10 || 0);
+    var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
+    var currentFormulaNumberOfBonusInput = helper.e('.js-current-formula-number-of-bonus-input');
+    currentFormulaDice.textContent = 'd' + get("dice");
+    currentFormulaNumberOfDiceInput.value = get("numberOfDice");
+    currentFormulaNumberOfBonusInput.value = get("numberOfBonus");
   };
 
   // exposed methods

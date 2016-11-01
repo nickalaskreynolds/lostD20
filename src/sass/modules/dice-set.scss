@@ -15,7 +15,7 @@
     height: $font-size-450;
     line-height: $font-size-450;
     & + label {
-      color: $secondary-color-16;
+      color: $secondary-color-10;
       border-bottom: 5px solid transparent;
       transition: all $transition-ease-fast;
     }
@@ -23,13 +23,13 @@
       outline: 0;
       & + label {
         border-color: $primary-color-10;
-        color: $white;
+        color: $secondary-color-18;
       }
       &:focus {
         outline: 0;
         & + label {
           border-color: $primary-color-10;
-          color: $white;
+          color: $secondary-color-18;
         }
       }
     }
