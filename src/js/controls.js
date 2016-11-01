@@ -10,7 +10,7 @@ var controls = (function() {
     var numberOfBonusMinusOne = helper.e('.js-number-of-bonus-minus-one');
     var numberOfDiceInput = helper.e('.js-number-of-dice-input');
     var numberOfBonusInput = helper.e('.js-number-of-bonus-input');
-    var rollFormula = helper.e('.js-roll-formula');
+    var fabButton = helper.e('.js-fab-button');
     for (var i = 0; i < all_diceSetDie.length; i++) {
       all_diceSetDie[i].addEventListener('change', function() {
         currentFormula.render();
@@ -40,7 +40,7 @@ var controls = (function() {
       _changeInputValue(numberOfBonusInput, -1);
       currentFormula.render();
     }, false);
-    rollFormula.addEventListener('click', function() {
+    fabButton.addEventListener('click', function() {
       _roll();
     }, false);
   };

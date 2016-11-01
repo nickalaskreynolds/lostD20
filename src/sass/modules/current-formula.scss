@@ -1,0 +1,51 @@
+.m-current-formula {
+  font-size: $font-size-100;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.m-current-formula-dice,
+.m-current-formula-number-of-dice,
+.m-current-formula-number-of-bonus {
+  flex: 0 1 33.3333333333%;
+}
+
+.m-current-formula-dice {
+  p {
+    color: $white;
+    font-size: $font-size-200;
+    font-family: $open-sans-condensed-light;
+    display: block;
+    height: $line-height-root-250;
+    line-height: $line-height-root-250;
+    padding: $font-size-025 0;
+    text-align: center;
+    margin-bottom: 0;
+    border-bottom: $border;
+  }
+}
+
+.m-current-formula-number-of-dice {}
+
+.m-current-formula-number-of-bonus {}
+
+.m-current-formula-number-of-dice-input,
+.m-current-formula-number-of-bonus-input {
+  &[type="email"],
+  &[type="number"],
+  &[type="search"],
+  &[type="text"],
+  &[type="tel"],
+  &[type="password"] {
+    background-color: $dark-alpha-19;
+    color: $white;
+    font-size: $font-size-200;
+    margin-bottom: 0;
+    width: 100%;
+    padding: $font-size-025 0;
+    text-align: center;
+    &:focus {
+      border-color: $secondary-color-15;
+    }
+  }
+}

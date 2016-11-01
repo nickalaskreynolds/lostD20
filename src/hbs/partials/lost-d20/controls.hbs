@@ -1,36 +1,30 @@
 <section class="l-section l-section-dark l-nav-padding js-section">
-  <div class="m-section-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <div class="m-number-of-dice">
-            <input class="m-number-of-dice-input m-input-block-field-dark js-number-of-dice-input" type="text" value="1" maxlength="3" tabindex="1">
-            <button class="button button-medium button-tertiary js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
-            <button class="button button-medium button-tertiary js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
-            <button class="button button-medium button-tertiary js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="m-current-formula js-current-formula" data-number-of-dice="1" data-dice="20" data-number-of-bonus="0">
+          <div class="m-current-formula-number-of-dice m-number-of-dice">
+            <input class="m-current-formula-number-of-dice-input js-number-of-dice-input" type="text" value="1" maxlength="3" tabindex="1">
           </div>
-          <div class="m-current-formula js-current-formula" data-number-of-dice="1" data-dice="20" data-number-of-bonus="0">
-            <p>
-              <span class="js-current-formula-number-of-dice">1</span>
-              <span class="js-current-formula-dice">d20</span>
-              <span class="js-current-formula-number-of-bonus">0</span>
-            </p>
+          <div class="m-current-formula-dice">
+            <p class="js-current-formula-dice">d20</p>
           </div>
-          <div class="m-number-of-bonus js-number-of-bonus">
-            <input class="m-number-of-bonus-input m-input-block-field-dark js-number-of-bonus-input" type="text" value="+0" maxlength="3" tabindex="1">
-            <button class="button button-medium button-tertiary js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
-            <button class="button button-medium button-tertiary js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
-            <button class="button button-medium button-tertiary js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+          <div class="m-current-formula-number-of-bonus js-number-of-bonus">
+            <input class="m-current-formula-number-of-bonus-input js-number-of-bonus-input" type="text" value="+0" maxlength="3" tabindex="1">
           </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-        </div>
-        <div class="col-xs-12 col-md-4">
-
-        </div>
-        <div class="col-xs-12 col-md-6">
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<button class="button button-icon button-medium js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
+<button class="button button-icon button-medium js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
+<button class="button button-icon button-medium js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+<button class="button button-icon button-medium js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
+<button class="button button-icon button-medium js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
+<button class="button button-icon button-medium js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+<!-- 
+
       <div class="row">
         <div class="col-xs-3">
           <button class="button button-primary button-block save-current-formula" tabindex="3"><span class="icon-playlist-add"></span> Save</button>
@@ -39,6 +33,4 @@
           <button class="button button-primary button-block m-roll-formula js-roll-formula" tabindex="3">Roll The Dice</button>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+ -->
