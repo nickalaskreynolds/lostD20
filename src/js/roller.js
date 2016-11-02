@@ -1,10 +1,10 @@
 var roller = (function() {
 
-  function render(numberOfDice, whichDice, bonusModifier, rollName) {
+  function render(numberOfDice, whichDice, bonusModifier, name) {
 
-    console.log('numberOfDice', numberOfDice);
-    console.log('dice', whichDice);
-    console.log('bonusModifier', bonusModifier);
+    // console.log('numberOfDice', numberOfDice);
+    // console.log('dice', whichDice);
+    // console.log('bonusModifier', bonusModifier);
 
     // make array
     var randomDiceResults = [];
@@ -12,7 +12,7 @@ var roller = (function() {
     for (var i = 0; i < numberOfDice; i++) {
       randomDiceResults.push(Math.floor(Math.random() * whichDice) + 1)
     };
-    console.log(randomDiceResults);
+    // console.log(randomDiceResults);
     // make lowest index var
     var lowestRollIndex;
     // find lowest number index in array
@@ -40,18 +40,19 @@ var roller = (function() {
       // ser var lowestToSubtract value to the index in randomDiceResults with the lowest value
       lowestToSubtract = randomDiceResults[lowestRollIndex];
       // wrap the content in the lowest value index with a span
-      randomDiceResults[lowestRollIndex] = '<span class="strike">' + randomDiceResults[lowestRollIndex] + '</span>';
+      // randomDiceResults[lowestRollIndex] = '<span class="strike">' + randomDiceResults[lowestRollIndex] + '</span>';
     } else {
       lowestToSubtract = 0;
     };
     // add bonus to final total
-    var finalResult = naturalMultipleRolls + bonusModifier - lowestToSubtract;
+    var total = naturalMultipleRolls + bonusModifier - lowestToSubtract;
     // make array with spaces for history
     var randomDiceResultsWithSpaces = randomDiceResults.join(", ");
     // pass arguments to roll function
-    // createRollResult(numberOfDice, whichDice, bonusModifier, rollName, randomDiceResultsWithSpaces, lowestRollIndex, finalResult);
+    // createRollResult(numberOfDice, whichDice, bonusModifier, name, randomDiceResultsWithSpaces, lowestRollIndex, total);
     // checkListListState();
-    console.log(finalResult);
+    // console.log(total);
+    results.set(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"), name, randomDiceResults, total)
   };
 
   // exposed methods

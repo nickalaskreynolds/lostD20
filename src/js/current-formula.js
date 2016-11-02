@@ -3,7 +3,8 @@ var currentFormula = (function() {
   var lostD20Formula = {
     numberOfDice: 1,
     dice: 20,
-    numberOfBonus: 0
+    numberOfBonus: 0,
+    name: "",
   };
 
   function show() {

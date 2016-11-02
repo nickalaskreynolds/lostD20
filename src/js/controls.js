@@ -70,6 +70,7 @@ var controls = (function() {
 
     fabButton.addEventListener('click', function() {
       roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
+      results.render(true);
     }, false);
 
   };
