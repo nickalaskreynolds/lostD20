@@ -15,7 +15,8 @@
     height: $font-size-450;
     line-height: $font-size-450;
     & + label {
-      color: $secondary-color-10;
+      color: $secondary-color-04;
+      font-family: $open-sans-bold;
       border-bottom: 5px solid transparent;
       transition: all $transition-ease-fast;
     }
@@ -23,7 +24,7 @@
       outline: 0;
       & + label {
         border-color: $primary-color-10;
-        color: $secondary-color-18;
+        color: $white;
       }
       &:focus {
         outline: 0;

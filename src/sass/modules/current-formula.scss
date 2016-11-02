@@ -4,80 +4,61 @@
   flex-flow: row nowrap;
 }
 
-.m-current-formula-dice,
-.m-current-formula-number-of-dice,
-.m-current-formula-number-of-bonus {
+.m-current-formula-item {
   flex: 0 1 33.3333333333%;
 }
 
-.m-current-formula-number-of-dice-label,
-.m-current-formula-number-of-bonus-label {
+.m-current-formula-label {
+  font-size: $font-size-075;
+  line-height: $line-height-root-250;
+  color: $light-alpha-16;
   margin-bottom: 0;
-  padding-top: $font-size-100;
-  padding-bottom: $font-size-100;
-  line-height: $font-size-200;
-  color: $secondary-color-10;
-}
-.m-current-formula-controls {
-  background-color: $dark-alpha-18;
-  .m-current-formula-controls-button {
-    &.button {
-      border-radius: 0;
-      margin-bottom: 0;
-      padding-top: $font-size-100;
-      padding-bottom: $font-size-100;
-      color: $secondary-color-10;
-      &:link,
-      &:visited {
-        color: $secondary-color-10;
-      }
-      &:focus,
-      &:hover {
-        color: $white;
-      }
-      &:active,
-      &.is-active {
-        color: $white;
-      }
-    }
-  }
+  width: 100%;
+  // text-align: center;
 }
 
-.m-current-formula-dice {
-  p {
-    background-color: $dark-alpha-18;
-    margin-top: $font-size-150;
-    margin-bottom: 0;
-    color: $white;
-    font-size: $font-size-200;
-    font-family: $open-sans-condensed-bold;
-    display: block;
-    height: $line-height-root-250;
-    line-height: $line-height-root-250;
-    padding: $font-size-025 0;
-    text-align: center;
-    border-bottom: $border;
-  }
-}
-
-.m-current-formula-number-of-dice-input,
-.m-current-formula-number-of-bonus-input {
+.m-current-formula-input {
   &[type="email"],
   &[type="number"],
   &[type="search"],
   &[type="text"],
   &[type="tel"],
   &[type="password"] {
-    background-color: $dark-alpha-18;
-    color: $white;
-    font-size: $font-size-200;
+    background-color: $dark-alpha-19;
+    padding: $font-size-025 0;
+    font-size: $font-size-300;
+    height: $font-size-150;
+    line-height: $font-size-150;
     margin-bottom: 0;
     width: 100%;
-    padding: $font-size-025 0;
-    text-align: center;
-    font-family: $open-sans-condensed-bold;
+    color: $white;
+    // text-align: center;
+    font-family: $open-sans-condensed-light;
     &:focus {
-      background-color: $dark-alpha-14;
+      background-color: $dark-alpha-18;
     }
   }
+}
+
+.m-current-formula-controls {
+  .m-current-formula-controls-button {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding-top: $font-size-100;
+    padding-bottom: $font-size-100;
+  }
+}
+
+.m-current-formula-dice {
+  background-color: $dark-alpha-19;
+  margin-bottom: 0;
+  color: $white;
+  font-size: $font-size-300;
+  font-family: $open-sans-condensed-light;
+  display: block;
+  height: $font-size-150;
+  line-height: $font-size-150;
+  padding: $font-size-025 0;
+  text-align: center;
+  border-bottom: $border;
 }

@@ -25,7 +25,11 @@ var currentFormula = (function() {
           lostD20Formula.dice = 20;
         };
       } else {
-        lostD20Formula[key] = parseInt(value, 10 || 0);
+        if (isNaN(parseInt(value, 10 || 0))) {
+          lostD20Formula[key] = 0;
+        } else {
+          lostD20Formula[key] = parseInt(value, 10 || 0);
+        };
       };
     };
     console.log("lostD20Formula = ", lostD20Formula);
@@ -36,8 +40,16 @@ var currentFormula = (function() {
     var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
     var currentFormulaNumberOfBonusInput = helper.e('.js-current-formula-number-of-bonus-input');
     currentFormulaDice.textContent = 'd' + get("dice");
-    currentFormulaNumberOfDiceInput.value = get("numberOfDice");
-    currentFormulaNumberOfBonusInput.value = get("numberOfBonus");
+    if (get("numberOfDice") == 0) {
+      currentFormulaNumberOfDiceInput.value = 1;
+    } else {
+      currentFormulaNumberOfDiceInput.value = get("numberOfDice");
+    };
+    if (get("numberOfBonus") == 0) {
+      currentFormulaNumberOfBonusInput.value = "+0";
+    } else {
+      currentFormulaNumberOfBonusInput.value = get("numberOfBonus");
+    };
   };
 
   // exposed methods

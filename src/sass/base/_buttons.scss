@@ -111,6 +111,12 @@ input[type="button"] {
     display: inline-block;
     margin-right: 0.3em;
   }
+  &.button-icon-only {
+    [class^="icon-"],
+    [class*=" icon-"] {
+      margin-right: 0;
+    }
+  }
 }
 
 .button-primary {
