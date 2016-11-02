@@ -17,10 +17,18 @@ var controls = (function() {
         _getDiceSelection();
         currentFormula.render();
       }, false);
+      all_diceSetDie[i].addEventListener('dblclick', function() {
+        roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
+        results.render(true);
+      }, false);
     };
 
     currentFormulaNumberOfDiceInput.addEventListener('input', function() {
       _changeDiceOrBonusNumber("numberOfDice", this.value, true);
+    }, false);
+
+    currentFormulaNumberOfDiceInput.addEventListener('blur', function() {
+      _render_minimum();
     }, false);
 
     currentFormulaNumberOfBonusInput.addEventListener('input', function() {
@@ -76,7 +84,14 @@ var controls = (function() {
   };
 
   function _getDiceSelection() {
-    currentFormula.set("dice", helper.getRadioValue(helper.e('.js-dice-set'), "dice-set-group").dataset.increment);
+    currentFormula.set("dice", helper.getRadioValue(helper.e('.js-dice-set'), "dice-set-group").dataset.dice);
+  };
+
+  function _render_minimum() {
+    var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
+    if (currentFormulaNumberOfDiceInput.value == "") {
+      currentFormulaNumberOfDiceInput.value = currentFormula.get('numberOfDice');
+    };
   };
 
   function _render_removePlusSymbol() {

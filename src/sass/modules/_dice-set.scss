@@ -1,5 +1,6 @@
 .m-dice-set {
   width: 100%;
+  font-size: $font-size-root-100;
   // display: flex;
   // flex-flow: row nowrap;
 }
@@ -14,6 +15,7 @@
   .m-dice-set-input {
     height: $font-size-450;
     line-height: $font-size-450;
+    width: 100%;
     & + label {
       color: $secondary-color-04;
       font-family: $open-sans-bold;

@@ -52,7 +52,7 @@ var roller = (function() {
     // createRollResult(numberOfDice, whichDice, bonusModifier, name, randomDiceResultsWithSpaces, lowestRollIndex, total);
     // checkListListState();
     // console.log(total);
-    results.set(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"), name, randomDiceResults, total)
+    results.set(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"), name, randomDiceResultsWithSpaces, total)
   };
 
   // exposed methods

@@ -33,7 +33,7 @@ var currentFormula = (function() {
         };
       };
     };
-    console.log("lostD20Formula = ", lostD20Formula);
+    // console.log("lostD20Formula = ", lostD20Formula);
   };
 
   function render() {

@@ -22,14 +22,16 @@ var results = (function() {
   function _render_allResults() {
     var results = helper.e('.js-results');
     for (var i in resultHistory) {
-      results.appendChild(_makeResultItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total));
+      results.insertBefore(_makeResultItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), results.firstChild);
     };
   };
 
   function _render_singleResult() {
     var results = helper.e('.js-results');
     var index = resultHistory.length - 1;
-    results.appendChild(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total));
+
+    results.insertBefore(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), results.firstChild);
+    // results.appendChild(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total));
 
   };
 
@@ -49,20 +51,32 @@ var results = (function() {
     li.setAttribute("class", "m-result-item");
     var spanName = document.createElement("span");
     spanName.setAttribute("class", "m-result-item-name");
-    spanName.textContent = name;
+    spanName.textContent = name || "";
     var spanFormula = document.createElement("span");
     spanFormula.setAttribute("class", "m-result-item-formula");
-    spanFormula.textContent = numberOfDice + " " + dice + " " + numberOfBonus;
+    var formula = "";
+    if (numberOfDice > 1) {
+      formula = numberOfDice + " ";
+    };
+    formula = formula + "d" + dice;
+    if (numberOfBonus > 0) {
+      formula = formula + " +" + numberOfBonus;
+    } else if (numberOfBonus < 0) {
+      formula = formula + " " + numberOfBonus;
+    };
+    spanFormula.textContent = formula;
     var spanResults = document.createElement("span");
     spanResults.setAttribute("class", "m-result-item-results");
-    spanResults.textContent = results;
+    spanResults.textContent = "Rolled: " + results;
     var spanTotal = document.createElement("span");
-    spanTotal.setAttribute("class", "m-result-item-totla");
+    spanTotal.setAttribute("class", "m-result-item-total");
     spanTotal.textContent = total;
-    li.appendChild(spanName);
+    li.appendChild(spanTotal);
+    if (name) {
+      li.appendChild(spanName);
+    };
     li.appendChild(spanFormula);
     li.appendChild(spanResults);
-    li.appendChild(spanTotal);
     return li;
   };
 

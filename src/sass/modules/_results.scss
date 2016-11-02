@@ -1,0 +1,18 @@
+.m-results {
+  font-size: $font-size-root-100;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.m-result-item {
+  margin-bottom: 0;
+}
+
+
+.m-result-item-name, 
+.m-result-item-formula, 
+.m-result-item-results, 
+.m-result-item-total {
+  margin-right: $font-size-100;
+}
