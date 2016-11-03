@@ -1,16 +1,41 @@
-{{!--
-<section class="l-section m-results js-section js-results">
-  <div class="m-section-heading js-section-heading">
+{{!-- <section class="l-section l-section-results l-padding">
+  <div class="m-section-heading m-section-heading-results">
     <div class="container">
       <div class="row">
         <div class="col-xs-2">
           <h1>Results</h1>
         </div>
         <div class="col-xs-10">
-          <div class="m-section-controls">
-            <div class="button-group-strech js-spell-controls">
-              <button class="button button-small button-tertiary-link js-spell-state-control js-spell-prepare" data-state="prepare"><span class="icon icon-unfold-more"></span>Expand</button>
-              <button class="button button-small button-tertiary-link js-spell-state-control js-spell-unprepare" data-state="unprepare"><span class="icon icon-clear-all"></span>Clear Results</button>
+          <div class="m-section-controls js-section-controls">
+            <div class="button-group js-clone-controls">
+              <button type="button" class="js-clone-add-consumable button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-unfold-more"></span><span>Expand</span></button>
+              <button type="button" class="js-clone-remove button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-close"></span><span>Clear</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="m-results u-list-unstyled js-results"></ul>
+      </div>
+    </div>
+  </div>
+</section> --}}
+<section class="l-section">
+  <div class="m-section-heading m-section-heading-results">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-2">
+          <h1>Results</h1>
+        </div>
+        <div class="col-xs-10">
+          <div class="m-section-controls js-section-controls">
+            <div class="button-group js-clone-controls">
+              <button type="button" class="js-clone-add-consumable button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-unfold-more"></span><span>Expand</span></button>
+              <button type="button" class="js-clone-remove button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-close"></span><span>Clear</span></button>
             </div>
           </div>
         </div>
@@ -19,17 +44,24 @@
   </div>
   <div class="m-section-wrapper">
     <div class="container">
-      <div class="js-list"></div>
-    </div>
-  </div>
-</section>
---}}
-<section class="l-section l-padding">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="m-results u-list-unstyled js-results"></ul>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="m-results-current js-results-current"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+<div class="m-results">
+  <section class="l-section l-padding l-nav-padding">
+    <div class="m-section-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="m-results-history u-list-unstyled js-results-history"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -13,24 +13,28 @@ var results = (function() {
 
   function render(singleResult) {
     if (singleResult) {
-      _render_singleResult();
+      _render_resultHistory();
     } else {
-      _render_allResults();
+      _render_all_resultHistory();
     };
   };
 
-  function _render_allResults() {
-    var results = helper.e('.js-results');
+  function _render_all_resultHistory() {
+    var resultsHistory = helper.e('.js-results-history');
     for (var i in resultHistory) {
-      results.insertBefore(_makeResultItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), results.firstChild);
+      resultsHistory.insertBefore(_makeResultHistoryItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), resultsHistory.firstChild);
     };
   };
 
-  function _render_singleResult() {
-    var results = helper.e('.js-results');
+  function _render_resultHistory() {
+    var resultsHistory = helper.e('.js-results-history');
     var index = resultHistory.length - 1;
-    results.insertBefore(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), results.firstChild);
+    resultsHistory.insertBefore(_makeResultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistory.firstChild);
   };
+
+  function _render_resultCurrent(argument) {
+    // body...
+  }
 
   function _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total) {
     return {
@@ -43,8 +47,20 @@ var results = (function() {
     };
   };
 
-  function _makeResultItem(numberOfDice, dice, numberOfBonus, name, results, total) {
-    var li = document.createElement("p");
+  function _makeResultCurrentItem(numberOfDice, dice, numberOfBonus, name, results, total) {
+    var p = document.createElement("p");
+    p.setAttribute("class", "m-result-item");
+
+
+
+
+
+
+    
+  };
+
+  function _makeResultHistoryItem(numberOfDice, dice, numberOfBonus, name, results, total) {
+    var li = document.createElement("li");
     li.setAttribute("class", "m-result-item");
     var spanResultWrapperDetails = document.createElement("span");
     spanResultWrapperDetails.setAttribute("class", "m-result-item-wrapper-details");

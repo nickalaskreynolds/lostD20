@@ -1,51 +1,43 @@
 <section class="l-section l-section-dark l-nav-padding">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-      <!-- <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2"> -->
-        <div class="m-current-formula">
-          <div class="m-current-formula-item">
-            <label class="m-current-formula-label u-text-right" for="current-formula-number-of-dice-input">Number of Dice</label>
-            <input id="current-formula-number-of-dice-input" class="m-current-formula-input js-current-formula-number-of-dice-input u-text-right" type="text" value="1" maxlength="3" tabindex="1">
-            <div class="m-current-formula-controls button-group button-group-strech button-group-square">
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
+  <div class="m-section-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <!-- <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2"> -->
+          <div class="m-current-formula">
+            <div class="m-current-formula-item">
+              <label class="m-current-formula-label u-text-right" for="current-formula-number-of-dice-input">Number of Dice</label>
+              <input id="current-formula-number-of-dice-input" class="m-current-formula-input js-current-formula-number-of-dice-input u-text-right" type="text" value="1" maxlength="3" tabindex="1">
+              <div class="m-current-formula-controls button-group button-group-strech button-group-square">
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-clear" tabindex="3"><span class="icon-close"></span></button>
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span></button>
+              </div>
             </div>
-          </div>
-          <div class="m-current-formula-item">
-            <p class="m-current-formula-label u-text-center">Current Dice</p>
-            <p class="m-current-formula-dice js-current-formula-dice">d20</p>
-            <div class="m-current-formula-controls button-group button-group-strech button-group-square">
-              <button class="m-current-formula-controls-button button button-icon button-small button-tertiary-link js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span> Save Formula</button>
+            <div class="m-current-formula-item">
+              <p class="m-current-formula-label u-text-center">Current Dice</p>
+              <p class="m-current-formula-dice js-current-formula-dice">d20</p>
+              <div class="m-current-formula-controls button-group button-group-strech button-group-square">
+                <button class="m-current-formula-controls-button button button-icon button-small button-tertiary-link js-number-of-dice-plus-one" tabindex="3"><span class="icon-add"></span> Save Formula</button>
+              </div>
             </div>
-          </div>
-          <div class="m-current-formula-item">
-            <label class="m-current-formula-label" for="current-formula-number-of-bonus-input">Roll Bonus</label>
-            <input id="current-formula-number-of-bonus-input" class="m-current-formula-input js-current-formula-number-of-bonus-input" type="text" value="+0" maxlength="4" tabindex="1">
-            <div class="m-current-formula-controls button-group button-group-strech button-group-square">
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
-              <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
+            <div class="m-current-formula-item">
+              <label class="m-current-formula-label" for="current-formula-number-of-bonus-input">Roll Bonus</label>
+              <input id="current-formula-number-of-bonus-input" class="m-current-formula-input js-current-formula-number-of-bonus-input" type="text" value="+0" maxlength="4" tabindex="1">
+              <div class="m-current-formula-controls button-group button-group-strech button-group-square">
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-plus-one" tabindex="3"><span class="icon-add"></span></button>
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-minus-one" tabindex="3"><span class="icon-remove"></span></button>
+                <button class="m-current-formula-controls-button button button-icon button-icon-only button-small button-tertiary-link js-number-of-bonus-clear" tabindex="3"><span class="icon-close"></span></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-        <button class="button button-primary button-block m-current-formula-roll js-current-formula-roll" tabindex="3">Roll The Dice</button>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="button button-primary button-block m-current-formula-roll js-current-formula-roll" tabindex="3">Roll The Dice</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<!--
-<div class="row">
-  <div class="col-xs-3">
-    <button class="button button-primary button-block save-current-formula" tabindex="3"><span class="icon-playlist-add"></span> Save</button>
-  </div>
-  <div class="col-xs-9">
-    <button class="button button-primary button-block m-roll-formula js-roll-formula" tabindex="3">Roll The Dice</button>
-  </div>
-</div>
--->

@@ -1,9 +1,6 @@
 .l-section {
+  position: relative;
   z-index: $body;
-  padding: $font-size-300 0;
-  &.is-pinned {
-    padding-top: 40px;
-  }
 }
 
 .l-section-dark {
@@ -11,7 +8,7 @@
 }
 
 .l-nav-padding {
-  padding-top: 7.5em;
+  padding-top: 4.5em;
 }
 
 // --------------------------------------------------
