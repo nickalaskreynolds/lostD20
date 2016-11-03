@@ -16,10 +16,25 @@
   }
   &:first-child {
     .m-result-item-total {
-      border-color: $secondary-color-14;
-      background-color: $secondary-color-18;
+      color: $white;
+      background-color: $secondary-color-08;
+      border-color: transparent;
+      font-family: $open-sans-condensed-bold;
       animation: total-flash ease-out 0.5s;
       animation-iteration-count: 1;
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        animation: total-border-flash ease-out 0.5s;
+        animation-iteration-count: 1;
+        transform: translate(-50%, -50%);
+      }
       &.critical-20 {
         animation: total-flash-critical-20 ease-out 0.5s;
       }
@@ -30,36 +45,37 @@
   }
 }
 
-.m-result-item-details,
-.m-result-item-total {
+.m-result-item-wrapper-details,
+.m-result-item-wrapper-total {
   margin-right: $font-size-100;
-  display: inline-block;
-  flex: 1 1 auto;
   &:last-child {
     margin-right: 0;
   }
 }
 
-.m-result-item-details {
+.m-result-item-wrapper-details {
+  flex: 1 1 auto;
   word-break: break-word;
 }
 
-.m-result-item-total {
-  border: $border;
-  border-color: $gray-18;
-  background-color: $gray-20;
-  box-sizing: border-box;
-  flex-basis: $font-size-500;
+.m-result-item-wrapper-total {
+  flex-basis: 8em;
   flex-grow: 0;
   flex-shrink: 0;
 }
 
 .m-result-item-total {
+  background-color: $gray-20;
+  border: $border;
+  border-color: $gray-18;
+  box-sizing: border-box;
   text-align: center;
   border-radius: $border-radius-medium;
   font-family: $open-sans-condensed-light;
   color: $gray-02;
   font-size: $font-size-150;
+  width: 100%;
+  display: block;
 }
 
 .m-result-item-name,
@@ -72,44 +88,30 @@
   }
 }
 
-.m-result-item-name,
+.m-result-item-name {
+  color: $secondary-color-10;
+  font-family: $open-sans-bold;
+}
 .m-result-item-formula {
   color: $gray-06;
 }
 
 @keyframes total-flash {
   0% {
-    background-color: $secondary-color-alpha-01;
-    color: $white;
+    background-color: $secondary-color-18;
   }
   100% {
-    background-color: $secondary-color-alpha-17;
-    color: $gray-02;
+    background-color: $secondary-color-08;
   }
 }
 
-@keyframes total-flash-critical-20 {
+@keyframes total-border-flash {
   0% {
-    background-color: $critical-20;
-    border: 3px solid $critical-20;
+    border: 0 solid $secondary-color-18;
     border-radius: $border-radius-medium;
   }
   100% {
-    background-color: transparent;
-    border: 20px solid transparent;
-    border-radius: 15px;
-  }
-}
-
-@keyframes total-flash-critical-1 {
-  0% {
-    background-color: $critical-1;
-    border: 3px solid $critical-1;
-    border-radius: $border-radius-medium;
-  }
-  100% {
-    background-color: transparent;
-    border: 20px solid transparent;
-    border-radius: 15px;
+    border: 30px solid $white;
+    border-radius: 30px;
   }
 }

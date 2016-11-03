@@ -46,9 +46,10 @@ var results = (function() {
   function _makeResultItem(numberOfDice, dice, numberOfBonus, name, results, total) {
     var li = document.createElement("p");
     li.setAttribute("class", "m-result-item");
-    var spanResultDetails = document.createElement("span");
-    spanResultDetails.setAttribute("class", "m-result-item-details");
-
+    var spanResultWrapperDetails = document.createElement("span");
+    spanResultWrapperDetails.setAttribute("class", "m-result-item-wrapper-details");
+    var spanResultWrapperTotal = document.createElement("span");
+    spanResultWrapperTotal.setAttribute("class", "m-result-item-wrapper-total");
     var spanName = document.createElement("span");
     spanName.setAttribute("class", "m-result-item-name");
     spanName.textContent = name || "";
@@ -72,14 +73,15 @@ var results = (function() {
     spanTotal.setAttribute("class", "m-result-item-total");
     spanTotal.textContent = total;
     if (name) {
-      spanResultDetails.appendChild(spanName);
+      spanResultWrapperDetails.appendChild(spanName);
     };
-    spanResultDetails.appendChild(spanFormula);
-    if (results.length > 1) {
-      spanResultDetails.appendChild(spanResults);
+    spanResultWrapperDetails.appendChild(spanFormula);
+    if (results.length > 1 || numberOfBonus != 0) {
+      spanResultWrapperDetails.appendChild(spanResults);
     };
-    li.appendChild(spanResultDetails);
-    li.appendChild(spanTotal);
+    spanResultWrapperTotal.appendChild(spanTotal);
+    li.appendChild(spanResultWrapperDetails);
+    li.appendChild(spanResultWrapperTotal);
     return li;
   };
 

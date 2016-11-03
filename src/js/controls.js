@@ -8,7 +8,7 @@ var controls = (function() {
     var numberOfBonusClear = helper.e('.js-number-of-bonus-clear');
     var numberOfBonusPlusOne = helper.e('.js-number-of-bonus-plus-one');
     var numberOfBonusMinusOne = helper.e('.js-number-of-bonus-minus-one');
-    var fabButton = helper.e('.js-fab-button');
+    var currentFormulaRoll = helper.e('.js-current-formula-roll');
     var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
     var currentFormulaNumberOfBonusInput = helper.e('.js-current-formula-number-of-bonus-input');
 
@@ -76,7 +76,7 @@ var controls = (function() {
       _render_addPlusSymbol();
     }, false);
 
-    fabButton.addEventListener('click', function() {
+    currentFormulaRoll.addEventListener('click', function() {
       roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
       results.render(true);
     }, false);

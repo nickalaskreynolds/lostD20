@@ -267,6 +267,18 @@ input[type="button"] {
   }
 }
 
+.button-group-square {
+  .button,
+  button {
+    &:first-child {
+      border-radius: 0;
+    }
+    &:last-child {
+      border-radius: 0;
+    }
+  }
+}
+
 .button-group-strech {
   display: flex;
   flex-flow: row nowrap;

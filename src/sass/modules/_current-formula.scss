@@ -14,7 +14,6 @@
   color: $light-alpha-16;
   margin-bottom: 0;
   width: 100%;
-  // text-align: center;
 }
 
 .m-current-formula-input {
@@ -61,4 +60,9 @@
   padding: $font-size-025 0;
   text-align: center;
   border-bottom: $border;
+}
+
+.m-current-formula-roll  {
+  margin-top: $font-size-200;
+  margin-bottom: 0;
 }
