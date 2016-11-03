@@ -2,6 +2,53 @@ var results = (function() {
 
   var resultHistory = [];
 
+  function bind() {
+    var resultsExpand = helper.e('.js-results-expand');
+    var resultsClear = helper.e('.js-results-clear');
+    resultsExpand.addEventListener('click', function() {
+      _toggle_history();
+    }, false);
+    resultsClear.addEventListener('click', function() {
+      destroy();
+    }, false);
+  };
+
+  function _toggle_history(open, close) {
+    var resultsExpand = helper.e('.js-results-expand');
+    var sectionResults = helper.e('.js-section-results');
+    if (open || close) {
+      if (open) {
+        resultsExpand.dataset.expand = "true";
+        helper.addClass(sectionResults, 'is-open');
+        helper.removeClass(sectionResults, 'is-closed');
+      };
+      if (close) {
+        resultsExpand.dataset.expand = "false";
+        helper.removeClass(sectionResults, 'is-open');
+        helper.addClass(sectionResults, 'is-closed');
+      };
+    } else {
+      if (resultsExpand.dataset.expand == "true") {
+        resultsExpand.dataset.expand = "false";
+        helper.removeClass(sectionResults, 'is-open');
+        helper.addClass(sectionResults, 'is-closed');
+      } else {
+        resultsExpand.dataset.expand = "true";
+        helper.addClass(sectionResults, 'is-open');
+        helper.removeClass(sectionResults, 'is-closed');
+      };
+    };
+  };
+
+  function _checkResultsHistory() {
+    var resultsHistory = helper.e('.js-results-history');
+    if (resultsHistory.children.length > 0) {
+      return true;
+    } else {
+      return false;
+    };
+  };
+
   function set(numberOfDice, dice, numberOfBonus, name, results, total) {
     var newResult = new _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total);
     resultHistory.push(newResult);
@@ -27,14 +74,29 @@ var results = (function() {
   };
 
   function _render_resultHistory() {
+    var resultsCurrent = helper.e('.js-results-current');
     var resultsHistory = helper.e('.js-results-history');
     var index = resultHistory.length - 1;
     resultsHistory.insertBefore(_makeResultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistory.firstChild);
   };
 
-  function _render_resultCurrent(argument) {
-    // body...
-  }
+  function _render_resultCurrent() {
+    // var resultsCurrent = helper.e('.js-results-current');
+    // resultsCurrent.appendChild(_makeResultCurrentItem(resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
+  };
+
+  function destroy() {
+    var resultsHistory = helper.e('.js-results-history');
+    var clearhistory = function() {
+      while (resultsHistory.lastChild) {
+        resultsHistory.removeChild(resultsHistory.lastChild);
+      };
+      _toggle_history(false, true);
+    };
+    if (_checkResultsHistory()) {
+      prompt.render("Clear history?", "Are you sure you want to clear the roll history?", "Clear", clearhistory);
+    };
+  };
 
   function _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total) {
     return {
@@ -47,16 +109,10 @@ var results = (function() {
     };
   };
 
-  function _makeResultCurrentItem(numberOfDice, dice, numberOfBonus, name, results, total) {
+  function _makeResultCurrentItem(results, total) {
     var p = document.createElement("p");
     p.setAttribute("class", "m-result-item");
 
-
-
-
-
-
-    
   };
 
   function _makeResultHistoryItem(numberOfDice, dice, numberOfBonus, name, results, total) {
@@ -103,8 +159,10 @@ var results = (function() {
 
   // exposed methods
   return {
+    bind: bind,
     set: set,
     history: history,
+    destroy: destroy,
     render: render
   };
 

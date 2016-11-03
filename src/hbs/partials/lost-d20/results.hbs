@@ -24,24 +24,8 @@
     </div>
   </div>
 </section> --}}
+
 <section class="l-section">
-  <div class="m-section-heading m-section-heading-results">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-2">
-          <h1>Results</h1>
-        </div>
-        <div class="col-xs-10">
-          <div class="m-section-controls js-section-controls">
-            <div class="button-group js-clone-controls">
-              <button type="button" class="js-clone-add-consumable button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-unfold-more"></span><span>Expand</span></button>
-              <button type="button" class="js-clone-remove button button-icon button-small button-tertiary-link" tabindex="3"><span class="icon-close"></span><span>Clear</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="m-section-wrapper">
     <div class="container">
       <div class="row">
@@ -52,16 +36,32 @@
     </div>
   </div>
 </section>
-<div class="m-results">
-  <section class="l-section l-padding l-nav-padding">
-    <div class="m-section-wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <ul class="m-results-history u-list-unstyled js-results-history"></ul>
+
+<section class="l-section l-padding l-section-results is-closed js-section-results">
+  <div class="m-section-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-2">
+          <h1>History</h1>
+        </div>
+        <div class="col-xs-10">
+          <div class="m-section-controls js-section-controls">
+            <div class="button-group js-results-controls">
+              <button type="button" class="button button-icon button-small button-tertiary-link js-results-expand" tabindex="3" data-expand="false"><span class="icon-unfold-more"></span><span>Expand</span></button>
+              <button type="button" class="button button-icon button-small button-tertiary-link js-results-clear" tabindex="3"><span class="icon-close"></span><span>Clear</span></button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+  <div class="m-results">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="m-results-history u-list-unstyled js-results-history"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

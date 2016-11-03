@@ -1,6 +1,7 @@
 (function() {
 
   nav.bind();
+  results.bind();
   controls.bind();
   results.render();
   // nav.render();

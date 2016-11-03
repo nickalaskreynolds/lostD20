@@ -11,6 +11,20 @@
   padding-top: 4.5em;
 }
 
+.l-section-results {
+  position: fixed;
+  width: 100%;
+  transition: all $transition-ease-fast;
+  &.is-closed {
+    top: 100vh;
+    transform: translateY(-40px);
+  }
+  &.is-open {
+    top: 4.5em;
+    transform: translateY(0);
+  }
+}
+
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
