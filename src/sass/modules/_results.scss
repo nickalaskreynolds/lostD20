@@ -6,7 +6,7 @@
   padding-bottom: $font-size-100;
   margin-bottom: $font-size-100;
   line-height: $font-size-250;
-  border-bottom: 2px solid $gray-19;
+  border-bottom: 2px solid $gray-20;
   display: flex;
   flex-flow: row nowrap;
   &:last-child {
@@ -16,15 +16,21 @@
   }
   &:first-child {
     .m-result-item-total {
-      border-color: $primary-color-10;
-      background-color: $primary-color-alpha-19;
+      border-color: $secondary-color-14;
+      background-color: $secondary-color-18;
+      animation: total-flash ease-out 0.5s;
+      animation-iteration-count: 1;
+      &.critical-20 {
+        animation: total-flash-critical-20 ease-out 0.5s;
+      }
+      &.critical-1 {
+        animation: total-flash-critical-1 ease-out 0.5s;
+      }
     }
   }
 }
 
-.m-result-item-name,
-.m-result-item-formula,
-.m-result-item-results,
+.m-result-item-details,
 .m-result-item-total {
   margin-right: $font-size-100;
   display: inline-block;
@@ -34,19 +40,15 @@
   }
 }
 
-.m-result-item-name {
-  flex-basis: 20%;
-}
-
-.m-result-item-formula {
-  flex-basis: 20%;
-}
-
-.m-result-item-results {
-  flex-basis: 60%;
+.m-result-item-details {
+  word-break: break-word;
 }
 
 .m-result-item-total {
+  border: $border;
+  border-color: $gray-18;
+  background-color: $gray-20;
+  box-sizing: border-box;
   flex-basis: $font-size-500;
   flex-grow: 0;
   flex-shrink: 0;
@@ -54,16 +56,60 @@
 
 .m-result-item-total {
   text-align: center;
-  // border: $border;
   border-radius: $border-radius-medium;
   font-family: $open-sans-condensed-light;
   color: $gray-02;
   font-size: $font-size-150;
-  // min-width: $font-size-500;
 }
 
 .m-result-item-name,
 .m-result-item-formula,
 .m-result-item-results {
   color: $gray-14;
+  margin-right: $font-size-100;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.m-result-item-name,
+.m-result-item-formula {
+  color: $gray-06;
+}
+
+@keyframes total-flash {
+  0% {
+    background-color: $secondary-color-alpha-01;
+    color: $white;
+  }
+  100% {
+    background-color: $secondary-color-alpha-17;
+    color: $gray-02;
+  }
+}
+
+@keyframes total-flash-critical-20 {
+  0% {
+    background-color: $critical-20;
+    border: 3px solid $critical-20;
+    border-radius: $border-radius-medium;
+  }
+  100% {
+    background-color: transparent;
+    border: 20px solid transparent;
+    border-radius: 15px;
+  }
+}
+
+@keyframes total-flash-critical-1 {
+  0% {
+    background-color: $critical-1;
+    border: 3px solid $critical-1;
+    border-radius: $border-radius-medium;
+  }
+  100% {
+    background-color: transparent;
+    border: 20px solid transparent;
+    border-radius: 15px;
+  }
 }

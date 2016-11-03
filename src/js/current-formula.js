@@ -48,6 +48,8 @@ var currentFormula = (function() {
     };
     if (get("numberOfBonus") == 0) {
       currentFormulaNumberOfBonusInput.value = "+0";
+    } else if (get("numberOfBonus") > 0) {
+      currentFormulaNumberOfBonusInput.value = "+" + get("numberOfBonus");
     } else {
       currentFormulaNumberOfBonusInput.value = get("numberOfBonus");
     };

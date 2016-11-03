@@ -1,13 +1,14 @@
 .m-fab {
   position: relative;
 }
+
 .m-fab-button-wrapper {
   position: absolute;
   top: -$font-size-root-250;
   right: 0;
   font-size: $font-size-root-100;
   z-index: $fab;
-  transition: all $transition-ease-medium;
+  transition: all $transition-ease-fast;
   transform: rotate(0);
 }
 
@@ -39,7 +40,7 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  transition: all $transition-ease-slow;
+  transition: all $transition-ease-fast;
   box-shadow: $shadow-small;
   [class^="icon-"],
   [class*=" icon-"] {
@@ -48,7 +49,7 @@
     top: 0;
     width: 100%;
     line-height: $font-size-150;
-    transition: all $transition-ease-slow;
+    transition: all $transition-ease-fast;
   }
   &:focus,
   &:hover {

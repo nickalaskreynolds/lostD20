@@ -29,10 +29,7 @@ var results = (function() {
   function _render_singleResult() {
     var results = helper.e('.js-results');
     var index = resultHistory.length - 1;
-
     results.insertBefore(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), results.firstChild);
-    // results.appendChild(_makeResultItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total));
-
   };
 
   function _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total) {
@@ -49,8 +46,8 @@ var results = (function() {
   function _makeResultItem(numberOfDice, dice, numberOfBonus, name, results, total) {
     var li = document.createElement("p");
     li.setAttribute("class", "m-result-item");
-    var spanResultWrapper = document.createElement("span");
-    spanResultWrapper.setAttribute("class", "m-result-item-wrapper");
+    var spanResultDetails = document.createElement("span");
+    spanResultDetails.setAttribute("class", "m-result-item-details");
 
     var spanName = document.createElement("span");
     spanName.setAttribute("class", "m-result-item-name");
@@ -70,16 +67,18 @@ var results = (function() {
     spanFormula.textContent = formula;
     var spanResults = document.createElement("span");
     spanResults.setAttribute("class", "m-result-item-results");
-    spanResults.textContent = "Rolled: " + results;
+    spanResults.textContent = "Rolled: " + results.join(", ");
     var spanTotal = document.createElement("span");
     spanTotal.setAttribute("class", "m-result-item-total");
     spanTotal.textContent = total;
     if (name) {
-      spanResultWrapper.appendChild(spanName);
+      spanResultDetails.appendChild(spanName);
     };
-    spanResultWrapper.appendChild(spanFormula);
-    spanResultWrapper.appendChild(spanResults);
-    li.appendChild(spanResultWrapper);
+    spanResultDetails.appendChild(spanFormula);
+    if (results.length > 1) {
+      spanResultDetails.appendChild(spanResults);
+    };
+    li.appendChild(spanResultDetails);
     li.appendChild(spanTotal);
     return li;
   };
