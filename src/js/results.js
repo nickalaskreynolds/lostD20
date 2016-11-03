@@ -49,6 +49,9 @@ var results = (function() {
   function _makeResultItem(numberOfDice, dice, numberOfBonus, name, results, total) {
     var li = document.createElement("p");
     li.setAttribute("class", "m-result-item");
+    var spanResultWrapper = document.createElement("span");
+    spanResultWrapper.setAttribute("class", "m-result-item-wrapper");
+
     var spanName = document.createElement("span");
     spanName.setAttribute("class", "m-result-item-name");
     spanName.textContent = name || "";
@@ -71,12 +74,13 @@ var results = (function() {
     var spanTotal = document.createElement("span");
     spanTotal.setAttribute("class", "m-result-item-total");
     spanTotal.textContent = total;
-    li.appendChild(spanTotal);
     if (name) {
-      li.appendChild(spanName);
+      spanResultWrapper.appendChild(spanName);
     };
-    li.appendChild(spanFormula);
-    li.appendChild(spanResults);
+    spanResultWrapper.appendChild(spanFormula);
+    spanResultWrapper.appendChild(spanResults);
+    li.appendChild(spanResultWrapper);
+    li.appendChild(spanTotal);
     return li;
   };
 
