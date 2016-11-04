@@ -5,8 +5,12 @@
   overflow-y: auto;
 }
 
+.m-results-current {
+  
+}
+
 .m-results-history {
-  padding: $font-size-200 0;
+  padding: $font-size-300 0;
 }
 
 .m-result-item {
@@ -99,6 +103,7 @@
   color: $secondary-color-10;
   font-family: $open-sans-bold;
 }
+
 .m-result-item-formula {
   color: $gray-06;
 }

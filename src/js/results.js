@@ -13,16 +13,16 @@ var results = (function() {
     }, false);
   };
 
-  function _toggle_history(open, close) {
+  function _toggle_history(force) {
     var resultsExpand = helper.e('.js-results-expand');
     var sectionResults = helper.e('.js-section-results');
-    if (open || close) {
-      if (open) {
+    if (force) {
+      if (force == 'open') {
         resultsExpand.dataset.expand = "true";
         helper.addClass(sectionResults, 'is-open');
         helper.removeClass(sectionResults, 'is-closed');
       };
-      if (close) {
+      if (force == 'close') {
         resultsExpand.dataset.expand = "false";
         helper.removeClass(sectionResults, 'is-open');
         helper.addClass(sectionResults, 'is-closed');
@@ -61,6 +61,7 @@ var results = (function() {
   function render(singleResult) {
     if (singleResult) {
       _render_resultHistory();
+      _render_resultCurrent();
     } else {
       _render_all_resultHistory();
     };
@@ -81,8 +82,12 @@ var results = (function() {
   };
 
   function _render_resultCurrent() {
-    // var resultsCurrent = helper.e('.js-results-current');
-    // resultsCurrent.appendChild(_makeResultCurrentItem(resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
+    var resultsCurrent = helper.e('.js-results-current');
+    while (resultsCurrent.lastChild) {
+      resultsCurrent.removeChild(resultsCurrent.lastChild);
+    };
+    var index = resultHistory.length - 1;
+    resultsCurrent.appendChild(_makeResultCurrentItem(resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
   };
 
   function destroy() {
@@ -91,7 +96,8 @@ var results = (function() {
       while (resultsHistory.lastChild) {
         resultsHistory.removeChild(resultsHistory.lastChild);
       };
-      _toggle_history(false, true);
+      _toggle_history("close");
+      snack.render('Roll history cleared');
     };
     if (_checkResultsHistory()) {
       prompt.render("Clear history?", "Are you sure you want to clear the roll history?", "Clear", clearhistory);
@@ -112,7 +118,23 @@ var results = (function() {
   function _makeResultCurrentItem(results, total) {
     var p = document.createElement("p");
     p.setAttribute("class", "m-result-item");
-
+    var spanResultWrapperDetails = document.createElement("span");
+    spanResultWrapperDetails.setAttribute("class", "m-result-item-wrapper-details");
+    var spanResultWrapperTotal = document.createElement("span");
+    spanResultWrapperTotal.setAttribute("class", "m-result-item-wrapper-total");
+    var spanResults = document.createElement("span");
+    spanResults.setAttribute("class", "m-result-item-results");
+    spanResults.textContent = "Rolled: " + results.join(", ");
+    var spanTotal = document.createElement("span");
+    spanTotal.setAttribute("class", "m-result-item-total");
+    spanTotal.textContent = total;
+    if (results.length > 1) {
+      spanResultWrapperDetails.appendChild(spanResults);
+    };
+    spanResultWrapperTotal.appendChild(spanTotal);
+    p.appendChild(spanResultWrapperDetails);
+    p.appendChild(spanResultWrapperTotal);
+    return p;
   };
 
   function _makeResultHistoryItem(numberOfDice, dice, numberOfBonus, name, results, total) {
