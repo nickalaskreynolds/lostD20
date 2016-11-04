@@ -1,0 +1,67 @@
+.m-controls {
+  font-size: $font-size-100;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.m-controls-third {
+  flex: 0 1 33.3333333333%;
+}
+
+.m-controls-label {
+  font-size: $font-size-075;
+  line-height: $line-height-root-250;
+  color: $light-alpha-16;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.m-controls-input {
+  &[type="email"],
+  &[type="number"],
+  &[type="search"],
+  &[type="text"],
+  &[type="tel"],
+  &[type="password"] {
+    background-color: $dark-alpha-19;
+    padding: $font-size-025 0;
+    font-size: $font-size-300;
+    height: $font-size-150;
+    line-height: $font-size-150;
+    margin-bottom: 0;
+    width: 100%;
+    color: $white;
+    // text-align: center;
+    font-family: $open-sans-condensed-light;
+    &:focus {
+      background-color: $dark-alpha-18;
+    }
+  }
+}
+
+.m-controls-button-group {
+  .m-controls-value-change {
+    border-radius: 0;
+    margin-bottom: 0;
+    padding-top: $font-size-100;
+    padding-bottom: $font-size-100;
+  }
+}
+
+.m-controls-roll {
+  margin-bottom: 0;
+}
+
+.m-controls-dice {
+  background-color: $dark-alpha-19;
+  margin-bottom: 0;
+  color: $white;
+  font-size: $font-size-300;
+  font-family: $open-sans-condensed-light;
+  display: block;
+  height: $font-size-150;
+  line-height: $font-size-150;
+  padding: $font-size-025 0;
+  text-align: center;
+  border-bottom: $border;
+}

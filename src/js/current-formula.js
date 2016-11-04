@@ -36,31 +36,11 @@ var currentFormula = (function() {
     // console.log("lostD20Formula = ", lostD20Formula);
   };
 
-  function render() {
-    var currentFormulaDice = helper.e('.js-current-formula-dice');
-    var currentFormulaNumberOfDiceInput = helper.e('.js-current-formula-number-of-dice-input');
-    var currentFormulaNumberOfBonusInput = helper.e('.js-current-formula-number-of-bonus-input');
-    currentFormulaDice.textContent = 'd' + get("dice");
-    if (get("numberOfDice") == 0) {
-      currentFormulaNumberOfDiceInput.value = 1;
-    } else {
-      currentFormulaNumberOfDiceInput.value = get("numberOfDice");
-    };
-    if (get("numberOfBonus") == 0) {
-      currentFormulaNumberOfBonusInput.value = "+0";
-    } else if (get("numberOfBonus") > 0) {
-      currentFormulaNumberOfBonusInput.value = "+" + get("numberOfBonus");
-    } else {
-      currentFormulaNumberOfBonusInput.value = get("numberOfBonus");
-    };
-  };
-
   // exposed methods
   return {
     show: show,
     get: get,
-    set: set,
-    render: render
+    set: set
   };
 
 })();
