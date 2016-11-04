@@ -2,13 +2,13 @@ var controls = (function() {
 
   function bind() {
     var all_diceSetDie = helper.eA('.js-dice-set-die');
-    var controlsNumberOfDiceClear = helper.e('.js-controls-number-of-dice-clear');
-    var controlsNumberOfDicePlusOne = helper.e('.js-controls-number-of-dice-plus-one');
-    var controlsNumberOfDiceMinusOne = helper.e('.js-controls-number-of-dice-minus-one');
-    var controlsNumberOfBonusClear = helper.e('.js-controls-number-of-bonus-clear');
-    var controlsNumberOfBonusPlusOne = helper.e('.js-controls-number-of-bonus-plus-one');
-    var controlsNumberOfBonusMinusOne = helper.e('.js-controls-number-of-bonus-minus-one');
-    var controlsRoll = helper.e('.js-controls-roll');
+    var controlsNumberOfDiceClearButton = helper.e('.js-controls-number-of-dice-clear-button');
+    var controlsNumberOfDicePlusOneButton = helper.e('.js-controls-number-of-dice-plus-one-button');
+    var controlsNumberOfDiceMinusOneButton = helper.e('.js-controls-number-of-dice-minus-one-button');
+    var controlsNumberOfBonusClearButton = helper.e('.js-controls-number-of-bonus-clear-button');
+    var controlsNumberOfBonusPlusOneButton = helper.e('.js-controls-number-of-bonus-plus-one-button');
+    var controlsNumberOfBonusMinusOneButton = helper.e('.js-controls-number-of-bonus-minus-one-button');
+    var controlsRollButton = helper.e('.js-controls-roll-button');
     var controlsNumberOfDiceInput = helper.e('.js-controls-number-of-dice-input');
     var controlsNumberOfBonusInput = helper.e('.js-controls-number-of-bonus-input');
 
@@ -43,40 +43,40 @@ var controls = (function() {
       _render_addPlusSymbol();
     }, false);
 
-    controlsNumberOfDiceClear.addEventListener('click', function() {
+    controlsNumberOfDiceClearButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfDice", 0, true);
       render();
     }, false);
 
-    controlsNumberOfDicePlusOne.addEventListener('click', function() {
+    controlsNumberOfDicePlusOneButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfDice", 1, true);
       render();
     }, false);
 
-    controlsNumberOfDiceMinusOne.addEventListener('click', function() {
+    controlsNumberOfDiceMinusOneButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfDice", -1, true);
       render();
     }, false);
 
-    controlsNumberOfBonusClear.addEventListener('click', function() {
+    controlsNumberOfBonusClearButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfBonus", 0);
       render();
       _render_addPlusSymbol();
     }, false);
 
-    controlsNumberOfBonusPlusOne.addEventListener('click', function() {
+    controlsNumberOfBonusPlusOneButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfBonus", 1);
       render();
       _render_addPlusSymbol();
     }, false);
 
-    controlsNumberOfBonusMinusOne.addEventListener('click', function() {
+    controlsNumberOfBonusMinusOneButton.addEventListener('click', function() {
       _incrementDiceOrBonusNumber("numberOfBonus", -1);
       render();
       _render_addPlusSymbol();
     }, false);
 
-    controlsRoll.addEventListener('click', function() {
+    controlsRollButton.addEventListener('click', function() {
       roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
       results.render(true);
     }, false);

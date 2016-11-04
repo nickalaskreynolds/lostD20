@@ -19,10 +19,10 @@
 .m-controls-input {
   &[type="email"],
   &[type="number"],
+  &[type="password"],
   &[type="search"],
-  &[type="text"],
   &[type="tel"],
-  &[type="password"] {
+  &[type="text"] {
     background-color: $dark-alpha-19;
     padding: $font-size-025 0;
     font-size: $font-size-300;
@@ -33,6 +33,7 @@
     color: $white;
     // text-align: center;
     font-family: $open-sans-condensed-light;
+
     &:focus {
       background-color: $dark-alpha-18;
     }
@@ -40,16 +41,14 @@
 }
 
 .m-controls-button-group {
-  .m-controls-value-change {
-    border-radius: 0;
+  .m-controls-value-change-button {
     margin-bottom: 0;
-    padding-top: $font-size-100;
-    padding-bottom: $font-size-100;
   }
-}
 
-.m-controls-roll {
-  margin-bottom: 0;
+  .m-controls-roll-button {
+    margin-bottom: 0;
+    flex: 0 1 33.3333333333%;
+  }
 }
 
 .m-controls-dice {
