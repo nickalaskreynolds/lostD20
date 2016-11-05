@@ -2,6 +2,13 @@ var results = (function() {
 
   var resultHistory = [];
 
+  var checkForPreviousSession = (function() {
+    if (helper.read('result-history')) {
+      resultHistory = JSON.parse(helper.read('result-history'));
+      _render_previousResultHistory();
+    };
+  })();
+
   function bind() {
     var resultsExpand = helper.e('.js-results-expand');
     var resultsClear = helper.e('.js-results-clear');
@@ -10,7 +17,29 @@ var results = (function() {
     }, false);
     resultsClear.addEventListener('click', function() {
       destroy();
+      session.remove();
     }, false);
+  };
+
+  function set(numberOfDice, dice, numberOfBonus, name, results, total) {
+    var newResult = new _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total);
+    resultHistory.push(newResult);
+  };
+
+  function history() {
+    return resultHistory
+  };
+
+  function update() {
+    var resultsHistory = helper.e('.js-results-history');
+    var index = resultHistory.length - 1;
+    resultsHistory.insertBefore(_make_resultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistory.firstChild);
+    _render_resultCurrent();
+  };
+
+  function render() {
+    _render_previousResultHistory();
+    _render_resultCurrent();
   };
 
   function _toggle_history(force) {
@@ -49,45 +78,24 @@ var results = (function() {
     };
   };
 
-  function set(numberOfDice, dice, numberOfBonus, name, results, total) {
-    var newResult = new _createResultObject(numberOfDice, dice, numberOfBonus, name, results, total);
-    resultHistory.push(newResult);
-  };
-
-  function history() {
-    return resultHistory
-  };
-
-  function render(singleResult) {
-    if (singleResult) {
-      _render_resultHistory();
-      _render_resultCurrent();
-    } else {
-      _render_all_resultHistory();
-    };
-  };
-
-  function _render_all_resultHistory() {
-    var resultsHistory = helper.e('.js-results-history');
-    for (var i in resultHistory) {
-      resultsHistory.insertBefore(_makeResultHistoryItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), resultsHistory.firstChild);
-    };
-  };
-
-  function _render_resultHistory() {
-    var resultsCurrent = helper.e('.js-results-current');
-    var resultsHistory = helper.e('.js-results-history');
-    var index = resultHistory.length - 1;
-    resultsHistory.insertBefore(_makeResultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistory.firstChild);
-  };
-
   function _render_resultCurrent() {
-    var resultsCurrent = helper.e('.js-results-current');
-    while (resultsCurrent.lastChild) {
-      resultsCurrent.removeChild(resultsCurrent.lastChild);
+    if (resultHistory.length > 0) {
+      var resultsCurrent = helper.e('.js-results-current');
+      while (resultsCurrent.lastChild) {
+        resultsCurrent.removeChild(resultsCurrent.lastChild);
+      };
+      var index = resultHistory.length - 1;
+      resultsCurrent.appendChild(_make_resultCurrentItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
     };
-    var index = resultHistory.length - 1;
-    resultsCurrent.appendChild(_makeResultCurrentItem(resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
+  };
+
+  function _render_previousResultHistory() {
+    if (resultHistory.length > 0) {
+      var resultsHistory = helper.e('.js-results-history');
+      for (var i in resultHistory) {
+        resultsHistory.insertBefore(_make_resultHistoryItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), resultsHistory.firstChild);
+      };
+    };
   };
 
   function destroy() {
@@ -115,20 +123,40 @@ var results = (function() {
     };
   };
 
-  function _makeResultCurrentItem(results, total) {
+  function _make_resultCurrentItem(numberOfDice, dice, numberOfBonus, name, results, total) {
     var p = document.createElement("p");
     p.setAttribute("class", "m-result-item");
     var spanResultWrapperDetails = document.createElement("span");
     spanResultWrapperDetails.setAttribute("class", "m-result-item-wrapper-details");
     var spanResultWrapperTotal = document.createElement("span");
     spanResultWrapperTotal.setAttribute("class", "m-result-item-wrapper-total");
+    var spanName = document.createElement("span");
+    spanName.setAttribute("class", "m-result-item-name");
+    spanName.textContent = name || "";
+    var spanFormula = document.createElement("span");
+    spanFormula.setAttribute("class", "m-result-item-formula");
+    var formula = "";
+    if (numberOfDice > 1) {
+      formula = numberOfDice + " ";
+    };
+    formula = formula + "d" + dice;
+    if (numberOfBonus > 0) {
+      formula = formula + " +" + numberOfBonus;
+    } else if (numberOfBonus < 0) {
+      formula = formula + " " + numberOfBonus;
+    };
+    spanFormula.textContent = formula;
     var spanResults = document.createElement("span");
     spanResults.setAttribute("class", "m-result-item-results");
     spanResults.textContent = "Rolled: " + results.join(", ");
     var spanTotal = document.createElement("span");
     spanTotal.setAttribute("class", "m-result-item-total");
     spanTotal.textContent = total;
-    if (results.length > 1) {
+    if (name) {
+      spanResultWrapperDetails.appendChild(spanName);
+    };
+    spanResultWrapperDetails.appendChild(spanFormula);
+    if (results.length > 1 || numberOfBonus != 0) {
       spanResultWrapperDetails.appendChild(spanResults);
     };
     spanResultWrapperTotal.appendChild(spanTotal);
@@ -137,7 +165,7 @@ var results = (function() {
     return p;
   };
 
-  function _makeResultHistoryItem(numberOfDice, dice, numberOfBonus, name, results, total) {
+  function _make_resultHistoryItem(numberOfDice, dice, numberOfBonus, name, results, total) {
     var li = document.createElement("li");
     li.setAttribute("class", "m-result-item");
     var spanResultWrapperDetails = document.createElement("span");
@@ -185,7 +213,8 @@ var results = (function() {
     set: set,
     history: history,
     destroy: destroy,
-    render: render
+    render: render,
+    update: update
   };
 
 })();

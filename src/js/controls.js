@@ -19,7 +19,7 @@ var controls = (function() {
       }, false);
       all_diceSetDie[i].addEventListener('dblclick', function() {
         roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
-        results.render(true);
+        results.update();
       }, false);
     };
 
@@ -78,7 +78,8 @@ var controls = (function() {
 
     controlsRollButton.addEventListener('click', function() {
       roller.render(currentFormula.get("numberOfDice"), currentFormula.get("dice"), currentFormula.get("numberOfBonus"));
-      results.render(true);
+      results.update();
+      session.save();
     }, false);
 
   };

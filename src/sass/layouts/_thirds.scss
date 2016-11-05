@@ -1,0 +1,25 @@
+.l-grid {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.l-grid-main,
+.l-grid-side {
+  flex: 0 0 auto;
+}
+
+.l-grid-main {
+  background-color: red;
+  width: 66.6666666666vw;
+  margin-top: 4.5em;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.l-grid-side {
+  background-color: gray;
+  width: 33.3333333333vw;
+  margin-top: 4.5em;
+  max-height: 100vh;
+  overflow-y: auto;
+}
