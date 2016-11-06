@@ -31,9 +31,9 @@ var results = (function() {
   };
 
   function update() {
-    var resultsHistory = helper.e('.js-results-history');
+    var resultsHistoryWrapper = helper.e('.js-results-history-wrapper');
     var index = resultHistory.length - 1;
-    resultsHistory.insertBefore(_make_resultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistory.firstChild);
+    resultsHistoryWrapper.insertBefore(_make_resultHistoryItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsHistoryWrapper.firstChild);
     _render_resultCurrent();
   };
 
@@ -70,8 +70,8 @@ var results = (function() {
   };
 
   function _checkResultsHistory() {
-    var resultsHistory = helper.e('.js-results-history');
-    if (resultsHistory.children.length > 0) {
+    var resultsHistoryWrapper = helper.e('.js-results-history-wrapper');
+    if (resultsHistoryWrapper.children.length > 0) {
       return true;
     } else {
       return false;
@@ -80,29 +80,29 @@ var results = (function() {
 
   function _render_resultCurrent() {
     if (resultHistory.length > 0) {
-      var resultsCurrent = helper.e('.js-results-current');
-      while (resultsCurrent.lastChild) {
-        resultsCurrent.removeChild(resultsCurrent.lastChild);
+      var resultsCurrentWrapper = helper.e('.js-results-current-wrapper');
+      while (resultsCurrentWrapper.lastChild) {
+        resultsCurrentWrapper.removeChild(resultsCurrentWrapper.lastChild);
       };
       var index = resultHistory.length - 1;
-      resultsCurrent.appendChild(_make_resultCurrentItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsCurrent.firstChild);
+      resultsCurrentWrapper.appendChild(_make_resultCurrentItem(resultHistory[index].numberOfDice, resultHistory[index].dice, resultHistory[index].numberOfBonus, resultHistory[index].name, resultHistory[index].results, resultHistory[index].total), resultsCurrentWrapper.firstChild);
     };
   };
 
   function _render_previousResultHistory() {
     if (resultHistory.length > 0) {
-      var resultsHistory = helper.e('.js-results-history');
+      var resultsHistoryWrapper = helper.e('.js-results-history-wrapper');
       for (var i in resultHistory) {
-        resultsHistory.insertBefore(_make_resultHistoryItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), resultsHistory.firstChild);
+        resultsHistoryWrapper.insertBefore(_make_resultHistoryItem(resultHistory[i].numberOfDice, resultHistory[i].dice, resultHistory[i].numberOfBonus, resultHistory[i].name, resultHistory[i].results, resultHistory[i].total), resultsHistoryWrapper.firstChild);
       };
     };
   };
 
   function destroy() {
-    var resultsHistory = helper.e('.js-results-history');
+    var resultsHistoryWrapper = helper.e('.js-results-history-wrapper');
     var clearhistory = function() {
-      while (resultsHistory.lastChild) {
-        resultsHistory.removeChild(resultsHistory.lastChild);
+      while (resultsHistoryWrapper.lastChild) {
+        resultsHistoryWrapper.removeChild(resultsHistoryWrapper.lastChild);
       };
       _toggle_history("close");
       snack.render('Roll history cleared');
