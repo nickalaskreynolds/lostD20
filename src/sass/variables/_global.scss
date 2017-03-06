@@ -70,7 +70,7 @@ $secondary-color-18:                  saturate(lighten($secondary-color-01, 85),
 $secondary-color-19:                  saturate(lighten($secondary-color-01, 90), 53);
 $secondary-color-20:                  saturate(lighten($secondary-color-01, 95), 56);
 
-$secondary-color-alpha-01:            rgba($secondary-color-10, 1);
+$secondary-color-alpha-01:            rgba($secondary-color-10, 100);
 $secondary-color-alpha-02:            rgba($secondary-color-10, 0.95);
 $secondary-color-alpha-03:            rgba($secondary-color-10, 0.90);
 $secondary-color-alpha-04:            rgba($secondary-color-10, 0.85);
@@ -252,11 +252,11 @@ $transition-bounce-medium:           0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $transition-bounce-slow:             0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 $transition-bounce-extra-slow:       0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
-$transition-ease-extra-fast:         0.2s ease-in-out;
-$transition-ease-fast:               0.3s ease-in-out;
-$transition-ease-medium:             0.4s ease-in-out;
-$transition-ease-slow:               0.5s ease-in-out;
-$transition-ease-extra-slow:         0.6s ease-in-out;
+$transition-ease-extra-fast:         0.1s ease-in-out;
+$transition-ease-fast:               0.2s ease-in-out;
+$transition-ease-medium:             0.3s ease-in-out;
+$transition-ease-slow:               0.4s ease-in-out;
+$transition-ease-extra-slow:         0.5s ease-in-out;
 
 // --------------------------------------------------
 // z-index
@@ -271,7 +271,7 @@ $fab:                                6000;
 $snacks:                             7000;
 $quick-nav:                          8000;
 $prompt:                             9000;
-$modal:                             10000;
+$modal:                              10000;
 
 // --------------------------------------------------
 // drop shadows
