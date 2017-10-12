@@ -1,6 +1,6 @@
 .m-snack-bar {
   background-color: $gray-02;
-  padding: 15px 20px;
+  padding: 0.8em 1.2em;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
@@ -13,62 +13,69 @@
   z-index: $snacks;
   font-size: $font-size-root-100;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   transform: translatey(100%);
   .m-snack-bar-button {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 1em;
   }
   .m-snack-bar-message {
     margin: 0;
+    padding: 0.25em 0;
     color: $white;
     font-size: 1em;
     font-family: $open-sans-semi-bold;
+    &:not(:only-child):not(:last-child) {
+      margin-bottom: 0;
+    }
   }
   &.is-reveal {
     transform: translatey(0);
     transition: all $transition-ease-fast;
   }
 }
-
 .is-night-mode {
   .m-snack-bar {
-    background-color: $secondary-color-06;
+    background-color: $gray-05;
   }
 }
-
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
 @media (min-width: $screen-sm) {
   .m-snack-bar {
     width: 80%;
+    padding: 0.5em 1.2em;
     margin-bottom: 0;
-    margin-left: 20px;
+    margin-left: 1em;
     border-radius: $border-radius-medium;
     box-sizing: border-box;
     transform: translatey(100%);
     transition: all $transition-bounce-slow;
     &.is-reveal {
-      margin-bottom: 20px;
+      margin-bottom: 1em;
     }
   }
 }
-
 @media (min-width: $screen-md) {
   .m-snack-bar {
     width: 70%;
   }
 }
-
 @media (min-width: $screen-lg) {
   .m-snack-bar {
     width: 50%;
+    left: 4em;
   }
 }
-
 @media (min-width: $screen-xl) {
   .m-snack-bar {
     width: 40%;
+  }
+}
+@media print {
+  .m-snack-bar {
+    display: none;
   }
 }

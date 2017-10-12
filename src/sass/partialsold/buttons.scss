@@ -1,218 +1,454 @@
-/* buttons
-------------------------------------------------- */
-
 .button,
-button {
-  padding: 0 10px;
-  color: $gray-02;
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background-color: $gray-20;
+  color: $base-color;
+  padding: 0.25em 1em;
+  border: 0;
+  border: $border;
+  border-color: $gray-16;
+  border-radius: $border-radius-large;
+  margin: 0 0 1em;
   text-align: center;
-  font-size: 1rem;
-  font-family: $open-sans-semi-bold;
-  height: 34px;
-  line-height: 32px;
   text-decoration: none;
   white-space: nowrap;
-  background-color: $white;
-  border: 1px solid $gray-03;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
+  font-family: $open-sans-semi-bold;
   cursor: pointer;
   box-sizing: border-box;
-  border-radius: $border-radius-medium;
-  transition: all $transition-ease-fast;
-  text-decoration: none;
+  box-shadow: none;
+  transition: background-color $transition-ease-fast, border-color $transition-ease-fast, color $transition-ease-fast, padding $transition-ease-fast, box-shadow $transition-ease-fast;
   display: inline-block;
-  [class^="icon-"],
-  [class*=" icon-"] {
-    margin: 0 10px 0 0;
-    font-size: 1rem;
-    height: 32px;
-    line-height: 32px;
-    display: inline-block;
+  &:link,
+  &:visited {
+    background-color: $gray-20;
+    border-color: $gray-16;
+    color: $base-color;
   }
-  &:focus {
-    outline: 0;
-    text-decoration: none;
-  }
+  &:focus,
   &:hover {
-    color: $white;
-    background-color: $gray-02;
-    border-color: $gray-02;
+    background-color: $gray-18;
+    border-color: $gray-14;
+    color: $base-color;
     outline: 0;
     text-decoration: none;
+    box-shadow: 0 0 0 3px $dark-alpha-20;
   }
-  &:active,
-  &.active {
-    color: $white;
-    background-color: $gray-04;
-    border-color: $gray-04;
+  &.is-active,
+  &:active {
+    background-color: $gray-16;
+    border-color: $gray-12;
+    color: $base-color;
+    outline: 0;
+    text-decoration: none;
+    box-shadow: 0 0 0 3px $dark-alpha-19;
   }
-  &.button-primary {
-    color: $white;
-    background-color: $primary-color;
-    border-color: $primary-color-dark;
-    &:link,
-    &:visited {
-      color: $white;
-      background-color: $primary-color;
-      border-color: $primary-color-dark;
+}
+.button-icon {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  span {
+    flex: 0 0 auto;
+    height: initial;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1em;
+    line-height: 1;
+    display: inline-block;
+    &:not(:only-child):not(:last-child) {
+      margin-right: 0.4em;
     }
+  }
+}
+.button-small {
+  padding: 0 0.6em;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
+  .button-text {
+    font-size: 0.8em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 0.8em;
+    line-height: 1;
+  }
+}
+.button-medium {
+  padding: 0.25em 1em;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
+  .button-text {
+    font-size: 1em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1.2em;
+    line-height: 1;
+  }
+}
+.button-large {
+  padding: 1em 2em;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
+  text-transform: uppercase;
+  .button-text {
+    font-size: 1.2em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1.4em;
+    line-height: 1;
+  }
+}
+.button-thin {
+  padding-left: 0;
+  padding-right: 0;
+}
+.button-slim {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+}
+.button-text {
+  display: block;
+  position: relative;
+}
+.button-block {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-block;
+}
+.button-primary {
+  background-color: $primary-color-10;
+  border-color: $primary-color-08;
+  color: $white;
+  &:link,
+  &:visited {
+    background-color: $primary-color-10;
+    border-color: $primary-color-08;
+    color: $white;
+  }
+  &:focus,
+  &:hover {
+    background-color: $primary-color-08;
+    border-color: $primary-color-06;
+    color: $white;
+    box-shadow: 0 0 0 3px $primary-color-alpha-15;
+  }
+  &.is-live {
+    background-color: $primary-color-06;
+    border-color: $primary-color-04;
+    color: $white;
+  }
+  &.is-active,
+  &:active {
+    background-color: $primary-color-06;
+    border-color: $primary-color-04;
+    color: $white;
+    box-shadow: 0 0 0 3px $primary-color-alpha-10;
+  }
+}
+.button-secondary {
+  background-color: $secondary-color-10;
+  border-color: $secondary-color-08;
+  color: $white;
+  &:link,
+  &:visited {
+    background-color: $secondary-color-10;
+    border-color: $secondary-color-08;
+    color: $white;
+  }
+  &:focus,
+  &:hover {
+    background-color: $secondary-color-08;
+    border-color: $secondary-color-06;
+    color: $white;
+    box-shadow: 0 0 0 3px $secondary-color-alpha-15;
+  }
+  &.is-live {
+    background-color: $secondary-color-06;
+    border-color: $secondary-color-04;
+    color: $white;
+  }
+  &.is-active,
+  &:active {
+    background-color: $secondary-color-06;
+    border-color: $secondary-color-04;
+    color: $white;
+    box-shadow: 0 0 0 3px $secondary-color-alpha-10;
+  }
+}
+.button-link {
+  background-color: transparent;
+  border-color: transparent;
+  &:link,
+  &:visited {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  &:focus,
+  &:hover {
+    background-color: $dark-alpha-20;
+    border-color: $dark-alpha-16;
+    box-shadow: 0 0 0 3px $dark-alpha-18;
+  }
+  &.is-active,
+  &:active {
+    background-color: $dark-alpha-18;
+    border-color: $dark-alpha-14;
+    box-shadow: 0 0 0 3px $dark-alpha-16;
+  }
+}
+.button-tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: $light-alpha-02;
+  &:link,
+  &:visited {
+    background-color: transparent;
+    border-color: transparent;
+    color: $light-alpha-02;
+  }
+  &:focus,
+  &:hover {
+    background-color: $light-alpha-20;
+    border-color: $light-alpha-16;
+    box-shadow: 0 0 0 3px $light-alpha-18;
+    color: $light-alpha-02;
+  }
+  &.is-active,
+  &:active {
+    background-color: $light-alpha-18;
+    border-color: $light-alpha-14;
+    box-shadow: 0 0 0 3px $light-alpha-16;
+    color: $white;
+  }
+}
+.button-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 1em;
+  width: 100%;
+  position: relative;
+  .button,
+  button {
+    flex: 0 0 auto;
+    border-radius: 0;
+    margin-bottom: 0;
+    margin-left: -1px;
+    z-index: 1;
     &:focus,
     &:hover {
-      background-color: $primary-color-dark;
-      outline: 0;
-      text-decoration: none;
+      z-index: 2;
     }
-    &:active,
-    &.active {
-      background-color: $primary-color-light;
+    &:first-of-type {
+      border-radius: $border-radius-large 0 0 $border-radius-large;
     }
-  }
-  &.button-secondary {
-    color: $gray-04;
-    background-color: transparent;
-    border-color: $gray-alpha-12;
-    &:link,
-    &:visited {
-      color: $gray-04;
-      background-color: transparent;
-      border-color: $gray-alpha-12;
+    &:last-of-type {
+      border-radius: 0 $border-radius-large $border-radius-large 0;
     }
-    &:focus {
-      background-color: $secondary-color-dark;
-      border-color: $secondary-color-light;
-      color: $white;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:hover {
-      color: $white;
-      background-color: $secondary-color-dark;
-      border-color: $secondary-color-dark;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:active,
-    &.active {
-      color: $white;
-      background-color: $secondary-color-light;
-      border-color: $secondary-color-dark;
+    &:first-of-type:last-of-type {
+      border-radius: $border-radius-large;
     }
   }
-  &.button-tertiary {
-    color: $gray-02;
-    background-color: transparent;
-    border-color: $gray-13;
-    &:link,
-    &:visited {
-      color: $gray-02;
-      background-color: transparent;
-      border-color: $gray-13;
-    }
-    &:focus {
-      border-color: $gray-12;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:hover {
-      color: $gray-02;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:active,
-    &.active {
-      background-color: $gray-13;
-      border-color: $gray-12;
-    }
-  }
-  &.button-dark {
-    color: $gray-10;
-    background-color: transparent;
-    border-color: $gray-alpha-10;
-    &:link,
-    &:visited {
-      color: $gray-10;
-      background-color: transparent;
-      border-color: $gray-alpha-10;
-    }
-    &:focus {
-      color: $gray-10;
-      background-color: $gray-alpha-08;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:hover {
-      color: $gray-10;
-      background-color: $light-alpha-12;
-      border-color: $light-alpha-11;
-      outline: 0;
-      text-decoration: none;
-    }
-    &:active,
-    &.active {
-      color: $white;
-      background-color: $light-alpha-08;
-    }
-  }
-  &.button-small {
-    padding: 0 10px;
-    height: 22px;
-    line-height: 20px;
-    font-size: $small-text;
-    [class^="icon-"],
-    [class*=" icon-"] {
-      margin: 0 5px 0 0;
-      line-height: 20px;
-      height: 20px;
-      font-size: $small-text;
-      display: inline-block;
-    }
-  }
-  &.button-block {
-    width: 100%;
+}
+.button-group-right {
+  justify-content: flex-end;
+}
+.button-group-line {
+  flex-flow: row nowrap;
+  .button,
+  button {
     padding-left: 0;
     padding-right: 0;
-    display: inline-block;
-  }
-  &.button-icon {
-    padding-right: 15px;
+    flex: 1 1 auto;
   }
 }
-
-input {
-  &[type="submit"],
-  &[type="reset"],
-  &[type="button"] {
-    display: inline-block;
-    height: 2rem;
-    padding: 0 15px;
-    color: $gray-01;
-    text-align: center;
-    font-size: 0.8rem;
-    font-family: $open-sans-semi-bold;
-    line-height: 2rem;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: $gray-04;
-    border: 1px solid $gray-03;
-    cursor: pointer;
-    box-sizing: border-box;
-    border-radius: $border-radius-small;
-    &:hover,
-    &:focus {
-      color: $white;
-      background-color: $gray-02;
-      border-color: $gray-02;
-      outline: 0;
-    }
-    &:active {
-      color: $white;
-      background-color: $gray-04;
-      border-color: $gray-04;
-    }
+.button-group-strech {
+  .button,
+  button {
+    flex: 1 1 auto;
   }
 }
-
+.button-group-equal {
+  .button,
+  button {
+    flex-basis: 0;
+  }
+}
 .button,
 button,
 label {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.is-night-mode {
+  .button,
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    background-color: $gray-04;
+    border-color: $gray-06;
+    color: $white;
+    &:link,
+    &:visited {
+      background-color: $gray-04;
+      border-color: $gray-06;
+    }
+    &:focus,
+    &:hover {
+      background-color: $gray-06;
+      border-color: $gray-08;
+      box-shadow: 0 0 0 3px $light-alpha-10;
+      color: $white;
+    }
+    &.is-active,
+    &:active {
+      background-color: $gray-08;
+      border-color: $gray-10;
+      color: $white;
+    }
+  }
+  .button-primary {
+    background-color: $primary-color-08;
+    border-color: $primary-color-06;
+    color: $white;
+    &:link,
+    &:visited {
+      background-color: $primary-color-08;
+      border-color: $primary-color-06;
+      color: $white;
+    }
+    &:focus,
+    &:hover {
+      background-color: $primary-color-10;
+      border-color: $primary-color-08;
+      color: $white;
+      box-shadow: 0 0 0 3px $primary-color-alpha-10;
+    }
+    &.is-live {
+      background-color: $primary-color-12;
+      border-color: $primary-color-10;
+      color: $white;
+    }
+    &.is-active,
+    &:active {
+      background-color: $primary-color-12;
+      border-color: $primary-color-10;
+      color: $white;
+      box-shadow: 0 0 0 3px $primary-color-alpha-05;
+    }
+  }
+  .button-secondary {
+    background-color: $secondary-color-08;
+    border-color: $secondary-color-06;
+    color: $white;
+    &:link,
+    &:visited {
+      background-color: $secondary-color-08;
+      border-color: $secondary-color-06;
+      color: $white;
+    }
+    &:focus,
+    &:hover {
+      background-color: $secondary-color-10;
+      border-color: $secondary-color-08;
+      color: $white;
+      box-shadow: 0 0 0 3px $secondary-color-alpha-10;
+    }
+    &.is-live {
+      background-color: $secondary-color-12;
+      border-color: $secondary-color-10;
+      color: $white;
+    }
+    &.is-active,
+    &:active {
+      background-color: $secondary-color-12;
+      border-color: $secondary-color-10;
+      color: $white;
+      box-shadow: 0 0 0 3px $secondary-color-alpha-05;
+    }
+  }
+  .button-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $light-alpha-02;
+    &:link,
+    &:visited {
+      background-color: transparent;
+      border-color: transparent;
+      color: $light-alpha-02;
+    }
+    &:focus,
+    &:hover {
+      background-color: $light-alpha-20;
+      border-color: $light-alpha-16;
+      box-shadow: 0 0 0 3px $light-alpha-18;
+      color: $light-alpha-02;
+    }
+    &.is-active,
+    &:active {
+      background-color: $light-alpha-18;
+      border-color: $light-alpha-14;
+      box-shadow: 0 0 0 3px $light-alpha-16;
+      color: $white;
+    }
+  }
+  .button-tertiary {
+    background-color: transparent;
+    border-color: transparent;
+    color: $light-alpha-02;
+    &:link,
+    &:visited {
+      background-color: transparent;
+      border-color: transparent;
+      color: $light-alpha-02;
+    }
+    &:focus,
+    &:hover {
+      background-color: $light-alpha-20;
+      border-color: $light-alpha-16;
+      box-shadow: 0 0 0 3px $light-alpha-18;
+      color: $light-alpha-02;
+    }
+    &.is-active,
+    &:active {
+      background-color: $light-alpha-18;
+      border-color: $light-alpha-14;
+      box-shadow: 0 0 0 3px $light-alpha-16;
+      color: $white;
+    }
+  }
+}
+// --------------------------------------------------
+// media queries
+// --------------------------------------------------
+@media (min-width: $screen-sm) {
+  .button,
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    line-height: $line-height-160;
+  }
+  .button-small {
+    line-height: $line-height-160;
+  }
+  .button-medium {
+    line-height: $line-height-160;
+  }
+  .button-large {
+    line-height: $line-height-160;
+  }
+}
+@media (min-width: $screen-md) {}
+@media (min-width: $screen-lg) {}
+@media (min-width: $screen-xl) {}

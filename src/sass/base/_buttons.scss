@@ -1,32 +1,31 @@
 .button,
 button,
-input[type="submit"],
+input[type="button"],
 input[type="reset"],
-input[type="button"] {
-  background-color: $white;
-  border-color: $gray-18;
+input[type="submit"] {
+  background-color: $gray-20;
   color: $base-color;
-  padding: $font-size-025 $font-size-100;
-  border-width: 1px;
-  border-style: solid;
-  margin-bottom: $font-size-100;
+  padding: 0.25em 1em;
+  border: 0;
+  border: $border;
+  border-color: $gray-16;
+  border-radius: $border-radius-large;
+  margin: 0 0 1em;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  font-size: $font-size-root-100;
-  line-height: $line-height-160;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
   font-family: $open-sans-semi-bold;
-  border-radius: $border-radius-medium;
   cursor: pointer;
   box-sizing: border-box;
-  transition: all $transition-ease-extra-fast;
+  box-shadow: none;
+  transition: background-color $transition-ease-fast, border-color $transition-ease-fast, color $transition-ease-fast, padding $transition-ease-fast, box-shadow $transition-ease-fast;
   display: inline-block;
-  text-transform: uppercase;
-  // transition: background-color $transition-ease-medium, border-color $transition-ease-medium, color $transition-ease-medium;
   &:link,
   &:visited {
-    background-color: $white;
-    border-color: $gray-18;
+    background-color: $gray-20;
+    border-color: $gray-16;
     color: $base-color;
   }
   &:focus,
@@ -36,89 +35,95 @@ input[type="button"] {
     color: $base-color;
     outline: 0;
     text-decoration: none;
+    box-shadow: 0 0 0 3px $dark-alpha-20;
   }
-  &:active,
-  &.is-active {
+  &.is-active,
+  &:active {
     background-color: $gray-16;
     border-color: $gray-12;
     color: $base-color;
     outline: 0;
     text-decoration: none;
+    box-shadow: 0 0 0 3px $dark-alpha-19;
   }
 }
-
-.button-normal {
-  background: transparent;
-  border-radius: initial;
-  white-space: normal;
-  border: 0;
-  &:link,
-  &:visited {
-    background-color: transparent;
-    border-color: transparent;
+.button-icon {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  span {
+    flex: 0 0 auto;
+    height: initial;
   }
-  &:focus,
-  &:hover {
-    background-color: transparent;
-    border-color: transparent;
-  }
-  &:active,
-  &.is-active {
-    background-color: transparent;
-    border-color: transparent;
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1em;
+    line-height: 1;
+    display: inline-block;
+    &:not(:only-child):not(:last-child) {
+      margin-right: 0.4em;
+    }
   }
 }
-
 .button-small {
-  padding: $font-size-025 $font-size-100;
-  font-size: $font-size-075;
-  border-radius: $border-radius-medium;
+  padding: 0 0.6em;
+  font-size: $font-size-100;
+  line-height: $line-height-200;
+  .button-text {
+    font-size: 0.8em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 0.8em;
+    line-height: 1;
+  }
 }
-
 .button-medium {
-  padding: $font-size-025 $font-size-150;
+  padding: 0.25em 1em;
   font-size: $font-size-100;
-  border-radius: $border-radius-medium;
+  line-height: $line-height-200;
+  .button-text {
+    font-size: 1em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1.2em;
+    line-height: 1;
+  }
 }
-
 .button-large {
-  padding: $font-size-100 $font-size-200;
+  padding: 1em 2em;
   font-size: $font-size-100;
-  border-radius: $border-radius-medium;
+  line-height: $line-height-200;
+  text-transform: uppercase;
+  .button-text {
+    font-size: 1.2em;
+  }
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 1.4em;
+    line-height: 1;
+  }
 }
-
+.button-thin {
+  padding-left: 0;
+  padding-right: 0;
+}
+.button-slim {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+}
+.button-text {
+  display: block;
+  position: relative;
+}
 .button-block {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
   display: inline-block;
 }
-
-.button-icon {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  line-height: initial;
-  align-items: center;
-  span {
-    flex: 0 0 auto;
-    line-height: initial;
-    height: initial;
-  }
-  [class^="icon-"],
-  [class*=" icon-"] {
-    font-size: $font-size-150;
-    display: inline-block;
-    margin-right: 0.3em;
-  }
-  &.button-icon-only {
-    [class^="icon-"],
-    [class*=" icon-"] {
-      margin-right: 0;
-    }
-  }
-}
-
 .button-primary {
   background-color: $primary-color-10;
   border-color: $primary-color-08;
@@ -134,15 +139,21 @@ input[type="button"] {
     background-color: $primary-color-08;
     border-color: $primary-color-06;
     color: $white;
+    box-shadow: 0 0 0 3px $primary-color-alpha-15;
   }
-  &:active,
-  &.is-active {
+  &.is-live {
     background-color: $primary-color-06;
     border-color: $primary-color-04;
     color: $white;
   }
+  &.is-active,
+  &:active {
+    background-color: $primary-color-06;
+    border-color: $primary-color-04;
+    color: $white;
+    box-shadow: 0 0 0 3px $primary-color-alpha-10;
+  }
 }
-
 .button-secondary {
   background-color: $secondary-color-10;
   border-color: $secondary-color-08;
@@ -158,298 +169,286 @@ input[type="button"] {
     background-color: $secondary-color-08;
     border-color: $secondary-color-06;
     color: $white;
+    box-shadow: 0 0 0 3px $secondary-color-alpha-15;
   }
-  &:active,
-  &.is-active {
+  &.is-live {
     background-color: $secondary-color-06;
     border-color: $secondary-color-04;
     color: $white;
   }
+  &.is-active,
+  &:active {
+    background-color: $secondary-color-06;
+    border-color: $secondary-color-04;
+    color: $white;
+    box-shadow: 0 0 0 3px $secondary-color-alpha-10;
+  }
 }
-
 .button-link {
   background-color: transparent;
   border-color: transparent;
-  color: $base-color;
-  text-transform: initial;
-  font-family: $open-sans-regular;
   &:link,
   &:visited {
     background-color: transparent;
     border-color: transparent;
-    color: $base-color;
   }
   &:focus,
   &:hover {
     background-color: $dark-alpha-20;
-    border-color: transparent;
-    color: $primary-color-08;
+    border-color: $dark-alpha-16;
+    box-shadow: 0 0 0 3px $dark-alpha-18;
   }
-  &:active,
-  &.is-active {
+  &.is-active,
+  &:active {
     background-color: $dark-alpha-18;
-    border-color: transparent;
-    color: $primary-color-06;
+    border-color: $dark-alpha-14;
+    box-shadow: 0 0 0 3px $dark-alpha-16;
   }
 }
-
 .button-tertiary {
   background-color: transparent;
-  border-color: $dark-alpha-18;
-  color: $light-alpha-08;
-  &:link,
-  &:visited {
-    background-color: transparent;
-    border-color: $dark-alpha-18;
-    color: $light-alpha-08;
-  }
-  &:focus,
-  &:hover {
-    background-color: $dark-alpha-18;
-    border-color: $dark-alpha-16;
-    color: $white;
-  }
-  &:active,
-  &.is-active {
-    background-color: $dark-alpha-14;
-    border-color: $dark-alpha-12;
-    color: $white;
-  }
-}
-
-.button-tertiary-link {
-  background-color: transparent;
   border-color: transparent;
-  color: $light-alpha-08;
+  color: $light-alpha-02;
   &:link,
   &:visited {
     background-color: transparent;
     border-color: transparent;
-    color: $light-alpha-08;
+    color: $light-alpha-02;
   }
   &:focus,
   &:hover {
-    background-color: $dark-alpha-18;
-    border-color: transparent;
-    color: $white;
+    background-color: $light-alpha-20;
+    border-color: $light-alpha-16;
+    box-shadow: 0 0 0 3px $light-alpha-18;
+    color: $light-alpha-02;
   }
-  &:active,
-  &.is-active {
-    background-color: $dark-alpha-14;
-    border-color: transparent;
+  &.is-active,
+  &:active {
+    background-color: $light-alpha-18;
+    border-color: $light-alpha-14;
+    box-shadow: 0 0 0 3px $light-alpha-16;
     color: $white;
   }
 }
-
 .button-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 1em;
+  width: 100%;
+  position: relative;
   .button,
   button {
-    margin-right: 0;
-    margin-left: -1px;
+    flex: 0 0 auto;
     border-radius: 0;
+    margin-bottom: 0;
+    margin-left: -1px;
     z-index: 1;
-    position: relative;
-    float: left;
-    &:first-child {
-      border-top-left-radius: $border-radius-medium;
-      border-bottom-left-radius: $border-radius-medium;
-      margin-left: 0;
-    }
-    &:last-child {
-      border-top-right-radius: $border-radius-medium;
-      border-bottom-right-radius: $border-radius-medium;
-    }
     &:focus,
     &:hover {
       z-index: 2;
     }
-    &.is-active,
-    &:active {
-      z-index: 2;
+    &:first-of-type {
+      border-radius: $border-radius-large 0 0 $border-radius-large;
+    }
+    &:last-of-type {
+      border-radius: 0 $border-radius-large $border-radius-large 0;
+    }
+    &:first-of-type:last-of-type {
+      border-radius: $border-radius-large;
     }
   }
 }
-
-.button-group-square {
-  .button,
-  button {
-    &:first-child {
-      border-radius: 0;
-    }
-    &:last-child {
-      border-radius: 0;
-    }
-  }
+.button-group-right {
+  justify-content: flex-end;
 }
-
-.button-group-strech {
-  display: flex;
+.button-group-line {
   flex-flow: row nowrap;
-  width: 100%;
   .button,
   button {
-    float: none;
-    flex: 1 1 auto;
     padding-left: 0;
     padding-right: 0;
+    flex: 1 1 auto;
   }
 }
-
+.button-group-strech {
+  .button,
+  button {
+    flex: 1 1 auto;
+  }
+}
+.button-group-equal {
+  .button,
+  button {
+    flex-basis: 0;
+  }
+}
 .button,
 button,
 label {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 .is-night-mode {
   .button,
   button,
-  input[type="submit"],
+  input[type="button"],
   input[type="reset"],
-  input[type="button"] {
-    background-color: $secondary-color-04;
-    border-color: $secondary-color-05;
+  input[type="submit"] {
+    background-color: $gray-04;
+    border-color: $gray-06;
     color: $white;
     &:link,
     &:visited {
-      background-color: $secondary-color-04;
-      border-color: $secondary-color-05;
-      color: $white;
+      background-color: $gray-04;
+      border-color: $gray-06;
     }
     &:focus,
     &:hover {
-      background-color: $secondary-color-05;
-      border-color: $secondary-color-14;
+      background-color: $gray-06;
+      border-color: $gray-08;
+      box-shadow: 0 0 0 3px $light-alpha-10;
       color: $white;
     }
-    &:active,
-    &.is-active {
-      background-color: $secondary-color-16;
-      border-color: $secondary-color-12;
+    &.is-active,
+    &:active {
+      background-color: $gray-08;
+      border-color: $gray-10;
       color: $white;
     }
   }
   .button-primary {
-    background-color: $primary-color-10;
-    border-color: $primary-color-08;
+    background-color: $primary-color-08;
+    border-color: $primary-color-06;
     color: $white;
     &:link,
     &:visited {
-      background-color: $primary-color-10;
-      border-color: $primary-color-08;
-      color: $white;
-    }
-    &:focus,
-    &:hover {
       background-color: $primary-color-08;
       border-color: $primary-color-06;
       color: $white;
     }
-    &:active,
-    &.is-active {
-      background-color: $primary-color-06;
-      border-color: $primary-color-04;
+    &:focus,
+    &:hover {
+      background-color: $primary-color-10;
+      border-color: $primary-color-08;
       color: $white;
+      box-shadow: 0 0 0 3px $primary-color-alpha-10;
+    }
+    &.is-live {
+      background-color: $primary-color-12;
+      border-color: $primary-color-10;
+      color: $white;
+    }
+    &.is-active,
+    &:active {
+      background-color: $primary-color-12;
+      border-color: $primary-color-10;
+      color: $white;
+      box-shadow: 0 0 0 3px $primary-color-alpha-05;
     }
   }
   .button-secondary {
-    background-color: $secondary-color-10;
-    border-color: $secondary-color-08;
+    background-color: $secondary-color-08;
+    border-color: $secondary-color-06;
     color: $white;
     &:link,
     &:visited {
-      background-color: $secondary-color-10;
-      border-color: $secondary-color-08;
-      color: $white;
-    }
-    &:focus,
-    &:hover {
       background-color: $secondary-color-08;
       border-color: $secondary-color-06;
       color: $white;
     }
-    &:active,
-    &.is-active {
-      background-color: $secondary-color-06;
-      border-color: $secondary-color-04;
+    &:focus,
+    &:hover {
+      background-color: $secondary-color-10;
+      border-color: $secondary-color-08;
       color: $white;
+      box-shadow: 0 0 0 3px $secondary-color-alpha-10;
+    }
+    &.is-live {
+      background-color: $secondary-color-12;
+      border-color: $secondary-color-10;
+      color: $white;
+    }
+    &.is-active,
+    &:active {
+      background-color: $secondary-color-12;
+      border-color: $secondary-color-10;
+      color: $white;
+      box-shadow: 0 0 0 3px $secondary-color-alpha-05;
     }
   }
   .button-link {
     background-color: transparent;
-    border: 0;
-    color: $white;
-    text-transform: initial;
-    font-family: $open-sans-regular;
+    border-color: transparent;
+    color: $light-alpha-02;
     &:link,
     &:visited {
       background-color: transparent;
-      color: $white;
+      border-color: transparent;
+      color: $light-alpha-02;
     }
     &:focus,
     &:hover {
-      background-color: $dark-alpha-20;
-      color: $primary-color-08;
+      background-color: $light-alpha-20;
+      border-color: $light-alpha-16;
+      box-shadow: 0 0 0 3px $light-alpha-18;
+      color: $light-alpha-02;
     }
-    &:active,
-    &.is-active {
-      background-color: $dark-alpha-18;
-      color: $primary-color-06;
+    &.is-active,
+    &:active {
+      background-color: $light-alpha-18;
+      border-color: $light-alpha-14;
+      box-shadow: 0 0 0 3px $light-alpha-16;
+      color: $white;
     }
   }
   .button-tertiary {
     background-color: transparent;
-    border-color: $light-alpha-14;
-    color: $light-alpha-04;
+    border-color: transparent;
+    color: $light-alpha-02;
     &:link,
     &:visited {
       background-color: transparent;
-      border-color: $dark-alpha-18;
-      color: $light-alpha-04;
+      border-color: transparent;
+      color: $light-alpha-02;
     }
     &:focus,
     &:hover {
-      background-color: $dark-alpha-18;
-      border-color: $dark-alpha-16;
-      color: $white;
+      background-color: $light-alpha-20;
+      border-color: $light-alpha-16;
+      box-shadow: 0 0 0 3px $light-alpha-18;
+      color: $light-alpha-02;
     }
-    &:active,
-    &.is-active {
-      background-color: $light-alpha-14;
-      border-color: $light-alpha-12;
-      color: $white;
-    }
-  }
-  .button-tertiary-link {
-    background-color: transparent;
-    border: 0;
-    color: $light-alpha-04;
-    text-transform: initial;
-    &:link,
-    &:visited {
-      background-color: transparent;
-      color: $light-alpha-04;
-    }
-    &:focus,
-    &:hover {
-      background-color: $dark-alpha-18;
-      color: $white;
-    }
-    &:active,
-    &.is-active {
-      background-color: $light-alpha-14;
+    &.is-active,
+    &:active {
+      background-color: $light-alpha-18;
+      border-color: $light-alpha-14;
+      box-shadow: 0 0 0 3px $light-alpha-16;
       color: $white;
     }
   }
 }
-
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
-@media (min-width: $screen-sm) {}
-
+@media (min-width: $screen-sm) {
+  .button,
+  button,
+  input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    line-height: $line-height-160;
+  }
+  .button-small {
+    line-height: $line-height-160;
+  }
+  .button-medium {
+    line-height: $line-height-160;
+  }
+  .button-large {
+    line-height: $line-height-160;
+  }
+}
 @media (min-width: $screen-md) {}
-
 @media (min-width: $screen-lg) {}
-
 @media (min-width: $screen-xl) {}

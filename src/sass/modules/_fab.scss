@@ -1,104 +1,97 @@
 .m-fab {
-  position: relative;
-}
-
-.m-fab-button-wrapper {
-  position: absolute;
-  top: -$font-size-root-250;
-  right: 0;
+  position: fixed;
+  bottom: 1.5em;
+  right: 1.5em;
   font-size: $font-size-root-100;
   z-index: $fab;
   transition: all $transition-ease-fast;
-  transform: rotate(0);
+  transform: scale(1);
 }
-
 .is-onscreen-snack {
   .m-fab {
-    bottom: 6rem;
+    bottom: 6em;
   }
 }
-
 .is-nav-open {
   .m-fab {
-    right: -10rem;
-    transform: rotate(180deg);
+    transform: scale(0);
+    transition: all $transition-ease-fast;
   }
   &.is-onscreen-snack {
     .m-fab {
-      right: -10rem;
-      transform: rotate(180deg);
+      transform: scale(0);
+      transition: all $transition-ease-fast;
     }
   }
 }
-
 .m-fab-button {
-  width: $font-size-150;
-  height: $font-size-150;
-  font-size: $font-size-300;
-  line-height: $font-size-150;
+  width: 2.3em;
+  height: 2.3em;
+  font-size: $font-size-200;
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
-  transition: all $transition-ease-fast;
+  transition: all $transition-ease-slow;
   box-shadow: $shadow-small;
-  [class^="icon-"],
-  [class*=" icon-"] {
-    margin: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    line-height: $font-size-150;
-    transition: all $transition-ease-fast;
-  }
   &:focus,
   &:hover {
     transition: all $transition-ease-extra-fast;
     box-shadow: $shadow-medium;
-    [class^="icon-"],
-    [class*=" icon-"] {
-      transition: all $transition-ease-extra-fast;
+  }
+  &:active {
+    transform: scale(1.1);
+    transition: all $transition-bounce-extra-fast;
+  }
+}
+.is-night-mode {
+  .m-fab-button {
+    box-shadow: none;
+    &:focus,
+    &:hover {
+      box-shadow: none;
+    }
+    &:active {
+      box-shadow: none;
     }
   }
 }
-
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
 @media (min-width: $screen-sm) {
   .is-onscreen-snack {
     .m-fab {
-      // bottom: 1.5rem;
+      bottom: 1em;
     }
   }
 }
-
 @media (min-width: $screen-md) {
   .m-fab {
-    // bottom: 2rem;
-    // right: 2rem;
+    bottom: 2em;
+    right: 2em;
+  }
+  .m-fab-button {
+    font-size: $font-size-150;
   }
   .is-onscreen-snack {
     .m-fab {
-      // bottom: 2rem;
+      bottom: 2em;
     }
   }
 }
-
 @media (min-width: $screen-lg) {
   .m-fab {
-    // bottom: 3rem;
-    // right: 3rem;
+    bottom: 3em;
+    right: 3em;
   }
   .is-onscreen-snack {
     .m-fab {
-      // bottom: 3rem;
+      bottom: 3em;
     }
   }
 }
-
 @media (min-width: $screen-xl) {}
-
 @media print {
   .m-fab {
     display: none;

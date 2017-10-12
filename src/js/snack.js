@@ -9,7 +9,7 @@ var snack = (function() {
     };
   };
 
-  function render(message, actionText) {
+  function render(message, actionText, action, destroyDelay, postSnack) {
 
     var body = helper.e("body");
 
@@ -24,18 +24,35 @@ var snack = (function() {
     snackBar.appendChild(text);
 
     if (actionText) {
-      var action = snackBar.destroy.bind(snackBar);
+      var destroyAction = snackBar.destroy.bind(snackBar);
       var actionButton = document.createElement("a");
-      actionButton.setAttribute("class", "button button-tertiary m-snack-bar-button");
-      actionButton.textContent = actionText;
-      actionButton.addEventListener("click", action);
+      actionButton.setAttribute("class", "button button-medium button-tertiary m-snack-bar-button");
+      if (typeof actionText == "boolean") {
+        helper.addClass(actionButton, "button-icon");
+        var icon = document.createElement("span");
+        icon.setAttribute("class", "icon icon-close");
+        actionButton.appendChild(icon);
+      } else if (typeof actionText == "string") {
+        actionButton.textContent = actionText;
+      };
+      actionButton.addEventListener("click", destroyAction);
       snackBar.appendChild(actionButton);
+    };
+    if (action) {
+      actionButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        action();
+      }, false);
     };
 
     snackBar.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && this.style.opacity == 0) {
         this.parentElement.removeChild(this);
-        checkBodyForSnack();
+        _checkBodyForSnack();
+        if (postSnack) {
+          postSnack();
+        };
       };
     }.bind(snackBar), false);
 
@@ -49,14 +66,14 @@ var snack = (function() {
       if (previousSnackBar === this) {
         previousSnackBar.destroy();
       };
-    }.bind(snackBar), 4000);
+    }.bind(snackBar), destroyDelay || 4000);
 
     body.appendChild(snackBar);
     getComputedStyle(snackBar).opacity;
     getComputedStyle(snackBar).transform;
     getComputedStyle(snackBar).margin;
     helper.addClass(snackBar, "is-reveal");
-    checkBodyForSnack();
+    _checkBodyForSnack();
 
   };
 
@@ -68,7 +85,7 @@ var snack = (function() {
     }, false);
   };
 
-  function checkBodyForSnack() {
+  function _checkBodyForSnack() {
     var body = helper.e("body");
     var snackBar = helper.e(".js-snack-bar");
     if (snackBar) {
@@ -83,6 +100,6 @@ var snack = (function() {
     bind: bind,
     destroy: destroy,
     render: render
-  }
+  };
 
 })();

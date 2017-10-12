@@ -15,16 +15,22 @@ module.exports = function(grunt) {
     copy: {
       dev: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js'],
+        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js', 'manifest.json'],
         dest: '<%= folders.dev %>/',
         expand: true
       },
       build: {
         cwd: '<%= folders.src %>/',
-        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js'],
+        src: ['{images,fonts,js}/**/*', 'bower_components/**/*.js', 'manifest.json'],
         dest: '<%= folders.build %>/',
         expand: true
       },
+      webapp: {
+        expand: true,
+        src: ['manifest.json'],
+        dest: '<%= folders.build %>/',
+        filter: 'isFile'
+      }
     },
 
     clean: {
@@ -38,7 +44,7 @@ module.exports = function(grunt) {
         '.tmp/*',
         '.sass-cache/*'
       ],
-      postBuild: '<%= folders.build %>/bower_components/'
+      buildCleanBower: '<%= folders.build %>/bower_components/'
     },
 
     useminPrepare: {
@@ -49,21 +55,23 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      scripts: {
-        src: '<%= folders.build %>/js/**/*.js',
-        dest: '<%= folders.build %>/js/lostd20.min.js'
+      lostd20: {
+        src: [
+          '<%= folders.build %>/js/*.js'
+        ],
+        dest: '<%= folders.build %>/js/lostd20.js'
       },
       vendor: {
         src: [
-          '<%= folders.build %>/bower_components/Sortable/Sortable.min.js'
+          '<%= folders.build %>/bower_components/smooth-scroll/dist/js/smooth-scroll.min.js'
         ],
-        dest: '<%= folders.build %>/js/vendor.js'
+        dest: '<%= folders.build %>/js/vendor.min.js'
       }
     },
 
     uglify: {
       build: {
-        src: '<%= folders.build %>/js/lostd20.min.js',
+        src: '<%= folders.build %>/js/lostd20.js',
         dest: '<%= folders.build %>/js/lostd20.min.js'
       }
     },
@@ -99,7 +107,7 @@ module.exports = function(grunt) {
 
     autoprefixer: {
       options: {
-        browsers: ['last 3 versions']
+        browsers: ['last 5 versions']
       },
       dev: {
         files: {
@@ -144,7 +152,7 @@ module.exports = function(grunt) {
         }
       },
       assets: {
-        files: '<%= folders.src %>/{images,fonts,js}/**/*',
+        files: ['<%= folders.src %>/{images,fonts,js}/**/*', '<%= folders.src %>/manifest.json'],
         tasks: ['copy:dev'],
         options: {
           livereload: true
@@ -153,14 +161,25 @@ module.exports = function(grunt) {
     },
 
     connect: {
-      server: {
+      dev: {
         options: {
-          port: 9999,
+          port: 9000,
           base: '<%= folders.dev %>',
+          hostname: '0.0.0.0',
+          livereload: 35729,
+          open: {
+            target: 'http://0.0.0.0:9000'
+          }
+        }
+      },
+      build: {
+        options: {
+          port: 9001,
+          base: '<%= folders.build %>',
           hostname: 'localhost',
           livereload: 35729,
           open: {
-            target: 'http://localhost:9999'
+            target: 'http://localhost:9001'
           }
         }
       }
@@ -209,6 +228,26 @@ module.exports = function(grunt) {
           dest: '<%= folders.build %>/'
         }]
       }
+    },
+
+    'sw-precache': {
+      options: {
+        baseDir: '<%= folders.build %>/',
+        stripPrefix: 'build/',
+        cacheId: 'aS',
+        workerFileName: 'service-worker.js',
+        verbose: false,
+      },
+      'default': {
+        staticFileGlobs: [
+          '**/*.html',
+          '**/*.json',
+          'css/**/*.css',
+          'fonts/**/*.{woff,ttf,svg,eot,woff,woff2}',
+          'images/**/*.{gif,png,jpg}',
+          'js/**/*.js'
+        ],
+      }
     }
 
   });
@@ -225,6 +264,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-assemble');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-sw-precache');
 
   grunt.registerTask('dev', [
     'clean:dev',
@@ -233,8 +273,17 @@ module.exports = function(grunt) {
     'copy:dev',
     'sass:dev',
     'autoprefixer:dev',
-    'connect',
+    'connect:dev',
     'watch'
+  ]);
+
+  grunt.registerTask('aslive', [
+    'connect:build',
+    'watch'
+  ]);
+
+  grunt.registerTask('sw', [
+    'sw-precache:default'
   ]);
 
   grunt.registerTask('build', [
@@ -242,15 +291,17 @@ module.exports = function(grunt) {
     'clean:tmp',
     'assemble:build',
     'copy:build',
+    'copy:webapp',
     'sass:build',
     'autoprefixer:build',
     'cssmin:build',
     'useminPrepare',
     'concat',
-    'uglify',
+    'uglify:build',
     'usemin',
+    'clean:buildCleanBower',
     'htmlmin',
-    'clean:postBuild'
+    'sw-precache:default'
   ]);
 
 };

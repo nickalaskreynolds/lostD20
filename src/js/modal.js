@@ -11,6 +11,16 @@ var modal = (function() {
     }, false);
   };
 
+  function checkForModal() {
+    var modal = helper.e(".js-modal");
+    var body = helper.e("body");
+    if (modal) {
+      body.dataset.modal = true;
+    } else {
+      body.dataset.modal = false;
+    };
+  };
+
   function destroy() {
     var modal = helper.e(".js-modal");
     var modalShade = helper.e(".js-modal-shade");
@@ -29,8 +39,7 @@ var modal = (function() {
     };
   };
 
-  function render(heading, modalBodyContent, actionText, action) {
-
+  function render(heading, modalBodyContent, actionText, action, size) {
     prompt.destroy();
     var body = helper.e("body");
 
@@ -45,7 +54,13 @@ var modal = (function() {
     modalWrapper.setAttribute("class", "m-modal-wrapper js-modal-wrapper is-unrotate-out");
 
     var modal = document.createElement("div");
-    modal.setAttribute("class", "m-modal js-modal");
+    if (size == "large") {
+      modal.setAttribute("class", "m-modal m-modal-large js-modal");
+    } else if (size == "small") {
+      modal.setAttribute("class", "m-modal m-modal-small js-modal");
+    } else {
+      modal.setAttribute("class", "m-modal js-modal");
+    };
     modal.destroy = function() {
       helper.removeClass(modalWrapper, "is-unrotate-in");
       helper.addClass(modalWrapper, "is-dropped-out");
@@ -54,7 +69,7 @@ var modal = (function() {
     };
 
     var modalHeading = document.createElement("h1");
-    modalHeading.setAttribute("tabindex", "3");
+    modalHeading.setAttribute("tabindex", "1");
     modalHeading.setAttribute("class", "m-modal-heading");
     modalHeading.textContent = heading;
 
@@ -66,7 +81,7 @@ var modal = (function() {
 
     var actionButton = document.createElement("a");
     actionButton.setAttribute("href", "javascript:void(0)");
-    actionButton.setAttribute("tabindex", "3");
+    actionButton.setAttribute("tabindex", "1");
     actionButton.setAttribute("class", "button button-primary button-block button-large");
     actionButton.textContent = actionText || "Ok";
 
@@ -77,7 +92,16 @@ var modal = (function() {
     };
 
     if (modalBodyContent) {
-      modalBody.appendChild(modalBodyContent);
+      if (typeof modalBodyContent == "string") {
+        var container = document.createElement("div");
+        container.setAttribute("class", "container");
+        var para = document.createElement("p");
+        para.textContent = modalBodyContent;
+        container.appendChild(para);
+        modalBody.appendChild(container);
+      } else {
+        modalBody.appendChild(modalBodyContent);
+      };
     };
 
     modalWrapper.appendChild(modalBody);
@@ -87,21 +111,25 @@ var modal = (function() {
     modal.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && getComputedStyle(this).opacity == 0) {
         this.parentElement.removeChild(this);
+        checkForModal();
+        page.update();
       };
     }.bind(modal), false);
 
     modalShade.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && getComputedStyle(this).opacity == 0) {
         this.parentElement.removeChild(this);
+        checkForModal();
+        page.update();
       };
     }.bind(modalShade), false);
 
     modalShade.addEventListener("click", destroy, false);
     actionButton.addEventListener("click", function(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        destroy();
-      }, false);
+      event.stopPropagation();
+      event.preventDefault();
+      destroy();
+    }, false);
     if (action) {
       actionButton.addEventListener("click", function(event) {
         event.stopPropagation();
@@ -133,7 +161,8 @@ var modal = (function() {
     helper.removeClass(modalShade, "is-transparent");
     helper.addClass(modalShade, "is-opaque");
     modalHeading.focus(this);
-
+    checkForModal();
+    page.update();
   };
 
   // exposed methods
@@ -144,39 +173,3 @@ var modal = (function() {
   };
 
 })();
-
-
-// (function() {
-
-//   // Define our constructor
-//   this.Modal = function() {
-
-//     // Define option defaults
-//     var defaults = {
-//       className: 'fade-and-drop',
-//       closeButton: true,
-//       content: "",
-//       maxWidth: 600,
-//       minWidth: 280,
-//       overlay: true
-//     }
-
-//     // Create options by extending defaults with the passed in arugments
-//     if (arguments[0] && typeof arguments[0] === "object") {
-//       this.options = extendDefaults(defaults, arguments[0]);
-//     }
-
-//   }
-
-//   // Utility method to extend defaults with user options
-//   function extendDefaults(source, properties) {
-//     var property;
-//     for (property in properties) {
-//       if (properties.hasOwnProperty(property)) {
-//         source[property] = properties[property];
-//       }
-//     }
-//     return source;
-//   }
-
-// }());

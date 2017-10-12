@@ -1,54 +1,60 @@
 .u-full-width {
   width: 100%;
-  box-sizing: border-box;
+  // box-sizing: border-box;
 }
-
 .u-text-center {
   text-align: center;
 }
-
 .u-text-left {
   text-align: left;
 }
-
 .u-text-right {
   text-align: right;
 }
-
 .u-no-margin {
   margin: 0;
   &[type="email"],
   &[type="number"],
+  &[type="password"],
   &[type="search"],
-  &[type="text"],
   &[type="tel"],
-  &[type="password"] {
+  &[type="text"] {
+    margin: 0;
+  }
+  &:not(:only-child):not(:last-child) {
     margin: 0;
   }
 }
-
 .u-inline-with-input {
   padding-top: 0;
   padding-bottom: 0;
-  height: $line-height-root-250;
-  line-height: $line-height-root-250;
+  height: 3em;
+  line-height: 3;
   box-sizing: border-box;
 }
-
 .u-margin-with-input {
-  margin: 0 0 1.5rem 0;
+  margin: 1em 0;
 }
-
+.u-margin-bottom {
+  margin-bottom: 1em;
+}
 .u-underline-with-input {
   border-bottom: $border;
-  border-color: $secondary-color-alpha-20;
+  border-color: $gray-18;
 }
-
+.u-background-with-input {
+  background-color: $gray-19;
+}
 .u-small-text {
-  color: $gray-12;
+  color: $gray-10;
   font-size: $font-size-075;
 }
-
+.u-muted-text {
+  color: $gray-10;
+  strong {
+    color: $gray-04;
+  }
+}
 .u-list-unstyled {
   padding-left: 0;
   margin-bottom: 0;
@@ -56,16 +62,14 @@
     list-style-type: none;
   }
 }
-
 .u-list-inline {
   li {
     display: inline-block;
   }
 }
-
 .u-clearfix {
-  &:before,
-  &:after {
+  &:after,
+  &:before {
     content: " ";
     display: table;
   }
@@ -73,14 +77,28 @@
     clear: both;
   }
 }
-
+.is-night-mode {
+  .u-underline-with-input {
+    border-color: $gray-04;
+  }
+  .u-background-with-input {
+    background-color: $gray-02;
+  }
+  .u-muted-text {
+    strong {
+      color: $white;
+    }
+  }
+}
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
-@media (min-width: $screen-sm) {}
-
+@media (min-width: $screen-sm) {
+  .u-inline-with-input {
+    height: 2.5em;
+    line-height: 2.5;
+  }
+}
 @media (min-width: $screen-md) {}
-
 @media (min-width: $screen-lg) {}
-
 @media (min-width: $screen-xl) {}

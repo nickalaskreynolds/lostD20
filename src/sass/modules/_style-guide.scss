@@ -4,17 +4,14 @@
   margin-bottom: $font-size-100;
   text-align: center;
 }
-
 .style-guide-dark {
   background-color: $secondary-color-08;
   padding: 20px;
   margin-bottom: 2em;
 }
-
 .style-guide-color-group {
   margin-bottom: 2em;
 }
-
 .style-guide-color {
   float: left;
   width: 5%;
@@ -440,14 +437,15 @@
     background-color: $light-alpha-20;
   }
 }
-
+.style-guide-icon {
+  font-size: $font-size-200;
+  margin: 0.5em;
+  display: inline-block;
+}
 // --------------------------------------------------
 // media queries
 // --------------------------------------------------
 @media (min-width: $screen-sm) {}
-
 @media (min-width: $screen-md) {}
-
 @media (min-width: $screen-lg) {}
-
 @media (min-width: $screen-xl) {}

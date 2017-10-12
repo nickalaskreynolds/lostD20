@@ -11,6 +11,16 @@ var prompt = (function() {
     }, false);
   };
 
+  function checkForPrompt() {
+    var prompt = helper.e(".js-prompt");
+    var body = helper.e("body");
+    if (prompt) {
+      body.dataset.prompt = true;
+    } else {
+      body.dataset.prompt = false;
+    };
+  };
+
   function destroy() {
     var prompt = helper.e(".js-prompt");
     var promptShade = helper.e(".js-prompt-shade");
@@ -30,7 +40,6 @@ var prompt = (function() {
   };
 
   function render(heading, message, actionText, action, actionUrl, actionAttributeKey, actionAttributeValue) {
-
     modal.destroy();
     var body = helper.e("body");
 
@@ -57,7 +66,7 @@ var prompt = (function() {
     promptbody.setAttribute("class", "m-prompt-body");
 
     var promptHeading = document.createElement("h1");
-    promptHeading.setAttribute("tabindex", "3");
+    promptHeading.setAttribute("tabindex", "1");
     promptHeading.setAttribute("class", "m-prompt-heading");
     promptHeading.textContent = heading;
 
@@ -66,26 +75,26 @@ var prompt = (function() {
     promptText.textContent = message;
 
     var promptControls = document.createElement("div");
-    promptControls.setAttribute("class", "m-prompt-controls");
+    promptControls.setAttribute("class", "m-prompt-controls button-group button-group-line button-group-equal");
 
     var actionButton = document.createElement("a");
     actionButton.setAttribute("href", "javascript:void(0)");
-    actionButton.setAttribute("tabindex", "3");
-    actionButton.setAttribute("class", "button button-primary button-block button-large js-prompt-action");
+    actionButton.setAttribute("tabindex", "1");
+    actionButton.setAttribute("class", "button button-primary button-large js-prompt-action");
     actionButton.textContent = actionText || "Ok";
 
     var cancelButton = document.createElement("a");
     cancelButton.setAttribute("href", "javascript:void(0)");
-    cancelButton.setAttribute("tabindex", "3");
-    cancelButton.setAttribute("class", "button button-block button-large");
+    cancelButton.setAttribute("tabindex", "1");
+    cancelButton.setAttribute("class", "button button-large");
     cancelButton.textContent = "Cancel";
 
     promptControls.appendChild(cancelButton);
     promptControls.appendChild(actionButton);
-    if (heading != false) {
+    if (heading) {
       promptbody.appendChild(promptHeading);
     };
-    if (message != false) {
+    if (message) {
       promptbody.appendChild(promptText);
     };
     promptWrapper.appendChild(promptbody);
@@ -96,12 +105,16 @@ var prompt = (function() {
     prompt.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && getComputedStyle(this).opacity == 0) {
         this.parentElement.removeChild(this);
+        checkForPrompt();
+        page.update();
       };
     }.bind(prompt), false);
 
     promptShade.addEventListener("transitionend", function(event, elapsed) {
       if (event.propertyName === "opacity" && getComputedStyle(this).opacity == 0) {
         this.parentElement.removeChild(this);
+        checkForPrompt();
+        page.update();
       };
     }.bind(promptShade), false);
 
@@ -149,7 +162,8 @@ var prompt = (function() {
     helper.removeClass(promptShade, "is-transparent");
     helper.addClass(promptShade, "is-opaque");
     promptHeading.focus(this);
-
+    checkForPrompt();
+    page.update();
   };
 
   // exposed methods
@@ -157,6 +171,6 @@ var prompt = (function() {
     bind: bind,
     destroy: destroy,
     render: render
-  }
+  };
 
 })();
